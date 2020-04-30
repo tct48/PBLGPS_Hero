@@ -1,0 +1,17 @@
+<div class="app-title custom-menu" style="background-color: #333;padding-bottom: 0;">
+    <div style="background-color: #333;padding:0;margin:0">
+      <ul *ngIf="UserLogin" style="list-style-type: none;margin:0;padding:0;overflow:hidden;background-color:#333;">
+        <li><a class="active" href="#home">กิจกรรมประจำด่าน<br>(STAGE)</a></li>
+        <li><a href="#news">ภารกิจ<br>(QUEST)</a></li>
+        <li><a href="#contact">แบบทดสอบ<br>(QUIZ)</a></li>
+        <li><a href="#about">แหล่งการเรียนรู้<br>(RESOURCE)</a></li>
+        <li><a href="#about">กระดานผู้นำ<br>(LEADERBOARD)</a></li>
+        <li><a href="#about">ข้อมูลผู้เรียน<br>(INFORMATION)</a></li>
+        <li><a href="#about">แนะนำระบบ<br>(GUIDE)</a></li>
+      </ul>
+      <ul *ngIf="!UserLogin" style="list-style-type: none;margin:0;padding:0;overflow:hidden;background-color:#333;">
+        <li><a class="active" href="#home">สมัครสมาชิก<br>(SIGNUP)</a></li>
+        <li><a href="#news">เข้าสู่ระบบ<br>(SIGNIN)</a></li>
+      </ul>
+    </div>
+  </div>
