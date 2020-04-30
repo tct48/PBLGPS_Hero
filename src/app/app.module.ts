@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 // RECOMMENDED
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     SignupComponent
   ],
   imports: [
+    FormsModule, 
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,

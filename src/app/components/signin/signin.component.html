@@ -1,1 +1,42 @@
-<p>signin works!</p>
+<section class="app sidebar-mini rtl">
+
+  <app-nav-bar> </app-nav-bar>
+
+  <main class="app-content">
+    <app-menu-bar></app-menu-bar>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <!-- carousel -->
+        <div class="tile">
+          <div class="text-center py-2">
+            <h1>PBLGPS-LMS</h1>
+            <h3 class="lead">เข้าสู่ระบบ</h3>
+          </div>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="disabledTextInput">Username :</label>
+              <input class="form-control" formControlName="username" placeholder="รหัสนักศึกษา">
+            </div>
+            <div class="form-group">
+              <label for="disabledTextInput">Password :</label>
+              <input class="form-control" type="password" formControlName="password" placeholder="รหัสนักศึกษา">
+            </div>
+  
+            <button type="submit" class="btn btn-primary btn-lg btn-block my-2">เข้าสู่ระบบ</button>
+            <p><a href="#">ลืมรหัสผ่าน</a> | <a [routerLink]="['/signup']">สมัครสมาชิก</a></p>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  
+    <!-- footer -->
+    <footer class="main-footer py-2">
+      <div class="pull-right hidden-xs"><span style="margin-right: 30px;"><b>Version</b> 1.0</span></div>
+      <strong
+        >Copyright &copy; 2020-2029 <a href="#">Ratchapol Kladchuen</a>.</strong
+      >
+    </footer>
+  </main>  
+</section>
