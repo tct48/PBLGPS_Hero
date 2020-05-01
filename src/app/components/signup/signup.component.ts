@@ -4,6 +4,7 @@ import { inject } from '@angular/core/testing';
 
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import { AlertService } from 'src/app/share/services/alert.service';
+import { MemberService, IMember } from 'src/app/share/services/member.service';
 
 @Component({
   selector: 'app-signup',
@@ -17,10 +18,13 @@ export class SignupComponent implements OnInit {
   password:string;
   c_password:string;
 
-  member:any;
+  member:IMember;
 
-  constructor(private builder: FormBuilder,
-    private alert: AlertService) {
+  constructor(
+    private builder: FormBuilder,
+    private alert: AlertService,
+    private member_service:MemberService
+    ) {
     this.createFormData();
   }
 
@@ -29,7 +33,7 @@ export class SignupComponent implements OnInit {
 
   createFormData(){
     this.form = this.builder.group({
-      sid: ['',Validators.required],
+      _id: ['',Validators.required],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       username: ['', Validators.required],
@@ -50,7 +54,10 @@ export class SignupComponent implements OnInit {
     }
 
     this.member = this.form.value;
-    console.log(this.member);
+
+    this.member_service.signUp(this.member)
+
+    console.log(this.member_service.showMember);
     return this.alert.success("สมัครสมาชิกเรียบร้อยแล้ว");
   }
 }

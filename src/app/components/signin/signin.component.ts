@@ -22,7 +22,6 @@ export class SigninComponent implements OnInit {
     private router: Router,
     private activateRoute: ActivatedRoute
   ) {
-
     this.createFormData();
   }
 
@@ -40,5 +39,7 @@ export class SigninComponent implements OnInit {
     if (this.form.invalid) {
       return this.alert.notify("กรุณากรอกข้อมูลให้ถูกต้อง");
     }
+
+    this.router.navigateByUrl('/auth');
   }
 }
