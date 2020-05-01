@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';
+import { AlertService } from 'src/app/share/services/alert.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AppURL } from 'src/app/app.url';
 
-import Swal from 'sweetalert2/dist/sweetalert2.js'
-
-import 'sweetalert2/src/sweetalert2.scss'
 
 @Component({
   selector: 'app-signin',
@@ -11,44 +11,34 @@ import 'sweetalert2/src/sweetalert2.scss'
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-  form:FormGroup;
+  form: FormGroup;
   password;
   c_password;
- 
-  constructor(private builder: FormBuilder) { 
+  returnURL;
+
+  constructor(
+    private builder: FormBuilder,
+    private alert: AlertService,
+    private router: Router,
+    private activateRoute: ActivatedRoute
+  ) {
+
     this.createFormData();
   }
 
   ngOnInit(): void {
   }
 
-  createFormData(){
+  createFormData() {
     this.form = this.builder.group({
-      username: ['',Validators.required],
+      username: ['', Validators.required],
       password: ['', Validators.required],
-  });
+    });
   }
 
-  onSubmit(){
-    if(this.form.invalid){
-      return Swal.fire({
-        title: 'Error!',
-        text: 'กรุณากรอกข้อมูลให้ถูกต้อง',
-        icon: 'error',
-        confirmButtonText: 'ยืนยัน'
-      })
+  onSubmit() {
+    if (this.form.invalid) {
+      return this.alert.notify("กรุณากรอกข้อมูลให้ถูกต้อง");
     }
-
-    return Swal.fire({
-      title: 'Success!',
-      text: 'ยินดีต้อนรับเข้าสู่ระบบ',
-      icon: 'success',
-      showConfirmButton:false,
-      timer:1500
-    })
-    
-
-    
-    
   }
 }

@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "PBLGPSHERO"
+    }
+  },
+  "defaultProject": "PBLGPSHERO",
+  "cli": {
+    "analytics": "71ce02d8-bd32-4c93-a2f0-0dae0ca6589d"
+  }
 }
