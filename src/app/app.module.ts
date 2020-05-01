@@ -16,13 +16,17 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRouting } from './app.routing';
 import { SharedsModule } from './share/shareds.module';
+import { HahaComponent } from './components/haha/haha.component';
+import { HomeComponent } from './authentication/components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    HahaComponent,
+    HomeComponent
   ],
   imports: [
     FormsModule,

@@ -4,12 +4,14 @@ import { AuthenticationModule } from './authentication/authentication.module'
 import { SigninComponent } from './components/signin/signin.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { HahaComponent } from './components/haha/haha.component';
 
 const RouterLists: Routes = [
   { path: '', redirectTo: AppURL.Login, pathMatch:'full' },
   { path: AppURL.Login, component: SigninComponent },
   { path: AppURL.Home, component: HomepageComponent},
   { path: AppURL.Register, component: SignupComponent},
+  { path: AppURL.Haha, component:HahaComponent },
   {
     path: AppURL.Authen, loadChildren: './authentication/authentication.module#AuthenticationModule',
     // canActivate:[AuthenticationGuard] ./authentication/authentication.module#AuthenticationModule
