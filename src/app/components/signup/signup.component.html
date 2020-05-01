@@ -1,58 +1,97 @@
-<app-nav-bar> </app-nav-bar>
-<main class="app-content">
-  <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-      <!-- carousel -->
-      <div class="tile">
-        <div class="text-center py-2">
-          <h1>สร้างบัญชีของคุณ</h1>
-          <h3 class="lead">Create your account</h3>
+<app-auth-content>
+  <main class="app-content">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <!-- carousel -->
+        <div class="tile">
+          <div class="text-center py-2">
+            <h1>สร้างบัญชีของคุณ</h1>
+            <h3 class="lead">Create your account</h3>
+          </div>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="disabledTextInput">รหัสนักศึกษา :</label>
+              <input
+                class="form-control"
+                formControlName="_id"
+                placeholder="รหัสนักศึกษา"
+              />
+            </div>
+            <div class="form-group">
+              <label for="disabledTextInput">ชื่อจริง :</label>
+              <input
+                class="form-control"
+                formControlName="firstname"
+                placeholder="รหัสนักศึกษา"
+              />
+            </div>
+            <div class="form-group">
+              <label for="disabledTextInput">นามสกุล :</label>
+              <input
+                class="form-control"
+                formControlName="lastname"
+                placeholder="รหัสนักศึกษา"
+              />
+            </div>
+            <div class="form-group">
+              <label for="disabledTextInput">ยูซเซอร์เนม :</label>
+              <input
+                class="form-control"
+                formControlName="username"
+                placeholder="รหัสนักศึกษา"
+              />
+            </div>
+            <div class="form-group">
+              <label for="disabledTextInput">รหัสผ่าน :</label>
+              <input
+                class="form-control"
+                [(ngModel)]="password"
+                formControlName="password"
+                placeholder="รหัสนักศึกษา"
+              />
+            </div>
+            <div class="form-group">
+              <label for="disabledTextInput">ยืนยันรหัสผ่าน :</label>
+              <input
+                class="form-control"
+                [(ngModel)]="c_password"
+                formControlName="c_password"
+                placeholder="รหัสนักศึกษา"
+              />
+            </div>
+            <div class="form-group">
+              <label for="disabledTextInput">โทรศัพท์ :</label>
+              <input
+                class="form-control"
+                formControlName="phone"
+                placeholder="รหัสนักศึกษา"
+              />
+            </div>
+            <div class="form-group">
+              <label for="disabledTextInput">อีเมลล์ :</label>
+              <input
+                class="form-control"
+                formControlName="email"
+                placeholder="รหัสนักศึกษา"
+              />
+            </div>
+            <div class="form-group">
+              <label for="disabledTextInput">รูปภาพ :</label>
+              <input
+                class="form-control"
+                formControlName="picture"
+                placeholder="รหัสนักศึกษา"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block my-2">
+              ลงทะเบียน
+            </button>
+          </form>
         </div>
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label for="disabledTextInput">รหัสนักศึกษา :</label>
-            <input class="form-control" formControlName="_id" placeholder="รหัสนักศึกษา">
-          </div>
-          <div class="form-group">
-            <label for="disabledTextInput">ชื่อจริง :</label>
-            <input class="form-control" formControlName="firstname" placeholder="รหัสนักศึกษา">
-          </div>
-          <div class="form-group">
-            <label for="disabledTextInput">นามสกุล :</label>
-            <input class="form-control" formControlName="lastname" placeholder="รหัสนักศึกษา">
-          </div>
-          <div class="form-group">
-            <label for="disabledTextInput">ยูซเซอร์เนม :</label>
-            <input class="form-control" formControlName="username" placeholder="รหัสนักศึกษา">
-          </div>
-          <div class="form-group">
-            <label for="disabledTextInput">รหัสผ่าน :</label>
-            <input class="form-control" [(ngModel)]="password" formControlName="password" placeholder="รหัสนักศึกษา">
-          </div>
-          <div class="form-group">
-            <label for="disabledTextInput">ยืนยันรหัสผ่าน :</label>
-            <input class="form-control" [(ngModel)]="c_password" formControlName="c_password" placeholder="รหัสนักศึกษา">
-          </div>
-          <div class="form-group">
-            <label for="disabledTextInput">โทรศัพท์ :</label>
-            <input class="form-control" formControlName="phone" placeholder="รหัสนักศึกษา">
-          </div>
-          <div class="form-group">
-            <label for="disabledTextInput">อีเมลล์ :</label>
-            <input class="form-control" formControlName="email" placeholder="รหัสนักศึกษา">
-          </div>
-          <div class="form-group">
-            <label for="disabledTextInput">รูปภาพ :</label>
-            <input class="form-control" formControlName="picture" placeholder="รหัสนักศึกษา">
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-lg btn-block my-2">ลงทะเบียน</button>
-        </form>
       </div>
+      <div class="col-md-4"></div>
     </div>
-    <div class="col-md-4"></div>
-  </div>
-</main>
-
-<app-footer></app-footer>
+  </main>
+</app-auth-content>
