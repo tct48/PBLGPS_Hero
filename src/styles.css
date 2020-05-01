@@ -49,6 +49,10 @@ div.custom-menu div ul li a {
     padding:10px 0 10px 0;
   }
 
+  .app-header{
+    text-align: center;
+  }
+
   div.custom-menu div ul li{
     float: none;
     display:block;
