@@ -7,6 +7,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MemberService } from './services/member.service';
 import { AuthContentComponent } from './components/auth-content/auth-content.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpService } from '../services/http.service';
+import { AccountService } from './services/account.service';
 
 @NgModule({
   declarations: [NavBarComponent, FooterComponent, AuthContentComponent],

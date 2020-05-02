@@ -4,6 +4,12 @@ div .custom-menu {
   margin-top: 0px;
 }
 
+.app-nav{
+  position: fixed;
+  top:0px;
+  right:0px;
+}
+
 div.custom-menu div ul li {
   float: left;
 }

@@ -18,6 +18,7 @@ import { AppRouting } from './app.routing';
 import { SharedsModule } from './share/shareds.module';
 import { HahaComponent } from './components/haha/haha.component';
 import { HomeComponent } from './authentication/components/home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { HomeComponent } from './authentication/components/home/home.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     BrowserModule,
+    HttpClientModule,
     AppRouting,
     SharedsModule,
     CarouselModule.forRoot(),
