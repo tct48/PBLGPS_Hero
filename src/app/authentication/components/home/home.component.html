@@ -1,3 +1,58 @@
 <app-auth-content>
-    home.component.html
+  <div class="container px-5 py-4 ng-content">
+    <marquee *ngIf="UserLogin">
+      <i class="fa fa-user-circle-o" aria-hidden="true"></i> ยินดีต้อนรับคุณ <span
+        style="color:orangered">{{ UserLogin.firstname }} {{ UserLogin.lastname }}</span> เข้าสู่ระบบ PBLGPS-LMS
+    </marquee>
+    <h3 class="header-hover"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i> เมนูเริ่มต้น</h3>
+
+
+    <!-- custon -->
+    <div class="row my-3">
+      <!-- card-1 -->
+      <div class="col-md-6">
+        <div class="card">
+          <h4 class="card-header">
+            Card Header
+          </h4>
+          <div class="card-body text-center">
+            <a href="#">
+              <img id="button1" style="cursor: pointer;" onmouseout="unhover(this)" onmouseover="hover(this)"
+                src="../../../../assets/image/01.png">
+            </a>
+          </div>
+
+          <div class="card-footer">
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the bulk of the card's
+              content.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- card-2 -->
+      <div class="col-md-6">
+        <div class="card">
+          <h4 class="card-header">
+            Card Header
+          </h4>
+          <div class="card-body text-center">
+            <a href="#">
+              <img id="button2" onmouseout="unhover(this)" onmouseover="hover(this)"
+                src="../../../../assets/image/02.png">
+            </a>
+          </div>
+
+          <div class="card-footer">
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the bulk of the card's
+              content.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </app-auth-content>

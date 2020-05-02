@@ -11,7 +11,7 @@ export class AuthenService{
     localStorage.setItem(this.accessKey, accessToken);
   }
 
-  getAuthenticated(accessToken: string): string {
+  getAuthenticated(): string {
     return localStorage.getItem(this.accessKey)
   }
 

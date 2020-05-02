@@ -11,20 +11,9 @@ import { AlertService } from './alert.service';
 export class AccountService {
   constructor(
     private http: HttpService,
-    private authen: AuthenService,
-    private router : Router,
-    private alert: AlertService
+    private alert: AlertService,
+    private authen: AuthenService
   ) { }
-
-  public mockUserItems: IAccount[] = [{
-    _id: "1",
-    firstname: "Worapol",
-    lastname: "Mahachai",
-    username: "ketar",
-    password: "123456",
-    email: "test@email.com",
-    phone: "091-1157859"
-  }]
 
   public UserLogin: IAccount = {} as any;
   // Set ข้อมูล User และ Return UserLogin
@@ -42,7 +31,7 @@ export class AccountService {
   }
 
   getUserLogin(accessToken: string) {
-    return (this.http.requestGet('user/login', accessToken)
+    return (this.http.requestGet('user/data', accessToken)
       .toPromise() as Promise<IAccount>)
       .then(result => this.setUserLogin(result));
   }
@@ -58,7 +47,6 @@ export class AccountService {
   }
 
   onLogout(){
-    this.authen.clearAuthenticated();
     this.alert.notify("ขอบคุณที่ใช้งาน")
   }
 

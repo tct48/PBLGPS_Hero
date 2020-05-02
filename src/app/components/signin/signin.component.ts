@@ -7,13 +7,15 @@ import { AccountService } from 'src/app/share/services/account.service';
 import { HttpClient } from '@angular/common/http';
 import { HttpService } from 'src/app/services/http.service';
 import { MemberService } from 'src/app/share/services/member.service';
+import { AuthenService } from 'src/app/services/authen.service';
+import { AuthURL } from 'src/app/authentication/authentication.url';
 
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css'],
-  providers:[]
+  providers: []
 })
 export class SigninComponent implements OnInit {
   form: FormGroup;
@@ -25,9 +27,16 @@ export class SigninComponent implements OnInit {
     private builder: FormBuilder,
     private alert: AlertService,
     private router: Router,
-    private account:AccountService,
-    private activateRoute: ActivatedRoute
+    private authen: AuthenService,
+    private account: AccountService,
+    private activateRoute: ActivatedRoute,
   ) {
+    //ย้อนกลับไปหน้า LOGIN กรณี Redirect
+    this.activateRoute.params.forEach(params => {
+      this.returnURL = params.returnURL || `/${AppURL.Authen}/${AuthURL.Home}`;
+    })
+    this.redirectPage();
+
     this.createFormData();
   }
 
@@ -41,23 +50,29 @@ export class SigninComponent implements OnInit {
     });
   }
 
+  AppURL = AppURL;
+  AuthURL = AuthURL;
+
+  redirectPage(){
+    var data = this.authen.getAuthenticated();
+    if(data){
+      this.router.navigate(['/', AppURL.Authen, AuthURL.Home]);
+    }
+  }
+
   onSubmit() {
     if (this.form.invalid) {
       return this.alert.notify("กรุณากรอกข้อมูลให้ถูกต้อง");
     }
-    var username = this.form.controls["username"].value;
-    console.log(this.account.mockUserItems)
-    var length = this.account.mockUserItems.find(data => data.username === username);
-
-    if(length){
-      this.alert.success("ยินดีต้อนรับเข้าสู่ระบบ");
-      this.account.UserLogin = length;
-      return this.router.navigateByUrl('/auth');
-    }else{
-      return this.alert.something_wrong("Username หรือ Password ไม่ถูกต้อง");
-    }
-
-
-    // this.router.navigateByUrl('/auth');
+    this.account.onLogin(this.form.value)
+      .then(res => {
+        // เก็บ AccessToken
+        this.authen.setAuthenticated(res.accessToken);
+        this.alert.success("ยินดีต้อนรับเข้าสู่ระบบ");
+        this.router.navigateByUrl(this.returnURL);
+      })
+      .catch(err=>{
+        this.alert.notify(err.message)
+      })
   }
 }

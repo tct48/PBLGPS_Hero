@@ -4,10 +4,29 @@ div .custom-menu {
   margin-top: 0px;
 }
 
-.app-nav{
+.app-nav {
   position: fixed;
-  top:0px;
-  right:0px;
+  top: 0px;
+  right: 0px;
+}
+
+.header-hover:hover{
+  color:orangered;
+  cursor: pointer;
+}
+
+.ng-content {
+  background-color: white;
+  min-height: calc(100vh - 173px);
+  box-shadow: -1px 10px 23px 0px rgba(143, 135, 143, 0.55);
+}
+
+.boder-right {
+  border: 1px solid black;
+}
+
+.nav-link:hover {
+  color: white !important;
 }
 
 div.custom-menu div ul li {
@@ -48,20 +67,20 @@ div.custom-menu div ul li a {
   }
 }
 
-@media (max-width:375px){
+@media (max-width:375px) {
   div.custom-menu div ul li a {
     display: block;
-    width:100%;
-    padding:10px 0 10px 0;
+    width: 100%;
+    padding: 10px 0 10px 0;
   }
 
-  .app-header{
+  .app-header {
     text-align: center;
   }
 
-  div.custom-menu div ul li{
+  div.custom-menu div ul li {
     float: none;
-    display:block;
+    display: block;
     width: 100%;
   }
 }

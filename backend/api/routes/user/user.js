@@ -56,7 +56,6 @@ router.post('/login', (req, res, next) => {
         }
 
         if (result) {
-          console.log("FFFFFF")
           const token = jwt.sign({
               username: user[0].username,
               userId: user[0]._id
@@ -83,6 +82,20 @@ router.post('/login', (req, res, next) => {
         error: err.message
       });
     })
+})
+
+// getUserLogin
+router.get('/data', (req, res, next) => {
+  jwt.verify(accessToken, process.env.JWT_KEY, function (error, decodedToken) {
+		const userId = decodedToken.userId;
+		return User.findById({
+				_id: userId
+			})
+			.populate('academy')
+			.then(UserLogin => {
+				return res.status(200).json(UserLogin);
+			})
+	})
 })
 
 // การสมัครสมาชิก

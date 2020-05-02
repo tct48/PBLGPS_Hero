@@ -5,6 +5,12 @@ import { inject } from '@angular/core/testing';
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import { AlertService } from 'src/app/share/services/alert.service';
 import { MemberService, IMember } from 'src/app/share/services/member.service';
+import { AccountService } from 'src/app/share/services/account.service';
+import { AuthenService } from 'src/app/services/authen.service';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
+import { AuthURL } from 'src/app/authentication/authentication.url';
+import { AppURL } from 'src/app/app.url';
 
 @Component({
   selector: 'app-signup',
@@ -23,7 +29,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private builder: FormBuilder,
     private alert: AlertService,
-    private member_service:MemberService
+    private account:AccountService,
+    private router:Router
     ) {
     this.createFormData();
   }
@@ -41,7 +48,7 @@ export class SignupComponent implements OnInit {
       c_password: ['', Validators.required],
       phone : ['', Validators.required],
       email: ['', Validators.required],
-      picture: ['', Validators.required]
+      picture: ['']
   });
   }
 
@@ -53,11 +60,14 @@ export class SignupComponent implements OnInit {
       return this.alert.notify("รหัสผ่าน และยืนยันรหัสผ่านไม่ตรงกัน!","คำเตือน!","warning")
     }
 
-    this.member = this.form.value;
+    if(!this.form.controls['picture'].value){
+      console.log("รูปก็ไม่แนบหน้าหี")
+    }
 
-    this.member_service.signUp(this.member)
-
-    console.log(this.member_service.showMember);
-    return this.alert.success("สมัครสมาชิกเรียบร้อยแล้ว");
+    this.account.onRegister(this.form.value)
+    .then(()=>{
+        this.alert.success("สมัครสมาชิกเรียบร้อยแล้ว!");
+        this.router.navigate(['/',AppURL.Login]);
+    })
   }
 }

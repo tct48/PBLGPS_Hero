@@ -27,7 +27,9 @@ const schema = mongoose.Schema({
   phone: {
     type: String,
     required: true
-  }
+  },
+  exp:{type: Number,default:0},
+  badge: { type : Array}
 });
 
 const User = mongoose.model('User', schema);

@@ -52,10 +52,10 @@ export class HttpService {
     throw errResponse;
   }
 
-  // เพิ่ม Header
+  // เพิ่ม header
   appendHeaders(accessToken) {
     const headers = {};
-    if (accessToken) headers['Authentication'] = `ฺBearer ${accessToken}`;
+    if (accessToken) headers['Authorization'] = `Bearer ${accessToken}`;
     return new HttpHeaders(headers);
   }
 }
