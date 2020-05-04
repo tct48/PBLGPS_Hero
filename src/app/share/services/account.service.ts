@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
+import { AlertService } from './alert.service';
 import { HttpService } from 'src/app/services/http.service';
 import { AuthenService } from 'src/app/services/authen.service';
-import { Router } from '@angular/router';
-import { AlertService } from './alert.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -70,7 +70,11 @@ export interface IAccount {
   password: string;
   email: string;
   phone: string;
+
   image?: string;
+  sid?:string;
+
+  exp?:number;
 }
 
 export interface IRegister {

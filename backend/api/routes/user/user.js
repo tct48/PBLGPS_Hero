@@ -41,6 +41,19 @@ router.get('/', (req, res, next) => {
   })
 })
 
+router.get('/leaderboard', (req, res, next)=>{
+  User.find().limit(5)
+  .sort({
+    exp:0
+  })
+  .then(items => {
+    return res.status(200).json({
+      total_items: items.length,
+      items: items
+    })
+  })
+})
+
 // การล๊อกอิน
 router.post('/login', (req, res, next) => {
   User.find({
@@ -110,6 +123,7 @@ router.post('/signup', (req, res, next) => {
     const user = new User({
       _id: new mongoose.Types.ObjectId(),
       email: req.body.email,
+      sid: req.body.sid,
       password: hash,
       firstname: req.body.firstname,
       lastname: req.body.lastname,

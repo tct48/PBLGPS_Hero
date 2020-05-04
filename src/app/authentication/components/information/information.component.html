@@ -1,0 +1,97 @@
+<app-auth-content>
+  <!-- Heading -->
+  <h3><img src="../../../../assets/image/Crown4.png" /> ข้อมูลผู้เรียน</h3>
+
+  <div class="row py-4">
+
+    <!-- ส่วนคะแนนที่ได้รับ Left -->
+    <div class="col-lg-2">
+      <div class="jumbotron text-center" style="padding:8px 16px;margin:0 0 8px 0">
+        <h5>คะแนนที่ได้จากกิจกรรม</h5>
+      </div>
+      <div class="mt-1 pl-2 pr-2" style="border:1px solid lightgray;border-radius:5px;">
+        <ul style="list-style: none;padding-left: 0;">
+          <li class="py-2"><a>Pre-test</a></li>
+          <li class="py-2"><a>PrPS Test</a></li>
+          <li class="py-2"><a>Stage</a></li>
+          <li class="py-2"><a>Quiz</a></li>
+          <li class="py-2"><a>Quest</a></li>
+          <li class="py-2"><a>Badges</a></li>
+          <li class="py-2"><a>Attendance</a></li>
+          <li class="py-2"><a>Resource</a></li>
+          <li class="py-2"><a>Workshop</a></li>
+          <li class="py-2"><a>Guild</a></li>
+          <li class="py-2"><a>PoPS Test</a></li>
+          <li class="py-2"><a>Post-test</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ส่วน Center -->
+    <div class="col-lg-7" style="padding-right: 8px;">
+      <div class="row">
+        <div class="col-md-3">
+          <img *ngIf="!UserLogin.image" class="avatar-image" src="../../../../assets/image/no-image.png">
+        </div>
+
+        <div class="col-md-9">
+          <form [formGroup]="form" (submit)="onSubmit()">
+            <div class="form-group">
+              <label>รหัสนักศึกษา :</label>
+              <input type="text" class="form-control" formControlName="sid" placeholder="รหัสนักศึกษา">
+            </div>
+            <div class="form-group">
+              <label>ชื่อจริง-นามสกุล :</label>
+              <input type="text" class="form-control" formControlName="firstname" placeholder="ชื่อจริง-นามสกุล">
+            </div>
+            <div class="form-group">
+              <label>เบอร์โทร :</label>
+              <input type="text" class="form-control" formControlName="phone" placeholder="เบอร์โทร">
+            </div>
+            <div class="form-group">
+              <label>อีเมล์ :</label>
+              <input type="text" class="form-control" formControlName="email" placeholder="อีเมล์">
+            </div>
+            <button type="submit" class="btn btn-success">Update</button>
+          </form>
+        </div>
+        <!-- แถบค่าประสบการณ์ -->
+        <div class="col-md-3 mt-4 py-3 text-center" style="border-top: 1px solid lightgray;">
+          ค่าประสบการณ์<br>(Experience)
+        </div>
+        <div class="col-md-9 mt-4 py-3" style="border-top: 1px solid lightgray;">
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="exp" placeholder="ค่าประสบการณ์">
+          </div>
+        </div>
+        <!-- แถบเลเวล -->
+        <div class="col-md-3 py-3 text-center" style="border-top: 1px solid lightgray;">
+          ระดับ<br>(Level)
+        </div>
+        <div class="col-md-9 py-3" style="border-top: 1px solid lightgray;">
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="level" placeholder="เลเวล">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ส่วนเหรียญ Right -->
+    <div class="col-lg-3 jumbotron text-center py-4"
+      style="border:1px solid white;background-color:rgb(209, 209, 209);border-radius:15px;">
+      <h5>เหรียญตราสัญลักษณ์ที่ได้รับ</h5>
+      <div class="show-badge">
+        <a href="" tooltip="ได้รับมาจาก : การได้คะแนน Device เกิน 80 %">
+          <img src="../../../../assets/image/badge/badge-device.png">
+        </a>
+        <a href="" tooltip="ได้รับมาจาก : การได้คะแนนการ Monitor เกิน 80 %">
+          <img src="../../../../assets/image/badge/badge-monitor.png">
+        </a>
+        <a href="" tooltip="ได้รับมาจาก : การได้คะแนนโดยรวมเกิน 80 %">
+          <img src="../../../../assets/image/badge/badge-overview.png">
+        </a>
+      </div>
+    </div>
+  </div>
+</app-auth-content>

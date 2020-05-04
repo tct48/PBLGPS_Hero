@@ -9,10 +9,18 @@ import { AuthContentComponent } from './components/auth-content/auth-content.com
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpService } from '../services/http.service';
 import { AccountService } from './services/account.service';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   declarations: [NavBarComponent, FooterComponent, AuthContentComponent],
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
+
+  ]
+  ,
   exports: [
     NavBarComponent,
     FooterComponent,
@@ -22,4 +30,4 @@ import { AccountService } from './services/account.service';
   ],
   providers: [AlertService, MemberService],
 })
-export class SharedsModule {}
+export class SharedsModule { }

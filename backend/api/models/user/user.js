@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 const schema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
+  sid: {
+    type: String,
+    required: true,
+    unique: true
+  },
   email: {
     type: String,
     required: true,
@@ -22,14 +27,19 @@ const schema = mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique:true
+    unique: true
   },
   phone: {
     type: String,
     required: true
   },
-  exp:{type: Number,default:0},
-  badge: { type : Array}
+  exp: {
+    type: Number,
+    default: 0
+  },
+  badge: {
+    type: Array
+  }
 });
 
 const User = mongoose.model('User', schema);

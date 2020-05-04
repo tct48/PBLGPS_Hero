@@ -2,7 +2,7 @@
 <header class="app-header pt-2 pb-2" style="display: block;">
   <a class="app-header__logo" href="index.html"><img src="../../assets/image/logo2.png" /></a>
   <!-- Navbar Right Menu-->
-  <ul *ngIf="login" class="app-nav">
+  <ul class="app-nav">
     <!-- User Menu-->
     <li class="dropdown">
       <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i
@@ -25,24 +25,16 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav text-center" *ngIf="login">
-        <a class="nav-item border-right nav-link px-4 active">หน้าแรก <br><i class="fa fa-home fa-lg"></i></a>
-        <a class="nav-item border-right nav-link" href="#">กิจกรรมประจำด่าน<br />(STAGE)
+      <div class="navbar-nav text-center">
+        <a class="nav-item border-right nav-link px-4" routerLinkActive="active" [routerLink] ="['/auth/home']">หน้าแรก <br><i class="fa fa-home fa-lg"></i></a>
+        <a class="nav-item border-right nav-link px-4" routerLinkActive="active">กิจกรรมประจำด่าน<br />(STAGE)
           <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link border-right px-4" href="#">ภารกิจ<br />(QUEST)</a>
-        <a class="nav-item nav-link border-right px-4" href="#">แบบทดสอบ<br />(QUIZ)</a>
-        <a class="nav-item nav-link border-right px-4" href="#">แหล่งการเรียนรู้<br />(RESOURCE)</a>
-        <a class="nav-item nav-link border-right px-4" href="#">กระดานผู้นำ<br />(LEADERBOARD)</a>
-        <a class="nav-item nav-link border-right px-4" href="#">ข้อมูลผู้เรียน<br />(INFORMATION)</a>
+        <a class="nav-item nav-link border-right px-4" routerLinkActive="active">ภารกิจ<br />(QUEST)</a>
+        <a class="nav-item nav-link border-right px-4" routerLinkActive="active">แบบทดสอบ<br />(QUIZ)</a>
+        <a class="nav-item nav-link border-right px-4" routerLinkActive="active">แหล่งการเรียนรู้<br />(RESOURCE)</a>
+        <a class="nav-item nav-link border-right px-4" routerLinkActive="active" [routerLink]="['/auth/leaderboard']">กระดานผู้นำ<br />(LEADERBOARD)</a>
+        <a class="nav-item nav-link border-right px-4" routerLinkActive="active" [routerLink]="['/auth/information']">ข้อมูลผู้เรียน<br />(INFORMATION)</a>
         <a class="nav-item nav-link px-4" href="#">แนะนำระบบ<br />(GUIDE)</a>
-      </div>
-      <div class="navbar-nav text-center px-5" *ngIf="!login">
-        <a [routerLink]="['/homepage']" class="nav-item nav-link px-4" href="#home"><i
-            class="fa fa-home"></i><br />หน้าหลัก</a>
-        <a [routerLink]="['/signup']" class="nav-item nav-link px-4" href="#home"><i
-            class="fa fa-address-book"></i><br />สมัครสมาชิก</a>
-        <a [routerLink]="['/signin']" class="nav-item nav-link px-4" href="#news"><i
-            class="fa fa-key"></i><br />เข้าสู่ระบบ</a>
       </div>
     </div>
   </nav>

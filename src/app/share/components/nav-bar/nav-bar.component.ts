@@ -19,7 +19,9 @@ export class NavBarComponent implements OnInit {
     private router: Router,
     private alert: AlertService
   ) {
+    if(!this.UserLogin){
       this.initialLoadUserLogin();
+    }
   }
 
   ngOnInit(): void {

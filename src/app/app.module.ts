@@ -19,6 +19,10 @@ import { SharedsModule } from './share/shareds.module';
 import { HahaComponent } from './components/haha/haha.component';
 import { HomeComponent } from './authentication/components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthenticationRouting } from './authentication/authentication.routing';
+import { LeaderboardComponent } from './authentication/components/leaderboard/leaderboard.component';
+import { InformationComponent } from './authentication/components/information/information.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,9 @@ import { HttpClientModule } from '@angular/common/http';
     SigninComponent,
     SignupComponent,
     HahaComponent,
-    HomeComponent
+    HomeComponent,
+    LeaderboardComponent,
+    InformationComponent
   ],
   imports: [
     FormsModule,
@@ -38,7 +44,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRouting,
     SharedsModule,
     CarouselModule.forRoot(),
-    TypeaheadModule.forRoot()
+    TypeaheadModule.forRoot(),
+    TooltipModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

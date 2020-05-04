@@ -1,0 +1,24 @@
+<app-auth-content>
+    <h3><img src="../../../../assets/image/Crown4.png"/> กระดานผู้นำ</h3>
+
+    <h3 class="lead">Leaderboard</h3>
+    <!-- leaderboard -->
+    <div class="leaderboard">
+      <div style="font-family: 'Press Start 2P', cursive;color: white;text-shadow: black;">
+        <table style="width: 100%;" cellpadding="0" cellspacing="0">
+          <tr style="font-size: small; font-weight: bold;">
+            <th>Name</th>
+            <th>Level</th>
+            <th>Experience</th>
+            <th>Badge</th>
+          </tr>
+          <tr *ngFor="let data of Leaderboard;let i = index" class="data" style="font-size:smaller;">
+            <td style="text-align: left;">{{ i+1 }}.{{ data.username }} <img [src]="crown_image[i]"></td>
+            <td>{{ data.exp+1 }}</td>
+            <td>{{ data.exp }}</td>
+            <td>{{ data.badge.length }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+</app-auth-content>

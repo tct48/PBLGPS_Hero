@@ -55,9 +55,67 @@ div.custom-menu div ul li a {
   text-align: center;
 }
 
+/* for .leaderboard */
+.leaderboard a{
+  text-decoration: none;
+}
+.leaderboard {
+  width: 600px;
+  margin: auto;
+  height: 290px;
+  box-sizing: border-box;
+  padding: 80px 15px 10px 15px;
+  background-image: url('./assets/image/leaderboard.png');
+  box-shadow: 0 0 3px black;
+}
+.leaderboard .data {
+  text-shadow: 2px 2px black;
+  height: 35px;
+  text-align: center;
+  margin-top: 10px;
+}
+.leaderboard .data:hover {
+  color: orangered;
+  text-shadow: 2px 2px black;
+  cursor: pointer;
+  background-color: #19172b;
+}
+.leaderboard .center {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+  margin: auto;
+  width: 800px;
+  background-color: white;
+  box-shadow: 0 0 5px black;
+}
+
+/* avatar-image */
+img.avatar-image{
+  border:1px solid #ddd;
+  border-radius:3px;
+  padding:5px;
+  max-width: 100%;
+}
+img.avatar-image:hover{
+  box-shadow : 0 0 2px 1px rgba(0, 140, 186, 0.5);
+  cursor: pointer;
+}
+
+/*badge*/
+.show-badge img{
+  padding:3px 8px 3px 8px;
+}
+
 @media (min-width: 576px) {
   div.custom-menu {
     margin-top: 0px;
+  }
+}
+
+@media (max-width: 576px){
+  .leaderboard{
+    width:100%;
   }
 }
 
@@ -72,6 +130,10 @@ div.custom-menu div ul li a {
     display: block;
     width: 100%;
     padding: 10px 0 10px 0;
+  }
+
+  .leaderboard{
+    width:100%;
   }
 
   .app-header {
