@@ -7,9 +7,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MemberService } from './services/member.service';
 import { AuthContentComponent } from './components/auth-content/auth-content.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpService } from '../services/http.service';
-import { AccountService } from './services/account.service';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ValidatorsService } from './services/validator.service';
 
 @NgModule({
   declarations: [NavBarComponent, FooterComponent, AuthContentComponent],
@@ -18,7 +16,6 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-
   ]
   ,
   exports: [
@@ -28,6 +25,6 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     FormsModule,
     AuthContentComponent
   ],
-  providers: [AlertService, MemberService],
+  providers: [AlertService, MemberService,ValidatorsService],
 })
 export class SharedsModule { }

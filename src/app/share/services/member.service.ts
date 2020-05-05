@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { HttpService } from 'src/app/services/http.service';
 import { AuthenService } from 'src/app/services/authen.service';
-import { IAccount } from './account.service';
+import { IMember } from 'src/app/authentication/services/member.service';
 
 @Injectable({
   providedIn: 'root'
@@ -40,18 +39,5 @@ export class MemberService {
 
 }
 
-export interface IMember{
-  items?:any
 
-  _id:string,
-  firstname:string,
-  lastname:string,
-  username:string,
-  password:string,
-  c_password?:string,
-  phone:string,
-  email:string,
-  picture:string,
-  exp?:number,
-}
 

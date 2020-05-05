@@ -5,11 +5,14 @@ import { AuthenService } from 'src/app/services/authen.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/share/services/alert.service';
 import { AccountService, IAccount } from 'src/app/share/services/account.service';
+import { MemberService } from '../../services/member.service';
+import { LevelService } from '../../services/level.service';
 
 @Component({
   selector: 'app-information',
   templateUrl: './information.component.html',
-  styleUrls: ['./information.component.css']
+  styleUrls: ['./information.component.css'],
+  providers: [MemberService, LevelService]
 })
 export class InformationComponent implements OnInit {
   constructor(
@@ -17,7 +20,9 @@ export class InformationComponent implements OnInit {
     private account: AccountService,
     private alert: AlertService,
     private router: Router,
-    private builder: FormBuilder
+    private builder: FormBuilder,
+    private member : MemberService,
+    private level_service : LevelService
   ) {
     if (!this.UserLogin)
       this.initialLoadUserLogin();
@@ -37,7 +42,13 @@ export class InformationComponent implements OnInit {
   }
 
   onSubmit() {
-    this.alert.success("แก้ไขข้อมูลสำเร็จ!");
+    return this.level = this.level_service.calculateLevel(this.exp);
+    
+    this.member.updateMember(this.UserLogin._id,this.form.value)
+    .then(result=>{
+      this.alert.success(result.message);
+    })
+    
   }
 
   // โหลด UserLogin
@@ -50,10 +61,10 @@ export class InformationComponent implements OnInit {
       .then(userLogin => {
         this.UserLogin = userLogin;
         if (!userLogin.exp) {
-          this.exp = 3500;
+          this.exp = 0;
         }
         this.level = this.exp / 100
-        if (this.level == 0) {
+        if (this.level <= 0) {
           this.level = 1;
         }
       })
@@ -68,7 +79,8 @@ export class InformationComponent implements OnInit {
   private inititalCreateFormData() {
     this.form = this.builder.group({
       sid: ['', Validators.required],
-      firstname: [''],
+      firstname: ['', Validators.required],
+      lastname : ['', Validators.required],
       phone: ['', Validators.required],
       email: ['', Validators.required]
     })
@@ -78,11 +90,11 @@ export class InformationComponent implements OnInit {
     // var fullname = this.UserLogin.firstname + " " + this.UserLogin.lastname;
     this.account.getUserLogin(this.authen.getAuthenticated())
       .then(result => {
-        var fullname = result.firstname + " " + result.lastname;
         this.form.controls['email'].setValue(result.email);
         this.form.controls['phone'].setValue(result.phone);
-        this.form.controls['firstname'].setValue(fullname);
+        this.form.controls['firstname'].setValue(result.firstname);
         this.form.controls['sid'].setValue(result.sid);
+        this.form.controls['lastname'].setValue(result.lastname);
       })
   }
 }

@@ -31,7 +31,8 @@
     <div class="col-lg-7" style="padding-right: 8px;">
       <div class="row">
         <div class="col-md-3">
-          <img *ngIf="!UserLogin.image" class="avatar-image" src="../../../../assets/image/no-image.png">
+          <img *ngIf="UserLogin.image==undefined" class="avatar-image" src="../../../../assets/image/no-image.png">
+          <img *ngIf="UserLogin.image" class="avatar-image" src="UserLogin.image">
         </div>
 
         <div class="col-md-9">
@@ -42,7 +43,8 @@
             </div>
             <div class="form-group">
               <label>ชื่อจริง-นามสกุล :</label>
-              <input type="text" class="form-control" formControlName="firstname" placeholder="ชื่อจริง-นามสกุล">
+              <input type="text" class="form-control" formControlName="firstname" placeholder="ชื่อจริง">
+              <input type="text" class="form-control mt-2" formControlName="lastname" placeholder="นามสกุล">
             </div>
             <div class="form-group">
               <label>เบอร์โทร :</label>

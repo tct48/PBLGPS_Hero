@@ -26,6 +26,7 @@ export class AccountService {
     this.UserLogin.email = UserLogin.email;
     this.UserLogin.phone = UserLogin.phone;
     this.UserLogin.image = UserLogin.image;
+    this.UserLogin.sid = UserLogin.sid;
 
     return this.UserLogin;
   }
@@ -63,7 +64,7 @@ export class AccountService {
 
 
 export interface IAccount {
-  _id: string;
+  _id: string; 
   firstname: string;
   lastname: string;
   username: string;

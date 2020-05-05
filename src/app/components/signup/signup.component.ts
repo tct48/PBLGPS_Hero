@@ -4,13 +4,15 @@ import { inject } from '@angular/core/testing';
 
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import { AlertService } from 'src/app/share/services/alert.service';
-import { MemberService, IMember } from 'src/app/share/services/member.service';
+
 import { AccountService } from 'src/app/share/services/account.service';
 import { AuthenService } from 'src/app/services/authen.service';
 import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
 import { AuthURL } from 'src/app/authentication/authentication.url';
 import { AppURL } from 'src/app/app.url';
+import { IMember } from 'src/app/authentication/services/member.service';
+import { ValidatorsService } from 'src/app/share/services/validator.service';
 
 @Component({
   selector: 'app-signup',
@@ -21,16 +23,15 @@ import { AppURL } from 'src/app/app.url';
 @Injectable()
 export class SignupComponent implements OnInit {
   form:FormGroup
-  password:string;
-  c_password:string;
-
   member:IMember;
+  // c_password:string;
 
   constructor(
     private builder: FormBuilder,
     private alert: AlertService,
     private account:AccountService,
-    private router:Router
+    private router:Router,
+    private validator: ValidatorsService
     ) {
     this.createFormData();
   }
@@ -44,8 +45,8 @@ export class SignupComponent implements OnInit {
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', Validators.required],
-      c_password: ['', Validators.required],
+      password: ['', [Validators.required, this.validator.isPassword]],
+      c_password: ['',[Validators.required, this.validator.comparePassword('password')]],
       phone : ['', Validators.required],
       email: ['', Validators.required],
       picture: ['']
@@ -55,13 +56,6 @@ export class SignupComponent implements OnInit {
   onSubmit(){
     if(this.form.invalid){
       return this.alert.notify("กรุณากรอกข้อมูลให้ครบถ้วน!");
-    }
-    if(this.password != this.c_password){
-      return this.alert.notify("รหัสผ่าน และยืนยันรหัสผ่านไม่ตรงกัน!","คำเตือน!","warning")
-    }
-
-    if(!this.form.controls['picture'].value){
-      console.log("รูปก็ไม่แนบหน้าหี")
     }
 
     this.account.onRegister(this.form.value)

@@ -12,14 +12,14 @@ export class HttpService {
     private http: HttpClient
   ) { }
 
-  private address: string = "http://localhost:3000/"
+  private address: string = "https://backend-pblgps.herokuapp.com/"
   //Request GET method
   requestGet(url: string, accessToken?: string) {
     return this.http.get(`${this.address}${url}`, {
       headers: this.appendHeaders(accessToken)
     })
       .pipe(catchError(err => this.handelError(err)))
-  }
+  } 
 
   // ส่งข้อมูลแบบ Post method
   requestPost(url: string, body: any, file?: any) {
