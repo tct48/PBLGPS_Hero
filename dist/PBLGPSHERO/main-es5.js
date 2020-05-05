@@ -499,6 +499,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "ngOnInit",
         value: function ngOnInit() {}
       }, {
+        key: "onClickPreTest",
+        value: function onClickPreTest() {
+          this.alert.notify("Okay");
+        }
+      }, {
+        key: "onClickPrPS",
+        value: function onClickPrPS() {
+          this.alert.showWarning("", "กรุณาทำแบบฝึกหัดก่อน");
+        }
+      }, {
         key: "hover",
         value: function hover(image) {
           if (image.id == "button1") {
@@ -524,7 +534,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-home"]],
       decls: 25,
       vars: 0,
-      consts: [[1, "header-hover"], ["aria-hidden", "true", 1, "fa", "fa-chevron-circle-down"], [1, "row", "my-3"], [1, "col-md-6"], [1, "card"], [1, "card-header"], [1, "card-body", "text-center"], ["href", "#"], ["id", "button1", "onmouseout", "unhover(this)", "onmouseover", "hover(this)", "src", "../../../../assets/image/01.png", 2, "cursor", "pointer"], [1, "card-footer"], [1, "card-text"], ["id", "button2", "onmouseout", "unhover(this)", "onmouseover", "hover(this)", "src", "../../../../assets/image/02.png"]],
+      consts: [[1, "header-hover"], ["aria-hidden", "true", 1, "fa", "fa-chevron-circle-down"], [1, "row", "my-3"], [1, "col-md-6"], [1, "card"], [1, "card-header"], [1, "card-body", "text-center"], [3, "click"], ["id", "button1", "onmouseout", "unhover(this)", "onmouseover", "hover(this)", "src", "../../../../assets/image/01.png", 2, "cursor", "pointer"], [1, "card-footer"], [1, "card-text"], ["id", "button2", "onmouseout", "unhover(this)", "onmouseover", "hover(this)", "src", "../../../../assets/image/02.png"]],
       template: function HomeComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "app-auth-content");
@@ -545,13 +555,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "h4", 5);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, " Card Header ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, " Pre-Test ");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 6);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "a", 7);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function HomeComponent_Template_a_click_10_listener() {
+            return ctx.onClickPreTest();
+          });
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](11, "img", 8);
 
@@ -579,13 +593,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "h4", 5);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18, " Card Header ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18, " PrPs Test ");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "div", 6);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "a", 7);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function HomeComponent_Template_a_click_20_listener() {
+            return ctx.onClickPrPS();
+          });
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](21, "img", 11);
 
@@ -775,7 +793,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "onTestCal",
         value: function onTestCal() {
-          return this.alert.showScore();
           return this.level = this.level_service.calculateLevel(this.exp);
         }
       }, {
@@ -4019,6 +4036,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             /* Read more about handling dismissals below */
             if (result.dismiss === sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_1___default.a.DismissReason.timer) {
               console.log('I was closed by the timer');
+            }
+          });
+        }
+      }, {
+        key: "showWarning",
+        value: function showWarning() {
+          var title = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "คำเตือน";
+          var text = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "กรุณาตรวจสอบข้อมูลให้ถูกต้อง";
+          sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_1___default.a.fire({
+            title: title,
+            text: text,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then(function (result) {
+            if (result.value) {
+              sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_1___default.a.fire('Deleted!', 'Your file has been deleted.', 'success');
             }
           });
         }
