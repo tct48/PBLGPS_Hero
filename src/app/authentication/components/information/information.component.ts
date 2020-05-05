@@ -49,7 +49,6 @@ export class InformationComponent implements OnInit {
   }
 
   onTestCal(){
-    return this.alert.showScore();
     return this.level = this.level_service.calculateLevel(this.exp);
   }
 
