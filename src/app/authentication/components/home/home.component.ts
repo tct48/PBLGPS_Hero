@@ -28,6 +28,10 @@ export class HomeComponent implements OnInit {
 
   }
 
+  onClickPrPS(){
+    this.alert.showWarning("","กรุณาทำแบบฝึกหัดก่อน")
+  }
+
   hover(image){
     if(image.id=="button1"){
       return image.setAttribute('src', '../../../../assets/image/01-2.gif')

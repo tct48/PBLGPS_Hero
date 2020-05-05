@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 import 'sweetalert2/src/sweetalert2.scss';
+import { StringifyOptions } from 'querystring';
 
 @Injectable({
   providedIn: 'root',
@@ -52,5 +53,25 @@ export class AlertService {
         console.log('I was closed by the timer');
       }
     });
+  }
+
+  showWarning(title:string = "คำเตือน", text:string = "กรุณาตรวจสอบข้อมูลให้ถูกต้อง"){
+    Swal.fire({
+      title: title,
+      text: text,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
   }
 }
