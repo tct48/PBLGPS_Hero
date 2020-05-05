@@ -28,6 +28,10 @@ export class HomeComponent implements OnInit {
 
   }
 
+  onClickPreTest(){
+    this.alert.notify("Okay");
+  }
+
   onClickPrPS(){
     this.alert.showWarning("","กรุณาทำแบบฝึกหัดก่อน")
   }
