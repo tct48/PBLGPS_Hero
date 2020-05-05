@@ -170,6 +170,7 @@ sup {
 }
 
 a {
+  cursor: pointer;
   color: #4b82fb;
   text-decoration: none;
   background-color: transparent;
@@ -2715,16 +2716,29 @@ fieldset:disabled a.btn {
 }
 
 .btn-danger {
-  color: #FFF;
-  background-color: #dc3545;
-  border-color: #dc3545;
+	box-shadow:inset 0px 39px 0px -24px #b54b3a;
+	background-color:#a73f2d;
+	border-radius:4px;
+	border:1px solid #6b281c;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:6px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #7a2a1d;
 }
 
 .btn-danger:hover {
-  color: #FFF;
-  background-color: #c82333;
-  border-color: #bd2130;
+  background-color:#b34332;
 }
+
+.btn-dange:active{
+  position:relative;
+	top:1px;
+}
+
 
 .btn-danger:focus, .btn-danger.focus {
   -webkit-box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.5);

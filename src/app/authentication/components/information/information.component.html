@@ -11,18 +11,18 @@
       </div>
       <div class="mt-1 pl-2 pr-2" style="border:1px solid lightgray;border-radius:5px;">
         <ul style="list-style: none;padding-left: 0;">
-          <li class="py-2"><a>Pre-test</a></li>
-          <li class="py-2"><a>PrPS Test</a></li>
-          <li class="py-2"><a>Stage</a></li>
-          <li class="py-2"><a>Quiz</a></li>
-          <li class="py-2"><a>Quest</a></li>
-          <li class="py-2"><a>Badges</a></li>
-          <li class="py-2"><a>Attendance</a></li>
-          <li class="py-2"><a>Resource</a></li>
-          <li class="py-2"><a>Workshop</a></li>
-          <li class="py-2"><a>Guild</a></li>
-          <li class="py-2"><a>PoPS Test</a></li>
-          <li class="py-2"><a>Post-test</a></li>
+          <li class="py-2"><a (click)="onOpenScore('Pre-test')">Pre-test</a></li>
+          <li class="py-2"><a (click)="onOpenScore('PrPS Test')">PrPS Test</a></li>
+          <li class="py-2"><a (click)="onOpenScore('Stage')">Stage</a></li>
+          <li class="py-2"><a (click)="onOpenScore('Quiz')">Quiz</a></li>
+          <li class="py-2"><a (click)="onOpenScore('Quest')">Quest</a></li>
+          <li class="py-2"><a (click)="onOpenScore('Badges')">Badges</a></li>
+          <li class="py-2"><a (click)="onOpenScore('Attendance')">Attendance</a></li>
+          <li class="py-2"><a (click)="onOpenScore('Resource')">Resource</a></li>
+          <li class="py-2"><a (click)="onOpenScore('Workshop')">Workshop</a></li>
+          <li class="py-2"><a (click)="onOpenScore('Guild')">Guild</a></li>
+          <li class="py-2"><a (click)="onOpenScore('PoPS Test')">PoPS Test</a></li>
+          <li class="py-2"><a (click)="onOpenScore('Post-test')">Post-test</a></li>
         </ul>
       </div>
     </div>
@@ -75,7 +75,7 @@
             <input type="text" class="form-control" [(ngModel)]="level" placeholder="เลเวล">
           </div>
         </div>
-
+        <button (click)="onTestCal()" class="btn btn-danger">ทดลองคำนวณ Level</button>
       </div>
     </div>
 

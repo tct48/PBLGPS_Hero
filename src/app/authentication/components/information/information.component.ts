@@ -41,14 +41,21 @@ export class InformationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    return this.level = this.level_service.calculateLevel(this.exp);
-    
+  onSubmit() {   
     this.member.updateMember(this.UserLogin._id,this.form.value)
     .then(result=>{
       this.alert.success(result.message);
     })
-    
+  }
+
+  onTestCal(){
+    return this.alert.showScore();
+    return this.level = this.level_service.calculateLevel(this.exp);
+  }
+
+  onOpenScore(title:string){
+    var score = Math.floor(Math.random()*101);
+    return this.alert.showScore(title,score);
   }
 
   // โหลด UserLogin
