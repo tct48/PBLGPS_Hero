@@ -15,7 +15,7 @@ export class ContentComponent implements OnInit {
    }
 
    item:any;
-
+   isCollapsed = false;
   ngOnInit(): void {
   }
 

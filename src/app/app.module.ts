@@ -24,6 +24,7 @@ import { InformationComponent } from './authentication/components/information/in
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ResourceComponent } from './authentication/components/resource/resource.component';
 import { ContentComponent } from './authentication/components/resource/content/content.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ContentComponent } from './authentication/components/resource/content/c
     CarouselModule.forRoot(),
     TypeaheadModule.forRoot(),
     TooltipModule.forRoot(),
+    CollapseModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

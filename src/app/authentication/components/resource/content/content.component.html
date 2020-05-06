@@ -1,26 +1,33 @@
 <app-auth-content>
     <div class="row my-4">
+    <!-- ส่วนเดิม -->
         <div class="col-md-12">
             <nav class="breadcrumb">
                 <a class="breadcrumb-item" [routerLink]="['/auth/resource']">แหล่งการเรียนรู้</a>
                 <li class="breadcrumb-item active" aria-current="page">{{ item }}</li>
             </nav>
+            <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed"
+                [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">จุดประสงค์การเรียนรู้
+            </button>
         </div>
-        <div class="col-md-5">
-            <h4 class="px-2 py-1 text-center pointer" style="background-color: lightgray;border:1px solid lightgray;border-radius: 15px;">จุดประสงค์การเรียนรู้</h4>
-            <ol class="text-muted medium">
-                <li>รู้หลักการและพื้นฐานเกี่ยวกับองค์ประกอบของเครื่องคอมพิวเตอร์</li>
-                <li>รู้ความหมายหน้าที่และความสำคัญของระบบปฏิบัติการ</li>
-                <li>มีทักษะในการใช้โปรแกรมระบบปฏิบัติการเบื้องต้น</li>
-                <li>มีทักษะในการใช้โปรแกรมยูทิลิตี้ได้</li>
-                <li>มีกิจนิสัยและส่งเสริมคุณธรรม จริยธรรม ค่านิยมที่ดีในการใช้คอมพิวเตอร์</li>
-            </ol>
-            <h4 class="mt-2 px-2 py-1 text-center pointer" style="background-color: lightgray;border:1px solid lightgray;border-radius: 15px;">สาระการเรียนรู้</h4>
-            <p class="text-muted medium" style="text-indent: 20px;text-align: justify;">
-                ศึกษาและปฏิบัติเกี่ยวกับองค์ประกอบของเครื่องคอมพิวเตอร์ หลักการทำงานของคอมพิวเตอร์และอุปกรณ์ต่อพ่วง สื่อบันทึกข้อมูลความหมายและหน้าที่ของระบบปฏิบัติการประเภทของโปรแกรมระบบปฏิบัติการ การใช้โปรแกรมระบบปฏิบัติการ การใช้โปรแกรมยูทิลิตี้
-            </p>
+
+        <div class="col-md-5 my-3" id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+            <div class="well well-lg card card-block card-header">
+                    <h4 class="px-2 py-1 text-center pointer" style="background-color: lightgray;border:1px solid lightgray;border-radius: 15px;">จุดประสงค์การเรียนรู้</h4>
+                <ol class="text-muted medium">
+                    <li>รู้หลักการและพื้นฐานเกี่ยวกับองค์ประกอบของเครื่องคอมพิวเตอร์</li>
+                    <li>รู้ความหมายหน้าที่และความสำคัญของระบบปฏิบัติการ</li>
+                    <li>มีทักษะในการใช้โปรแกรมระบบปฏิบัติการเบื้องต้น</li>
+                    <li>มีทักษะในการใช้โปรแกรมยูทิลิตี้ได้</li>
+                    <li>มีกิจนิสัยและส่งเสริมคุณธรรม จริยธรรม ค่านิยมที่ดีในการใช้คอมพิวเตอร์</li>
+                </ol>
+                <h4 class="mt-2 px-2 py-1 text-center pointer" style="background-color: lightgray;border:1px solid lightgray;border-radius: 15px;">สาระการเรียนรู้</h4>
+                <p class="text-muted medium" style="text-indent: 20px;text-align: justify;">
+                    ศึกษาและปฏิบัติเกี่ยวกับองค์ประกอบของเครื่องคอมพิวเตอร์ หลักการทำงานของคอมพิวเตอร์และอุปกรณ์ต่อพ่วง สื่อบันทึกข้อมูลความหมายและหน้าที่ของระบบปฏิบัติการประเภทของโปรแกรมระบบปฏิบัติการ การใช้โปรแกรมระบบปฏิบัติการ การใช้โปรแกรมยูทิลิตี้
+                </p>
+            </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7 my-3">
             <h1>{{ item }}</h1>
         </div>
     </div>
