@@ -27,6 +27,7 @@ export class AccountService {
     this.UserLogin.phone = UserLogin.phone;
     this.UserLogin.image = UserLogin.image;
     this.UserLogin.sid = UserLogin.sid;
+    this.UserLogin.role = UserLogin.role;
 
     return this.UserLogin;
   }
@@ -76,6 +77,7 @@ export interface IAccount {
   sid?:string;
 
   exp?:number;
+  role?:string;
 }
 
 export interface IRegister {

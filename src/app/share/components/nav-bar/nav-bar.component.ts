@@ -22,6 +22,8 @@ export class NavBarComponent implements OnInit {
     if(!this.UserLogin){
       this.initialLoadUserLogin();
     }
+
+    console.log(this.account.UserLogin.role)
   }
 
   ngOnInit(): void {

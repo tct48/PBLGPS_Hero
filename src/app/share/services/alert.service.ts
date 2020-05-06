@@ -79,7 +79,7 @@ export class AlertService {
     Swal.fire({
       title: title,
       text: text,
-      imageUrl: 'https://lh3.googleusercontent.com/proxy/oRRvs0xezZHQjrz97O5-DHF5Hg-Pgs0BfK17jarLtj7V_jvnSZFQW8IuGzobuBZjFNinliWqlj5No6hGVbFrL9mxMAu-TXDMFg',
+      imageUrl: 'http://www.npa-account.com/images/blog5800262.jpg',
       imageWidth: 390,
       imageHeight: 240,
       timer: 4000,
