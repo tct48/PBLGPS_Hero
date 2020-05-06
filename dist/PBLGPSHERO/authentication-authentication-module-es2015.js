@@ -57,6 +57,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/authentication/components/home/home.component.ts");
 /* harmony import */ var _components_leaderboard_leaderboard_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/leaderboard/leaderboard.component */ "./src/app/authentication/components/leaderboard/leaderboard.component.ts");
 /* harmony import */ var _components_information_information_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/information/information.component */ "./src/app/authentication/components/information/information.component.ts");
+/* harmony import */ var _components_resource_resource_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/resource/resource.component */ "./src/app/authentication/components/resource/resource.component.ts");
+/* harmony import */ var _components_resource_content_content_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/resource/content/content.component */ "./src/app/authentication/components/resource/content/content.component.ts");
+
+
 
 
 
@@ -66,7 +70,9 @@ const RouterLists = [
     { path: '', redirectTo: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Home, pathMatch: 'full' },
     { path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Home, component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_2__["HomeComponent"] },
     { path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Leaderboard, component: _components_leaderboard_leaderboard_component__WEBPACK_IMPORTED_MODULE_3__["LeaderboardComponent"] },
-    { path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Information, component: _components_information_information_component__WEBPACK_IMPORTED_MODULE_4__["InformationComponent"] }
+    { path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Information, component: _components_information_information_component__WEBPACK_IMPORTED_MODULE_4__["InformationComponent"] },
+    { path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Resource, component: _components_resource_resource_component__WEBPACK_IMPORTED_MODULE_5__["ResourceComponent"] },
+    { path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Content, component: _components_resource_content_content_component__WEBPACK_IMPORTED_MODULE_6__["ContentComponent"] }
 ];
 const AuthenticationRouting = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forChild(RouterLists);
 

@@ -23,10 +23,10 @@ export class NavBarComponent implements OnInit {
       this.initialLoadUserLogin();
     }
 
-    console.log(this.account.UserLogin.role)
+    this.UserLogin = this.account.UserLogin;
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
 
   }
 

@@ -1,5 +1,7 @@
 export const AuthURL = {
     Home: 'home',
     Leaderboard: 'leaderboard',
-    Information: 'information'
+    Information: 'information',
+    Resource: 'resource',
+    Content : 'content'
   };

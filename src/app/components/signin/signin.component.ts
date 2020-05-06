@@ -36,7 +36,7 @@ export class SigninComponent implements OnInit {
     })
     this.redirectPage();
 
-    this.alert.announce("แก้ไขล่าสุด :<br> May 6, 2020,1:22:08 PM", "**แก้คำนวณ Level")
+    this.alert.announce("อัพเดท &nbsp; <span style='color:orange'> 6 พค 2020, 10:30:37 PM</span>", "1) แก้คำนวณ Level <br>2) แหล่งการเรียนรู้ (โครง)")
 
     this.createFormData();
   }

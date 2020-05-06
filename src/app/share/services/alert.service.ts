@@ -78,7 +78,7 @@ export class AlertService {
   announce(title:string="หัวข้อ", text:string="ข้อความ"){
     Swal.fire({
       title: title,
-      text: text,
+      html: text,
       imageUrl: 'http://www.npa-account.com/images/blog5800262.jpg',
       imageWidth: 390,
       imageHeight: 240,

@@ -19,10 +19,11 @@ import { SharedsModule } from './share/shareds.module';
 import { HahaComponent } from './components/haha/haha.component';
 import { HomeComponent } from './authentication/components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthenticationRouting } from './authentication/authentication.routing';
 import { LeaderboardComponent } from './authentication/components/leaderboard/leaderboard.component';
 import { InformationComponent } from './authentication/components/information/information.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ResourceComponent } from './authentication/components/resource/resource.component';
+import { ContentComponent } from './authentication/components/resource/content/content.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     HahaComponent,
     HomeComponent,
     LeaderboardComponent,
-    InformationComponent
+    ResourceComponent,
+    InformationComponent,
+    ContentComponent
   ],
   imports: [
     FormsModule,

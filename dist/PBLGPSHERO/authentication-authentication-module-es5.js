@@ -131,6 +131,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _components_information_information_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ./components/information/information.component */
     "./src/app/authentication/components/information/information.component.ts");
+    /* harmony import */
+
+
+    var _components_resource_resource_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ./components/resource/resource.component */
+    "./src/app/authentication/components/resource/resource.component.ts");
+    /* harmony import */
+
+
+    var _components_resource_content_content_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./components/resource/content/content.component */
+    "./src/app/authentication/components/resource/content/content.component.ts");
 
     var RouterLists = [{
       path: '',
@@ -145,6 +157,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }, {
       path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Information,
       component: _components_information_information_component__WEBPACK_IMPORTED_MODULE_4__["InformationComponent"]
+    }, {
+      path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Resource,
+      component: _components_resource_resource_component__WEBPACK_IMPORTED_MODULE_5__["ResourceComponent"]
+    }, {
+      path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Content,
+      component: _components_resource_content_content_component__WEBPACK_IMPORTED_MODULE_6__["ContentComponent"]
     }];
 
     var AuthenticationRouting = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forChild(RouterLists);

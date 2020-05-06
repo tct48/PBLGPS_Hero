@@ -1,5 +1,7 @@
 /* custom-css */
 /* CSS ที่เขียนเอง */
+
+
 div .custom-menu {
   margin-top: 0px;
 }
@@ -8,6 +10,10 @@ div .custom-menu {
   position: fixed;
   top: 0px;
   right: 0px;
+}
+
+.pointer{
+  cursor:pointer;
 }
 
 .header-hover:hover{
@@ -57,6 +63,54 @@ div.custom-menu div ul li a {
   background-color: white;
   color: slategrey;
   text-align: center;
+}
+
+/* for button chapter */
+.animate
+{
+	transition: all 0.1s;
+	-webkit-transition: all 0.1s;
+}
+
+.action-button
+{
+	position: relative;
+	padding: 6px 40px;
+  margin: 0px 10px 10px 0px;
+  float: left;
+	border-radius: 10px;
+  font-size: 25px;
+  text-align: center;
+	color: #FFF;
+  text-decoration: none;	
+  cursor: pointer;
+}
+
+.action-button:hover{
+  color:#FFF;
+}
+
+.action-button:active
+{
+	transform: translate(0px,5px);
+  -webkit-transform: translate(0px,5px);
+	border-bottom: 1px solid;
+}
+
+/* end */
+
+.button-blue
+{
+	background-color: #3498DB;
+	border-bottom: 5px solid #2980B9;
+	text-shadow: 0px -2px #2980B9;
+}
+
+.button-red
+{
+	background-color: #3b74de;
+	border-bottom: 5px solid #0a42a9;
+	text-shadow: 0px -2px #1759d4;
 }
 
 /* for .leaderboard */

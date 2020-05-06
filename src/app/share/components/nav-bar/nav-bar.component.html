@@ -25,13 +25,13 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav text-center">
-        <a class="nav-item border-right nav-link px-4" *ngIf="UserLogin.role=='student'" routerLinkActive="active" [routerLink] ="['/auth/home']">หน้าแรก <br><i class="fa fa-home fa-lg"></i></a>
+      <div class="navbar-nav text-center" *ngIf="UserLogin.role=='student'">
+        <a class="nav-item border-right nav-link px-4" routerLinkActive="active" [routerLink] ="['/auth/home']">หน้าแรก <br><i class="fa fa-home fa-lg"></i></a>
         <a class="nav-item border-right nav-link px-4" routerLinkActive="active">กิจกรรมประจำด่าน<br />(STAGE)
           <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link border-right px-4" routerLinkActive="active">ภารกิจ<br />(QUEST)</a>
         <a class="nav-item nav-link border-right px-4" routerLinkActive="active">แบบทดสอบ<br />(QUIZ)</a>
-        <a class="nav-item nav-link border-right px-4" routerLinkActive="active">แหล่งการเรียนรู้<br />(RESOURCE)</a>
+        <a class="nav-item nav-link border-right px-4" routerLinkActive="active" [routerLink]="['/auth/resource']">แหล่งการเรียนรู้<br />(RESOURCE)</a>
         <a class="nav-item nav-link border-right px-4" routerLinkActive="active" [routerLink]="['/auth/leaderboard']">กระดานผู้นำ<br />(LEADERBOARD)</a>
         <a class="nav-item nav-link border-right px-4" routerLinkActive="active" [routerLink]="['/auth/information']">ข้อมูลผู้เรียน<br />(INFORMATION)</a>
         <a class="nav-item nav-link px-4" href="#">แนะนำระบบ<br />(GUIDE)</a>
