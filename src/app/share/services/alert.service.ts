@@ -74,4 +74,17 @@ export class AlertService {
       }
     })
   }
+
+  announce(title:string="หัวข้อ", text:string="ข้อความ"){
+    Swal.fire({
+      title: title,
+      text: text,
+      imageUrl: 'https://lh3.googleusercontent.com/proxy/oRRvs0xezZHQjrz97O5-DHF5Hg-Pgs0BfK17jarLtj7V_jvnSZFQW8IuGzobuBZjFNinliWqlj5No6hGVbFrL9mxMAu-TXDMFg',
+      imageWidth: 390,
+      imageHeight: 240,
+      timer: 4000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+    })
+  }
 }

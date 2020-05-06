@@ -849,7 +849,99 @@ class LevelService {
     }
     calculateLevel(exp) {
         var level;
-        level = Math.round(exp / 100 * 3 + 1);
+        if (exp > 0 && exp < 30) {
+            level = 1;
+        }
+        else if (exp < 50) {
+            level = 2;
+        }
+        else if (exp < 100) {
+            level = 3;
+        }
+        else if (exp < 130) {
+            level = 4;
+        }
+        else if (exp < 150) {
+            level = 5;
+        }
+        else if (exp < 200) {
+            level = 6;
+        }
+        else if (exp < 230) {
+            level = 7;
+        }
+        else if (exp < 250) {
+            level = 8;
+        }
+        else if (exp < 300) {
+            level = 9;
+        }
+        else if (exp < 330) {
+            level = 10;
+        }
+        else if (exp < 350) {
+            level = 11;
+        }
+        else if (exp < 400) {
+            level = 12;
+        }
+        else if (exp < 430) {
+            level = 13;
+        }
+        else if (exp < 450) {
+            level = 14;
+        }
+        else if (exp < 500) {
+            level = 15;
+        }
+        else if (exp < 530) {
+            level = 16;
+        }
+        else if (exp < 550) {
+            level = 17;
+        }
+        else if (exp < 600) {
+            level = 18;
+        }
+        else if (exp < 630) {
+            level = 19;
+        }
+        else if (exp < 650) {
+            level = 20;
+        }
+        else if (exp < 700) {
+            level = 21;
+        }
+        else if (exp < 730) {
+            level = 22;
+        }
+        else if (exp < 750) {
+            level = 23;
+        }
+        else if (exp < 800) {
+            level = 24;
+        }
+        else if (exp < 830) {
+            level = 25;
+        }
+        else if (exp < 850) {
+            level = 26;
+        }
+        else if (exp < 900) {
+            level = 27;
+        }
+        else if (exp < 930) {
+            level = 28;
+        }
+        else if (exp < 950) {
+            level = 29;
+        }
+        else if (exp < 1000) {
+            level = 30;
+        }
+        else if (exp >= 1000) {
+            level = 31;
+        }
         return level;
     }
 }
@@ -1099,6 +1191,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 /* harmony import */ var src_app_services_authen_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/services/authen.service */ "./src/app/services/authen.service.ts");
 /* harmony import */ var src_app_share_services_account_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/share/services/account.service */ "./src/app/share/services/account.service.ts");
+/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/snack-bar.js");
+
 
 
 
@@ -1113,13 +1207,14 @@ const _c0 = function () { return ["/homepage"]; };
 const _c1 = function () { return ["/signup"]; };
 const _c2 = function () { return ["/signin"]; };
 class SigninComponent {
-    constructor(builder, alert, router, authen, account, activateRoute) {
+    constructor(builder, alert, router, authen, account, activateRoute, _snackBar) {
         this.builder = builder;
         this.alert = alert;
         this.router = router;
         this.authen = authen;
         this.account = account;
         this.activateRoute = activateRoute;
+        this._snackBar = _snackBar;
         this.AppURL = src_app_app_url__WEBPACK_IMPORTED_MODULE_2__["AppURL"];
         this.AuthURL = src_app_authentication_authentication_url__WEBPACK_IMPORTED_MODULE_3__["AuthURL"];
         //ย้อนกลับไปหน้า LOGIN กรณี Redirect
@@ -1127,6 +1222,7 @@ class SigninComponent {
             this.returnURL = params.returnURL || `/${src_app_app_url__WEBPACK_IMPORTED_MODULE_2__["AppURL"].Authen}/${src_app_authentication_authentication_url__WEBPACK_IMPORTED_MODULE_3__["AuthURL"].Home}`;
         });
         this.redirectPage();
+        this.alert.announce("แก้ไขล่าสุด :<br> May 6, 2020,1:22:08 PM", "**แก้คำนวณ Level");
         this.createFormData();
     }
     ngOnInit() {
@@ -1159,7 +1255,7 @@ class SigninComponent {
         });
     }
 }
-SigninComponent.ɵfac = function SigninComponent_Factory(t) { return new (t || SigninComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_share_services_alert_service__WEBPACK_IMPORTED_MODULE_4__["AlertService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_authen_service__WEBPACK_IMPORTED_MODULE_6__["AuthenService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_share_services_account_service__WEBPACK_IMPORTED_MODULE_7__["AccountService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"])); };
+SigninComponent.ɵfac = function SigninComponent_Factory(t) { return new (t || SigninComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_share_services_alert_service__WEBPACK_IMPORTED_MODULE_4__["AlertService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_authen_service__WEBPACK_IMPORTED_MODULE_6__["AuthenService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_share_services_account_service__WEBPACK_IMPORTED_MODULE_7__["AccountService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_8__["MatSnackBar"])); };
 SigninComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SigninComponent, selectors: [["app-signin"]], features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([])], decls: 48, vars: 9, consts: [[1, "app-header", "pt-2", "pb-2", 2, "display", "block"], ["href", "index.html", 1, "app-header__logo"], ["src", "../../assets/image/logo2.png"], [2, "border", "1px 0 1px 0 solid black", "display", "block"], [1, "navbar", "navbar-expand-lg", "navbar-dark", "bg-dark", "px-5"], ["href", "#", 1, "navbar-brand"], ["type", "button", "data-toggle", "collapse", "data-target", "#navbarNavAltMarkup", "aria-controls", "navbarNavAltMarkup", "aria-expanded", "false", "aria-label", "Toggle navigation", 1, "navbar-toggler", 2, "float", "right"], [1, "navbar-toggler-icon"], ["id", "navbarNavAltMarkup", 1, "collapse", "navbar-collapse"], [1, "navbar-nav", "text-center", "px-5"], ["href", "#home", 1, "nav-item", "nav-link", "px-4", 3, "routerLink"], [1, "fa", "fa-home"], [1, "fa", "fa-address-book"], ["href", "#news", 1, "nav-item", "nav-link", "px-4", 3, "routerLink"], [1, "fa", "fa-key"], [1, "app", "sidebar-mini", "rtl"], [1, "app-content"], [1, "row"], [1, "col-md-4"], [1, "tile"], [1, "text-center", "py-2"], [1, "lead"], [3, "formGroup", "ngSubmit"], [1, "form-group"], ["for", "disabledTextInput"], ["formControlName", "username", "placeholder", "\u0E23\u0E2B\u0E31\u0E2A\u0E19\u0E31\u0E01\u0E28\u0E36\u0E01\u0E29\u0E32", 1, "form-control"], ["type", "password", "formControlName", "password", "placeholder", "\u0E23\u0E2B\u0E31\u0E2A\u0E19\u0E31\u0E01\u0E28\u0E36\u0E01\u0E29\u0E32", 1, "form-control"], ["type", "submit", 1, "btn", "btn-primary", "btn-lg", "btn-block", "my-2"], [3, "routerLink"]], template: function SigninComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "header", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 1);
@@ -1256,7 +1352,7 @@ SigninComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
                 styleUrls: ['./signin.component.css'],
                 providers: []
             }]
-    }], function () { return [{ type: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"] }, { type: src_app_share_services_alert_service__WEBPACK_IMPORTED_MODULE_4__["AlertService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }, { type: src_app_services_authen_service__WEBPACK_IMPORTED_MODULE_6__["AuthenService"] }, { type: src_app_share_services_account_service__WEBPACK_IMPORTED_MODULE_7__["AccountService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"] }]; }, null); })();
+    }], function () { return [{ type: _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"] }, { type: src_app_share_services_alert_service__WEBPACK_IMPORTED_MODULE_4__["AlertService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }, { type: src_app_services_authen_service__WEBPACK_IMPORTED_MODULE_6__["AuthenService"] }, { type: src_app_share_services_account_service__WEBPACK_IMPORTED_MODULE_7__["AccountService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"] }, { type: _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_8__["MatSnackBar"] }]; }, null); })();
 
 
 /***/ }),
@@ -1692,7 +1788,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class FooterComponent {
-    constructor() { }
+    constructor() {
+        this.Data = new Date();
+    }
     ngOnInit() {
     }
 }
@@ -2039,6 +2137,18 @@ class AlertService {
             }
         });
     }
+    announce(title = "หัวข้อ", text = "ข้อความ") {
+        sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_1___default.a.fire({
+            title: title,
+            text: text,
+            imageUrl: 'https://lh3.googleusercontent.com/proxy/oRRvs0xezZHQjrz97O5-DHF5Hg-Pgs0BfK17jarLtj7V_jvnSZFQW8IuGzobuBZjFNinliWqlj5No6hGVbFrL9mxMAu-TXDMFg',
+            imageWidth: 390,
+            imageHeight: 240,
+            timer: 4000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+        });
+    }
 }
 AlertService.ɵfac = function AlertService_Factory(t) { return new (t || AlertService)(); };
 AlertService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: AlertService, factory: AlertService.ɵfac, providedIn: 'root' });
@@ -2175,6 +2285,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/auth-content/auth-content.component */ "./src/app/share/components/auth-content/auth-content.component.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
 /* harmony import */ var _services_validator_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./services/validator.service */ "./src/app/share/services/validator.service.ts");
+/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/snack-bar.js");
+
 
 
 
@@ -2194,13 +2306,15 @@ SharedsModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInje
             _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ReactiveFormsModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"],
+            _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_10__["MatSnackBarModule"]
         ],
         _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ReactiveFormsModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"]] });
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](SharedsModule, { declarations: [_components_nav_bar_nav_bar_component__WEBPACK_IMPORTED_MODULE_3__["NavBarComponent"], _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_5__["FooterComponent"], _components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_7__["AuthContentComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
         _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ReactiveFormsModule"],
-        _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"]], exports: [_components_nav_bar_nav_bar_component__WEBPACK_IMPORTED_MODULE_3__["NavBarComponent"],
+        _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"],
+        _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_10__["MatSnackBarModule"]], exports: [_components_nav_bar_nav_bar_component__WEBPACK_IMPORTED_MODULE_3__["NavBarComponent"],
         _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_5__["FooterComponent"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ReactiveFormsModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"],
@@ -2214,6 +2328,7 @@ SharedsModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInje
                     _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"],
                     _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ReactiveFormsModule"],
                     _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"],
+                    _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_10__["MatSnackBarModule"]
                 ],
                 exports: [
                     _components_nav_bar_nav_bar_component__WEBPACK_IMPORTED_MODULE_3__["NavBarComponent"],

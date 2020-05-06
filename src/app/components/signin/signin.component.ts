@@ -4,11 +4,9 @@ import { AlertService } from 'src/app/share/services/alert.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppURL } from 'src/app/app.url';
 import { AccountService } from 'src/app/share/services/account.service';
-import { HttpClient } from '@angular/common/http';
-import { HttpService } from 'src/app/services/http.service';
-import { MemberService } from 'src/app/share/services/member.service';
 import { AuthenService } from 'src/app/services/authen.service';
 import { AuthURL } from 'src/app/authentication/authentication.url';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Component({
@@ -30,12 +28,15 @@ export class SigninComponent implements OnInit {
     private authen: AuthenService,
     private account: AccountService,
     private activateRoute: ActivatedRoute,
+    private _snackBar: MatSnackBar
   ) {
     //ย้อนกลับไปหน้า LOGIN กรณี Redirect
     this.activateRoute.params.forEach(params => {
       this.returnURL = params.returnURL || `/${AppURL.Authen}/${AuthURL.Home}`;
     })
     this.redirectPage();
+
+    this.alert.announce("แก้ไขล่าสุด :<br> May 6, 2020,1:22:08 PM", "**แก้คำนวณ Level")
 
     this.createFormData();
   }

@@ -8,6 +8,7 @@ import { MemberService } from './services/member.service';
 import { AuthContentComponent } from './components/auth-content/auth-content.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ValidatorsService } from './services/validator.service';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [NavBarComponent, FooterComponent, AuthContentComponent],
@@ -15,7 +16,8 @@ import { ValidatorsService } from './services/validator.service';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule,
+    FormsModule, 
+    MatSnackBarModule
   ]
   ,
   exports: [

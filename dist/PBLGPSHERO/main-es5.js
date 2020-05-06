@@ -1639,7 +1639,71 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "calculateLevel",
         value: function calculateLevel(exp) {
           var level;
-          level = Math.round(exp / 100 * 3 + 1);
+
+          if (exp > 0 && exp < 30) {
+            level = 1;
+          } else if (exp < 50) {
+            level = 2;
+          } else if (exp < 100) {
+            level = 3;
+          } else if (exp < 130) {
+            level = 4;
+          } else if (exp < 150) {
+            level = 5;
+          } else if (exp < 200) {
+            level = 6;
+          } else if (exp < 230) {
+            level = 7;
+          } else if (exp < 250) {
+            level = 8;
+          } else if (exp < 300) {
+            level = 9;
+          } else if (exp < 330) {
+            level = 10;
+          } else if (exp < 350) {
+            level = 11;
+          } else if (exp < 400) {
+            level = 12;
+          } else if (exp < 430) {
+            level = 13;
+          } else if (exp < 450) {
+            level = 14;
+          } else if (exp < 500) {
+            level = 15;
+          } else if (exp < 530) {
+            level = 16;
+          } else if (exp < 550) {
+            level = 17;
+          } else if (exp < 600) {
+            level = 18;
+          } else if (exp < 630) {
+            level = 19;
+          } else if (exp < 650) {
+            level = 20;
+          } else if (exp < 700) {
+            level = 21;
+          } else if (exp < 730) {
+            level = 22;
+          } else if (exp < 750) {
+            level = 23;
+          } else if (exp < 800) {
+            level = 24;
+          } else if (exp < 830) {
+            level = 25;
+          } else if (exp < 850) {
+            level = 26;
+          } else if (exp < 900) {
+            level = 27;
+          } else if (exp < 930) {
+            level = 28;
+          } else if (exp < 950) {
+            level = 29;
+          } else if (exp < 1000) {
+            level = 30;
+          } else if (exp >= 1000) {
+            level = 31;
+          }
+
           return level;
         }
       }]);
@@ -2210,6 +2274,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var src_app_share_services_account_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! src/app/share/services/account.service */
     "./src/app/share/services/account.service.ts");
+    /* harmony import */
+
+
+    var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! @angular/material/snack-bar */
+    "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/snack-bar.js");
 
     var _c0 = function _c0() {
       return ["/homepage"];
@@ -2224,7 +2294,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     };
 
     var SigninComponent = /*#__PURE__*/function () {
-      function SigninComponent(builder, alert, router, authen, account, activateRoute) {
+      function SigninComponent(builder, alert, router, authen, account, activateRoute, _snackBar) {
         var _this7 = this;
 
         _classCallCheck(this, SigninComponent);
@@ -2235,6 +2305,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.authen = authen;
         this.account = account;
         this.activateRoute = activateRoute;
+        this._snackBar = _snackBar;
         this.AppURL = src_app_app_url__WEBPACK_IMPORTED_MODULE_2__["AppURL"];
         this.AuthURL = src_app_authentication_authentication_url__WEBPACK_IMPORTED_MODULE_3__["AuthURL"]; //ย้อนกลับไปหน้า LOGIN กรณี Redirect
 
@@ -2242,6 +2313,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _this7.returnURL = params.returnURL || "/".concat(src_app_app_url__WEBPACK_IMPORTED_MODULE_2__["AppURL"].Authen, "/").concat(src_app_authentication_authentication_url__WEBPACK_IMPORTED_MODULE_3__["AuthURL"].Home);
         });
         this.redirectPage();
+        this.alert.announce("แก้ไขล่าสุด :<br> May 6, 2020,1:22:08 PM", "**แก้คำนวณ Level");
         this.createFormData();
       }
 
@@ -2291,7 +2363,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     SigninComponent.ɵfac = function SigninComponent_Factory(t) {
-      return new (t || SigninComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_share_services_alert_service__WEBPACK_IMPORTED_MODULE_4__["AlertService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_authen_service__WEBPACK_IMPORTED_MODULE_6__["AuthenService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_share_services_account_service__WEBPACK_IMPORTED_MODULE_7__["AccountService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]));
+      return new (t || SigninComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_share_services_alert_service__WEBPACK_IMPORTED_MODULE_4__["AlertService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_authen_service__WEBPACK_IMPORTED_MODULE_6__["AuthenService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_share_services_account_service__WEBPACK_IMPORTED_MODULE_7__["AccountService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_8__["MatSnackBar"]));
     };
 
     SigninComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
@@ -2505,6 +2577,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           type: src_app_share_services_account_service__WEBPACK_IMPORTED_MODULE_7__["AccountService"]
         }, {
           type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]
+        }, {
+          type: _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_8__["MatSnackBar"]
         }];
       }, null);
     })();
@@ -3386,6 +3460,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var FooterComponent = /*#__PURE__*/function () {
       function FooterComponent() {
         _classCallCheck(this, FooterComponent);
+
+        this.Data = new Date();
       }
 
       _createClass(FooterComponent, [{
@@ -4058,6 +4134,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }
           });
         }
+      }, {
+        key: "announce",
+        value: function announce() {
+          var title = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "หัวข้อ";
+          var text = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "ข้อความ";
+          sweetalert2_dist_sweetalert2_js__WEBPACK_IMPORTED_MODULE_1___default.a.fire({
+            title: title,
+            text: text,
+            imageUrl: 'https://lh3.googleusercontent.com/proxy/oRRvs0xezZHQjrz97O5-DHF5Hg-Pgs0BfK17jarLtj7V_jvnSZFQW8IuGzobuBZjFNinliWqlj5No6hGVbFrL9mxMAu-TXDMFg',
+            imageWidth: 390,
+            imageHeight: 240,
+            timer: 4000,
+            timerProgressBar: true,
+            showConfirmButton: false
+          });
+        }
       }]);
 
       return AlertService;
@@ -4355,6 +4447,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _services_validator_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! ./services/validator.service */
     "./src/app/share/services/validator.service.ts");
+    /* harmony import */
+
+
+    var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    /*! @angular/material/snack-bar */
+    "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/snack-bar.js");
 
     var SharedsModule = function SharedsModule() {
       _classCallCheck(this, SharedsModule);
@@ -4368,13 +4466,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         return new (t || SharedsModule)();
       },
       providers: [_services_alert_service__WEBPACK_IMPORTED_MODULE_2__["AlertService"], _services_member_service__WEBPACK_IMPORTED_MODULE_6__["MemberService"], _services_validator_service__WEBPACK_IMPORTED_MODULE_9__["ValidatorsService"]],
-      imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"]], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"]]
+      imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_10__["MatSnackBarModule"]], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"]]
     });
 
     (function () {
       (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](SharedsModule, {
         declarations: [_components_nav_bar_nav_bar_component__WEBPACK_IMPORTED_MODULE_3__["NavBarComponent"], _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_5__["FooterComponent"], _components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_7__["AuthContentComponent"]],
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"]],
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_10__["MatSnackBarModule"]],
         exports: [_components_nav_bar_nav_bar_component__WEBPACK_IMPORTED_MODULE_3__["NavBarComponent"], _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_5__["FooterComponent"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"], _components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_7__["AuthContentComponent"]]
       });
     })();
@@ -4386,7 +4484,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
         args: [{
           declarations: [_components_nav_bar_nav_bar_component__WEBPACK_IMPORTED_MODULE_3__["NavBarComponent"], _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_5__["FooterComponent"], _components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_7__["AuthContentComponent"]],
-          imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"]],
+          imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_10__["MatSnackBarModule"]],
           exports: [_components_nav_bar_nav_bar_component__WEBPACK_IMPORTED_MODULE_3__["NavBarComponent"], _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_5__["FooterComponent"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"], _components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_7__["AuthContentComponent"]],
           providers: [_services_alert_service__WEBPACK_IMPORTED_MODULE_2__["AlertService"], _services_member_service__WEBPACK_IMPORTED_MODULE_6__["MemberService"], _services_validator_service__WEBPACK_IMPORTED_MODULE_9__["ValidatorsService"]]
         }]

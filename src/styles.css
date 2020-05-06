@@ -15,6 +15,10 @@ div .custom-menu {
   cursor: pointer;
 }
 
+mat-form-field {
+  margin-right: 12px;
+}
+
 .ng-content {
   background-color: white;
   min-height: calc(100vh - 173px);
@@ -152,3 +156,6 @@ img.avatar-image:hover{
     margin-top: 0px;
   }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
