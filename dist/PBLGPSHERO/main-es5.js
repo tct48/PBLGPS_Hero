@@ -4764,12 +4764,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.initialLoadUserLogin();
         }
 
-        this.UserLogin = this.account.UserLogin;
-
-        if (!this.account.UserLogin) {
-          // this.router.navigateByUrl('https://phd-ajratchpon.herokuapp.com/signin');
-          this.router.navigate(['/', src_app_app_url__WEBPACK_IMPORTED_MODULE_1__["AppURL"].Login]);
-        }
+        this.UserLogin = this.account.UserLogin; // if(!this.account.UserLogin){
+        //   // this.router.navigateByUrl('https://phd-ajratchpon.herokuapp.com/signin');
+        //   this.router.navigate(['/', AppURL.Login]);
+        // }
       }
 
       _createClass(NavBarComponent, [{

@@ -2393,10 +2393,10 @@ class NavBarComponent {
             this.initialLoadUserLogin();
         }
         this.UserLogin = this.account.UserLogin;
-        if (!this.account.UserLogin) {
-            // this.router.navigateByUrl('https://phd-ajratchpon.herokuapp.com/signin');
-            this.router.navigate(['/', src_app_app_url__WEBPACK_IMPORTED_MODULE_1__["AppURL"].Login]);
-        }
+        // if(!this.account.UserLogin){
+        //   // this.router.navigateByUrl('https://phd-ajratchpon.herokuapp.com/signin');
+        //   this.router.navigate(['/', AppURL.Login]);
+        // }
     }
     ngOnInit() {
     }
