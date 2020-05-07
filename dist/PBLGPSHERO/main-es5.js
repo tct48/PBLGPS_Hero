@@ -1373,31 +1373,37 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var src_app_services_authen_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    var _services_level_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../../services/level.service */
+    "./src/app/authentication/services/level.service.ts");
+    /* harmony import */
+
+
+    var src_app_services_authen_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! src/app/services/authen.service */
     "./src/app/services/authen.service.ts");
     /* harmony import */
 
 
-    var src_app_share_services_account_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    var src_app_share_services_account_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! src/app/share/services/account.service */
     "./src/app/share/services/account.service.ts");
     /* harmony import */
 
 
-    var src_app_share_services_member_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var src_app_share_services_member_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! src/app/share/services/member.service */
     "./src/app/share/services/member.service.ts");
     /* harmony import */
 
 
-    var _share_components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var _share_components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ../../../share/components/auth-content/auth-content.component */
     "./src/app/share/components/auth-content/auth-content.component.ts");
     /* harmony import */
 
 
-    var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! @angular/common */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
 
@@ -1450,7 +1456,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](data_r1.exp + 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r0.calLevel(data_r1.exp));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
@@ -1463,12 +1469,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }
 
     var LeaderboardComponent = /*#__PURE__*/function () {
-      function LeaderboardComponent(authen, account, member) {
+      function LeaderboardComponent(authen, account, member, level) {
         _classCallCheck(this, LeaderboardComponent);
 
         this.authen = authen;
         this.account = account;
         this.member = member;
+        this.level = level;
         this.crown_image = ["../../../../assets/image/Crown4.png", "../../../../assets/image/Crown3.png", "../../../../assets/image/Crown2.png", "../../../../assets/image/Crown5.png", "../../../../assets/image/Crown5.png"];
 
         if (!this.UserLogin) {
@@ -1499,18 +1506,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this6.Leaderboard = result.items;
           });
         }
+      }, {
+        key: "calLevel",
+        value: function calLevel(exp) {
+          return this.level.calculateLevel(exp);
+        }
       }]);
 
       return LeaderboardComponent;
     }();
 
     LeaderboardComponent.ɵfac = function LeaderboardComponent_Factory(t) {
-      return new (t || LeaderboardComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_authen_service__WEBPACK_IMPORTED_MODULE_1__["AuthenService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_share_services_account_service__WEBPACK_IMPORTED_MODULE_2__["AccountService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_share_services_member_service__WEBPACK_IMPORTED_MODULE_3__["MemberService"]));
+      return new (t || LeaderboardComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_authen_service__WEBPACK_IMPORTED_MODULE_2__["AuthenService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_share_services_account_service__WEBPACK_IMPORTED_MODULE_3__["AccountService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_share_services_member_service__WEBPACK_IMPORTED_MODULE_4__["MemberService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_level_service__WEBPACK_IMPORTED_MODULE_1__["LevelService"]));
     };
 
     LeaderboardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
       type: LeaderboardComponent,
       selectors: [["app-leaderboard"]],
+      features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([_services_level_service__WEBPACK_IMPORTED_MODULE_1__["LevelService"]])],
       decls: 19,
       vars: 1,
       consts: [["src", "../../../../assets/image/Crown4.png"], [1, "lead"], [1, "leaderboard"], [2, "font-family", "'Press Start 2P', cursive", "color", "white", "text-shadow", "black"], ["cellpadding", "0", "cellspacing", "0", 2, "width", "100%"], [2, "font-size", "small", "font-weight", "bold"], ["class", "data", "style", "font-size:smaller;", 4, "ngFor", "ngForOf"], [1, "data", 2, "font-size", "smaller"], [2, "text-align", "left"], [3, "src"]],
@@ -1583,7 +1596,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.Leaderboard);
         }
       },
-      directives: [_share_components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_4__["AuthContentComponent"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"]],
+      directives: [_share_components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_5__["AuthContentComponent"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgForOf"]],
       styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2F1dGhlbnRpY2F0aW9uL2NvbXBvbmVudHMvbGVhZGVyYm9hcmQvbGVhZGVyYm9hcmQuY29tcG9uZW50LmNzcyJ9 */"]
     });
     /*@__PURE__*/
@@ -1594,15 +1607,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         args: [{
           selector: 'app-leaderboard',
           templateUrl: './leaderboard.component.html',
-          styleUrls: ['./leaderboard.component.css']
+          styleUrls: ['./leaderboard.component.css'],
+          providers: [_services_level_service__WEBPACK_IMPORTED_MODULE_1__["LevelService"]]
         }]
       }], function () {
         return [{
-          type: src_app_services_authen_service__WEBPACK_IMPORTED_MODULE_1__["AuthenService"]
+          type: src_app_services_authen_service__WEBPACK_IMPORTED_MODULE_2__["AuthenService"]
         }, {
-          type: src_app_share_services_account_service__WEBPACK_IMPORTED_MODULE_2__["AccountService"]
+          type: src_app_share_services_account_service__WEBPACK_IMPORTED_MODULE_3__["AccountService"]
         }, {
-          type: src_app_share_services_member_service__WEBPACK_IMPORTED_MODULE_3__["MemberService"]
+          type: src_app_share_services_member_service__WEBPACK_IMPORTED_MODULE_4__["MemberService"]
+        }, {
+          type: _services_level_service__WEBPACK_IMPORTED_MODULE_1__["LevelService"]
         }];
       }, null);
     })();

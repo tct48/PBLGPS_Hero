@@ -14,7 +14,7 @@
           </tr>
           <tr *ngFor="let data of Leaderboard;let i = index" class="data" style="font-size:smaller;">
             <td style="text-align: left;">{{ i+1 }}.{{ data.username }} <img [src]="crown_image[i]"></td>
-            <td>{{ data.exp+1 }}</td>
+            <td>{{ calLevel(data.exp) }}</td>
             <td>{{ data.exp }}</td>
             <td>{{ data.badge.length }}</td>
           </tr>

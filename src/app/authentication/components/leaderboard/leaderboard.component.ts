@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { IAccount, AccountService } from 'src/app/share/services/account.service';
 import { AuthenService } from 'src/app/services/authen.service';
 import { MemberService } from 'src/app/share/services/member.service';
+import { LevelService } from '../../services/level.service';
 
 @Component({
   selector: 'app-leaderboard',
   templateUrl: './leaderboard.component.html',
-  styleUrls: ['./leaderboard.component.css']
+  styleUrls: ['./leaderboard.component.css'],
+  providers: [LevelService]
 })
 export class LeaderboardComponent implements OnInit {
   UserLogin:IAccount
@@ -23,7 +25,8 @@ export class LeaderboardComponent implements OnInit {
   constructor(
     private authen: AuthenService,
     private account: AccountService,
-    private member: MemberService
+    private member: MemberService,
+    private level: LevelService
   ) {
     if(!this.UserLogin){
       this.loadUserLogin();
@@ -33,6 +36,8 @@ export class LeaderboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  lvl:Number;
 
   loadUserLogin(){
     this.account.getUserLogin(this.authen.getAuthenticated())
@@ -46,6 +51,10 @@ export class LeaderboardComponent implements OnInit {
     .then(result=>{
       this.Leaderboard=result.items;
     })
+  }
+
+  calLevel(exp){
+    return this.level.calculateLevel(exp);
   }
 
 }
