@@ -27,7 +27,7 @@ export class NavBarComponent implements OnInit {
 
     this.UserLogin = this.account.UserLogin;
 
-    if(!this.UserLogin._id){
+    if(!this.account.UserLogin){
       // this.router.navigateByUrl('https://phd-ajratchpon.herokuapp.com/signin');
       this.router.navigate(['/', AppURL.Login]);
     }
