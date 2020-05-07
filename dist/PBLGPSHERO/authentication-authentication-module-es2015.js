@@ -72,7 +72,7 @@ const RouterLists = [
     { path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Leaderboard, component: _components_leaderboard_leaderboard_component__WEBPACK_IMPORTED_MODULE_3__["LeaderboardComponent"] },
     { path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Information, component: _components_information_information_component__WEBPACK_IMPORTED_MODULE_4__["InformationComponent"] },
     { path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Resource, component: _components_resource_resource_component__WEBPACK_IMPORTED_MODULE_5__["ResourceComponent"] },
-    { path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Content, component: _components_resource_content_content_component__WEBPACK_IMPORTED_MODULE_6__["ContentComponent"] }
+    { path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Content, component: _components_resource_content_content_component__WEBPACK_IMPORTED_MODULE_6__["ContentComponent"] },
 ];
 const AuthenticationRouting = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forChild(RouterLists);
 

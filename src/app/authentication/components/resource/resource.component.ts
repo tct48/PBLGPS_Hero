@@ -2,22 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppURL } from 'src/app/app.url';
 import { AuthURL } from '../../authentication.url';
+import { ResourceService, IChapter } from '../../services/resource.service';
 
 @Component({
   selector: 'app-resource',
   templateUrl: './resource.component.html',
-  styleUrls: ['./resource.component.css']
+  styleUrls: ['./resource.component.css'],
+  providers: [ResourceService]
 })
 export class ResourceComponent implements OnInit {
-
-  constructor(private router:Router) { }
-
-  ngOnInit(): void {
+  constructor(private router: Router, private resource: ResourceService) {
+    // โหลดหน่วยที่
+    this.resource.onShowAllChapter().then(result=>{
+      this.items = result.items
+    })
   }
 
-  item = ["หน่วยที่ 00", "หน่วยที่ 01" ,"หน่วยที่ 02" ,"หน่วยที่ 03" ,"หน่วยที่ 04" ,"หน่วยที่ 05" ,"หน่วยที่ 06" ,"หน่วยที่ 07" ,"หน่วยที่ 08" ,"หน่วยที่ 09" ,"หน่วยที่ 10" ,"หน่วยที่ 11" ,"หน่วยที่ 12"]
-  
-  openContent(item:any){
-    this.router.navigate(['', AppURL.Authen, AuthURL.Content], { queryParams: {item} })
+  ngOnInit(): void {}
+
+  items;
+
+  openContent(item: any) {
+    this.router.navigate(['', AppURL.Authen, AuthURL.Content], {
+      queryParams: { item },
+    });
   }
 }

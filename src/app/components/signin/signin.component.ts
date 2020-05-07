@@ -36,8 +36,8 @@ export class SigninComponent implements OnInit {
     })
     this.redirectPage();
 
-    this.alert.announce("อัพเดท &nbsp; <span style='color:orange'> 6 พค 2020, 10:30:37 PM</span>", "1) แก้คำนวณ Level <br>2) แหล่งการเรียนรู้ (โครง)")
-
+    this.alert.announce("อัพเดท &nbsp; <span style='color:orange'> 7 พค 2020, 23:52:51 PM</span>", "1) ดึงข้อมูลแบบฝึกหัด (แหล่งการเรียนรู้) <br>2) เพิ่มแหล่งการเรียนรู้ <br>3) เพิ่ม Admin เพิ่มแหล่งการเรียนรู้ (ยังไม่เปิด)")
+  
     this.createFormData();
   }
 

@@ -3,5 +3,6 @@ export const AuthURL = {
     Leaderboard: 'leaderboard',
     Information: 'information',
     Resource: 'resource',
-    Content : 'content'
+    Content : 'content',
+    Signin: 'signin'
   };

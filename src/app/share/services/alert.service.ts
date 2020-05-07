@@ -79,7 +79,7 @@ export class AlertService {
     Swal.fire({
       title: title,
       html: text,
-      imageUrl: 'http://www.npa-account.com/images/blog5800262.jpg',
+      imageUrl: 'https://steamuserimages-a.akamaihd.net/ugc/281856448671146419/530EBDE21052E60163E2D890F1F78AA154F13F01/',
       imageWidth: 390,
       imageHeight: 240,
       timer: 4000,

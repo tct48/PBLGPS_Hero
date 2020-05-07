@@ -17,41 +17,9 @@
         </div>
         <div class="col-md-7">
             <div class="row">
-                <div class="col-md-6">
-                    <button (click)="openContent(item[1])" style="text-decoration: none;width: 100%;" class="action-button shadow animate button-blue">หน่วยที่ 01</button>
-                </div>
-                <div class="col-md-6">
-                    <button (click)="openContent(item[7])" style="text-decoration: none;width: 100%;" class="action-button shadow animate button-red">หน่วยที่ 07</button>
-                </div>
-                <div class="col-md-6">
-                    <button (click)="openContent(item[2])" style="text-decoration: none;width: 100%;" class="action-button shadow animate button-blue">หน่วยที่ 02</button>
-                </div>
-                <div class="col-md-6">
-                    <button (click)="openContent(item[8])" style="text-decoration: none;width: 100%;" class="action-button shadow animate button-red">หน่วยที่ 08</button>
-                </div>
-                <div class="col-md-6">
-                    <button (click)="openContent(item[3])" style="text-decoration: none;width: 100%;" class="action-button shadow animate button-blue">หน่วยที่ 03</button>
-                </div>
-                <div class="col-md-6">
-                    <button (click)="openContent(item[9])" style="text-decoration: none;width: 100%;" class="action-button shadow animate button-red">หน่วยที่ 09</button>
-                </div>
-                <div class="col-md-6">
-                    <button (click)="openContent(item[4])" style="text-decoration: none;width: 100%;" class="action-button shadow animate button-blue">หน่วยที่ 04</button>
-                </div>
-                <div class="col-md-6">
-                    <button (click)="openContent(item[10])" style="text-decoration: none;width: 100%;" class="action-button shadow animate button-red">หน่วยที่ 10</button>
-                </div>
-                <div class="col-md-6">
-                    <button (click)="openContent(item[5])" style="text-decoration: none;width: 100%;" class="action-button shadow animate button-blue">หน่วยที่ 05</button>
-                </div>
-                <div class="col-md-6">
-                    <button (click)="openContent(item[11])" style="text-decoration: none;width: 100%;" class="action-button shadow animate button-red">หน่วยที่ 11</button>
-                </div>
-                <div class="col-md-6">
-                    <button (click)="openContent(item[6])" style="text-decoration: none;width: 100%;" class="action-button shadow animate button-blue">หน่วยที่ 06</button>
-                </div>
-                <div class="col-md-6">
-                    <button (click)="openContent(item[12])" style="text-decoration: none;width: 100%;" class="action-button shadow animate button-red">หน่วยที่ 12</button>
+
+                <div *ngFor="let data of items;let i = index;" class="col-md-6">
+                    <button (click)="openContent(data._id)" style="text-decoration: none;width: 100%;" class="action-button shadow animate button-blue">{{ data.name }}</button>
                 </div>
             </div>
             

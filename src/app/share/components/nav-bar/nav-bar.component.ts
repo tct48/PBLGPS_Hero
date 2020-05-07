@@ -6,6 +6,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AlertService } from '../../services/alert.service';
 import { AppURL } from 'src/app/app.url';
 import { AuthURL } from 'src/app/authentication/authentication.url';
+import { window } from 'rxjs/operators';
+
 declare let App;
 @Component({
   selector: 'app-nav-bar',
@@ -24,9 +26,14 @@ export class NavBarComponent implements OnInit {
     }
 
     this.UserLogin = this.account.UserLogin;
+
+    if(!this.UserLogin._id){
+      // this.router.navigateByUrl('https://phd-ajratchpon.herokuapp.com/signin');
+      this.router.navigate(['/', AppURL.Login]);
+    }
   }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {  
 
   }
 
