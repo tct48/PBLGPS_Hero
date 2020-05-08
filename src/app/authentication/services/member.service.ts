@@ -17,14 +17,36 @@ export class MemberService{
     .toPromise() as Promise<IResponse>
   }
 
+  loadMember(option:OptionSearch){
+    if(option.valueData){
+      return this.http.requestGet(`user/search?sp=${option.sp}&lp=${option.lp}&search=${option.valueData}`, this.authen.getAuthenticated())
+      .toPromise() as Promise<IMember>
+    }
+    return this.http.requestGet(`user?sp=${option.sp}&lp=${option.lp}`, this.authen.getAuthenticated())
+    .toPromise() as Promise<IMember>
+  }
 
+  deleteMember(_id:string){
+    console.log(_id)
+    return this.http.requestDelete(`user/${_id}`, this.authen.getAuthenticated())
+      .toPromise() as Promise<IMember>
+  }
 }
 
 export interface IResponse{
   message:string;
 }
+
+export interface OptionSearch{
+  sp:Number,
+  lp:Number,
+  keySearch?:string,
+  valueData?:string
+}
+
 export interface IMember{
-  items?:any
+  total_items?:any;
+  items?:any;
 
   _id:string,
   firstname:string,
@@ -36,4 +58,5 @@ export interface IMember{
   email:string,
   picture:string,
   exp?:number,
+  activity?:Date
 }

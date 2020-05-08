@@ -63,6 +63,13 @@ div.custom-menu div ul li a {
   background-color: white;
   color: slategrey;
   text-align: center;
+  z-index: 40;
+}
+
+.img-avater{
+  max-width: 50px;
+  height: auto;
+  border-radius: 50em;
 }
 
 /* for button chapter */

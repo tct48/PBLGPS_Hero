@@ -143,6 +143,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _components_resource_content_content_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ./components/resource/content/content.component */
     "./src/app/authentication/components/resource/content/content.component.ts");
+    /* harmony import */
+
+
+    var _components_member_member_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ./components/member/member.component */
+    "./src/app/authentication/components/member/member.component.ts");
 
     var RouterLists = [{
       path: '',
@@ -163,7 +169,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }, {
       path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Content,
       component: _components_resource_content_content_component__WEBPACK_IMPORTED_MODULE_6__["ContentComponent"]
-    }];
+    }, {
+      path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Member,
+      component: _components_member_member_component__WEBPACK_IMPORTED_MODULE_7__["MemberComponent"]
+    } // { path: AuthURL.Signin , component:SigninComponent }
+    ];
 
     var AuthenticationRouting = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forChild(RouterLists);
     /***/

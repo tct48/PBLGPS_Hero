@@ -25,6 +25,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <!-- กรณี role เป็น student -->
       <div class="navbar-nav text-center" *ngIf="UserLogin.role=='student'">
         <a class="nav-item border-right nav-link px-4" routerLinkActive="active" [routerLink] ="['/auth/home']">หน้าแรก <br><i class="fa fa-home fa-lg"></i></a>
         <a class="nav-item border-right nav-link px-4" routerLinkActive="active">กิจกรรมประจำด่าน<br />(STAGE)
@@ -36,6 +37,12 @@
         <a class="nav-item nav-link border-right px-4" routerLinkActive="active" [routerLink]="['/auth/information']">ข้อมูลผู้เรียน<br />(INFORMATION)</a>
         <a class="nav-item nav-link px-4" href="#">แนะนำระบบ<br />(GUIDE)</a>
       </div>
+
+      <div class="navbar-nav text-center" *ngIf="UserLogin.role=='admin'">
+        <a class="nav-item border-right nav-link px-4" routerLinkActive="active" [routerLink] ="['/auth/home']">หน้าแรก <br><i class="fa fa-home fa-lg"></i></a>
+        <a class="nav-item border-right nav-link px-4" routerLinkActive="active" [routerLink] ="['/auth/member']">ระบบสมาชิก <br><i class="fa fa-address-card"></i></a>
+      </div>
+
     </div>
   </nav>
 </div>

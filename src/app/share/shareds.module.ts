@@ -17,10 +17,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     RouterModule,
     ReactiveFormsModule,
     FormsModule, 
-    MatSnackBarModule
+    MatSnackBarModule,
   ]
   ,
-  exports: [
+  exports: [ 
     NavBarComponent,
     FooterComponent,
     ReactiveFormsModule,

@@ -24,6 +24,7 @@ export class AuthContentComponent implements OnInit {
     if(!this.UserLogin){
       this.initialLoadUserLogin();
     }
+
    }
 
   ngOnInit(): void {

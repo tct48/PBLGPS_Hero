@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import Swal from 'sweetalert2/dist/sweetalert2.js';
-
 import 'sweetalert2/src/sweetalert2.scss';
+
 import { StringifyOptions } from 'querystring';
 
 @Injectable({
@@ -59,7 +59,7 @@ export class AlertService {
     Swal.fire({
       title: title,
       text: text,
-      icon: 'warning',
+      icon: 'danger',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',

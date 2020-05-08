@@ -4,5 +4,6 @@ export const AuthURL = {
     Information: 'information',
     Resource: 'resource',
     Content : 'content',
+    Member:'member',
     Signin: 'signin'
   };

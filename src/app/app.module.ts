@@ -25,32 +25,41 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ResourceComponent } from './authentication/components/resource/resource.component';
 import { ContentComponent } from './authentication/components/resource/content/content.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { MemberComponent } from './authentication/components/member/member.component';
+
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { DateAgoPipe } from './services/pipes/date-ago.pipe';
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomepageComponent,
-    SigninComponent,
-    SignupComponent,
-    HahaComponent,
     HomeComponent,
-    LeaderboardComponent,
+    HahaComponent,
+    MemberComponent,
+    SigninComponent,
+    SignupComponent, 
+    HomepageComponent,
+    ContentComponent,
     ResourceComponent,
     InformationComponent,
-    ContentComponent
+    LeaderboardComponent,
+    DateAgoPipe,
   ],
   imports: [
     FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    HttpClientModule,
     AppRouting,
     SharedsModule,
+    BrowserModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    TooltipModule.forRoot(), 
+    BrowserAnimationsModule,
+    CollapseModule.forRoot(),
     CarouselModule.forRoot(),
     TypeaheadModule.forRoot(),
-    TooltipModule.forRoot(),
-    CollapseModule.forRoot()
+    PaginationModule.forRoot(),
+    ProgressbarModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
