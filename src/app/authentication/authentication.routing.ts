@@ -8,6 +8,7 @@ import { ContentComponent } from './components/resource/content/content.componen
 import { AuthenService } from '../services/authen.service';
 import { SigninComponent } from '../components/signin/signin.component';
 import { MemberComponent } from './components/member/member.component';
+import { ManageResourceComponent } from './components/manage-resource/manage-resource.component';
 
 const RouterLists: Routes = [
     { path : '', redirectTo: AuthURL.Home, pathMatch:'full'},
@@ -16,7 +17,8 @@ const RouterLists: Routes = [
     { path: AuthURL.Information, component: InformationComponent },
     { path: AuthURL.Resource, component: ResourceComponent },
     { path: AuthURL.Content, component:ContentComponent },
-    { path: AuthURL.Member, component:MemberComponent }
+    { path: AuthURL.Member, component:MemberComponent },
+    { path: AuthURL.ManageResource, component: ManageResourceComponent }
     // { path: AuthURL.Signin , component:SigninComponent }
 ]
 

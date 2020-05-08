@@ -37,10 +37,11 @@
         <a class="nav-item nav-link border-right px-4" routerLinkActive="active" [routerLink]="['/auth/information']">ข้อมูลผู้เรียน<br />(INFORMATION)</a>
         <a class="nav-item nav-link px-4" href="#">แนะนำระบบ<br />(GUIDE)</a>
       </div>
-
+      <!-- กรณี role เป็น admin -->
       <div class="navbar-nav text-center" *ngIf="UserLogin.role=='admin'">
         <a class="nav-item border-right nav-link px-4" routerLinkActive="active" [routerLink] ="['/auth/home']">หน้าแรก <br><i class="fa fa-home fa-lg"></i></a>
         <a class="nav-item border-right nav-link px-4" routerLinkActive="active" [routerLink] ="['/auth/member']">ระบบสมาชิก <br><i class="fa fa-address-card"></i></a>
+        <a class="nav-item border-right nav-link px-4" routerLinkActive="active" [routerLink] ="['/auth/manage-resource']">ระบบแหล่งข้อมูล&แบบฝึกหัด <br><i class=" fa fa-graduation-cap"></i></a>
       </div>
 
     </div>

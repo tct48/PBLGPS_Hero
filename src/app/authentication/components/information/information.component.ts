@@ -1,5 +1,5 @@
 import { AppURL } from 'src/app/app.url';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthenService } from 'src/app/services/authen.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -22,8 +22,12 @@ export class InformationComponent implements OnInit {
     private router: Router,
     private builder: FormBuilder,
     private member : MemberService,
-    private level_service : LevelService
+    private level_service : LevelService,
+    private activateRouter: ActivatedRoute
   ) {
+    this.activateRouter.queryParams.forEach(params => {
+      this.mem_id = params.item;
+    })
     if (!this.UserLogin)
       this.initialLoadUserLogin();
 
@@ -31,6 +35,8 @@ export class InformationComponent implements OnInit {
     this.initialLoadUpdateFormData();
   }
 
+  // ref
+  mem_id:String;
   UserLogin: IAccount;
   form: FormGroup;
   exp: number;
@@ -42,6 +48,12 @@ export class InformationComponent implements OnInit {
   }
 
   onSubmit() {   
+    if(this.mem_id){
+      return this.member.updateMember(this.mem_id,this.form.value)
+      .then(result=>{
+        this.alert.success(result.message);
+      })
+    }
     this.member.updateMember(this.UserLogin._id,this.form.value)
     .then(result=>{
       this.alert.success(result.message);
@@ -66,13 +78,6 @@ export class InformationComponent implements OnInit {
     this.account.getUserLogin(this.authen.getAuthenticated())
       .then(userLogin => {
         this.UserLogin = userLogin;
-        if (!userLogin.exp) {
-          this.exp = 0;
-        }
-        this.level = this.exp / 100
-        if (this.level <= 0) {
-          this.level = 1;
-        }
       })
       .catch(err => {
         this.alert.notify(err.message);
@@ -94,6 +99,19 @@ export class InformationComponent implements OnInit {
 
   private initialLoadUpdateFormData() {
     // var fullname = this.UserLogin.firstname + " " + this.UserLogin.lastname;
+    if(this.mem_id){
+      return this.account.getUserByID(this.mem_id,this.authen.getAuthenticated())
+      .then(result => {
+        // console.log(result);
+        this.form.controls['email'].setValue(result.items[0].email);
+        this.form.controls['phone'].setValue(result.items[0].phone);
+        this.form.controls['firstname'].setValue(result.items[0].firstname);
+        this.form.controls['sid'].setValue(result.items[0].sid);
+        this.form.controls['lastname'].setValue(result.items[0].lastname);
+        this.exp = result.items[0].exp;
+        this.level = this.level_service.calculateLevel(this.exp);
+      })
+    }
     this.account.getUserLogin(this.authen.getAuthenticated())
       .then(result => {
         this.form.controls['email'].setValue(result.email);
@@ -101,6 +119,8 @@ export class InformationComponent implements OnInit {
         this.form.controls['firstname'].setValue(result.firstname);
         this.form.controls['sid'].setValue(result.sid);
         this.form.controls['lastname'].setValue(result.lastname);
+        this.exp = result.exp;
+        this.level = this.level_service.calculateLevel(this.exp);
       })
   }
 }

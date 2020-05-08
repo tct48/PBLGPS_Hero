@@ -21,10 +21,7 @@ export class NavBarComponent implements OnInit {
     private router: Router,
     private alert: AlertService
   ) {
-    if(!this.UserLogin){
-      this.initialLoadUserLogin();
-    }
-
+    this.initialLoadUserLogin()
     this.UserLogin = this.account.UserLogin;
 
     // if(!this.account.UserLogin){

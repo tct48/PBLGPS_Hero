@@ -2,7 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { inject } from '@angular/core/testing';
 
-import Swal from 'sweetalert2/dist/sweetalert2.js'
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { AlertService } from 'src/app/share/services/alert.service';
 
 import { AccountService } from 'src/app/share/services/account.service';
@@ -17,51 +17,52 @@ import { ValidatorsService } from 'src/app/share/services/validator.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css'],
 })
-
 @Injectable()
 export class SignupComponent implements OnInit {
-  form:FormGroup
-  member:IMember;
+  form: FormGroup;
+  member: IMember;
   // c_password:string;
 
   constructor(
     private builder: FormBuilder,
     private alert: AlertService,
-    private account:AccountService,
-    private router:Router,
+    private account: AccountService,
+    private router: Router,
     private validator: ValidatorsService
-    ) {
+  ) {
     this.createFormData();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  createFormData(){
+  createFormData() {
     this.form = this.builder.group({
-      sid: ['',Validators.required],
+      sid: ['', Validators.required],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', [Validators.required, this.validator.isPassword]],
       // c_password: ['',[Validators.required, this.validator.comparePassword('password')]],
-      phone : ['', Validators.required],
+      phone: ['', Validators.required],
       email: ['', Validators.required],
-      picture: ['']
-  });
+      picture: [''],
+    });
   }
 
-  onSubmit(){
-    if(this.form.invalid){
-      return this.alert.notify("กรุณากรอกข้อมูลให้ครบถ้วน!");
+  onSubmit() {
+    if (this.form.invalid) {
+      return this.alert.notify('กรุณากรอกข้อมูลให้ครบถ้วน!');
     }
-
-    this.account.onRegister(this.form.value)
-    .then(()=>{
-        this.alert.success("สมัครสมาชิกเรียบร้อยแล้ว!");
-        this.router.navigate(['/',AppURL.Login]);
-    })
+    // return console.log(this.form.value);
+    this.account.onRegister(this.form.value).then(() => {
+      this.alert.success('สมัครสมาชิกเรียบร้อยแล้ว!');
+      setTimeout(() => {
+        //<<<---    using ()=> syntax
+        this.router.navigate(['/', AppURL.Login]);
+      }, 3000);
+      
+    });
   }
 }

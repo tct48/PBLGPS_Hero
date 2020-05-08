@@ -23,7 +23,6 @@ export class ContentComponent implements OnInit {
     ) {
     this.activateRouter.queryParams.forEach(params => {
       this.chapter_id = params.item;
-      
     })
 
     this.resource.onShowOneChapter(this.chapter_id).then(async result=>{

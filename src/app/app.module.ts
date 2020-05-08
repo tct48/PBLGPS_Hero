@@ -1,59 +1,59 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
+// common
 import { NgModule } from '@angular/core';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// module
+import { AppRouting } from './app.routing';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { SharedsModule } from './share/shareds.module';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { HttpClientModule } from '@angular/common/http';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// component
 import { AppComponent } from './app.component';
-import { HomepageComponent } from './components/homepage/homepage.component';
+import { HahaComponent } from './components/haha/haha.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
-
-
-
-// RECOMMENDED
-import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
-// RECOMMENDED
-import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRouting } from './app.routing';
-import { SharedsModule } from './share/shareds.module';
-import { HahaComponent } from './components/haha/haha.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
 import { HomeComponent } from './authentication/components/home/home.component';
-import { HttpClientModule } from '@angular/common/http';
-import { LeaderboardComponent } from './authentication/components/leaderboard/leaderboard.component';
-import { InformationComponent } from './authentication/components/information/information.component';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { MemberComponent } from './authentication/components/member/member.component';
 import { ResourceComponent } from './authentication/components/resource/resource.component';
 import { ContentComponent } from './authentication/components/resource/content/content.component';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { MemberComponent } from './authentication/components/member/member.component';
-
-import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { LeaderboardComponent } from './authentication/components/leaderboard/leaderboard.component';
+import { InformationComponent } from './authentication/components/information/information.component';
+import { ManageResourceComponent } from './authentication/components/manage-resource/manage-resource.component';
+// pipe
 import { DateAgoPipe } from './services/pipes/date-ago.pipe';
-import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
-
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 @NgModule({
   declarations: [
+    DateAgoPipe,
     AppComponent,
     HomeComponent,
     HahaComponent,
     MemberComponent,
     SigninComponent,
-    SignupComponent, 
+    SignupComponent,
     HomepageComponent,
     ContentComponent,
     ResourceComponent,
-    InformationComponent,
+    InformationComponent, 
     LeaderboardComponent,
-    DateAgoPipe,
+    ManageResourceComponent,
   ],
   imports: [
     FormsModule,
     AppRouting,
     SharedsModule,
-    BrowserModule,
+    BrowserModule, 
+    CKEditorModule,
     HttpClientModule,
     ReactiveFormsModule,
-    TooltipModule.forRoot(), 
+    TooltipModule.forRoot(),
     BrowserAnimationsModule,
     CollapseModule.forRoot(),
     CarouselModule.forRoot(),
@@ -62,6 +62,6 @@ import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
     ProgressbarModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -38,6 +38,11 @@ export class AccountService {
       .then(result => this.setUserLogin(result));
   }
 
+  getUserByID(_id:String, accessToken:string){
+    return (this.http.requestGet(`user/userid/${_id}`, accessToken))
+    .toPromise() as Promise<any>
+  }
+
   getAllUser(accessToken: string) {
     return (this.http.requestGet('user/', accessToken)
       .toPromise())

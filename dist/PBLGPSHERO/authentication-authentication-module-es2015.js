@@ -60,6 +60,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_resource_resource_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/resource/resource.component */ "./src/app/authentication/components/resource/resource.component.ts");
 /* harmony import */ var _components_resource_content_content_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/resource/content/content.component */ "./src/app/authentication/components/resource/content/content.component.ts");
 /* harmony import */ var _components_member_member_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/member/member.component */ "./src/app/authentication/components/member/member.component.ts");
+/* harmony import */ var _components_manage_resource_manage_resource_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/manage-resource/manage-resource.component */ "./src/app/authentication/components/manage-resource/manage-resource.component.ts");
+
 
 
 
@@ -75,7 +77,8 @@ const RouterLists = [
     { path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Information, component: _components_information_information_component__WEBPACK_IMPORTED_MODULE_4__["InformationComponent"] },
     { path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Resource, component: _components_resource_resource_component__WEBPACK_IMPORTED_MODULE_5__["ResourceComponent"] },
     { path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Content, component: _components_resource_content_content_component__WEBPACK_IMPORTED_MODULE_6__["ContentComponent"] },
-    { path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Member, component: _components_member_member_component__WEBPACK_IMPORTED_MODULE_7__["MemberComponent"] }
+    { path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].Member, component: _components_member_member_component__WEBPACK_IMPORTED_MODULE_7__["MemberComponent"] },
+    { path: _authentication_url__WEBPACK_IMPORTED_MODULE_1__["AuthURL"].ManageResource, component: _components_manage_resource_manage_resource_component__WEBPACK_IMPORTED_MODULE_8__["ManageResourceComponent"] }
     // { path: AuthURL.Signin , component:SigninComponent }
 ];
 const AuthenticationRouting = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forChild(RouterLists);

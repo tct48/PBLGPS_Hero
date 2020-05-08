@@ -60,13 +60,8 @@
             </div>
             <div>
               <!-- แสดง % -->
-              <progressbar
-                max="100"
-                [value]="calNextLevel(data.exp)"
-                type="warning"
-                striped="true"
-                animate="true"
-                ><i></i> <span *ngIf="calNextLevel(data.exp)>10">{{ calNextLevel(data.exp) | number: "1.2-2" }} %</span>
+              <progressbar max="100" [value]="calNextLevel(data.exp)" type="warning" striped="true" animate="true">
+                <i></i> <span *ngIf="calNextLevel(data.exp)>10">{{ calNextLevel(data.exp) | number: "1.2-2" }} %</span>
               </progressbar>
             </div>
           </td>
@@ -79,8 +74,8 @@
           </td>
           <td>
             <div class="btn-group" btnRadioGroup>
-                <label btnRadio="A" class="btn btn-info" tabindex="0" role="button"><i class="fa fa-eye"></i></label>
-                <label btnRadio="B" class="btn btn-info" tabindex="0" role="button"><i class="fa fa-pencil-square-o"></i></label>
+                <label (click)="openMember(data._id)" btnRadio="A" class="btn btn-info" tabindex="0" role="button"><i class="fa fa-eye"></i></label>
+                <label (click)="openMember(data._id)" btnRadio="B" class="btn btn-info" tabindex="0" role="button"><i class="fa fa-pencil-square-o"></i></label>
                 <label (click)="onDeleteClick(data._id)" btnRadio="C" class="btn btn-info" tabindex="0" role="button"><i class="fa fa-trash"></i></label>
             </div>
           </td>

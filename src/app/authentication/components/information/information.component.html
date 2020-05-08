@@ -1,4 +1,10 @@
 <app-auth-content>
+  <div class="col-md-12">
+    <nav class="breadcrumb" *ngIf="mem_id">
+      <a class="breadcrumb-item" [routerLink]="['/auth/member']">ระบบสมาชิก</a>
+      <li class="breadcrumb-item active" aria-current="page">มุมมอง & แก้ไข</li>
+  </nav> 
+</div>
   <!-- Heading -->
   <h3><img src="../../../../assets/image/Crown4.png" /> ข้อมูลผู้เรียน</h3>
 
@@ -63,7 +69,7 @@
         </div>
         <div class="col-md-9 mt-4 py-3" style="border-top: 1px solid lightgray;">
           <div class="form-group">
-            <input type="text" class="form-control" [(ngModel)]="exp" placeholder="ค่าประสบการณ์">
+            <input type="text" class="form-control" [(value)]="exp" placeholder="ค่าประสบการณ์">
           </div>
         </div>
         <!-- แถบเลเวล -->
@@ -72,7 +78,7 @@
         </div>
         <div class="col-md-9 py-3" style="border-top: 1px solid lightgray;">
           <div class="form-group">
-            <input type="text" class="form-control" [(ngModel)]="level" placeholder="เลเวล">
+            <input type="text" class="form-control" [(value)]="level" placeholder="เลเวล">
           </div>
         </div>
         <button (click)="onTestCal()" class="btn btn-danger">ทดลองคำนวณ Level</button>

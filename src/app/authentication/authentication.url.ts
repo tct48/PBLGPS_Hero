@@ -5,5 +5,6 @@ export const AuthURL = {
     Resource: 'resource',
     Content : 'content',
     Member:'member',
+    ManageResource: 'manage-resource',
     Signin: 'signin'
   };
