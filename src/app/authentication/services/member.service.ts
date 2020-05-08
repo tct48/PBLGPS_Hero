@@ -26,8 +26,7 @@ export class MemberService{
     .toPromise() as Promise<IMember>
   }
 
-  deleteMember(_id:string){
-    console.log(_id)
+  deleteMember(_id){
     return this.http.requestDelete(`user/${_id}`, this.authen.getAuthenticated())
       .toPromise() as Promise<IMember>
   }

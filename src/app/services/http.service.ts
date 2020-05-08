@@ -38,9 +38,11 @@ export class HttpService {
   }
 
   //Request Delete method
-  requestDelete(url: string, id: any) {
+  requestDelete(url: string, accessToken?:string) {
     return this.http
-      .delete(`${this.address}${url}` + id)
+      .delete(`${this.address}${url}`,{
+        headers:this.appendHeaders(accessToken)
+      })
       .pipe(catchError(err => this.handelError(err)));
   }
 

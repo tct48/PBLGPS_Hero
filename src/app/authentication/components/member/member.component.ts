@@ -78,7 +78,7 @@ export class MemberComponent implements OnInit {
     }
     this.option.sp=0;
     this.option.valueData = this.searchText;
-    
+
     this.member.loadMember(this.option).then(result=>{
       this.total_items=result.total_items;
       this.items = result.items;
@@ -86,10 +86,6 @@ export class MemberComponent implements OnInit {
       this.size_pagination=Math.round(Number(this.total_items) / Number(this.option.lp));
       this.cp = Number(this.option.sp)+1; 
     })
-    // console.log(this.searchText);
-    // this.option.keySearch="search";
-    // this.option.valueData=""
-    // return this.member.loadMember()
   }
 
   onDeleteClick(_id){
@@ -110,6 +106,9 @@ export class MemberComponent implements OnInit {
             'success'
           )
         }
+        this.option.valueData=null;
+        this.option.sp=0;
+        this.onLoadMember();
       })
       .catch(err=>{
         this.alert.something_wrong();
