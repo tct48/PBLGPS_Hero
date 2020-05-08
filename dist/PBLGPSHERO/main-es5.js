@@ -4655,7 +4655,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _this15.returnURL = params.returnURL || "/".concat(src_app_app_url__WEBPACK_IMPORTED_MODULE_2__["AppURL"].Authen, "/").concat(src_app_authentication_authentication_url__WEBPACK_IMPORTED_MODULE_3__["AuthURL"].Home);
         });
         this.redirectPage();
-        this.alert.announce("อัพเดท &nbsp; <span style='color:orange'> 7 พค 2020, 23:52:51 PM</span>", "1) ดึงข้อมูลแบบฝึกหัด (แหล่งการเรียนรู้) <br>2) เพิ่มแหล่งการเรียนรู้ <br>3) เพิ่ม Admin เพิ่มแหล่งการเรียนรู้ (ยังไม่เปิด)");
+        this.alert.announce("อัพเดท &nbsp; <span style='color:orange'> 8 พค 2020, 23:48:51 PM</span>", "1) ฟอร์มเพิ่มข้อมูลแหล่งเรียนรู้ <br>2) CRUD สมาชิก");
         this.createFormData();
       }
 
