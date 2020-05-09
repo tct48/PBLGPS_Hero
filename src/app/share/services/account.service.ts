@@ -25,9 +25,12 @@ export class AccountService {
     this.UserLogin.password = UserLogin.password;
     this.UserLogin.email = UserLogin.email;
     this.UserLogin.phone = UserLogin.phone;
-    this.UserLogin.image = UserLogin.image;
+    if(UserLogin.image){
+      this.UserLogin.image = UserLogin.image;
+    }
     this.UserLogin.sid = UserLogin.sid;
     this.UserLogin.role = UserLogin.role;
+    this.UserLogin.exp = UserLogin.exp;
 
     return this.UserLogin;
   }

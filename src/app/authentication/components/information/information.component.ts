@@ -7,6 +7,7 @@ import { AlertService } from 'src/app/share/services/alert.service';
 import { AccountService, IAccount } from 'src/app/share/services/account.service';
 import { MemberService } from '../../services/member.service';
 import { LevelService } from '../../services/level.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-information',
@@ -23,7 +24,8 @@ export class InformationComponent implements OnInit {
     private builder: FormBuilder,
     private member : MemberService,
     private level_service : LevelService,
-    private activateRouter: ActivatedRoute
+    private activateRouter: ActivatedRoute,
+    private sanitizer : DomSanitizer
   ) {
     this.activateRouter.queryParams.forEach(params => {
       this.mem_id = params.item;
@@ -42,12 +44,17 @@ export class InformationComponent implements OnInit {
   exp: number;
   level: number;
   html = `<span class="btn-block btn-danger well-sm">Never trust not sanitized HTML!!!</span>`;
-
-
+  url = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube-nocookie.com/embed/ucHGiUPBJFQ");
+  
   ngOnInit(): void {
   }
 
+  // ปุ่มแก้ไข
   onSubmit() {   
+    if(this.form.invalid){
+      return this.alert.notify("กรุณากรอกข้อมูลให้ถูกต้อง และครบถ้วน");
+    }
+
     if(this.mem_id){
       return this.member.updateMember(this.mem_id,this.form.value)
       .then(result=>{
@@ -60,10 +67,7 @@ export class InformationComponent implements OnInit {
     })
   }
 
-  onTestCal(){
-    return this.level = this.level_service.calculateLevel(this.exp);
-  }
-
+  // เปิดดูคะแนนรายหัวข้อ
   onOpenScore(title:string){
     var score = Math.floor(Math.random()*101);
     return this.alert.showScore(title,score);
@@ -89,11 +93,11 @@ export class InformationComponent implements OnInit {
   // โหลด ฟอร์ม
   private inititalCreateFormData() {
     this.form = this.builder.group({
-      sid: ['', Validators.required],
-      firstname: ['', Validators.required],
-      lastname : ['', Validators.required],
-      phone: ['', Validators.required],
-      email: ['', Validators.required]
+      sid: ['', [Validators.required]],
+      firstname: ['', [Validators.required]],
+      lastname : ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+      email: ['', [Validators.required]]
     })
   }
 
@@ -112,6 +116,7 @@ export class InformationComponent implements OnInit {
         this.level = this.level_service.calculateLevel(this.exp);
       })
     }
+
     this.account.getUserLogin(this.authen.getAuthenticated())
       .then(result => {
         this.form.controls['email'].setValue(result.email);
@@ -119,8 +124,14 @@ export class InformationComponent implements OnInit {
         this.form.controls['firstname'].setValue(result.firstname);
         this.form.controls['sid'].setValue(result.sid);
         this.form.controls['lastname'].setValue(result.lastname);
+        console.log(result)
         this.exp = result.exp;
         this.level = this.level_service.calculateLevel(this.exp);
       })
+  }
+
+  transform(value: string, args) {
+    console.log(value);
+    // return this.dom.bypassSecurityTrustHtml(value);
   }
 }

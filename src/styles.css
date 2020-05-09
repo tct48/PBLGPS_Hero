@@ -220,3 +220,8 @@ img.avatar-image:hover{
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* invalid textbox */
+.ng-invalid.ng-touched{
+  border-color:orangered;
+}

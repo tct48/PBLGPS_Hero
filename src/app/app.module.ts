@@ -28,9 +28,12 @@ import { InformationComponent } from './authentication/components/information/in
 import { ManageResourceComponent } from './authentication/components/manage-resource/manage-resource.component';
 // pipe
 import { DateAgoPipe } from './services/pipes/date-ago.pipe';
+
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { Youtube } from './services/pipes/youtube.pipe';
 @NgModule({
   declarations: [
+    Youtube,
     DateAgoPipe,
     AppComponent,
     HomeComponent,
