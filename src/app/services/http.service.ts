@@ -12,9 +12,9 @@ export class HttpService {
     private http: HttpClient
   ) { }
 
-  private address: string = "https://backend-pblgps.herokuapp.com/"
-  // private address : string = "http://localhost:3000/"
-  //Request GET method
+  // private address: string = "https://backend-pblgps.herokuapp.com/"
+  private address : string = "http://localhost:3000/"
+  //Request GET method 
   requestGet(url: string, accessToken?: string) {
     return this.http.get(`${this.address}${url}`, {
       headers: this.appendHeaders(accessToken)

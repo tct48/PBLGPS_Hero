@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AppURL } from 'src/app/app.url';
 import { AuthURL } from '../../authentication.url';
 import { ResourceService, IChapter } from '../../services/resource.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-resource',
@@ -11,7 +12,11 @@ import { ResourceService, IChapter } from '../../services/resource.service';
   providers: [ResourceService]
 })
 export class ResourceComponent implements OnInit {
-  constructor(private router: Router, private resource: ResourceService) {
+  constructor(
+    private router: Router,
+    private resource: ResourceService,
+    private builder: FormBuilder
+    ) {
     // โหลดหน่วยที่
     this.resource.onShowAllChapter().then(result=>{
       this.items = result.items

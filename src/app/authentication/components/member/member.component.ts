@@ -112,7 +112,7 @@ export class MemberComponent implements OnInit {
     Swal.fire({
       title: 'แจ้งเตือน',
       text: 'คุณต้องการจะลบข้อมูลใช่หรือไม่',
-      icon: 'danger',
+      icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
@@ -122,17 +122,13 @@ export class MemberComponent implements OnInit {
         this.member
           .deleteMember(_id)
           .then(() => {
-            Swal.fire(
-              'Deleted!',
-              'ข้อมูลดังกล่าวถูกลบเรียบร้อยแล้ว',
-              'success'
-            );
+            this.alert.success("ข้อมูลดังกล่าวถูกลบเรียบร้อยแล้ว", "Deleted!")
             this.option.valueData = null;
             this.option.sp = 0;
             this.onLoadMember();
           })
           .catch((err) => {
-            this.alert.notify(err);
+            this.alert.notify(err.message);
           });
       }
     });
