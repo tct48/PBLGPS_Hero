@@ -9,6 +9,8 @@ import { MemberService } from '../../services/member.service';
 import { LevelService } from '../../services/level.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { Cloudinary } from '@cloudinary/angular-5.x'; 
+
 @Component({
   selector: 'app-information',
   templateUrl: './information.component.html',
@@ -20,14 +22,15 @@ export class InformationComponent implements OnInit {
     private authen: AuthenService,
     private account: AccountService,
     private alert: AlertService,
-    private router: Router,
+    private router: Router, 
     private builder: FormBuilder,
     private member : MemberService,
     private level_service : LevelService,
     private activateRouter: ActivatedRoute,
-    private sanitizer : DomSanitizer
+    private sanitizer : DomSanitizer,
+    private cloudinary: Cloudinary
   ) {
-    this.activateRouter.queryParams.forEach(params => {
+    this.activateRouter.queryParams.forEach(params =>  {
       this.mem_id = params.item;
     })
     if (!this.UserLogin)
@@ -36,7 +39,7 @@ export class InformationComponent implements OnInit {
     this.inititalCreateFormData();
     this.initialLoadUpdateFormData();
   }
-
+  x:String = "user/image/olqpjyoomeqmsfmvjww3"
   // ref
   mem_id:String;
   UserLogin: IAccount;
@@ -45,6 +48,8 @@ export class InformationComponent implements OnInit {
   level: number;
   html = `<span class="btn-block btn-danger well-sm">Never trust not sanitized HTML!!!</span>`;
   url = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube-nocookie.com/embed/ucHGiUPBJFQ");
+  
+  image_name:String;
   
   ngOnInit(): void {
   }
@@ -114,6 +119,10 @@ export class InformationComponent implements OnInit {
         this.form.controls['lastname'].setValue(result.items[0].lastname);
         this.exp = result.items[0].exp;
         this.level = this.level_service.calculateLevel(this.exp);
+
+        if(result.items[0].image){
+          this.image_name = result.items[0].image;
+        }
       })
     }
 
@@ -127,7 +136,12 @@ export class InformationComponent implements OnInit {
         console.log(result)
         this.exp = result.exp;
         this.level = this.level_service.calculateLevel(this.exp);
+
+        if(result.image){
+          this.image_name = result.image; 
+        }
       })
+
   }
 
   transform(value: string, args) {

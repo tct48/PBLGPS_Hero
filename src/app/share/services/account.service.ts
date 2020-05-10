@@ -31,7 +31,7 @@ export class AccountService {
     this.UserLogin.sid = UserLogin.sid;
     this.UserLogin.role = UserLogin.role;
     this.UserLogin.exp = UserLogin.exp;
-
+    // console.log(this.UserLogin.image);
     return this.UserLogin;
   }
 
@@ -61,8 +61,14 @@ export class AccountService {
   }
 
   onRegister(model: IRegister) {
+    console.log(model)
     return this.http.requestPost('user/signup', model)
       .toPromise() as Promise<IRegister>
+  }
+
+  onUploadImage(model:any){
+    return this.http.requestPost('user/uploadImage', model)
+    .toPromise() as Promise<any>
   }
 
   onChangePassword(accessToken: string, model: IChangePassword) {

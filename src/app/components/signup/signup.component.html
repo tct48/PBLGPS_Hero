@@ -34,7 +34,10 @@
             <h1>สร้างบัญชีของคุณ</h1>
             <h3 class="lead">Create your account</h3>
           </div>
-          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="col-md-12 text-center">
+            <img *ngIf="image" class="avatar-image my-2 mx-auto" style="max-height: 180px;"  [src]="image"/>
+          </div>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
             <div class="form-group">
               <label for="disabledTextInput">รหัสนักศึกษา :</label>
               <input
@@ -95,10 +98,12 @@
             <div class="form-group">
               <label for="disabledTextInput">รูปภาพ :</label>
               <input
+                type="file"
+                (change)="onFileSelected($event)"
                 class="form-control"
-                formControlName="picture"
-                placeholder="รหัสนักศึกษา"
+                formControlName="image"
               />
+              <!-- <input type="text" formControlName="image" type="hidden"> -->
             </div>
 
             <button type="submit" class="btn btn-primary btn-lg btn-block my-2">

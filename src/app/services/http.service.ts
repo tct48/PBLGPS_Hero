@@ -12,7 +12,8 @@ export class HttpService {
     private http: HttpClient
   ) { }
 
-  private address: string = "https://backend-pblgps.herokuapp.com/"
+  // private address: string = "https://backend-pblgps.herokuapp.com/"
+  private address : string = "http://localhost:3000/"
   //Request GET method
   requestGet(url: string, accessToken?: string) {
     return this.http.get(`${this.address}${url}`, {
@@ -22,9 +23,9 @@ export class HttpService {
   } 
 
   // ส่งข้อมูลแบบ Post method
-  requestPost(url: string, body: any, file?: any) {
+  requestPost(url: string, body: any) {
     return this.http
-      .post(`${this.address}${url}`, body, file)
+      .post(`${this.address}${url}`, body)
       .pipe(catchError(err => this.handelError(err)));
   }
 

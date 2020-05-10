@@ -37,7 +37,8 @@
         <tr *ngFor="let data of items">
           <td class="text-center">
             <div class="avatar">
-              <img
+              <cl-image style="max-width: 36px; height: 36px;" *ngIf="data.image" [(public-id)]="data.image" class="avatar-image avatar-image-member" crop="fit"></cl-image>
+              <img *ngIf="!data.image"
                 style="max-width: 36px; height: 36px; border-radius: 50em;"
                 src="../../../../assets/image/no-image.png"
               /><span class="avatar-status badge-danger"></span>
