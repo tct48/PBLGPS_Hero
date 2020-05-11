@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AlertService } from 'src/app/share/services/alert.service';
 
 @Component({
   selector: 'app-manage-resource',
@@ -10,7 +11,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ManageResourceComponent implements OnInit {
   constructor(
-    private builder : FormBuilder
+    private builder : FormBuilder,
+    private alert: AlertService
   ) {}
 
   ngOnInit(): void {}
@@ -21,7 +23,8 @@ export class ManageResourceComponent implements OnInit {
       name: this.name,
       title: this.title,
       file: this.file,
-      text: this.text
+      text: this.text,
+      url: this.url
     }
 
     console.log(obj);
@@ -36,20 +39,33 @@ export class ManageResourceComponent implements OnInit {
   name:string;
   title: string[] = [''];
   file:string[]=[''];
+  url:string[]=[''];
   text: string[] = [''];
   // ===  end === //
 
   data:string; //dummy
 
-  number_title=[1]
+  number_title=[1];
+  status_button=0;
+  isCollapsed = true;
 
-  onAddText(number){
-    this.number_title.push(number+1);
-    console.log(this.number_title);
+  onAddText(number?:any){
+    if(number){
+      this.number_title.push(number+1);
+      console.log(this.number_title);
+      return;
+    }
+    this.status_button+=1;
   }
 
   onPopText(){
     this.number_title.pop();
+    this.url.pop();
+    this.text.pop();
+  }
+
+  onAlert(url:string){
+    this.alert.showScore(url);
   }
 
   public Editor = ClassicEditor;
