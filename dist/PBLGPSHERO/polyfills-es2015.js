@@ -3026,7 +3026,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 2:
+/***/ 7:
 /*!********************************!*\
   !*** multi ./src/polyfills.ts ***!
   \********************************/
@@ -3038,5 +3038,5 @@ module.exports = __webpack_require__(/*! D:\ketar\PBLGPS_Hero\src\polyfills.ts *
 
 /***/ })
 
-},[[2,"runtime"]]]);
+},[[7,"runtime"]]]);
 //# sourceMappingURL=polyfills-es2015.js.map

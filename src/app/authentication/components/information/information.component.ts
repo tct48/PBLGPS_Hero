@@ -46,8 +46,6 @@ export class InformationComponent implements OnInit {
   form: FormGroup;
   exp: number;
   level: number;
-  html = `<span class="btn-block btn-danger well-sm">Never trust not sanitized HTML!!!</span>`;
-  url = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube-nocookie.com/embed/ucHGiUPBJFQ");
   
   image_name:String;
   

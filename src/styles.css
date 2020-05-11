@@ -156,12 +156,14 @@ div.custom-menu div ul li a {
 }
 
 /* avatar-image */
-img.avatar-image{
+img.avatar-image, pdf-viewer.avatar-image, iframe.avatar-image{
   border:1px solid #ddd;
   border-radius:3px;
   padding:5px;
   max-width: 100%;
 }
+
+
 
 img.avatar-image-member{
   border:1px solid #ddd;

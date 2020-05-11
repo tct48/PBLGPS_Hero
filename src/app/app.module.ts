@@ -32,7 +32,7 @@ import { ManageResourceComponent } from './authentication/components/manage-reso
 
 // pipe
 import { DateAgoPipe } from './services/pipes/date-ago.pipe';
-
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { Youtube } from './services/pipes/youtube.pipe';
 @NgModule({
@@ -59,6 +59,7 @@ import { Youtube } from './services/pipes/youtube.pipe';
     BrowserModule, 
     CKEditorModule,
     HttpClientModule,
+    PdfViewerModule,
     ReactiveFormsModule,
     TooltipModule.forRoot(),
     BrowserAnimationsModule,

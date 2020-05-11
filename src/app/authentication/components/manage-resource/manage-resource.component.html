@@ -29,50 +29,19 @@
 
           <div class="row">
             <div class="col-sm-12">
-              <div class="tab-content" id="myTabContent">
-                <!-- ส่วนเพิ่ม pdf -->
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <span style="float: right;">
                       <button class="btn btn-outline-primary mr-1" *ngIf="status_button==1" (click)="onAddText(number_title.length)">+ เพิ่มหัวข้อ</button>
-                      <button class="btn btn-outline-danger" *ngIf="number_title.length>1" (click)="onPopText()">-</button>
+                      <button class="btn btn-outline-danger" *ngIf="number_title.length>1 && status_button==1" (click)="onPopText()">-</button>
                     </span>
-                </div>
-                <!-- ส่วนแนบลิ้งก์ vdo -->
-                <div class="tab-pane fade py-3" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                  <strong class="mt-2">คลิปวีดีโอบทเรียนประกอบการเรียนการสอน</strong>
-                  <div class="form-group">
-                    <label for="ccnumber">หัวข้อ</label>
-                    <input class="form-control" type="text" placeholder="(ตัวอย่าง) เอกสารประกอบการเรียนการสอนรูปแบบไฟล์ PDF"/>
-                  </div>
-                  <div class="form-group">
-                    <label for="url">URL</label>
-                    <input id="url" class="form-control" type="text" placeholder="(ตัวอย่าง) https://www.youtube.com/watch?v=C7DO2o7HZa8"/>
-                  </div>
-                  <div class="form-group col-md-12">
-                    <label for="ccmonth">รายละเอียดหัวข้อ</label>
-                    <ckeditor [editor]="Editor" (change)="onChange($event)" data="<p>:: ตัวอย่าง ::</p><ul><li>เอกสารประกอบการเรียนการสอนรูปแบบไฟล์</li></ul>"></ckeditor>
-                  </div>
-                </div>
-                <!-- ส่วนใส่ลิงก์ url -->
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                  <strong class="mt-2">ข้อมูลบนเว็บ (Hypertext)</strong>
-                  
-                  <div class="form-group col-md-12">
-                    <label for="ccmonth">รายละเอียด</label>
-                    <ckeditor [editor]="Editor" (change)="onChange($event)" data="<p>:: ตัวอย่าง ::</p><ul><li>เอกสารประกอบการเรียนการสอนรูปแบบไฟล์</li></ul>"></ckeditor>
-                  </div>
-                </div>
-              </div>
-              
             </div>
           </div>
           <!-- row -->
         </div>
       </div>
-      <!-- ส่วนฟอร์ม -->
+      <!-- ส่วนฟอร์ม ฟอร์มเอกสารประกอบการเรียนการสอน รูปแบบไฟล์ PDF -->
       <div class="card mt-2" *ngIf="status_button==0">
         <div class="card-header">
-          ฟอร์ม {{ status_button }}
+          ฟอร์มเอกสารประกอบการเรียนการสอน รูปแบบไฟล์ PDF
         </div>
         <div class="card-body">
           <div class="form-group">
@@ -89,12 +58,13 @@
           </div>
         </div>
         <div class="card-footer">
-          <button class="btn btn-primary animate__bounceIn" (click)="onAddText()">ต่อไป >></button>
+          <button class="btn btn-primary animate__bounceIn" (click)="onAddText()">ต่อไป >></button> 
         </div>
       </div>
+      <!-- ส่วนฟอร์ม ฟอร์มคลิป วีดีโอบทเรียนประกอบการเรียนการสอน -->
       <div class="card mt-2" *ngIf="status_button==1">
         <div class="card-header">
-          ฟอร์ม {{ status_button }}
+          คลิป วีดีโอบทเรียนประกอบการเรียนการสอน
         </div>
         <div class="card-body">
           <div class="form-group">
@@ -111,14 +81,34 @@
                 <input class="form-control" [(ngModel)]="url[number_title[i]]" type="text" placeholder="(ตัวอย่าง) ./assets/pdf/document.pdf"/>
               </div>
               <div class="form-group">
-                <label for="ccmonth">หัวข้อย่อย</label>
-                <input type="text" class="form-control" [(ngModel)]="text[number_title[i]]"/>
+                <label for="ccmonth">คำอธิบายคลิป Video</label>
+                <input class="form-control" type="text" [(ngModel)]="text[number_title[i]]" placeholder="หัวข้อย่อย"/>
               </div>
             </div>
           </div>
         </div>
         <div class="card-footer">
-          <button class="btn btn-primary animate__bounceIn" (click)="onAddText()">ต่อไป >></button>
+          <button class="btn btn-primary mr-1 animate__bounceIn" (click)="onMinusText()"> << ย้อนกลับ</button>
+          <button class="btn btn-primary animate__bounceIn" *ngIf="status_button<3" (click)="onAddText()">ต่อไป >></button>
+        </div>
+      </div>
+      <!-- ส่วนฟอร์ม ข้อมูลบเว็บ (Hypertext) -->
+      <div class="card mt-2" *ngIf="status_button==2">
+        <div class="card-header">
+          ข้อมูลบนเว็บ (Hypertext)
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="ccnumber">หัวข้อ</label>
+            <input class="form-control my-1" [(ngModel)]="title[status_button]" type="text" placeholder="(ตัวอย่าง) คลิปวิดีโอบทเรียนประกอบการเรียนการสอน"/>
+          </div>
+          <div class="form-group">
+            <label for="ccnumber">รายละเอียดหัวข้อ</label>
+            <ckeditor [editor]="Editor" [(ngModel)]="hyperText" (change)="onChange2($event)" data="<p>:: ตัวอย่าง ::</p><ul><li>ลิงก์ที่เกี่ยวข้อง https:\\www.google.com</li></ul>"></ckeditor>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary mr-1 animate__bounceIn" (click)="onMinusText()"> << ย้อนกลับ</button>
         </div>
       </div>
     </div>
@@ -139,54 +129,66 @@
 
 
     <!-- this end -->
-    <div class="row my-4" >
-      <div class="col-md-12" *ngIf="name">
-        <h1>== ตัวอย่างการแสดงผล ==</h1>
-        <nav class="breadcrumb">
-            <a class="breadcrumb-item" [routerLink]="['/auth/resource']">แหล่งการเรียนรู้</a>
-            <li class="breadcrumb-item active" aria-current="page" *ngIf="name">{{name}}</li>
-        </nav> 
-        <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed"
-            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">จุดประสงค์การเรียนรู้
-        </button>
-      </div>
+  </div>
+  <div class="row my-4" >
+    <div class="col-md-12" *ngIf="name">
+      <h1>== ตัวอย่างการแสดงผล ==</h1>
+      <nav class="breadcrumb">
+          <a class="breadcrumb-item" [routerLink]="['/auth/resource']">แหล่งการเรียนรู้</a>
+          <li class="breadcrumb-item active" aria-current="page" *ngIf="name">{{name}}</li>
+      </nav> 
+      <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">จุดประสงค์การเรียนรู้
+      </button>
+    </div>
 
-      <div class="col-md-5 my-3" id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
-        <div class="well well-lg card card-block card-header">
-                <h4 class="px-2 py-1 text-center pointer" style="background-color: lightgray;border:1px solid lightgray;border-radius: 15px;">จุดประสงค์การเรียนรู้</h4>
-            <ol class="text-muted medium">
-                <li>รู้หลักการและพื้นฐานเกี่ยวกับองค์ประกอบของเครื่องคอมพิวเตอร์</li>
-                <li>รู้ความหมายหน้าที่และความสำคัญของระบบปฏิบัติการ</li>
-                <li>มีทักษะในการใช้โปรแกรมระบบปฏิบัติการเบื้องต้น</li>
-                <li>มีทักษะในการใช้โปรแกรมยูทิลิตี้ได้</li>
-                <li>มีกิจนิสัยและส่งเสริมคุณธรรม จริยธรรม ค่านิยมที่ดีในการใช้คอมพิวเตอร์</li>
-            </ol>
-            <h4 class="mt-2 px-2 py-1 text-center pointer" style="background-color: lightgray;border:1px solid lightgray;border-radius: 15px;">สาระการเรียนรู้</h4>
-            <p class="text-muted medium" style="text-indent: 20px;text-align: justify;">
-                ศึกษาและปฏิบัติเกี่ยวกับองค์ประกอบของเครื่องคอมพิวเตอร์ หลักการทำงานของคอมพิวเตอร์และอุปกรณ์ต่อพ่วง สื่อบันทึกข้อมูลความหมายและหน้าที่ของระบบปฏิบัติการประเภทของโปรแกรมระบบปฏิบัติการ การใช้โปรแกรมระบบปฏิบัติการ การใช้โปรแกรมยูทิลิตี้
-            </p>
-        </div>
+    <div class="col-md-5 my-3" id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+      <div class="well well-lg card card-block card-header">
+              <h4 class="px-2 py-1 text-center pointer" style="background-color: lightgray;border:1px solid lightgray;border-radius: 15px;">จุดประสงค์การเรียนรู้</h4>
+          <ol class="text-muted medium">
+              <li>รู้หลักการและพื้นฐานเกี่ยวกับองค์ประกอบของเครื่องคอมพิวเตอร์</li>
+              <li>รู้ความหมายหน้าที่และความสำคัญของระบบปฏิบัติการ</li>
+              <li>มีทักษะในการใช้โปรแกรมระบบปฏิบัติการเบื้องต้น</li>
+              <li>มีทักษะในการใช้โปรแกรมยูทิลิตี้ได้</li>
+              <li>มีกิจนิสัยและส่งเสริมคุณธรรม จริยธรรม ค่านิยมที่ดีในการใช้คอมพิวเตอร์</li>
+          </ol>
+          <h4 class="mt-2 px-2 py-1 text-center pointer" style="background-color: lightgray;border:1px solid lightgray;border-radius: 15px;">สาระการเรียนรู้</h4>
+          <p class="text-muted medium" style="text-indent: 20px;text-align: justify;">
+              ศึกษาและปฏิบัติเกี่ยวกับองค์ประกอบของเครื่องคอมพิวเตอร์ หลักการทำงานของคอมพิวเตอร์และอุปกรณ์ต่อพ่วง สื่อบันทึกข้อมูลความหมายและหน้าที่ของระบบปฏิบัติการประเภทของโปรแกรมระบบปฏิบัติการ การใช้โปรแกรมระบบปฏิบัติการ การใช้โปรแกรมยูทิลิตี้
+          </p>
       </div>
+    </div>
 
-      <div class="col-md-7 my-3">
-        <h1 *ngIf="name">{{ name }}</h1>
-        <ul *ngIf="title">
-          <li>
-              {{ title[0] }}
-              <div [innerHtml]="text[0]"></div>
-          </li>
-          <li *ngIf="title[1]">
-              {{ title[1] }}
-              <ul>
-                <span *ngFor="let data of text;let i = index;">
-                  <li *ngIf="i!=0"  style="list-style-type: circle;">
-                    <a (click)="onAlert(url[i])">{{ text[i] }}</a>
-                  </li>
-                </span>
-              </ul>
-          </li>
-        </ul>
-      </div>
+    <div class="col-md-7 my-3" *ngIf="name">
+      <h1 *ngIf="name">{{ name }}</h1>
+      <ul *ngIf="title">
+        <li>
+            <a (click)="onShowYoutube('switch')">{{ title[0] }}</a>
+            <div [innerHtml]="text[0]"></div>
+        </li>
+        <li *ngIf="title[1]">
+            {{ title[1] }}
+            <ul>
+              <span *ngFor="let data of text;let i = index;">
+                <li *ngIf="i!=0"  style="list-style-type: circle;">
+                  <a (click)="onShowYoutube(url[i])">{{ text[i] }}</a>
+                </li>
+              </span>
+            </ul>
+        </li>
+        <li *ngIf="title[2]">
+          {{ title[2] }}
+          <div [innerHtml]="hyperText"></div>
+        </li>
+      </ul>
+    </div>
+    <!-- show pdf -->
+    <div class="col-md-5" *ngIf="file[0] && switch_display=='pdf'">
+      <iframe [src]="url_file" width="100%" height="480"></iframe>
+    </div>
+
+    <div class="col-md-5" *ngIf="url[1] && isCollapsed && switch_display=='youtube'">
+      <iframe class="avatar-image" width="100%" height="400px" [src]="url_youtube" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
 </app-auth-content>
