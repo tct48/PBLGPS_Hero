@@ -10,7 +10,7 @@
           เพิ่มแหล่งข้อมูล
       </strong>
     </div>
-
+    
     <div class="col-md-9 py-3">
       <!-- ฟอร์มเพิ่ม แหล่งข้อมูล -->
       <div class="card">
@@ -22,7 +22,7 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <label for="name">หน่วยที่</label>
-                <input class="form-control" [(ngModel)]="name" id="name" type="text" placeholder="(ตัวอย่าง) หน่วยที่ 01"/>
+                <input class="form-control" [(ngModel)]="name" id="name" type="text" placeholder="(ตัวอย่าง) หน่วยที่ 01" required />
               </div>
             </div>
           </div>
@@ -46,11 +46,11 @@
         <div class="card-body">
           <div class="form-group">
             <label for="ccnumber">หัวข้อ</label>
-            <input class="form-control my-1" [(ngModel)]="title[status_button]" type="text" placeholder="(ตัวอย่าง) เอกสารประกอบการเรียนการสอนรูปแบบไฟล์ PDF"/>
+            <input class="form-control my-1" [(ngModel)]="title[status_button]" type="text" placeholder="(ตัวอย่าง) เอกสารประกอบการเรียนการสอนรูปแบบไฟล์ PDF" required />
           </div>
           <div class="form-group">
             <label for="ccnumber">แนบไฟล์ PDF</label>
-            <input class="form-control" [(ngModel)]="file[status_button]" type="text" placeholder="(ตัวอย่าง) ./assets/pdf/document.pdf"/>
+            <input class="form-control" [(ngModel)]="file[status_button]" type="text" placeholder="(ตัวอย่าง) ./assets/pdf/document.pdf" required />
           </div>
           <div class="form-group col-md-12">
             <label for="ccmonth">รายละเอียดหัวข้อ</label>
@@ -69,7 +69,7 @@
         <div class="card-body">
           <div class="form-group">
             <label for="ccnumber">หัวข้อ</label>
-            <input class="form-control my-1" [(ngModel)]="title[status_button]" type="text" placeholder="(ตัวอย่าง) คลิปวิดีโอบทเรียนประกอบการเรียนการสอน"/>
+            <input class="form-control my-1" [(ngModel)]="title[status_button]" type="text" placeholder="(ตัวอย่าง) คลิปวิดีโอบทเรียนประกอบการเรียนการสอน" required />
           </div>
           <div class="card mb-1"  *ngFor="let data of number_title;let i = index">
             <div class="card-header">
@@ -78,7 +78,7 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="ccnumber">ลิงก์ Video บทเรียนประกอบการสอน</label>
-                <input class="form-control" [(ngModel)]="url[number_title[i]]" type="text" placeholder="(ตัวอย่าง) ./assets/pdf/document.pdf"/>
+                <input class="form-control" [(ngModel)]="url[number_title[i]]" type="text" placeholder="(ตัวอย่าง) https://www.youtube.com/watch?v=WBU5oHRrTUo"/>
               </div>
               <div class="form-group">
                 <label for="ccmonth">คำอธิบายคลิป Video</label>
@@ -100,11 +100,11 @@
         <div class="card-body">
           <div class="form-group">
             <label for="ccnumber">หัวข้อ</label>
-            <input class="form-control my-1" [(ngModel)]="title[status_button]" type="text" placeholder="(ตัวอย่าง) คลิปวิดีโอบทเรียนประกอบการเรียนการสอน"/>
+            <input class="form-control my-1" [(ngModel)]="title[status_button]" type="text" placeholder="(ตัวอย่าง) อ่านข้อมูลเพิ่มเติม" required />
           </div>
           <div class="form-group">
             <label for="ccnumber">รายละเอียดหัวข้อ</label>
-            <ckeditor [editor]="Editor" [(ngModel)]="hyperText" (change)="onChange2($event)" data="<p>:: ตัวอย่าง ::</p><ul><li>ลิงก์ที่เกี่ยวข้อง https:\\www.google.com</li></ul>"></ckeditor>
+            <ckeditor [editor]="Editor" [(ngModel)]="hyperText" (change)="onChange2($event)" data=""></ckeditor>
           </div>
         </div>
         <div class="card-footer">
@@ -186,7 +186,7 @@
     <div class="col-md-5" *ngIf="file[0] && switch_display=='pdf'">
       <iframe [src]="url_file" width="100%" height="480"></iframe>
     </div>
-
+    <!-- show youtube -->
     <div class="col-md-5" *ngIf="url[1] && isCollapsed && switch_display=='youtube'">
       <iframe class="avatar-image" width="100%" height="400px" [src]="url_youtube" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>

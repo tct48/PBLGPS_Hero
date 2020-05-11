@@ -19,6 +19,10 @@ export class ResourceService{
             .toPromise() as Promise<IChapter>; 
     }
 
+    onCreateChapter(model){
+        return this.http.requestPost(`chapter`,model)
+            .toPromise() as Promise<any>
+    }
 }
 
 export interface IChapter{
@@ -26,10 +30,12 @@ export interface IChapter{
     items?:string;
     item?:string;
 
-    _id:string;
-    title:string;
-    name:string;
-    files?:string;
+    _id?:string;
+    title?:string;
+    text?:string;
+    name?:string;
+    file?:string;
     url?:string;
-    quiz?:string;
+    quiz?:number;
+    created?:Date;
 }

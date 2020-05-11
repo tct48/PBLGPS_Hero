@@ -5,27 +5,46 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/share/services/alert.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { catchError } from 'rxjs/operators';
-
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { ResourceService } from '../../services/resource.service';
+import { Router } from '@angular/router';
+import { AppURL } from 'src/app/app.url';
+import { AuthURL } from '../../authentication.url';
 @Component({
   selector: 'app-manage-resource',
   templateUrl: './manage-resource.component.html',
   styleUrls: ['./manage-resource.component.css'],
+  providers: [ResourceService]
 })
 export class ManageResourceComponent implements OnInit {
   constructor(
     private builder : FormBuilder,
     private alert: AlertService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private resource: ResourceService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
 
-  onPreview() {
+  onPreview(text?:any) {
+    if(!this.name){
+      return this.alert.notify("== กรุณากรอกหน่วยที่ ==", "กรุณากรอกข้อมูลให้ครบถ้วน!", "info");
+    }
+
+    if(this.title.length<3){
+      return this.alert.notify("== หัวข้อให้ครบถ้วนทั้ง 3 หัวข้อ ==", "กรุณากรอกข้อมูลให้ครบถ้วน!", "info")
+    }
+
+    if(this.file[0]==""){
+      return this.alert.notify("== กรุณาแนบไฟล์ PDF ด้วย ==", "กรุณากรอกข้อมูลให้ครบถ้วน!", "info")
+    }
+
     this.text[0]=this.data;
     if(this.data2){
       this.text[this.text.length] = this.data2;
     }
-    
+
     var obj = {
       name: this.name,
       title: this.title,
@@ -37,10 +56,20 @@ export class ManageResourceComponent implements OnInit {
       this.onShowPDF(this.file[0]);
     }
     
-    console.log(obj);
+    if(text){
+      return obj;
+    }
+    
   }
 
-  onSubmit() {}
+  onSubmit() {
+    var obj = this.onPreview("retun that value");
+    this.resource.onCreateChapter(obj)
+      .then(()=>{
+        this.alert.success("เพิ่มข้อมูลเรียบร้อยแล้ว !");
+        this.router.navigate(['/',AppURL.Authen, AuthURL.Home]);
+      })
+  }
 
   
   form:FormGroup;
@@ -103,7 +132,7 @@ export class ManageResourceComponent implements OnInit {
     if(url.substring(url.length-5)=='/view'){
       url = url.substring(0,url.length-4) + "preview";
     }
-    console.log(url)
+
     try{
       this.url_file = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }catch(err){

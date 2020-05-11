@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Sanitizer } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResourceService, IChapter } from 'src/app/authentication/services/resource.service';
 import { AppURL } from 'src/app/app.url';
 import { AuthURL } from 'src/app/authentication/authentication.url';
 import { AlertService } from 'src/app/share/services/alert.service';
 import { QuizService } from 'src/app/authentication/services/quiz.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-content',
@@ -19,7 +20,8 @@ export class ContentComponent implements OnInit {
     private resource: ResourceService,
     private router : Router,
     private alert : AlertService,
-    private quiz: QuizService
+    private quiz: QuizService,
+    private sanitizer : DomSanitizer
     ) {
     this.activateRouter.queryParams.forEach(params => {
       this.chapter_id = params.item;
@@ -27,6 +29,7 @@ export class ContentComponent implements OnInit {
 
     this.resource.onShowOneChapter(this.chapter_id).then(async result=>{
       this.item = await result.item[0];
+      console.log(this.item)
 
       if(!this.item){
         this.router.navigate(['/', AppURL.Authen, AuthURL.Resource]);
@@ -43,8 +46,26 @@ export class ContentComponent implements OnInit {
 
    quiz_item:any;
 
+   url_youtube:any;
+   url_pdf:any;
+   switch_display:String = "PDF";
 
   ngOnInit(): void {
+  }
+
+  showPDF(url:any){
+    if(url.substring(url.length-5)=='/view'){
+      url = url.substring(0,url.length-4) + "preview";
+    }
+
+    this.url_pdf = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    this.switch_display="PDF";
+  }
+
+  showYoutube(url:String){
+    url = url.substring(32);
+    this.url_youtube = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube-nocookie.com/embed/" + url);
+    this.switch_display="youtube";
   }
 
   startQuiz(id:string){
