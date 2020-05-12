@@ -41,6 +41,7 @@ import {
 // pipe
 import { DateAgoPipe } from './services/pipes/date-ago.pipe'
 import { Youtube } from './services/pipes/youtube.pipe'
+import { AuthenticationModule } from './authentication/authentication.module'
 
 @NgModule({
     declarations: [
@@ -68,6 +69,7 @@ import { Youtube } from './services/pipes/youtube.pipe'
         PdfViewerModule,
         HttpClientModule,
         ReactiveFormsModule,
+        AuthenticationModule,
         TooltipModule.forRoot(),
         BrowserAnimationsModule,
         CollapseModule.forRoot(),

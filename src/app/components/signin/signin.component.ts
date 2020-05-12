@@ -6,13 +6,13 @@ import { AppURL } from 'src/app/app.url'
 import { AccountService } from 'src/app/share/services/account.service'
 import { AuthenService } from 'src/app/services/authen.service'
 import { AuthURL } from 'src/app/authentication/authentication.url'
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { MemberService } from 'src/app/authentication/services/member.service'
 
 @Component({
     selector: 'app-signin',
     templateUrl: './signin.component.html',
     styleUrls: ['./signin.component.css'],
-    providers: [],
+    providers: [MemberService],
 })
 export class SigninComponent implements OnInit {
     constructor(
@@ -22,7 +22,7 @@ export class SigninComponent implements OnInit {
         private authen: AuthenService,
         private account: AccountService,
         private activateRoute: ActivatedRoute,
-        private _snackBar: MatSnackBar
+        private member: MemberService
     ) {
         //ย้อนกลับไปหน้า LOGIN กรณี Redirect
         this.activateRoute.params.forEach((params) => {
@@ -81,5 +81,22 @@ export class SigninComponent implements OnInit {
             .catch((err) => {
                 this.alert.notify(err.message)
             })
+    }
+
+    onChangePassword() {
+        var Time = 9000;
+        this.alert.showChangePassword(Time)
+        setTimeout(()=> {
+            if(this.alert.email){
+                this.member.onChangePassword({email : this.alert.email})
+                .then(result=>{
+                    this.alert.notify(result.message,"ลืมรหัสผ่าน","success");
+                })
+                .catch(err=>{
+                    console.log(err)
+                    this.alert.notify(err.Message);
+                })
+            }
+        }, Time)
     }
 }

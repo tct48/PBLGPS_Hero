@@ -31,6 +31,12 @@ export class MemberService {
             .toPromise() as Promise<IMember>
     }
 
+    onChangePassword(email:any){
+        console.log(email)
+        return this.http.requestPost('user/changePassword', email)
+            .toPromise() as Promise<IResponse>;
+    }
+
     deleteMember(_id) {
         return this.http
             .requestDelete(`user/${_id}`, this.authen.getAuthenticated())

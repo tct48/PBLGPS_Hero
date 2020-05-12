@@ -7,7 +7,8 @@ import Swal from 'sweetalert2/dist/sweetalert2.js'
     providedIn: 'root',
 })
 export class AlertService {
-    constructor() {}
+    constructor(
+    ) {}
 
     // แจ้งเตือนปกติ
     notify(message: string, title: string = 'Error!', type: string = 'error') {
@@ -79,6 +80,31 @@ export class AlertService {
                 Swal.fire('Deleted!', 'Your file has been deleted.', 'success')
             }
         })
+    }
+
+    public email:string;
+
+    async showChangePassword(timer:Number){
+        Swal.mixin({
+            input: 'text',
+            confirmButtonText: 'Next &rarr;',
+            showCancelButton: true,
+            progressSteps: ['1'],
+            timer: timer,
+            timerProgressBar: true,
+          }).queue([
+            {
+              title: 'ลืมรหัสผ่าน',
+              text: 'กรุณากรอก อีเมล์ ของท่านเพื่อรีเซ็ตรหัสผ่าน'
+            }
+          ]).then((result) => {
+            if (result.value) {
+              const answers = JSON.stringify(result.value[0])
+              this.email = answers;
+              this.email = this.email.substring(1,this.email.length-1);
+              return answers;
+            }
+          })
     }
 
     // ฟังก์ชันประกาศมี timelap
