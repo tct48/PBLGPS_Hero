@@ -1,11 +1,15 @@
 <app-nav-bar></app-nav-bar>
 <main>
-  <div class="container px-5 py-4 ng-content">
-    <marquee *ngIf="UserLogin">
-      <i class="fa fa-user-circle-o" aria-hidden="true"></i> ยินดีต้อนรับคุณ <span
-        style="color:orangered">{{ UserLogin.firstname }} {{ UserLogin.lastname }}</span> เข้าสู่ระบบ PBLGPS-LMS
-    </marquee>
-    <ng-content></ng-content>
-  </div>
+    <div class="container px-5 py-4 ng-content">
+        <marquee *ngIf="UserLogin">
+            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+            ยินดีต้อนรับคุณ
+            <span style="color: orangered;"
+                >{{ UserLogin.firstname }} {{ UserLogin.lastname }}</span
+            >
+            เข้าสู่ระบบ PBLGPS-LMS
+        </marquee>
+        <ng-content></ng-content>
+    </div>
 </main>
 <app-footer></app-footer>

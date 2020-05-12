@@ -1,49 +1,127 @@
 <!-- Navbar-->
+<!-- tab logout -->
 <header class="app-header pt-2 pb-2" style="display: block;">
-  <a class="app-header__logo" href="index.html"><img src="../../assets/image/logo2.png" /></a>
-  <!-- Navbar Right Menu-->
-  <ul class="app-nav">
-    <!-- User Menu-->
-    <li class="dropdown">
-      <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i
-          class="fa fa-sort-desc fa-lg"></i></a>
-      <ul class="dropdown-menu settings-menu dropdown-menu-right">
-        <li>
-          <a class="dropdown-item" style="cursor: pointer;" (click)="onLogout()">
-            <i class="fa fa-sign-out fa-lg"></i> Logout</a>
+    <a class="app-header__logo" href="index.html"
+        ><img src="../../assets/image/logo2.png"
+    /></a>
+    <!-- Navbar Right Menu-->
+    <ul class="app-nav">
+        <!-- User Menu-->
+        <li class="dropdown">
+            <a
+                class="app-nav__item"
+                href="#"
+                data-toggle="dropdown"
+                aria-label="Open Profile Menu"
+                ><i class="fa fa-sort-desc fa-lg"></i
+            ></a>
+            <ul class="dropdown-menu settings-menu dropdown-menu-right">
+                <li>
+                    <a
+                        class="dropdown-item"
+                        style="cursor: pointer;"
+                        (click)="onLogout()"
+                    >
+                        <i class="fa fa-sign-out fa-lg"></i> Logout</a
+                    >
+                </li>
+            </ul>
         </li>
-      </ul>
-    </li>
-  </ul>
+    </ul>
 </header>
-<div style="border: 1px 0 1px 0 solid black; display: block;">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
-    <a class="navbar-brand" href="#"></a>
-    <button class="navbar-toggler" style="float: right;" type="button" data-toggle="collapse"
-      data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <!-- กรณี role เป็น student -->
-      <div class="navbar-nav text-center" *ngIf="UserLogin.role=='student'">
-        <a class="nav-item border-right nav-link px-4" routerLinkActive="active" [routerLink] ="['/auth/home']">หน้าแรก <br><i class="fa fa-home fa-lg"></i></a>
-        <a class="nav-item border-right nav-link px-4" routerLinkActive="active">กิจกรรมประจำด่าน<br />(STAGE)
-          <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link border-right px-4" routerLinkActive="active">ภารกิจ<br />(QUEST)</a>
-        <a class="nav-item nav-link border-right px-4" routerLinkActive="active">แบบทดสอบ<br />(QUIZ)</a>
-        <a class="nav-item nav-link border-right px-4" routerLinkActive="active" [routerLink]="['/auth/resource']">แหล่งการเรียนรู้<br />(RESOURCE)</a>
-        <a class="nav-item nav-link border-right px-4" routerLinkActive="active" [routerLink]="['/auth/leaderboard']">กระดานผู้นำ<br />(LEADERBOARD)</a>
-        <a class="nav-item nav-link border-right px-4" routerLinkActive="active" [routerLink]="['/auth/information']">ข้อมูลผู้เรียน<br />(INFORMATION)</a>
-        <a class="nav-item nav-link px-4" href="#">แนะนำระบบ<br />(GUIDE)</a>
-      </div>
-      <!-- กรณี role เป็น admin -->
-      <div class="navbar-nav text-center" *ngIf="UserLogin.role=='admin'">
-        <a class="nav-item border-right nav-link px-4" routerLinkActive="active" [routerLink] ="['/auth/home']">หน้าแรก <br><i class="fa fa-home fa-lg"></i></a>
-        <a class="nav-item border-right nav-link px-4" routerLinkActive="active" [routerLink] ="['/auth/member']">ระบบสมาชิก <br><i class="fa fa-address-card"></i></a>
-        <a class="nav-item border-right nav-link px-4" routerLinkActive="active" [routerLink] ="['/auth/manage-resource']">ระบบแหล่งข้อมูล&แบบฝึกหัด <br><i class=" fa fa-graduation-cap"></i></a>
-      </div>
 
-    </div>
-  </nav>
+<!-- แถบ Navbar -->
+<div style="border: 1px 0 1px 0 solid black; display: block;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
+        <a class="navbar-brand" href="#"></a>
+        <button
+            class="navbar-toggler"
+            style="float: right;"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <!-- กรณี role เป็น student -->
+            <div
+                class="navbar-nav text-center"
+                *ngIf="UserLogin.role == 'student'"
+            >
+                <a
+                    class="nav-item border-right nav-link px-4"
+                    routerLinkActive="active"
+                    [routerLink]="['/auth/home']"
+                    >หน้าแรก <br /><i class="fa fa-home fa-lg"></i
+                ></a>
+                <a
+                    class="nav-item border-right nav-link px-4"
+                    routerLinkActive="active"
+                    >กิจกรรมประจำด่าน<br />(STAGE)
+                    <span class="sr-only">(current)</span></a
+                >
+                <a
+                    class="nav-item nav-link border-right px-4"
+                    routerLinkActive="active"
+                    >ภารกิจ<br />(QUEST)</a
+                >
+                <a
+                    class="nav-item nav-link border-right px-4"
+                    routerLinkActive="active"
+                    >แบบทดสอบ<br />(QUIZ)</a
+                >
+                <a
+                    class="nav-item nav-link border-right px-4"
+                    routerLinkActive="active"
+                    [routerLink]="['/auth/resource']"
+                    >แหล่งการเรียนรู้<br />(RESOURCE)</a
+                >
+                <a
+                    class="nav-item nav-link border-right px-4"
+                    routerLinkActive="active"
+                    [routerLink]="['/auth/leaderboard']"
+                    >กระดานผู้นำ<br />(LEADERBOARD)</a
+                >
+                <a
+                    class="nav-item nav-link border-right px-4"
+                    routerLinkActive="active"
+                    [routerLink]="['/auth/information']"
+                    >ข้อมูลผู้เรียน<br />(INFORMATION)</a
+                >
+                <a class="nav-item nav-link px-4" href="#"
+                    >แนะนำระบบ<br />(GUIDE)</a
+                >
+            </div>
+            <!-- กรณี role เป็น admin -->
+            <div
+                class="navbar-nav text-center"
+                *ngIf="UserLogin.role == 'admin'"
+            >
+                <a
+                    class="nav-item border-right nav-link px-4"
+                    routerLinkActive="active"
+                    [routerLink]="['/auth/home']"
+                    >หน้าแรก <br /><i class="fa fa-home fa-lg"></i
+                ></a>
+                <a
+                    class="nav-item border-right nav-link px-4"
+                    routerLinkActive="active"
+                    [routerLink]="['/auth/member']"
+                    >ระบบสมาชิก <br /><i class="fa fa-address-card"></i
+                ></a>
+                <a
+                    class="nav-item border-right nav-link px-4"
+                    routerLinkActive="active"
+                    [routerLink]="['/auth/manage-resource']"
+                    >ระบบแหล่งข้อมูล&แบบฝึกหัด <br /><i
+                        class="fa fa-graduation-cap"
+                    ></i
+                ></a>
+            </div>
+        </div>
+    </nav>
 </div>

@@ -1,49 +1,61 @@
 <app-auth-content>
-    <h3 class="header-hover"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i> เมนูเริ่มต้น</h3>
-    <!-- custon -->
+    <h3 class="header-hover">
+        <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+        เมนูเริ่มต้น
+    </h3>
+    <!-- CARD MENU -->
     <div class="row my-3">
-      <!-- card-1 -->
-      <div class="col-md-6">
-        <div class="card">
-          <h4 class="card-header">
-            Pre-Test
-          </h4>
-          <div class="card-body text-center">
-            <a (click)="onClickPreTest()">
-              <img id="button1" style="cursor: pointer;" onmouseout="unhover(this)" onmouseover="hover(this)"
-                src="../../../../assets/image/01.png">
-            </a>
-          </div>
+        <!-- เมนูแบบทดสอบ PRE-TEST -->
+        <div class="col-md-6">
+            <div class="card">
+                <h4 class="card-header">
+                    Pre-Test
+                </h4>
+                <div class="card-body text-center">
+                    <a (click)="onClickPreTest()">
+                        <img
+                            id="button1"
+                            style="cursor: pointer;"
+                            onmouseout="unhover(this)"
+                            onmouseover="hover(this)"
+                            src="../../../../assets/image/01.png"
+                        />
+                    </a>
+                </div>
 
-          <div class="card-footer">
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the bulk of the card's
-              content.
-            </p>
-          </div>
+                <div class="card-footer">
+                    <p class="card-text">
+                        Some quick example text to build on the card title and
+                        make up the bulk of the card's content.
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <!-- card-2 -->
-      <div class="col-md-6">
-        <div class="card">
-          <h4 class="card-header">
-            PrPs Test
-          </h4>
-          <div class="card-body text-center">
-            <a (click)="onClickPrPS()">
-              <img id="button2" onmouseout="unhover(this)" onmouseover="hover(this)"
-                src="../../../../assets/image/02.png">
-            </a>
-          </div>
+        <!-- บบทดสอบ PRPS-TEST -->
+        <div class="col-md-6">
+            <div class="card">
+                <h4 class="card-header">
+                    PrPs Test
+                </h4>
+                <div class="card-body text-center">
+                    <a (click)="onClickPrPS()">
+                        <img
+                            id="button2"
+                            onmouseout="unhover(this)"
+                            onmouseover="hover(this)"
+                            src="../../../../assets/image/02.png"
+                        />
+                    </a>
+                </div>
 
-          <div class="card-footer">
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the bulk of the card's
-              content.
-            </p>
-          </div>
+                <div class="card-footer">
+                    <p class="card-text">
+                        Some quick example text to build on the card title and
+                        make up the bulk of the card's content.
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 </app-auth-content>

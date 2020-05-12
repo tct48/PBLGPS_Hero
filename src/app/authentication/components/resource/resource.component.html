@@ -1,28 +1,51 @@
 <app-auth-content>
     <div class="row my-4">
+        <!-- Heading -->
         <div class="col-md-12">
             <nav class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">แหล่งการเรียนรู้</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    แหล่งการเรียนรู้
+                </li>
             </nav>
         </div>
+        <!-- Left -->
         <div class="col-md-5">
-            <h4 class="px-2 py-1 text-center pointer" style="background-color: lightgray;border:1px solid lightgray;border-radius: 15px;">อธิบายการใช้งานแหล่งเรียนรู้</h4>
+            <h4
+                class="px-2 py-1 text-center pointer"
+                style="
+                    background-color: lightgray;
+                    border: 1px solid lightgray;
+                    border-radius: 15px;
+                "
+            >
+                อธิบายการใช้งานแหล่งเรียนรู้
+            </h4>
             <ol class="text-muted medium">
-                <li>รู้หลักการและพื้นฐานเกี่ยวกับองค์ประกอบของเครื่องคอมพิวเตอร์</li>
+                <li>
+                    รู้หลักการและพื้นฐานเกี่ยวกับองค์ประกอบของเครื่องคอมพิวเตอร์
+                </li>
                 <li>รู้ความหมายหน้าที่และความสำคัญของระบบปฏิบัติการ</li>
                 <li>มีทักษะในการใช้โปรแกรมระบบปฏิบัติการเบื้องต้น</li>
                 <li>มีทักษะในการใช้โปรแกรมยูทิลิตี้ได้</li>
-                <li>มีกิจนิสัยและส่งเสริมคุณธรรม จริยธรรม ค่านิยมที่ดีในการใช้คอมพิวเตอร์</li>
+                <li>
+                    มีกิจนิสัยและส่งเสริมคุณธรรม จริยธรรม
+                    ค่านิยมที่ดีในการใช้คอมพิวเตอร์
+                </li>
             </ol>
         </div>
+        <!-- Right -->
         <div class="col-md-7">
             <div class="row">
-
-                <div *ngFor="let data of items;let i = index;" class="col-md-6">
-                    <button (click)="openContent(data._id)" style="text-decoration: none;width: 100%;" class="action-button shadow animate button-blue">{{ data.name }}</button>
+                <div *ngFor="let data of items; let i = index" class="col-md-6">
+                    <button
+                        (click)="openContent(data._id)"
+                        style="text-decoration: none; width: 100%;"
+                        class="action-button shadow animate button-blue"
+                    >
+                        {{ data.name }}
+                    </button>
                 </div>
             </div>
-            
         </div>
     </div>
-</app-auth-content> 
+</app-auth-content>

@@ -1,7 +1,7 @@
 export const AppURL = {
-  Login: 'signin',
-  Register: 'signup',
-  Home: 'homepage',
-  Authen: 'auth',
-  Haha: 'haha',
-};
+    Haha: 'haha',
+    Authen: 'auth',
+    Login: 'signin',
+    Home: 'homepage',
+    Register: 'signup',
+}

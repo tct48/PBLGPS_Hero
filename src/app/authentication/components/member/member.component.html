@@ -1,99 +1,159 @@
 <app-auth-content>
-  <div class="row py-4">
-    <h3 style="display: block; width: 100%;">
-      <i class="fa fa-id-card-o" aria-hidden="true"></i> สมาชิกทั้งหมด
-    </h3>
-    <br />
-    <p>จำนวนทั้งสิ้น {{ total_items }}</p>
-    <div class="col-md-12 my-3">
-      <div class="input-group">
-        <input
-          class="form-control"
-          id="input2-group2"
-          name="input2-group2"
-          placeholder="อีเมล์, ชื่อจริง, นามสกุล"
-          type="text"
-          [(ngModel)]="searchText"
-        />
-        <span class="input-group-append">
-          <button class="btn btn-primary" (click)="onSearch()" type="button">ค้นหา</button>
-        </span>
-      </div>
-    </div>
+    <div class="row py-4">
+        <h3 style="display: block; width: 100%;">
+            <i class="fa fa-id-card-o" aria-hidden="true"></i> สมาชิกทั้งหมด
+        </h3>
+        <br />
+        <p>จำนวนทั้งสิ้น {{ total_items }}</p>
+        <!-- ส่วนค้นหา -->
+        <div class="col-md-12 my-3">
+            <div class="input-group">
+                <input
+                    class="form-control"
+                    id="input2-group2"
+                    name="input2-group2"
+                    placeholder="อีเมล์, ชื่อจริง, นามสกุล"
+                    type="text"
+                    [(ngModel)]="searchText"
+                />
+                <span class="input-group-append">
+                    <button
+                        class="btn btn-primary"
+                        (click)="onSearch()"
+                        type="button"
+                    >
+                        ค้นหา
+                    </button>
+                </span>
+            </div>
+        </div>
 
-    <table class="table table-responsive-sm table-hover table-outline mb-0">
-      <!-- heading -->
-      <thead class="thead-light">
-        <tr>
-          <th class="text-center"><i class="icon-people"></i></th>
-          <th>User</th>
-          <th>Level</th>
-          <th>Activity</th>
-          <th></th>
-        </tr>
-      </thead>
-      <!-- body -->
-      <tbody>
-        <tr *ngFor="let data of items">
-          <td class="text-center">
-            <div class="avatar">
-              <cl-image style="max-width: 36px; height: 36px;" *ngIf="data.image" [(public-id)]="data.image" class="avatar-image avatar-image-member" crop="fit"></cl-image>
-              <img *ngIf="!data.image"
-                style="max-width: 36px; height: 36px; border-radius: 50em;"
-                src="../../../../assets/image/no-image.png"
-              /><span class="avatar-status badge-danger"></span>
-            </div>
-          </td>
-          <td>
-            <div>{{ data.firstname }} {{ data.lastname }}</div>
-            <div class="small text-muted">
-              <span>Email</span> | {{ data.email }}
-            </div>
-          </td>
-          <td>
-            <div class="clearfix">
-              <div class="float-left">
-                lvl: <strong>{{ calLevel(data.exp) }}</strong>
-              </div>
-              <div class="float-right">
-                <small class="text-muted">{{ calNextLevel(data.exp) | number: "1.2-2" }}/100</small>
-              </div>
-            </div>
-            <div>
-              <!-- แสดง % -->
-              <progressbar max="100" [value]="calNextLevel(data.exp)" type="warning" striped="true" animate="true">
-                <i></i> <span *ngIf="calNextLevel(data.exp)>10">{{ calNextLevel(data.exp) | number: "1.2-2" }} %</span>
-              </progressbar>
-            </div>
-          </td>
-          <td>
-            <div class="small text-muted">Last login</div>
-            <strong *ngIf="data.activity">{{ data.activity | dateAgo }}</strong>
-            <strong class="text-danger" *ngIf="!data.activity">
-                ยังไม่เคยใช้งาน
-            </strong>
-          </td>
-          <td>
-            <div class="btn-group" btnRadioGroup>
-                <label (click)="openMember(data._id)" btnRadio="A" class="btn btn-info" tabindex="0" role="button"><i class="fa fa-eye"></i></label>
-                <label (click)="openMember(data._id)" btnRadio="B" class="btn btn-info" tabindex="0" role="button"><i class="fa fa-pencil-square-o"></i></label>
-                <label (click)="onDeleteClick(data._id)" btnRadio="C" class="btn btn-info" tabindex="0" role="button"><i class="fa fa-trash"></i></label>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="col-md-12 my-3">
-      <pagination
-        *ngIf="total_items"
-        (pageChanged)="pageChanged($event)"
-        [itemsPerPage]="option.lp"
-        directionLinks="true"
-        [(ngModel)]="cp"
-        previousText="ก่อนหน้า"
-        nextText="หน้าถัดไป"
-        [totalItems]="total_items"
-      ></pagination>
+        <table class="table table-responsive-sm table-hover table-outline mb-0">
+            <!-- ตารางแสดง User TH -->
+            <thead class="thead-light">
+                <tr>
+                    <th class="text-center"><i class="icon-people"></i></th>
+                    <th>User</th>
+                    <th>Level</th>
+                    <th>Activity</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <!-- Table TR -->
+            <tbody>
+                <tr *ngFor="let data of items">
+                    <td class="text-center">
+                        <div class="avatar">
+                            <cl-image
+                                style="max-width: 36px; height: 36px;"
+                                *ngIf="data.image"
+                                [(public-id)]="data.image"
+                                class="avatar-image avatar-image-member"
+                                crop="fit"
+                            ></cl-image>
+                            <img
+                                *ngIf="!data.image"
+                                style="
+                                    max-width: 36px;
+                                    height: 36px;
+                                    border-radius: 50em;
+                                "
+                                src="../../../../assets/image/no-image.png"
+                            /><span class="avatar-status badge-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div>{{ data.firstname }} {{ data.lastname }}</div>
+                        <div class="small text-muted">
+                            <span>Email</span> | {{ data.email }}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="clearfix">
+                            <div class="float-left">
+                                lvl: <strong>{{ calLevel(data.exp) }}</strong>
+                            </div>
+                            <div class="float-right">
+                                <small class="text-muted"
+                                    >{{
+                                        calNextLevel(data.exp)
+                                            | number: '1.2-2'
+                                    }}/100</small
+                                >
+                            </div>
+                        </div>
+                        <div>
+                            <!-- แสดง % -->
+                            <progressbar
+                                max="100"
+                                [value]="calNextLevel(data.exp)"
+                                type="warning"
+                                striped="true"
+                                animate="true"
+                            >
+                                <i></i>
+                                <span *ngIf="calNextLevel(data.exp) > 10"
+                                    >{{
+                                        calNextLevel(data.exp) | number: '1.2-2'
+                                    }}
+                                    %</span
+                                >
+                            </progressbar>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="small text-muted">Last login</div>
+                        <strong *ngIf="data.activity">{{
+                            data.activity | dateAgo
+                        }}</strong>
+                        <strong class="text-danger" *ngIf="!data.activity">
+                            ยังไม่เคยใช้งาน
+                        </strong>
+                    </td>
+                    <td>
+                        <div class="btn-group" btnRadioGroup>
+                            <label
+                                (click)="openMember(data._id)"
+                                btnRadio="A"
+                                class="btn btn-info"
+                                tabindex="0"
+                                role="button"
+                                ><i class="fa fa-eye"></i
+                            ></label>
+                            <label
+                                (click)="openMember(data._id)"
+                                btnRadio="B"
+                                class="btn btn-info"
+                                tabindex="0"
+                                role="button"
+                                ><i class="fa fa-pencil-square-o"></i
+                            ></label>
+                            <label
+                                (click)="onDeleteClick(data._id)"
+                                btnRadio="C"
+                                class="btn btn-info"
+                                tabindex="0"
+                                role="button"
+                                ><i class="fa fa-trash"></i
+                            ></label>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Pagination -->
+        <div class="col-md-12 my-3">
+            <pagination
+                *ngIf="total_items"
+                (pageChanged)="pageChanged($event)"
+                [itemsPerPage]="option.lp"
+                directionLinks="true"
+                [(ngModel)]="cp"
+                previousText="ก่อนหน้า"
+                nextText="หน้าถัดไป"
+                [totalItems]="total_items"
+            ></pagination>
+        </div>
     </div>
-  </div>
 </app-auth-content>

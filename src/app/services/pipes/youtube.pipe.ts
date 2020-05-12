@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Pipe, PipeTransform } from '@angular/core'
+import { DomSanitizer } from '@angular/platform-browser'
 
 /**
  * Generated class for the Youtube pipe.
@@ -8,13 +8,11 @@ import { DomSanitizer } from '@angular/platform-browser';
  * Angular Pipes.
  */
 @Pipe({
-  name: 'youtube',
+    name: 'youtube',
 })
 export class Youtube implements PipeTransform {
-  constructor (private dom:DomSanitizer) {
-
-  }
-  transform(value: string, args) {
-    return this.dom.bypassSecurityTrustHtml(value);
-  }
+    constructor(private dom: DomSanitizer) {}
+    transform(value: string, args) {
+        return this.dom.bypassSecurityTrustHtml(value)
+    }
 }

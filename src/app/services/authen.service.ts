@@ -1,22 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 
 @Injectable({
-  providedIn:'root'
+    providedIn: 'root',
 })
-export class AuthenService{
-  private accessKey = 'accessToken';
-  constructor(){}
+export class AuthenService {
+    constructor() {}
+    
+    private accessKey = 'accessToken'
 
-  setAuthenticated(accessToken: string): void {
-    localStorage.setItem(this.accessKey, accessToken);
-  }
+    setAuthenticated(accessToken: string): void {
+        localStorage.setItem(this.accessKey, accessToken)
+    }
 
-  getAuthenticated(): string {
-    return localStorage.getItem(this.accessKey)
-  }
+    getAuthenticated(): string {
+        return localStorage.getItem(this.accessKey)
+    }
 
-  clearAuthenticated(): void{
-    localStorage.removeItem(this.accessKey);
-  }
-
+    clearAuthenticated(): void {
+        localStorage.removeItem(this.accessKey)
+    }
 }

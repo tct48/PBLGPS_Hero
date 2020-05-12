@@ -1,10 +1,10 @@
 export const AuthURL = {
     Home: 'home',
+    Signin: 'signin',
+    Member: 'member',
+    Content: 'content',
+    Resource: 'resource',
     Leaderboard: 'leaderboard',
     Information: 'information',
-    Resource: 'resource',
-    Content : 'content',
-    Member:'member',
     ManageResource: 'manage-resource',
-    Signin: 'signin'
-  };
+}
