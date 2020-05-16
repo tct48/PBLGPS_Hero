@@ -1,191 +1,123 @@
 <app-auth-content>
-    <div class="row my-4">
-        <!-- ส่วนยืดหด -->
-        <div class="col-md-12">
-            <nav class="breadcrumb">
-                <a class="breadcrumb-item" [routerLink]="['/auth/resource']"
-                    >แหล่งการเรียนรู้</a
-                >
-                <li
-                    class="breadcrumb-item active"
-                    aria-current="page"
-                    *ngIf="item?.name"
-                >
-                    {{ item.name }}
-                </li>
-            </nav>
-            <button
-                type="button"
-                class="btn btn-primary"
-                (click)="isCollapsed = !isCollapsed"
-                [attr.aria-expanded]="!isCollapsed"
-                aria-controls="collapseBasic"
-            >
-                จุดประสงค์การเรียนรู้
-            </button>
-        </div>
-
-        <!-- จุดประสงค์การเรียนรู้ -->
-        <div
-            class="col-md-5 my-3"
-            id="collapseBasic"
-            [collapse]="isCollapsed"
-            [isAnimated]="true"
-        >
-            <div class="well well-lg card card-block card-header">
-                <h4
-                    class="px-2 py-1 text-center pointer"
-                    style="
-                        background-color: lightgray;
-                        border: 1px solid lightgray;
-                        border-radius: 15px;
-                    "
-                >
-                    จุดประสงค์การเรียนรู้
-                </h4>
-                <ol class="text-muted medium">
-                    <li>
-                        รู้หลักการและพื้นฐานเกี่ยวกับองค์ประกอบของเครื่องคอมพิวเตอร์
-                    </li>
-                    <li>รู้ความหมายหน้าที่และความสำคัญของระบบปฏิบัติการ</li>
-                    <li>มีทักษะในการใช้โปรแกรมระบบปฏิบัติการเบื้องต้น</li>
-                    <li>มีทักษะในการใช้โปรแกรมยูทิลิตี้ได้</li>
-                    <li>
-                        มีกิจนิสัยและส่งเสริมคุณธรรม จริยธรรม
-                        ค่านิยมที่ดีในการใช้คอมพิวเตอร์
-                    </li>
-                </ol>
-                <h4
-                    class="mt-2 px-2 py-1 text-center pointer"
-                    style="
-                        background-color: lightgray;
-                        border: 1px solid lightgray;
-                        border-radius: 15px;
-                    "
-                >
-                    สาระการเรียนรู้
-                </h4>
-                <p
-                    class="text-muted medium"
-                    style="text-indent: 20px; text-align: justify;"
-                >
-                    ศึกษาและปฏิบัติเกี่ยวกับองค์ประกอบของเครื่องคอมพิวเตอร์
-                    หลักการทำงานของคอมพิวเตอร์และอุปกรณ์ต่อพ่วง
-                    สื่อบันทึกข้อมูลความหมายและหน้าที่ของระบบปฏิบัติการประเภทของโปรแกรมระบบปฏิบัติการ
-                    การใช้โปรแกรมระบบปฏิบัติการ การใช้โปรแกรมยูทิลิตี้
-                </p>
-            </div>
-        </div>
-
-        <!-- ส่วนแหล่งข้อมูล -->
-        <div class="col-md-7 my-3">
-            <h1 *ngIf="item?.name">{{ item.name }}</h1>
-            <ul *ngIf="item?.title">
-                <li *ngFor="let data of item.title; let i = index">
-                    <!-- หัวข้อที่ 1 -->
-                    <span *ngIf="i == 0">
-                        <a (click)="showPDF(item.file[0])">{{ data }}</a>
-                        <div [innerHtml]="item.text[i]"></div>
-                    </span>
-                    <!-- หัวข้อที่ 2 -->
-                    <span *ngIf="i == 1">
-                        {{ data }} <br />
-                        <ul>
-                            <span
-                                *ngFor="
-                                    let sub_data of item.text;
-                                    let j = index
-                                "
-                            >
-                                <li *ngIf="j != 0 && j != item.text.length - 1">
-                                    <a
-                                        class="pointer"
-                                        (click)="showYoutube(item.url[j])"
-                                        >{{ sub_data }}</a
-                                    >
-                                </li>
-                            </span>
-                        </ul>
-                    </span>
-                    <!-- หัวข้อที่ 3 -->
-                    <div *ngIf="i == item.title.length - 1">
-                        {{ data }}
-                        <div
-                            [innerHtml]="item.text[item.text.length - 1]"
-                        ></div>
-                    </div>
-                </li>
-            </ul>
-            <button
-                (click)="startQuiz(item._id)"
-                class="btn btn-primary"
-                *ngIf="item?.quiz == 1"
-            >
-                แบบฝึกหัด
-            </button>
-            <button class="btn btn-seccondary" *ngIf="item?.quiz == 0" disabled>
-                ยังไม่มีแบบฝึกหัด
-            </button>
-        </div>
-
-        <!-- show pdf -->
-        <div
-            class="col-md-5"
-            *ngIf="url_pdf && isCollapsed && switch_display == 'PDF'"
-        >
-            <iframe [src]="url_pdf" width="100%" height="480"></iframe>
-        </div>
-        <!-- show youtube -->
-        <div
-            class="col-md-5"
-            *ngIf="url_youtube && isCollapsed && switch_display == 'youtube'"
-        >
-            <iframe
-                class="avatar-image"
-                width="100%"
-                height="400px"
-                [src]="url_youtube"
-                frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-            ></iframe>
-        </div>
-
-        <!-- ส่วนคำถาม -->
-        <div *ngIf="isCollapsed == true && quiz_item" class="col-md-5">
-            <span class="badge badge-dark" style="font-size: smaller;"
-                >คำถามข้อที่ 1 จาก {{ quiz_item.total_items }}</span
-            >
-            <h4 class="my-3" style="font-weight: bold;">
-                {{ quiz_item.items[0].question }}
-            </h4>
-            <form>
-                <div
-                    class="input-group my-1"
-                    *ngFor="let data of quiz_item.items[0].choice"
-                >
-                    <div class="input-group-prepend pointer">
-                        <div class="input-group-text">
-                            <input
-                                type="radio"
-                                [name]="quiz_item.items[0]._id"
-                                [value]="data.point"
-                                aria-label="Radio button for following text input"
-                            />
-                        </div>
-                    </div>
-                    <input
-                        type="text"
-                        class="form-control pointer"
-                        [value]="data.answer"
-                        readonly
-                        aria-label="Text input with radio button"
-                    />
-                </div>
-                <button class="btn btn-outline-secondary" (click)="onSubmit()">
-                    ส่งคำตอบ
-                </button>
-            </form>
-        </div>
+  <div class="row my-4">
+    <!-- ส่วนยืดหด -->
+    <div class="col-md-12">
+      <nav class="breadcrumb">
+        <a class="breadcrumb-item" [routerLink]="['/auth/resource']">แหล่งการเรียนรู้</a>
+        <li class="breadcrumb-item active" aria-current="page" *ngIf="item?.name">
+          {{ item.name }}
+        </li>
+      </nav>
+      <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
+        จุดประสงค์การเรียนรู้
+      </button>
     </div>
+
+    <!-- จุดประสงค์การเรียนรู้ -->
+    <div class="col-md-5 my-3" id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+      <div class="well well-lg card card-block card-header">
+        <h4 class="px-2 py-1 text-center pointer" style="
+                        background-color: lightgray;
+                        border: 1px solid lightgray;
+                        border-radius: 15px;
+                    ">
+          จุดประสงค์การเรียนรู้
+        </h4>
+        <ol class="text-muted medium">
+          <li>
+            รู้หลักการและพื้นฐานเกี่ยวกับองค์ประกอบของเครื่องคอมพิวเตอร์
+          </li>
+          <li>รู้ความหมายหน้าที่และความสำคัญของระบบปฏิบัติการ</li>
+          <li>มีทักษะในการใช้โปรแกรมระบบปฏิบัติการเบื้องต้น</li>
+          <li>มีทักษะในการใช้โปรแกรมยูทิลิตี้ได้</li>
+          <li>
+            มีกิจนิสัยและส่งเสริมคุณธรรม จริยธรรม
+            ค่านิยมที่ดีในการใช้คอมพิวเตอร์
+          </li>
+        </ol>
+        <h4 class="mt-2 px-2 py-1 text-center pointer" style="
+                        background-color: lightgray;
+                        border: 1px solid lightgray;
+                        border-radius: 15px;
+                    ">
+          สาระการเรียนรู้
+        </h4>
+        <p class="text-muted medium" style="text-indent: 20px; text-align: justify;">
+          ศึกษาและปฏิบัติเกี่ยวกับองค์ประกอบของเครื่องคอมพิวเตอร์
+          หลักการทำงานของคอมพิวเตอร์และอุปกรณ์ต่อพ่วง
+          สื่อบันทึกข้อมูลความหมายและหน้าที่ของระบบปฏิบัติการประเภทของโปรแกรมระบบปฏิบัติการ
+          การใช้โปรแกรมระบบปฏิบัติการ การใช้โปรแกรมยูทิลิตี้
+        </p>
+      </div>
+    </div>
+
+    <!-- ส่วนแหล่งข้อมูล -->
+    <div class="col-md-7 my-3">
+      <h1 *ngIf="item?.name">{{ item.name }}</h1>
+      <ul>
+        <!-- หัวข้อ 1 -->
+        <li *ngIf="item?.pdf.title">
+          <span>
+            <a (click)="showPDF(item.pdf.url)">{{ item.pdf.title }}</a>
+            <div [innerHtml]="item.pdf.text"></div>
+          </span>
+        </li>
+        <!-- หัวข้อ 2 -->
+        <li *ngIf="item?.youtube.title">
+          <span *ngIf="item.youtube.title">{{ item.youtube.title }}</span>
+          <ul>
+            <li *ngFor="let data of item.youtube.video.text;let i = index">
+              <span (click)="showYoutube(item.youtube.video.url[i])" class="pointer">{{ item.youtube.video.text[i] }}</span>
+            </li>
+          </ul>
+        </li>
+        <!-- หัวข้อ 3 -->
+        <li *ngIf="item?.hypertext.text">
+          <span>{{ item.hypertext.title }}</span>
+          <div style="max-width: 100%;" [innerHtml]="item.hypertext.text"></div>
+        </li>
+      </ul>
+
+      <button (click)="startQuiz(item._id)" class="btn btn-primary" *ngIf="item?.quiz == 1">
+        แบบฝึกหัด
+      </button>
+      <button class="btn btn-seccondary" *ngIf="item?.quiz == 0" disabled>
+        ยังไม่มีแบบฝึกหัด
+      </button>
+    </div>
+
+    <!-- show pdf -->
+    <div class="col-md-5" *ngIf="url_pdf && isCollapsed && switch_display == 'PDF'">
+      <iframe [src]="url_pdf" width="100%" height="480"></iframe>
+    </div>
+    <!-- show youtube -->
+    <div class="col-md-5" *ngIf="url_youtube && isCollapsed && switch_display == 'youtube'">
+      <iframe class="avatar-image" width="100%" height="400px" [src]="url_youtube" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <!-- ส่วนคำถาม -->
+    <div *ngIf="isCollapsed == true && quiz_item" class="col-md-5">
+      <span class="badge badge-dark" style="font-size: smaller;">คำถามข้อที่ 1 จาก {{ quiz_item.total_items }}</span>
+      <h4 class="my-3" style="font-weight: bold;">
+        {{ quiz_item.items[0].question }}
+      </h4>
+      <form>
+        <div class="input-group my-1" *ngFor="let data of quiz_item.items[0].choice">
+          <div class="input-group-prepend pointer">
+            <div class="input-group-text">
+              <input type="radio" [name]="quiz_item.items[0]._id" [value]="data.point"
+                aria-label="Radio button for following text input" />
+            </div>
+          </div>
+          <input type="text" class="form-control pointer" [value]="data.answer" readonly
+            aria-label="Text input with radio button" />
+        </div>
+        <button class="btn btn-outline-secondary" (click)="onSubmit()">
+          ส่งคำตอบ
+        </button>
+      </form>
+    </div>
+  </div>
 </app-auth-content>

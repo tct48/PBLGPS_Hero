@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 // module
 import { AppRouting } from './app.routing'
 import { PdfViewerModule } from 'ng2-pdf-viewer'
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TooltipModule } from 'ngx-bootstrap/tooltip'
 import { SharedsModule } from './share/shareds.module'
 import { CollapseModule } from 'ngx-bootstrap/collapse'
@@ -15,7 +16,6 @@ import { PaginationModule } from 'ngx-bootstrap/pagination'
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular'
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-
 
 // component
 import { Cloudinary } from 'cloudinary-core'
@@ -70,6 +70,7 @@ import { AuthenticationModule } from './authentication/authentication.module'
         HttpClientModule,
         ReactiveFormsModule,
         AuthenticationModule,
+        TabsModule.forRoot(),
         TooltipModule.forRoot(),
         BrowserAnimationsModule,
         CollapseModule.forRoot(),

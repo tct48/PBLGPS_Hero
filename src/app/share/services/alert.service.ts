@@ -2,6 +2,7 @@
 import 'sweetalert2/src/sweetalert2.scss'
 import { Injectable } from '@angular/core'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
+import { Observable } from 'rxjs'
 
 @Injectable({
     providedIn: 'root',
@@ -82,30 +83,6 @@ export class AlertService {
         })
     }
 
-    public email:string;
-
-    async showChangePassword(timer:Number){
-        Swal.mixin({
-            input: 'text',
-            confirmButtonText: 'Next &rarr;',
-            showCancelButton: true,
-            progressSteps: ['1'],
-            timer: timer,
-            timerProgressBar: true,
-          }).queue([
-            {
-              title: 'ลืมรหัสผ่าน',
-              text: 'กรุณากรอก อีเมล์ ของท่านเพื่อรีเซ็ตรหัสผ่าน'
-            }
-          ]).then((result) => {
-            if (result.value) {
-              const answers = JSON.stringify(result.value[0])
-              this.email = answers;
-              this.email = this.email.substring(1,this.email.length-1);
-              return answers;
-            }
-          })
-    }
 
     // ฟังก์ชันประกาศมี timelap
     announce(title: string = 'หัวข้อ', text: string = 'ข้อความ') {

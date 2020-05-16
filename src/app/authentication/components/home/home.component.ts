@@ -5,6 +5,7 @@ import {
     IAccount,
     AccountService,
 } from 'src/app/share/services/account.service'
+import { DomSanitizer } from '@angular/platform-browser'
 
 @Component({
     selector: 'app-home',
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit {
     constructor(
         private alert: AlertService,
         private authen: AuthenService,
-        private account: AccountService
+        private account: AccountService,
+        private sanitizer: DomSanitizer
     ) {
         this.account
             .getUserLogin(this.authen.getAuthenticated())
@@ -24,6 +26,7 @@ export class HomeComponent implements OnInit {
             })
     }
 
+    url:any= this.sanitizer.bypassSecurityTrustResourceUrl("https://edpuzzle.com/embed/assignments/5ebe9cbb40d77c3f106af0f4/watch");
     UserLogin: IAccount
 
     ngOnInit(): void {}

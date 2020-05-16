@@ -31,9 +31,8 @@ export class MemberService {
             .toPromise() as Promise<IMember>
     }
 
-    onChangePassword(email:any){
-        console.log(email)
-        return this.http.requestPost('user/changePassword', email)
+    onChangePassword(model:any){
+        return this.http.requestPost('user/changePassword', model)
             .toPromise() as Promise<IResponse>;
     }
 

@@ -35,7 +35,7 @@ export class ContentComponent implements OnInit {
         this.router.navigate(['/', AppURL.Authen, AuthURL.Resource]);
         this.alert.something_wrong("เกิดข้อผิดพลาก");
       }
-    })    
+    })
    }
 
 
@@ -54,16 +54,36 @@ export class ContentComponent implements OnInit {
   }
 
   showPDF(url:any){
-    if(url.substring(url.length-5)=='/view'){
-      url = url.substring(0,url.length-4) + "preview";
+    console.log(url)
+    var pdf:any;
+    if (!url) return
+    if (url.substring(url.length - 5) == '/view') {
+      pdf = url.substring(0, url.length - 4) + 'preview'
+    } else {
+      pdf = "https://drive.google.com/file/d/" + url.substr(33) + "/preview"
     }
 
-    this.url_pdf = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+
+
+    if(this.isCollapsed==false){
+      this.isCollapsed=true;
+    }
+
+    try {
+      this.url_pdf = this.sanitizer.bypassSecurityTrustResourceUrl(pdf)
+    } catch (err) {
+      this.alert.showWarning('เกิดข้อผิดพลาดกับลิงก์ PDF', err)
+    }
     this.switch_display="PDF";
   }
 
   showYoutube(url:String){
     url = url.substring(32);
+
+    if(this.isCollapsed==false){
+      this.isCollapsed=true;
+    }
+
     this.url_youtube = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube-nocookie.com/embed/" + url);
     this.switch_display="youtube";
   }
@@ -79,7 +99,7 @@ export class ContentComponent implements OnInit {
   }
 
   onSubmit(){
-    
+
   }
 
 }
