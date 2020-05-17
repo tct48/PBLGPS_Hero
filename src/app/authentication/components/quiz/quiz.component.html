@@ -1,0 +1,60 @@
+<app-auth-content>
+  <div class="border-aqua border-bottom mb-4">
+    <div class="container">
+      <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i> แบบฝึกหัด</h4>
+      <p>เพิ่มแบบฝึกหัดให้สอดคล้องกับ แหล่งการเรียนรู้ หรือตรงกับข้อการวัดประเมินผล</p>
+    </div>
+  </div>
+
+  <!-- card topic -->
+  <div class="card">
+    <div class="card-header">
+      <label for="">ใช้แบบทดสอบนี้กับแบบฝึกหัด :</label>
+      <input [(ngModel)]="selectedValue" [typeahead]="states" [typeaheadMinLength]="0" typeaheadOptionsLimit="5"
+        typeaheadOptionField="name" [isAnimated]="true" (typeaheadOnSelect)="onSelect($event)" class="form-control"
+        required>
+    </div>
+    <div class="card-body form-group">
+      <input type="text" class="form-control"
+        style="background-color:rgb(245, 245, 245);border:0px; border-bottom:1px thick darkgray;"
+        placeholder="คำอธิบายแบบฟอร์ม" />
+    </div>
+  </div>
+
+  <!-- body question -->
+  <div class="card my-4 text-black" style="border:1px solid rgb(90,156,255);border-left: 10px solid rgb(90, 156, 255);">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-md-10" style="padding-left: 10;">
+          <input type="text"
+            style="display: block;width: 100%;background-color: rgba(0, 0, 0, 0);border:0px;border-bottom: 2px solid rgb(212, 212, 212);font-size:xx-large;"
+            placeholder="คำถาม ?" required />
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-info btn-block" style="background-color: rgb(90, 156, 255);border:0px;height: 100%;">หลายตัวเลือก</button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <!-- radio button -->
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <input type="radio" aria-label="Radio button for following text input">
+          </div>
+        </div>
+        <input type="text" class="form-control" aria-label="Text input with radio button" placeholder="ตัวเลือกที่ 1">
+      </div>
+      <a><i class="fa fa-plus"></i> เพิ่มตัวเลือก</a>
+    </div>
+  </div>
+
+  <button class="btn btn-info" style="background-color: rgb(90, 156, 255);border:0px;height: 100%;">เพิ่มข้อแบบฝึกหัด</button>
+
+  <div class="border-top text-right my-2">
+    <b>จำนวนข้อ </b>n
+  </div>
+
+
+</app-auth-content>
+

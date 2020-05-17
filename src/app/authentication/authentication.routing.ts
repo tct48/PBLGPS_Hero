@@ -7,6 +7,7 @@ import { ContentComponent } from './components/resource/content/content.componen
 import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 import { InformationComponent } from './components/information/information.component';
 import { ManageResourceComponent } from './components/manage-resource/manage-resource.component';
+import { QuizComponent } from './components/quiz/quiz.component';
 
 const RouterLists: Routes = [
     { path: '', redirectTo: AuthURL.Home, pathMatch: 'full' },
@@ -16,6 +17,7 @@ const RouterLists: Routes = [
     { path: AuthURL.Resource, component: ResourceComponent },
     { path: AuthURL.Content, component: ContentComponent },
     { path: AuthURL.Member, component: MemberComponent },
+    { path: AuthURL.Quiz, component: QuizComponent },
     { path: AuthURL.ManageResource, component: ManageResourceComponent },
     // { path: AuthURL.Signin , component:SigninComponent }
 ];

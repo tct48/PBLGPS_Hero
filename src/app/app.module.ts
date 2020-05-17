@@ -11,7 +11,6 @@ import { SharedsModule } from './share/shareds.module'
 import { CollapseModule } from 'ngx-bootstrap/collapse'
 import { HttpClientModule } from '@angular/common/http'
 import { CarouselModule } from 'ngx-bootstrap/carousel'
-import { TypeaheadModule } from 'ngx-bootstrap/typeahead'
 import { PaginationModule } from 'ngx-bootstrap/pagination'
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular'
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar'
@@ -42,6 +41,9 @@ import {
 import { DateAgoPipe } from './services/pipes/date-ago.pipe'
 import { Youtube } from './services/pipes/youtube.pipe'
 import { AuthenticationModule } from './authentication/authentication.module'
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { QuizComponent } from './authentication/components/quiz/quiz.component'
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
     declarations: [
@@ -50,6 +52,7 @@ import { AuthenticationModule } from './authentication/authentication.module'
         AppComponent,
         HomeComponent,
         HahaComponent,
+        QuizComponent,
         MemberComponent,
         SigninComponent,
         SignupComponent,
@@ -65,6 +68,7 @@ import { AuthenticationModule } from './authentication/authentication.module'
         FormsModule,
         SharedsModule,
         BrowserModule,
+        MatRadioModule,
         CKEditorModule,
         PdfViewerModule,
         HttpClientModule,

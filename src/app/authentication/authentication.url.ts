@@ -7,4 +7,5 @@ export const AuthURL = {
     Leaderboard: 'leaderboard',
     Information: 'information',
     ManageResource: 'manage-resource',
+    Quiz: 'quiz',
 }
