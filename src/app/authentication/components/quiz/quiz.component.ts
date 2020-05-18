@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class';
@@ -9,7 +9,7 @@ import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class';
   styleUrls: ['./quiz.component.css']
 })
 export class QuizComponent implements OnInit {
-
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   constructor() { }
 
   ngOnInit(): void {
@@ -27,8 +27,45 @@ export class QuizComponent implements OnInit {
     { id: 7, name: 'Post-test', region: 'Northeast' }
   ];
 
+  article:any [] = [];
+  sub_article:any [][];
+
   onSelect(event: TypeaheadMatch): void {
     this.selectedOption = event.item;
     console.log(this.selectedOption);
   }
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
+  }
+
+  onAddArticle(index:number,minus?: any) {
+    if (minus) {
+      if (this.article.length > 1) {
+        return this.article.pop();
+      }
+    }
+    this.article.push({
+      _id: index,
+      question : "Question" + index
+    });
+
+    console.log(this.article);
+  }
+
+  onAddSubArticle(index:number,minus?:any){
+    this.article[index].answer = [
+      {
+        _id: 1,
+        name : "name"
+      }
+    ]
+    console.log(this.article);
+  }
+}
+
+export interface IArticle{
+  answer?:any;
 }

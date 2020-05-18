@@ -11,8 +11,8 @@
     <div class="card-header">
       <label for="">ใช้แบบทดสอบนี้กับแบบฝึกหัด :</label>
       <input [(ngModel)]="selectedValue" [typeahead]="states" [typeaheadMinLength]="0" typeaheadOptionsLimit="5"
-        typeaheadOptionField="name" [isAnimated]="true" (typeaheadOnSelect)="onSelect($event)" class="form-control"
-        required>
+        typeaheadOptionField="name" placeholder="หน่วยการเรียนรู้ที่ 1,2,3" [isAnimated]="true"
+        (typeaheadOnSelect)="onSelect($event)" class="form-control" required>
     </div>
     <div class="card-body form-group">
       <input type="text" class="form-control"
@@ -22,7 +22,8 @@
   </div>
 
   <!-- body question -->
-  <div class="card my-4 text-black" style="border:1px solid rgb(90,156,255);border-left: 10px solid rgb(90, 156, 255);">
+  <div #scrollMe class="card my-4 text-black" *ngFor="let data of article;let i = index;"
+    style="border:1px solid rgb(90,156,255);border-left: 10px solid rgb(90, 156, 255);">
     <div class="card-header">
       <div class="row">
         <div class="col-md-10" style="padding-left: 10;">
@@ -31,30 +32,35 @@
             placeholder="คำถาม ?" required />
         </div>
         <div class="col-md-2">
-          <button class="btn btn-info btn-block" style="background-color: rgb(90, 156, 255);border:0px;height: 100%;">หลายตัวเลือก</button>
+          <button class="btn btn-info btn-block"
+            style="background-color: rgb(90, 156, 255);border:0px;height: 100%;">หลายตัวเลือก</button>
         </div>
       </div>
     </div>
     <div class="card-body">
       <!-- radio button -->
-      <div class="input-group mb-2">
+      <div class="input-group mb-2" *ngFor="let sub_data of article[i].answer">
         <div class="input-group-prepend">
           <div class="input-group-text">
             <input type="radio" aria-label="Radio button for following text input">
           </div>
         </div>
-        <input type="text" class="form-control" aria-label="Text input with radio button" placeholder="ตัวเลือกที่ 1">
+        <input  type="text" class="form-control" aria-label="Text input with radio button" placeholder="ตัวเลือกที่ 1">
       </div>
-      <a><i class="fa fa-plus"></i> เพิ่มตัวเลือก</a>
+      <a (click)="onAddSubArticle(i)"><i class="fa fa-plus"></i> เพิ่มตัวเลือก</a>
     </div>
   </div>
 
-  <button class="btn btn-info" style="background-color: rgb(90, 156, 255);border:0px;height: 100%;">เพิ่มข้อแบบฝึกหัด</button>
+  <button class="btn btn-info" (click)="onAddArticle(article.length)"
+    style="background-color: rgb(90, 156, 255);border:0px;height: 100%;">เพิ่มข้อแบบฝึกหัด</button>
+  <button *ngIf="article.length>1" class="btn btn-info ml-1" (click)="onAddArticle(article.length-1,'minus')"
+    style="background-color: rgb(165, 165, 165);border:0px;height: 100%;">
+    <span aria-hidden="true">&times;</span>
+  </button>
 
   <div class="border-top text-right my-2">
-    <b>จำนวนข้อ </b>n
+    <b>จำนวนข้อ </b>{{ article.length }}
   </div>
 
 
 </app-auth-content>
-
