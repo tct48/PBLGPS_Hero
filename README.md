@@ -2,6 +2,7 @@
 <!-- ชอบเค็ม ๆ -->
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
+(ชอบเค็ม ๆ)
 
 ## Development server
 
