@@ -8,9 +8,10 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
 import { InformationComponent } from './components/information/information.component';
 import { ManageResourceComponent } from './components/manage-resource/manage-resource.component';
 import { QuizComponent } from './components/quiz/quiz.component';
+import { AppURL } from '../app.url';
 
 const RouterLists: Routes = [
-    { path: '', redirectTo: AuthURL.Home, pathMatch: 'full' },
+    { path: '', redirectTo: AppURL.Login, pathMatch: 'full' },
     { path: AuthURL.Home, component: HomeComponent },
     { path: AuthURL.Leaderboard, component: LeaderboardComponent },
     { path: AuthURL.Information, component: InformationComponent },

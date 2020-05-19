@@ -7,7 +7,7 @@
   </div>
 
   <!-- card topic -->
-  <div class="card">
+  <div class="card mb-2">
     <div class="card-header">
       <label for="">ใช้แบบทดสอบนี้กับแบบฝึกหัด :</label>
       <input [(ngModel)]="selectedValue" [typeahead]="states" [typeaheadMinLength]="0" typeaheadOptionsLimit="5"
@@ -29,7 +29,7 @@
         <div class="col-md-10" style="padding-left: 10;">
           <input type="text"
             style="display: block;width: 100%;background-color: rgba(0, 0, 0, 0);border:0px;border-bottom: 2px solid rgb(212, 212, 212);font-size:xx-large;"
-            placeholder="คำถาม ?" required />
+            placeholder="คำถาม ?" [(ngModel)]="data.question" required />
         </div>
         <div class="col-md-2">
           <button class="btn btn-info btn-block"
@@ -39,14 +39,17 @@
     </div>
     <div class="card-body">
       <!-- radio button -->
-      <div class="input-group mb-2" *ngFor="let sub_data of article[i].answer">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <input type="radio" aria-label="Radio button for following text input">
+      <span *ngFor="let sub_data of article[i].answer;let j = index">
+        <div class="input-group mb-2" >
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <input type="radio" name="data._id" [value]="sub_data.correct" (click)="choose($event, i,j)"  aria-label="Radio button for following text input">
+            </div>
+            <button *ngIf="sub_data.correct==1" class="btn btn-blue text-white"><i class="fa fa-hand-o-right" aria-hidden="true"></i> ข้อนี้ถูกต้อง</button>
           </div>
+          <input type="text" class="form-control" aria-label="Text input with radio button" [(ngModel)]="sub_data.name" placeholder="ตัวเลือกที่ {{ j+1 }}">
         </div>
-        <input  type="text" class="form-control" aria-label="Text input with radio button" placeholder="ตัวเลือกที่ 1">
-      </div>
+      </span>
       <a (click)="onAddSubArticle(i)"><i class="fa fa-plus"></i> เพิ่มตัวเลือก</a>
     </div>
   </div>
@@ -57,6 +60,7 @@
     style="background-color: rgb(165, 165, 165);border:0px;height: 100%;">
     <span aria-hidden="true">&times;</span>
   </button>
+  <button *ngIf="article.length>1" (click)="submit()" class="btn btn-info text-white" style="border:1px solid darkgreen;background-color: rgb(44, 194, 94);float: right;">ยืนยัน</button>
 
   <div class="border-top text-right my-2">
     <b>จำนวนข้อ </b>{{ article.length }}

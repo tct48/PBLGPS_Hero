@@ -5,6 +5,10 @@ div .custom-menu {
     margin-top: 0px;
 }
 
+.btn-blue{
+  background-color: rgb(90, 156, 255);
+}
+
 .app-nav {
     position: fixed;
     top: 0px;

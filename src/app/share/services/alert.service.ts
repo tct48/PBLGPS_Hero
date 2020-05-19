@@ -66,7 +66,9 @@ export class AlertService {
     // ตัดสินใจ yes or no
     showWarning(
         title: string = 'คำเตือน',
-        text: string = 'กรุณาตรวจสอบข้อมูลให้ถูกต้อง'
+        text: string = 'กรุณาตรวจสอบข้อมูลให้ถูกต้อง',
+        confirmButtonText?:string,
+        cancelButtonText?:string,
     ) {
         Swal.fire({
             title: title,
@@ -75,10 +77,11 @@ export class AlertService {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
+            confirmButtonText: confirmButtonText,
+            cancelButtonText: cancelButtonText
         }).then((result) => {
             if (result.value) {
-                Swal.fire('Deleted!', 'Your file has been deleted.', 'success')
+                Swal.fire('Deleted!', 'Your file has been deleted.', 'info')
             }
         })
     }
