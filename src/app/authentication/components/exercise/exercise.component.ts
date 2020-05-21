@@ -5,12 +5,14 @@ import { QuizService, IQuiz } from '../../services/quiz.service'
 import { AppURL } from 'src/app/app.url'
 import { AuthURL } from '../../authentication.url'
 import { AccountService } from 'src/app/share/services/account.service'
+import { GradeService } from '../../services/grade.service'
+
 
 @Component({
     selector: 'app-exercise',
     templateUrl: './exercise.component.html',
     styleUrls: ['./exercise.component.css'],
-    providers: [QuizService],
+    providers: [QuizService, GradeService],
 })
 export class ExerciseComponent implements OnInit {
     _id: string
@@ -26,10 +28,19 @@ export class ExerciseComponent implements OnInit {
         private alert: AlertService,
         private quiz: QuizService,
         private account: AccountService,
-        private router: Router
+        private router: Router,
+        private grade: GradeService
     ) {
         this.activateRouter.queryParams.forEach((params) => {
             this._id = params.id
+        })
+
+        // เรียกดูคะแนนถ้ามีคะแนนแล้ว แสดงว่าทำ PRE-TEST แล้วไม่สามารถทำได้
+        this.grade.getScoreExercise('5ebfd57615e8ec0024ab6faa').then(result=>{
+            if(result.total_items>0){
+                this.alert.success('คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' + result.item.score);
+                this.router.navigate(['', AppURL.Authen,AuthURL.Home]);
+            }
         })
 
         this.quiz
@@ -41,6 +52,7 @@ export class ExerciseComponent implements OnInit {
                     this.alert.something_wrong()
                     this.router.navigate(['', AppURL.Authen, AuthURL.Home])
                 }
+                // console.log(result);
             })
             .catch(() => {
                 this.alert.something_wrong()
@@ -75,7 +87,7 @@ export class ExerciseComponent implements OnInit {
         for(var i=0;i<this.total_items;i++){
             this.total_score += this.your_answer[i].score
         }
-        this.alert.success("คะแนนของคุณ คือ " + this.total_score);
+        
 
         var obj = {
             ref:this._id,
@@ -84,7 +96,10 @@ export class ExerciseComponent implements OnInit {
             user: this.account.UserLogin._id
         }
 
-        console.log(obj);
+        this.grade.addScoreExercise(obj).then(()=>{
+            this.alert.success("คะแนน PRE-TEST ของคุณ คือ " + this.total_score);
+            this.router.navigate(['',AppURL.Authen,AuthURL.Home]);
+        })
     }
 
     onNextExercise() {
