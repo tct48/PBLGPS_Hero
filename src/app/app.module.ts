@@ -13,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { CarouselModule } from 'ngx-bootstrap/carousel'
 import { PaginationModule } from 'ngx-bootstrap/pagination'
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular'
-import { ProgressbarModule } from 'ngx-bootstrap/progressbar'
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 // component
@@ -32,6 +32,7 @@ import { InformationComponent } from './authentication/components/information/in
 import { ManageResourceComponent } from './authentication/components/manage-resource/manage-resource.component'
 
 
+
 import {
   CloudinaryModule,
   CloudinaryConfiguration,
@@ -44,6 +45,7 @@ import { AuthenticationModule } from './authentication/authentication.module'
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { QuizComponent } from './authentication/components/quiz/quiz.component'
 import {MatRadioModule} from '@angular/material/radio';
+import { ExerciseComponent } from './authentication/components/exercise/exercise.component'
 
 @NgModule({
     declarations: [
@@ -58,6 +60,7 @@ import {MatRadioModule} from '@angular/material/radio';
         SignupComponent,
         ContentComponent,
         ResourceComponent,
+        ExerciseComponent,
         HomepageComponent,
         InformationComponent,
         LeaderboardComponent,
@@ -77,11 +80,11 @@ import {MatRadioModule} from '@angular/material/radio';
         TabsModule.forRoot(),
         TooltipModule.forRoot(),
         BrowserAnimationsModule,
-        CollapseModule.forRoot(),
+        CollapseModule.forRoot(), 
         CarouselModule.forRoot(),
+        ProgressbarModule.forRoot(),
         TypeaheadModule.forRoot(),
         PaginationModule.forRoot(),
-        ProgressbarModule.forRoot(),
         CloudinaryModule.forRoot({ Cloudinary }, {
             cloud_name: 'hgflnfcwf',
         } as CloudinaryConfiguration),

@@ -1,0 +1,56 @@
+<app-auth-content>
+    <div class="border-aqua border-bottom mb-4" *ngIf="item">
+        <div class="container">
+            <h4>
+                <i class="fa fa-newspaper-o" aria-hidden="true"></i> แบบทดสอบ {{ item.name }}
+            </h4>
+            <p>
+                เพิ่มแบบฝึกหัดให้สอดคล้องกับ แหล่งการเรียนรู้
+                หรือตรงกับข้อการวัดประเมินผล {{ item.detail }}
+            </p>
+        </div>
+    </div>
+    
+    <h5 class="text-center">
+        วิชาการสื่อสารข้อมูล และเครือข่าย<br>
+        แบบทดสอบก่อนเรียน
+    </h5>
+    <p *ngIf="item"><b>คำชี้แจง : </b>แบบทดสอบก่อนเรียนนี้ เป็นแบบทดสอบแบบ 4 ตัวเลือก n จำนวน </p>
+
+    <div class="row">
+        <div class="col-md-10">
+            <div class="card my-4 text-black"
+            style="border:1px solid rgb(90,156,255);border-left: 10px solid rgb(90, 156, 255);"
+            *ngIf="item"
+            >
+            <div class="card-header">
+              <p style="font-size: x-large;margin:0px;">
+                  {{ item.choice[index].question }}
+              </p>
+            </div>
+            <div class="card-body">
+              <!-- radio button -->
+              <span>
+                <div class="input-group mb-2" *ngFor="let data of item.choice[index].answer">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="radio" name="data._id"  aria-label="Radio button for following text input">
+                    </div>
+                  </div>
+                  <input type="text" [value]="data.name" class="form-control" aria-label="Text input with radio button">
+                </div>
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-2 mt-4">
+            <p>คำถามที่ {{ index +1 }}/2 | page {{ index +1 }}/2</p>
+            <progressbar max="2" [value]="index+1" type="success" striped="true" animate="true"></progressbar>
+        </div>
+    </div>
+    
+    <button class="btn btn-primary" (click)="onPreviousExercise()" *ngIf="index>0"> << ย้อนกลับ</button> &nbsp;
+    <button class="btn btn-primary button-next" (click)="onNextExercise()">ต่อไป >></button>
+    
+</app-auth-content>

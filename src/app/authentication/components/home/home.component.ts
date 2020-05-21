@@ -6,6 +6,9 @@ import {
     AccountService,
 } from 'src/app/share/services/account.service'
 import { DomSanitizer } from '@angular/platform-browser'
+import { Router } from '@angular/router'
+import { AppURL } from 'src/app/app.url'
+import { AuthURL } from '../../authentication.url'
 
 @Component({
     selector: 'app-home',
@@ -17,7 +20,8 @@ export class HomeComponent implements OnInit {
         private alert: AlertService,
         private authen: AuthenService,
         private account: AccountService,
-        private sanitizer: DomSanitizer
+        private sanitizer: DomSanitizer,
+        private router: Router
     ) {
         this.account
             .getUserLogin(this.authen.getAuthenticated())
@@ -31,8 +35,10 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    onClickPreTest() {
-        this.alert.notify('Okay')
+    onClickPreTest(id:string) {
+        this.router.navigate(['', AppURL.Authen, AuthURL.Exercise], {
+            queryParams: { id },
+        })
     }
 
     onClickPrPS() {

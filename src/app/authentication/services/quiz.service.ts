@@ -9,21 +9,24 @@ export class QuizService {
     getAllQuiz(ref: string) {
         return this.http
             .requestGet(`quiz/${ref}`, this.authen.getAuthenticated())
-            .toPromise() as Promise<IQuiz>
+            .toPromise() as Promise<any>
+    }
+
+    addQuiz(model:any){
+        return this.http
+        .requestPost(`quiz/`, model)
+        .toPromise() as Promise<IQuiz>
     }
 }
 
 export interface IQuiz {
-    total_items?: number
-    items?: string
+    message?:string,
 
+    choice: Object,
+    
+    created: Date,
+    detail: string,
+    name: string,
+    ref: string,
     _id: string
-    question: string
-    choice: string
-
-    answer: string
-    point: number
-
-    type: string
-    ref?: string
 }

@@ -6,6 +6,7 @@ import { MemberService } from './services/member.service'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { ValidatorsService } from './services/validator.service'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
+import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { FooterComponent } from './components/footer/footer.component'
 import { NavBarComponent } from './components/nav-bar/nav-bar.component'
 import { AuthContentComponent } from './components/auth-content/auth-content.component'
@@ -18,6 +19,7 @@ import { AuthContentComponent } from './components/auth-content/auth-content.com
         RouterModule,
         MatSnackBarModule,
         ReactiveFormsModule,
+        MatProgressBarModule,
     ],
     exports: [
         FormsModule,

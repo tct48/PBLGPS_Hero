@@ -2,239 +2,272 @@
 /* CSS ที่เขียนเอง */
 
 div .custom-menu {
-    margin-top: 0px;
+  margin-top: 0px;
 }
 
-.btn-blue{
+.btn-blue {
   background-color: rgb(90, 156, 255);
 }
 
 .app-nav {
-    position: fixed;
-    top: 0px;
-    right: 0px;
+  position: fixed;
+  top: 0px;
+  right: 0px;
 }
 
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .header-hover:hover {
-    color: orangered;
-    cursor: pointer;
+  color: orangered;
+  cursor: pointer;
 }
 
 mat-form-field {
-    margin-right: 12px;
+  margin-right: 12px;
 }
 
 .ng-content {
-    background-color: white;
-    min-height: calc(100vh - 173px);
-    box-shadow: -1px 10px 23px 0px rgba(143, 135, 143, 0.55);
+  background-color: white;
+  min-height: calc(100vh - 173px);
+  box-shadow: -1px 10px 23px 0px rgba(143, 135, 143, 0.55);
 }
 
 .boder-right {
-    border: 1px solid black;
+  border: 1px solid black;
 }
 
 .nav-link:hover {
-    color: white !important;
+  color: white !important;
 }
 
 div.custom-menu div ul li {
-    float: left;
+  float: left;
 }
 
 div.custom-menu div ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
 .custom-menu ul li a:hover {
-    background-color: #111;
+  background-color: #111;
 }
 
 .main-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: white;
-    color: slategrey;
-    text-align: center;
-    z-index: 40;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  color: slategrey;
+  text-align: center;
+  z-index: 40;
 }
 
 .img-avater {
-    max-width: 50px;
-    height: auto;
-    border-radius: 50em;
+  max-width: 50px;
+  height: auto;
+  border-radius: 50em;
 }
 
 /* for button chapter */
 .animate {
-    transition: all 0.1s;
-    -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
 }
 
 .action-button {
-    position: relative;
-    padding: 6px 40px;
-    margin: 0px 10px 10px 0px;
-    float: left;
-    border-radius: 10px;
-    font-size: 25px;
-    text-align: center;
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
+  position: relative;
+  padding: 6px 40px;
+  margin: 0px 10px 10px 0px;
+  float: left;
+  border-radius: 10px;
+  font-size: 25px;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .action-button:hover {
-    color: #fff;
+  color: #fff;
 }
 
 .action-button:active {
-    transform: translate(0px, 5px);
-    -webkit-transform: translate(0px, 5px);
-    border-bottom: 1px solid;
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  border-bottom: 1px solid;
 }
 
 /* end */
 
 .button-blue {
-    background-color: #3498db;
-    border-bottom: 5px solid #2980b9;
-    text-shadow: 0px -2px #2980b9;
+  background-color: #3498db;
+  border-bottom: 5px solid #2980b9;
+  text-shadow: 0px -2px #2980b9;
 }
 
 .button-red {
-    background-color: #3b74de;
-    border-bottom: 5px solid #0a42a9;
-    text-shadow: 0px -2px #1759d4;
+  background-color: #3b74de;
+  border-bottom: 5px solid #0a42a9;
+  text-shadow: 0px -2px #1759d4;
 }
 
 /* for .leaderboard */
 .leaderboard a {
-    text-decoration: none;
+  text-decoration: none;
 }
+
 .leaderboard {
-    width: 600px;
-    margin: auto;
-    height: 290px;
-    box-sizing: border-box;
-    padding: 80px 15px 10px 15px;
-    background-image: url('./assets/image/leaderboard.png');
-    box-shadow: 0 0 3px black;
+  width: 600px;
+  margin: auto;
+  height: 290px;
+  box-sizing: border-box;
+  padding: 80px 15px 10px 15px;
+  background-image: url('./assets/image/leaderboard.png');
+  box-shadow: 0 0 3px black;
 }
+
 .leaderboard .data {
-    text-shadow: 2px 2px black;
-    height: 35px;
-    text-align: center;
-    margin-top: 10px;
+  text-shadow: 2px 2px black;
+  height: 35px;
+  text-align: center;
+  margin-top: 10px;
 }
+
 .leaderboard .data:hover {
-    color: orangered;
-    text-shadow: 2px 2px black;
-    cursor: pointer;
-    background-color: #19172b;
+  color: orangered;
+  text-shadow: 2px 2px black;
+  cursor: pointer;
+  background-color: #19172b;
 }
+
 .leaderboard .center {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-    margin: auto;
-    width: 800px;
-    background-color: white;
-    box-shadow: 0 0 5px black;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+  margin: auto;
+  width: 800px;
+  background-color: white;
+  box-shadow: 0 0 5px black;
 }
 
 /* avatar-image */
 img.avatar-image,
 pdf-viewer.avatar-image,
 iframe.avatar-image {
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    padding: 5px;
-    max-width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 5px;
+  max-width: 100%;
 }
 
 img.avatar-image-member {
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    padding: 2px;
-    max-width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 2px;
+  max-width: 100%;
 }
+
 img.avatar-image:hover {
-    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-    cursor: pointer;
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+  cursor: pointer;
 }
 
 /*badge*/
 .show-badge img {
-    padding: 3px 8px 3px 8px;
+  padding: 3px 8px 3px 8px;
 }
 
 @media (min-width: 576px) {
-    div.custom-menu {
-        margin-top: 0px;
-    }
+  div.custom-menu {
+    margin-top: 0px;
+  }
 }
 
 @media (max-width: 576px) {
-    .leaderboard {
-        width: 100%;
-    }
+  .leaderboard {
+    width: 100%;
+  }
 }
 
 @media (min-width: 375px) {
-    div.custom-menu {
-        margin-top: 15px;
-    }
+  div.custom-menu {
+    margin-top: 15px;
+  }
 }
 
 @media (max-width: 375px) {
-    div.custom-menu div ul li a {
-        display: block;
-        width: 100%;
-        padding: 10px 0 10px 0;
-    }
+  div.custom-menu div ul li a {
+    display: block;
+    width: 100%;
+    padding: 10px 0 10px 0;
+  }
 
-    .leaderboard {
-        width: 100%;
-    }
+  .leaderboard {
+    width: 100%;
+  }
 
-    .app-header {
-        text-align: center;
-    }
+  .app-header {
+    text-align: center;
+  }
 
-    div.custom-menu div ul li {
-        float: none;
-        display: block;
-        width: 100%;
-    }
+  div.custom-menu div ul li {
+    float: none;
+    display: block;
+    width: 100%;
+  }
 }
 
 @media (min-width: 992px) {
-    div.custom-menu {
-        margin-top: 0px;
-    }
+  div.custom-menu {
+    margin-top: 0px;
+  }
 }
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
+
 body {
-    margin: 0;
-    font-family: Roboto, 'Helvetica Neue', sans-serif;
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 /* invalid textbox */
 .ng-invalid.ng-touched {
-    border-color: orangered;
+  border-color: orangered;
+}
+
+
+/* custom next button */
+.button-next{
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button-next:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button-next:hover span {
+  padding-right: 25px;
+}
+
+.button-next:hover span:after {
+  opacity: 1;
+  right: 0;
 }

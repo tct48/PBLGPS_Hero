@@ -3,16 +3,19 @@ import { Component, OnInit, ViewChild, ElementRef, EventEmitter } from '@angular
 
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class';
 import { AlertService } from 'src/app/share/services/alert.service';
+import { QuizService } from '../../services/quiz.service';
 
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
-  styleUrls: ['./quiz.component.css']
+  styleUrls: ['./quiz.component.css'],
+  providers: [ QuizService ]
 })
 export class QuizComponent implements OnInit {
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   constructor(
-    private alert : AlertService
+    private alert : AlertService,
+    private quiz : QuizService
   ) { }
 
   ngOnInit(): void {
@@ -55,12 +58,9 @@ export class QuizComponent implements OnInit {
       _id: index,
       question: ""
     });
-
-    console.log(this.article);
   }
 
   onAddSubArticle(index: number, minus?: any) {
-    console.log(index)
     if (!this.article[index].answer) {
       this.article[index].answer = [
         {
@@ -76,7 +76,6 @@ export class QuizComponent implements OnInit {
         correct: 0
       })
     }
-    console.log(this.article);
   }
 
   stack_main: number;
@@ -92,7 +91,19 @@ export class QuizComponent implements OnInit {
   }
 
   submit(){
-    this.alert.showWarning("คุณแน่ใจแล้วใช่หรือไม่ ?", "นี้เป็นการเพิ่มข้อมูลแบบฝึกหัดลงไปในทันที","เพิ่มข้อมูลแบบฝึกหัด", "ยกเลิก")
+    var obj = {
+      name: this.selectedOption.name,
+      detail: this.selectedOption.region,
+      choice : this.article,
+      ref : "5ebfd57615e8ec0024ab6faa" 
+    }
+    
+    this.quiz.addQuiz(obj).then(result=>{
+      this.alert.success(result.message);
+    })
+    .catch(err=>{
+      this.alert.notify(err.message)
+    })
   }
 }
 
