@@ -4,6 +4,7 @@ import { AlertService } from 'src/app/share/services/alert.service'
 import { QuizService, IQuiz } from '../../services/quiz.service'
 import { AppURL } from 'src/app/app.url'
 import { AuthURL } from '../../authentication.url'
+import { AccountService } from 'src/app/share/services/account.service'
 
 @Component({
     selector: 'app-exercise',
@@ -16,12 +17,15 @@ export class ExerciseComponent implements OnInit {
     total_items: number
     item: IQuiz
     index: number = 0
-    total_score:number;
+    total_score: number
+
+    your_answer: any[] = []
 
     constructor(
         private activateRouter: ActivatedRoute,
         private alert: AlertService,
         private quiz: QuizService,
+        private account: AccountService,
         private router: Router
     ) {
         this.activateRouter.queryParams.forEach((params) => {
@@ -31,12 +35,12 @@ export class ExerciseComponent implements OnInit {
         this.quiz
             .getAllQuiz(this._id)
             .then((result) => {
-                this.item = result.items[0]
+                this.item = result.items
+                this.total_items = result.total_items
                 if (!this.item) {
                     this.alert.something_wrong()
                     this.router.navigate(['', AppURL.Authen, AuthURL.Home])
                 }
-                console.log(this.item)
             })
             .catch(() => {
                 this.alert.something_wrong()
@@ -46,8 +50,45 @@ export class ExerciseComponent implements OnInit {
 
     ngOnInit(): void {}
 
+    choose(score, index: number, j: number) {
+        this.your_answer[index] = {
+            select: j,
+            score: score,
+        }
+    }
+
+    onSelect(index: number, j) {
+        // index = ข้อ
+        if (this.your_answer[index]) {
+            if (this.your_answer[index].select == j) {
+                return true
+            }
+        }
+
+        return false
+    }
+
+    onSubmit() {
+        this.total_score=0;
+
+        // Array of numbers
+        for(var i=0;i<this.total_items;i++){
+            this.total_score += this.your_answer[i].score
+        }
+        this.alert.success("คะแนนของคุณ คือ " + this.total_score);
+
+        var obj = {
+            ref:this._id,
+            name: this.item.name,
+            score: this.total_score,
+            user: this.account.UserLogin._id
+        }
+
+        console.log(obj);
+    }
+
     onNextExercise() {
-        if (this.index == 2 - 1) {
+        if (this.index == this.total_items - 1) {
             return
         }
         this.index += 1

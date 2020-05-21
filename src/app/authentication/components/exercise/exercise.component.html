@@ -15,7 +15,7 @@
         วิชาการสื่อสารข้อมูล และเครือข่าย<br>
         แบบทดสอบก่อนเรียน
     </h5>
-    <p *ngIf="item"><b>คำชี้แจง : </b>แบบทดสอบก่อนเรียนนี้ เป็นแบบทดสอบแบบ 4 ตัวเลือก n จำนวน </p>
+    <p *ngIf="item"><b>คำชี้แจง : </b>แบบทดสอบก่อนเรียนนี้ เป็นแบบทดสอบแบบ 4 ตัวเลือก {{ total_items }} จำนวน </p>
 
     <div class="row">
         <div class="col-md-10">
@@ -31,13 +31,13 @@
             <div class="card-body">
               <!-- radio button -->
               <span>
-                <div class="input-group mb-2" *ngFor="let data of item.choice[index].answer">
+                <div class="input-group mb-2" *ngFor="let data of item.choice[index].answer;let j = index;">
                   <div class="input-group-prepend">
                     <div class="input-group-text">
-                      <input type="radio" name="data._id"  aria-label="Radio button for following text input">
+                      <input type="radio" [checked]="onSelect(index,j)" (click)="choose(data.correct,index,j)" value="data.correct" name="item.choice[index]._id"  aria-label="Radio button for following text input">
                     </div>
                   </div>
-                  <input type="text" [value]="data.name" class="form-control" aria-label="Text input with radio button">
+                  <input type="text" [value]="data.name" class="form-control" aria-label="Text input with radio button" readonly=true>
                 </div>
               </span>
             </div>
@@ -45,12 +45,13 @@
         </div>
         
         <div class="col-md-2 mt-4">
-            <p>คำถามที่ {{ index +1 }}/2 | page {{ index +1 }}/2</p>
-            <progressbar max="2" [value]="index+1" type="success" striped="true" animate="true"></progressbar>
+            <p>คำถามที่ {{ index +1 }}/2 | page {{ index +1 }}/{{ total_items }}</p>
+            <progressbar max="2" [value]="your_answer.length" type="success" striped="true" animate="true"></progressbar>
         </div>
     </div>
     
     <button class="btn btn-primary" (click)="onPreviousExercise()" *ngIf="index>0"> << ย้อนกลับ</button> &nbsp;
-    <button class="btn btn-primary button-next" (click)="onNextExercise()">ต่อไป >></button>
+    <button class="btn btn-primary button-next" *ngIf="index!=total_items-1" (click)="onNextExercise()">ต่อไป >></button>
+    <button class="btn btn-primary button-next" style="border:1px solid darkgreen;background-color: rgb(44, 194, 94);" *ngIf="your_answer.length==total_items" (click)="onSubmit()">ส่งคำตอบ</button>
     
 </app-auth-content>
