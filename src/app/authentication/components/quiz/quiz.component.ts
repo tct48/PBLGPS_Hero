@@ -16,7 +16,13 @@ export class QuizComponent implements OnInit {
   constructor(
     private alert : AlertService,
     private quiz : QuizService
-  ) { }
+  ) { 
+    this.quiz.getAllChapter().then(result=>{
+      var data = this.states.concat(result.items)
+      
+      this.states=data;
+    })
+  }
 
   ngOnInit(): void {
   }
@@ -24,13 +30,8 @@ export class QuizComponent implements OnInit {
   selectedValue: string;
   selectedOption: any;
   states: any[] = [
-    { id: 1, name: 'Pre-test', region: 'South' },
-    { id: 2, name: 'PrPS Test', region: 'West' },
-    // { id: 3, name: 'หน่วยการเรียนรู้ที่ 1', region: 'West' },
-    // { id: 4, name: 'หน่วยการเรียนรู้ที่ 2', region: 'South' },
-    // { id: 5, name: 'หน่วยการเรียนรู้ที่ n', region: 'West' },
-    { id: 6, name: 'PoPs Test', region: 'West' },
-    { id: 7, name: 'Post-test', region: 'Northeast' }
+    { id: 1, name: 'Pre-test', _id: 'PRE-TEST' },
+    { id: 2, name: 'PrPS Test', _id: 'PRPS-TEST' },
   ];
 
   article: any[] = [];
@@ -39,7 +40,7 @@ export class QuizComponent implements OnInit {
 
   onSelect(event: TypeaheadMatch): void {
     this.selectedOption = event.item;
-    console.log(this.selectedOption);
+    // console.log(this.selectedOption.ref);
   }
 
   scrollToBottom(): void {
@@ -78,6 +79,14 @@ export class QuizComponent implements OnInit {
     }
   }
 
+  switchInput=0;
+  onSwitchInput(){
+    if(this.switchInput==0){
+      return this.switchInput=1;
+    }
+    this.switchInput=0;
+  }
+
   stack_main: number;
   stack_index: number;
   choose(event, main: number, index: number) {
@@ -91,13 +100,16 @@ export class QuizComponent implements OnInit {
   }
 
   submit(){
+    if(!this.selectedOption){
+      return this.alert.notify("กรุณาเลือก แบบฝึกหัด","แจ้งเตือน", "warning")
+    }
+
     var obj = {
       name: this.selectedOption.name,
       detail: this.selectedOption.region,
       choice : this.article,
-      ref : "5ebfd57615e8ec0024ab6faa" 
+      ref : this.selectedOption._id
     }
-    
     this.quiz.addQuiz(obj).then(result=>{
       this.alert.success(result.message);
     })

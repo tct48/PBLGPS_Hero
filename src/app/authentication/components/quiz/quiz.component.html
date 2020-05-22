@@ -33,7 +33,14 @@
         </div>
         <div class="col-md-2">
           <button class="btn btn-info btn-block"
-            style="background-color: rgb(90, 156, 255);border:0px;height: 100%;">หลายตัวเลือก</button>
+            style="background-color: rgb(90, 156, 255);border:0px;height: 100%;" (click)="onSwitchInput()">
+            <span *ngIf="switchInput==0">
+              หลายตัวเลือก
+            </span>
+            <span *ngIf="switchInput==1">
+              ตัวเลือกเดียว
+            </span>
+          </button>
         </div>
       </div>
     </div>
@@ -47,13 +54,14 @@
             </div>
             <button *ngIf="sub_data.correct==1" class="btn btn-blue text-white"><i class="fa fa-hand-o-right" aria-hidden="true"></i> ข้อนี้ถูกต้อง</button>
           </div>
-          <input type="text" class="form-control" aria-label="Text input with radio button" [(ngModel)]="sub_data.name" placeholder="ตัวเลือกที่ {{ j+1 }}">
+          <input *ngIf="switchInput==0" type="text" class="form-control" aria-label="Text input with radio button" [(ngModel)]="sub_data.name" placeholder="ตัวเลือกที่ {{ j+1 }}">
         </div>
       </span>
-      <a (click)="onAddSubArticle(i)"><i class="fa fa-plus"></i> เพิ่มตัวเลือก</a>
+      <!-- <textarea *ngIf="switchInput==1 " class="form-control" [(ngModel)]="article[i].answer"></textarea> -->
+      <a (click)="onAddSubArticle(i)" *ngIf="switchInput==0"><i class="fa fa-plus"></i> เพิ่มตัวเลือก</a>
     </div>
   </div>
-
+  
   <button class="btn btn-info" (click)="onAddArticle(article.length)"
     style="background-color: rgb(90, 156, 255);border:0px;height: 100%;">เพิ่มข้อแบบฝึกหัด</button>
   <button *ngIf="article.length>1" class="btn btn-info ml-1" (click)="onAddArticle(article.length-1,'minus')"

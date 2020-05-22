@@ -13,9 +13,9 @@
     
     <h5 class="text-center">
         วิชาการสื่อสารข้อมูล และเครือข่าย<br>
-        แบบทดสอบก่อนเรียน
+        {{ item?.name }}
     </h5>
-    <p *ngIf="item"><b>คำชี้แจง : </b>แบบทดสอบก่อนเรียนนี้ เป็นแบบทดสอบแบบ 4 ตัวเลือก {{ total_items }} จำนวน </p>
+    <p *ngIf="item"><b>คำชี้แจง : </b>แบบทดสอบก่อนเรียนนี้ เป็นแบบทดสอบแบบ 4 ตัวเลือก จำนวน {{ total_items }} ข้อ</p>
 
     <div class="row">
         <div class="col-md-10">
@@ -52,6 +52,6 @@
     
     <button class="btn btn-primary" (click)="onPreviousExercise()" *ngIf="index>0"> << ย้อนกลับ</button> &nbsp;
     <button class="btn btn-primary button-next" *ngIf="index!=total_items-1" (click)="onNextExercise()">ต่อไป >></button>
-    <button class="btn btn-primary button-next" style="border:1px solid darkgreen;background-color: rgb(44, 194, 94);" *ngIf="your_answer.length==total_items" (click)="onSubmit()">ส่งคำตอบ</button>
+    <button class="btn btn-primary button-next ml-2" style="border:1px solid darkgreen;background-color: rgb(44, 194, 94);" *ngIf="your_answer.length==total_items" (click)="onSubmit()">ส่งคำตอบ</button>
     
 </app-auth-content>

@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
     UserLogin: IAccount
     status:number = 0;
     preTest:number=0;
+    prpsTest:number=0;
 
     ngOnInit(): void {}
 
@@ -46,12 +47,11 @@ export class HomeComponent implements OnInit {
             return;
         }
         // เรียกดูคะแนนถ้ามีคะแนนแล้ว แสดงว่าทำ PRE-TEST แล้วไม่สามารถทำได้
-        this.grade.getScoreExercise('5ebfd57615e8ec0024ab6faa').then(result=>{
+        this.grade.getScoreExercise('PRE-TEST').then(result=>{
             if(result.total_items>0){
                 this.alert.success('คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' + result.item.score);
                 this.status=1;
                 this.preTest=result.item.score;
-                console.log("Request1")
                 return;
             }else{
                 this.router.navigate(['', AppURL.Authen, AuthURL.Exercise], {
@@ -64,21 +64,26 @@ export class HomeComponent implements OnInit {
         this.status=1;
     }
 
-    onClickPrPS() {
+    onClickPrPS(id:string) {
         if(this.status==2){
-            return this.alert.notify('กรุณาทำ "แบบฝึกหัดก่อนเรียน" ก่อน!','แจ้งเตือน','warning');
+            return this.alert.notify('ขณะนี้ระบบยังไม่เปิดการใช้งานแบบประเมินทักษะการแก้ปัญหา','แจ้งเตือน','warning');
+        }else if(this.status==3){
+            return this.alert.notify('กรุณาทำ "แบบฝึกหัดก่อนเรียน" ก่อน!')
+        }else if(this.status==4){
+            return this.alert.success('คะแนน "ประเมินทักษะการแก้ปัญหา" ของคุณคือ ' + this.prpsTest);
         }
         // เรียกดูคะแนนถ้ามีคะแนนแล้ว แสดงว่าทำ PRE-TEST แล้วไม่สามารถทำได้
-        this.grade.getScoreExercise('5ebfd57615e8ec0024ab6faa').then(result=>{
+        this.grade.getScoreExercise('PRPS-TEST').then(result=>{
             if(result.total_items==0){
-                this.alert.notify('กรุณาทำ "แบบฝึกหัดก่อนเรียน" ก่อน!');
-                this.status=2;
-                console.log("Request2")
+                this.router.navigate(['', AppURL.Authen, AuthURL.Exercise], {
+                    queryParams: { id },
+                })
+                this.status=3;
                 return;
             }else{
-                this.alert.notify("ขณะนี้ระบบยังไม่เปิดการใช้งานแบบประเมินทักษะการแก้ปัญหา!",'แจ้งเตือน','warning');
-                this.status=2;
-                console.log("Request2")
+                this.alert.success('คะแนน "ประเมินทักษะการแก้ปัญหา" ของคุณคือ ' + result.item.score);
+                this.status=4;
+                this.prpsTest=result.item.score;
             }
         })
     }

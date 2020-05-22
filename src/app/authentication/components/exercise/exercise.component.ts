@@ -6,7 +6,7 @@ import { AppURL } from 'src/app/app.url'
 import { AuthURL } from '../../authentication.url'
 import { AccountService } from 'src/app/share/services/account.service'
 import { GradeService } from '../../services/grade.service'
-
+import { AuthenService } from 'src/app/services/authen.service'
 
 @Component({
     selector: 'app-exercise',
@@ -29,20 +29,35 @@ export class ExerciseComponent implements OnInit {
         private quiz: QuizService,
         private account: AccountService,
         private router: Router,
-        private grade: GradeService
+        private grade: GradeService,
+        private authen: AuthenService
     ) {
         this.activateRouter.queryParams.forEach((params) => {
             this._id = params.id
         })
 
-        // เรียกดูคะแนนถ้ามีคะแนนแล้ว แสดงว่าทำ PRE-TEST แล้วไม่สามารถทำได้
-        this.grade.getScoreExercise('5ebfd57615e8ec0024ab6faa').then(result=>{
-            if(result.total_items>0){
-                this.alert.success('คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' + result.item.score);
-                this.router.navigate(['', AppURL.Authen,AuthURL.Home]);
-            }
-        })
+        this.account
+            .getUserLogin(this.authen.getAuthenticated())
+            .then((result) => {
+                // เรียกดูคะแนนถ้ามีคะแนนแล้ว แสดงว่าทำ PRE-TEST แล้วไม่สามารถทำได้
+                this.grade
+                    .getScoreExercise(this._id)
+                    .then((result) => {
+                        if (result.total_items > 0) {
+                            this.alert.success(
+                                'คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' +
+                                    result.item.score
+                            )
+                            this.router.navigate([
+                                '',
+                                AppURL.Authen,
+                                AuthURL.Home,
+                            ])
+                        }
+                    })
+            });
 
+        // โหลดข้อมูลแบบฝึกหัด
         this.quiz
             .getAllQuiz(this._id)
             .then((result) => {
@@ -81,24 +96,23 @@ export class ExerciseComponent implements OnInit {
     }
 
     onSubmit() {
-        this.total_score=0;
+        this.total_score = 0
 
         // Array of numbers
-        for(var i=0;i<this.total_items;i++){
+        for (var i = 0; i < this.total_items; i++) {
             this.total_score += this.your_answer[i].score
         }
-        
 
         var obj = {
-            ref:this._id,
+            ref: this._id,
             name: this.item.name,
             score: this.total_score,
-            user: this.account.UserLogin._id
+            user: this.account.UserLogin._id,
         }
 
-        this.grade.addScoreExercise(obj).then(()=>{
-            this.alert.success("คะแนน PRE-TEST ของคุณ คือ " + this.total_score);
-            this.router.navigate(['',AppURL.Authen,AuthURL.Home]);
+        this.grade.addScoreExercise(obj).then(() => {
+            this.alert.success('คะแนน PRE-TEST ของคุณ คือ ' + this.total_score)
+            this.router.navigate(['', AppURL.Authen, AuthURL.Home])
         })
     }
 

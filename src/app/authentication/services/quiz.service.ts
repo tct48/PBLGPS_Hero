@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core'
 import { HttpService } from 'src/app/services/http.service'
 import { AuthenService } from 'src/app/services/authen.service'
+import { IChapter } from './resource.service'
+import { IResponse } from './member.service'
 
 @Injectable()
 export class QuizService {
@@ -9,6 +11,16 @@ export class QuizService {
     getAllQuiz(ref: string) {
         return this.http
             .requestGet(`quiz/${ref}`, this.authen.getAuthenticated())
+            .toPromise() as Promise<any>
+    }
+
+    getAllChapter(){
+        return this.http.requestGet('chapter', this.authen.getAuthenticated())
+            .toPromise() as Promise<any>
+    }
+
+    getChapterByID(_id:string){
+        return this.http.requestGet(`chapter/${_id}`, this.authen.getAuthenticated())
             .toPromise() as Promise<any>
     }
 

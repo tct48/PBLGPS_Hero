@@ -12,17 +12,19 @@ import {
   AccountService,
   IAccount,
 } from 'src/app/share/services/account.service'
+import { GradeService } from '../../services/grade.service'
 
 
 @Component({
   selector: 'app-information',
   templateUrl: './information.component.html',
   styleUrls: ['./information.component.css'],
-  providers: [MemberService, LevelService],
+  providers: [MemberService, LevelService, GradeService],
 })
 export class InformationComponent implements OnInit {
   constructor(
     private router: Router,
+    private grade : GradeService,
     private alert: AlertService,
     private builder: FormBuilder,
     private authen: AuthenService,
@@ -59,8 +61,15 @@ export class InformationComponent implements OnInit {
 
   // เปิดดูคะแนนรายหัวข้อ
   onOpenScore(title: string) {
-    var score = Math.floor(Math.random() * 101)
-    return this.alert.showScore(title, score)
+    this.grade.getScoreExercise(title).then(result=>{
+      if(result.total_items>0)
+      return this.alert.showScore(result.item.name, result.item.score)
+
+      this.alert.notify("ยังไม่มีคะแนนส่วนดังกล่าว!")
+    })
+    .catch(err=>{
+      this.alert.notify("ยังไม่มีคะแนนส่วนดังกล่าว!")
+    })
   }
 
   // โหลด UserLogin

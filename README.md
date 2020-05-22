@@ -33,3 +33,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## ขั้นถัดไป
 - ทำเมื่อได้คะแนนแล้วทำแทรกเหรียญตรา ลงใน user && เพิ่ม EXP
+- แบบทดสอบหลายตัวเลือกเปลี่ยนเป็น ตัวเลือกเดียว text_area

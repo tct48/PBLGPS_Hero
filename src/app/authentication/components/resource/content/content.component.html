@@ -73,16 +73,16 @@
           </ul>
         </li>
         <!-- หัวข้อ 3 -->
-        <li *ngIf="item?.hypertext.text">
+        <li *ngIf="item?.hypertext.text"> 
           <span>{{ item.hypertext.title }}</span>
           <div style="max-width: 100%;" [innerHtml]="item.hypertext.text"></div>
         </li>
       </ul>
 
-      <button (click)="startQuiz(item._id)" class="btn btn-primary" *ngIf="item?.quiz == 1">
+      <button (click)="startQuiz(item._id)" class="btn btn-primary" *ngIf="total_item">
         แบบฝึกหัด
       </button>
-      <button class="btn btn-seccondary" *ngIf="item?.quiz == 0" disabled>
+      <button class="btn btn-seccondary" *ngIf="!total_item" disabled>
         ยังไม่มีแบบฝึกหัด
       </button>
     </div>
