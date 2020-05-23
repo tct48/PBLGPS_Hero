@@ -26,12 +26,12 @@
     style="border:1px solid rgb(90,156,255);border-left: 10px solid rgb(90, 156, 255);">
     <div class="card-header">
       <div class="row">
-        <div class="col-md-10" style="padding-left: 10;">
+        <div class="col-md-12" style="padding-left: 10;">
           <input type="text"
             style="display: block;width: 100%;background-color: rgba(0, 0, 0, 0);border:0px;border-bottom: 2px solid rgb(212, 212, 212);font-size:xx-large;"
             placeholder="คำถาม ?" [(ngModel)]="data.question" required />
-        </div>
-        <div class="col-md-2">
+        </div> 
+        <!-- <div class="col-md-2">
           <button class="btn btn-info btn-block"
             style="background-color: rgb(90, 156, 255);border:0px;height: 100%;" (click)="onSwitchInput()">
             <span *ngIf="switchInput==0">
@@ -41,7 +41,7 @@
               ตัวเลือกเดียว
             </span>
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="card-body">

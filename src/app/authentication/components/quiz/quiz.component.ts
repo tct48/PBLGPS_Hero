@@ -31,7 +31,6 @@ export class QuizComponent implements OnInit {
   selectedOption: any;
   states: any[] = [
     { id: 1, name: 'Pre-test', _id: 'PRE-TEST' },
-    { id: 2, name: 'PrPS Test', _id: 'PRPS-TEST' },
   ];
 
   article: any[] = [];
