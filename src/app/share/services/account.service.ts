@@ -29,7 +29,8 @@ export class AccountService {
         this.UserLogin.sid = UserLogin.sid
         this.UserLogin.role = UserLogin.role
         this.UserLogin.exp = UserLogin.exp
-        // console.log(this.UserLogin.image);
+        this.UserLogin.class = UserLogin.class
+        // console.log(this.UserLogin);
         return this.UserLogin
     }
 
@@ -93,6 +94,7 @@ export interface IAccount {
     email: string
     phone: string
 
+    class?:string
     image?: string
     sid?: string
 

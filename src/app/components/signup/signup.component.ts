@@ -27,9 +27,6 @@ export class SignupComponent implements OnInit {
         private account: AccountService,
         private router: Router,
         private validator: ValidatorsService,
-        private http: HttpClient,
-        private https: HttpService,
-        private authen: AuthenService
     ) {
         this.createFormData()
     }
@@ -40,6 +37,7 @@ export class SignupComponent implements OnInit {
     form: FormGroup
     member: IMember
     selectedFile: File = null
+    year=new Date().getFullYear()+543
 
     // สร้างฟอร์ม
     createFormData() {
@@ -52,6 +50,7 @@ export class SignupComponent implements OnInit {
             // c_password: ['',[Validators.required, this.validator.comparePassword('password')]],
             phone: ['', Validators.required],
             email: ['', Validators.required],
+            class: ['', Validators.required],
             image: [''],
         })
     }

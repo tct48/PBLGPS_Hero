@@ -46,6 +46,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { QuizComponent } from './authentication/components/quiz/quiz.component'
 import {MatRadioModule} from '@angular/material/radio';
 import { ExerciseComponent } from './authentication/components/exercise/exercise.component'
+import { SubMenuComponent } from './authentication/components/sub-menu/sub-menu.component'
 
 @NgModule({
     declarations: [
@@ -58,6 +59,7 @@ import { ExerciseComponent } from './authentication/components/exercise/exercise
         MemberComponent,
         SigninComponent,
         SignupComponent,
+        SubMenuComponent,
         ContentComponent,
         ResourceComponent,
         ExerciseComponent,

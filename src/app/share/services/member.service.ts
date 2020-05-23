@@ -17,6 +17,13 @@ export class MemberService {
     getTopPlayer() {
         return this.http
             .requestGet('user/leaderboard', this.authen.getAuthenticated())
-            .toPromise() as Promise<IMember>
+            .toPromise() as Promise<ITopPlayer>
     }
+}
+
+export interface ITopPlayer{
+    items:any,
+    username:string,
+    exp: number,
+    badge:any
 }

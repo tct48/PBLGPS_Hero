@@ -48,6 +48,7 @@ export class InformationComponent implements OnInit {
   form: FormGroup;
   image_name: String;
   UserLogin: IAccount;
+  year=new Date().getFullYear()+543;
   x: String = 'user/image/olqpjyoomeqmsfmvjww3'
 
   badge=["Design", "Device", "Final_City", "Internet", "IP", "LAN", "Monitor", "NOS", "Novice", "Overview", "Security", "Transmission", "WLAN"];
@@ -98,6 +99,7 @@ export class InformationComponent implements OnInit {
       lastname: ['', [Validators.required]],
       phone: ['', [Validators.required]],
       email: ['', [Validators.required]],
+      class: ['', [Validators.required]]
     })
   }
 
@@ -118,6 +120,7 @@ export class InformationComponent implements OnInit {
           this.form.controls['lastname'].setValue(
             result.items[0].lastname
           )
+          this.form.controls['class'].setValue(result.items[0].class)
           this.exp = result.items[0].exp
           this.level = this.level_service.calculateLevel(this.exp)
 
@@ -135,6 +138,7 @@ export class InformationComponent implements OnInit {
         this.form.controls['firstname'].setValue(result.firstname)
         this.form.controls['sid'].setValue(result.sid)
         this.form.controls['lastname'].setValue(result.lastname)
+        this.form.controls['class'].setValue(result.class)
         console.log(result)
         this.exp = result.exp
         this.level = this.level_service.calculateLevel(this.exp)

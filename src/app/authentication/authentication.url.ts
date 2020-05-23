@@ -9,4 +9,5 @@ export const AuthURL = {
     ManageResource: 'manage-resource',
     Exercise : 'exercise',
     Quiz: 'quiz',
+    Menu: 'menu'
 }

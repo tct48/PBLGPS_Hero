@@ -10,6 +10,7 @@ import { ManageResourceComponent } from './components/manage-resource/manage-res
 import { QuizComponent } from './components/quiz/quiz.component';
 import { AppURL } from '../app.url';
 import { ExerciseComponent } from './components/exercise/exercise.component';
+import { SubMenuComponent } from './components/sub-menu/sub-menu.component';
 
 const RouterLists: Routes = [
     { path: '', redirectTo: AppURL.Login, pathMatch: 'full' },
@@ -21,7 +22,8 @@ const RouterLists: Routes = [
     { path: AuthURL.Member, component: MemberComponent },
     { path: AuthURL.Quiz, component: QuizComponent },
     { path: AuthURL.ManageResource, component: ManageResourceComponent },
-    { path : AuthURL.Exercise, component: ExerciseComponent}
+    { path : AuthURL.Exercise, component: ExerciseComponent},
+    { path: AuthURL.Menu, component: SubMenuComponent }
     // { path: AuthURL.Signin , component:SigninComponent }
 ];
 
