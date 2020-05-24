@@ -67,8 +67,10 @@
             <input class="form-control" formControlName="email" placeholder="email@email.com" />
           </div>
           <div class="form-group">
-            <label for="disabledTextInput">ระดับชั้นปีการศึกษา :</label>
-            <input class="form-control" formControlName="class" [placeholder]="year" />
+            <label for="disabledTextInput">ระดับชั้นเรียน :</label>
+            <input [(ngModel)]="selectedValue" formControlName="class" [typeahead]="states" [typeaheadMinLength]="0" typeaheadOptionsLimit="5"
+              typeaheadOptionField="name" placeholder="หน่วยการเรียนรู้ที่ 1,2,3" [isAnimated]="true"
+              (typeaheadOnSelect)="onSelect($event)" class="form-control" required>
           </div>
           <div class="form-group">
             <label for="disabledTextInput">รูปภาพ :</label>

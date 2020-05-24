@@ -31,6 +31,38 @@ export class MemberService {
             .toPromise() as Promise<IMember>
     }
 
+    // เพิ่มชั้นเรียน
+    addClassroom(model:any){
+        return this.http.requestPost('classroom',model)
+        .toPromise() as Promise<IClassroom>
+    }
+
+    returnClassroom(model:any){
+        return this.http.requestGet(`classroom/${model}`, this.authen.getAuthenticated())
+        .toPromise() as Promise<IClassroom>
+    }
+
+    // ลบชั้นเรียน
+    deleteClassroom(id:any){
+        return this.http.requestDelete(`classroom/${id}`,this.authen.getAuthenticated())
+        .toPromise() as Promise<IClassroom>
+    }
+
+    // โหลดห้องเรียนทั้งหมด
+    loadClassroom(option?: OptionSearch){
+        if(!option)
+        return this.http.requestGet(`classroom?sp=0&lp=10`,this.authen.getAuthenticated())
+        .toPromise() as Promise<IClassroom>
+        return this.http.requestGet(`classroom?sp=${option.sp}&lp=${option.lp}`,this.authen.getAuthenticated())
+        .toPromise() as Promise<IClassroom>
+    }
+
+    // โหลดสมาชิกในห้องเรียนทั้งหมด
+    loadMemberFromClassroom(model:any){
+        return this.http.requestGet(`classroom/student/${model}`,this.authen.getAuthenticated())
+        .toPromise() as Promise<IMember>
+    }
+
     onChangePassword(model:any){
         return this.http.requestPost('user/changePassword', model)
             .toPromise() as Promise<IResponse>;
@@ -45,6 +77,15 @@ export class MemberService {
 
 export interface IResponse {
     message: string
+}
+
+export interface IClassroom{3
+    total_items?:number
+    items?:any
+    message?:string
+
+    _id:String;
+    name:String;
 }
 
 export interface OptionSearch {
@@ -69,4 +110,5 @@ export interface IMember {
     picture: string
     exp?: number
     activity?: Date
+    class?:string
 }

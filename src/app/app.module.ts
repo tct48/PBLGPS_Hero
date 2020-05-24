@@ -47,6 +47,7 @@ import { QuizComponent } from './authentication/components/quiz/quiz.component'
 import {MatRadioModule} from '@angular/material/radio';
 import { ExerciseComponent } from './authentication/components/exercise/exercise.component'
 import { SubMenuComponent } from './authentication/components/sub-menu/sub-menu.component'
+import { ClassroomComponent } from './authentication/components/member/classroom/classroom.component'
 
 @NgModule({
     declarations: [
@@ -64,6 +65,7 @@ import { SubMenuComponent } from './authentication/components/sub-menu/sub-menu.
         ResourceComponent,
         ExerciseComponent,
         HomepageComponent,
+        ClassroomComponent,
         InformationComponent,
         LeaderboardComponent,
         ManageResourceComponent,
@@ -76,7 +78,7 @@ import { SubMenuComponent } from './authentication/components/sub-menu/sub-menu.
         MatRadioModule,
         CKEditorModule,
         PdfViewerModule,
-        HttpClientModule,
+        HttpClientModule, 
         ReactiveFormsModule,
         AuthenticationModule,
         TabsModule.forRoot(),

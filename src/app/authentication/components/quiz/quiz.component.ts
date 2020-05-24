@@ -33,14 +33,16 @@ export class QuizComponent implements OnInit {
     { id: 1, name: 'Pre-test', _id: 'PRE-TEST' },
   ];
 
-  article: any[] = [];
-  correct: any[];
-  sub_article: any[][];
-
   onSelect(event: TypeaheadMatch): void {
     this.selectedOption = event.item;
     // console.log(this.selectedOption.ref);
   }
+
+  article: any[] = [];
+  correct: any[];
+  sub_article: any[][];
+
+  
 
   scrollToBottom(): void {
     try {

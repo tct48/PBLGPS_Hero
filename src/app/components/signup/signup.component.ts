@@ -6,18 +6,26 @@ import { Component, OnInit, Injectable } from '@angular/core'
 import { AuthenService } from 'src/app/services/authen.service'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { AlertService } from 'src/app/share/services/alert.service'
-import { IMember } from 'src/app/authentication/services/member.service'
+import {
+    IMember,
+    MemberService,
+    IResponse,
+} from 'src/app/authentication/services/member.service'
 import { ValidatorsService } from 'src/app/share/services/validator.service'
+
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class'
 
 import {
     AccountService,
     IRegister,
+    IAccount,
 } from 'src/app/share/services/account.service'
 
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html',
     styleUrls: ['./signup.component.css'],
+    providers: [MemberService],
 })
 @Injectable()
 export class SignupComponent implements OnInit {
@@ -27,8 +35,12 @@ export class SignupComponent implements OnInit {
         private account: AccountService,
         private router: Router,
         private validator: ValidatorsService,
+        private member_service: MemberService
     ) {
         this.createFormData()
+        this.member_service.loadClassroom().then((result) => {
+            this.states = result.items
+        })
     }
 
     ngOnInit(): void {}
@@ -37,7 +49,15 @@ export class SignupComponent implements OnInit {
     form: FormGroup
     member: IMember
     selectedFile: File = null
-    year=new Date().getFullYear()+543
+    year = new Date().getFullYear() + 543
+
+    selectedValue: string
+    selectedOption: any
+    states: any[]
+
+    onSelect(event: TypeaheadMatch): void {
+        this.selectedOption = event.item
+    }
 
     // สร้างฟอร์ม
     createFormData() {
@@ -63,20 +83,16 @@ export class SignupComponent implements OnInit {
         var formdata = new FormData()
         var public_id
         if (this.image) {
-            console.log('XXXX')
             formdata.append('file', this.selectedFile)
             this.account.onUploadImage(formdata).then((result) => {
-                console.log('Upload Completed')
                 public_id = result.public_id
-                console.log('public_id = ' + public_id)
 
-                var obj: IRegister = this.form.value
+                var obj = this.form.value
                 obj.image = public_id
-
+                obj.class = this.selectedOption._id
                 setTimeout(() => {
                     this.account.onRegister(obj).then((result) => {
                         this.alert.success('สมัครสมาชิกเรียบร้อยแล้ว!')
-                        console.log(result)
                         setTimeout(() => {
                             this.router.navigate(['/', AppURL.Login])
                         }, 400)
@@ -86,7 +102,10 @@ export class SignupComponent implements OnInit {
             return
         }
 
-        this.account.onRegister(this.form.value).then(() => {
+        var obj = this.form.value
+        obj.class = this.selectedOption._id
+
+        this.account.onRegister(obj).then(() => {
             this.alert.success('สมัครสมาชิกเรียบร้อยแล้ว!')
             setTimeout(() => {
                 //<<<---    using ()=> syntax

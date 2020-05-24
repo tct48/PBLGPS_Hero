@@ -111,6 +111,7 @@ export interface IRegister {
     email: string
     phone: string
     image?: string
+    class?:string
 }
 
 export interface ILogin {

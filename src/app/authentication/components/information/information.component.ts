@@ -46,6 +46,7 @@ export class InformationComponent implements OnInit {
   level: number;
   mem_id: String;
   form: FormGroup;
+  classroom: String;
   image_name: String;
   UserLogin: IAccount;
   year=new Date().getFullYear()+543;
@@ -99,7 +100,8 @@ export class InformationComponent implements OnInit {
       lastname: ['', [Validators.required]],
       phone: ['', [Validators.required]],
       email: ['', [Validators.required]],
-      class: ['', [Validators.required]]
+      class: ['', [Validators.required]],
+      etc:['']
     })
   }
 
@@ -120,7 +122,12 @@ export class InformationComponent implements OnInit {
           this.form.controls['lastname'].setValue(
             result.items[0].lastname
           )
-          this.form.controls['class'].setValue(result.items[0].class)
+
+          this.member.returnClassroom(result.items[0].class).then(res=>{
+            this.form.controls['class'].setValue(res.items._id)
+            this.classroom = res.items.name;
+          })
+
           this.exp = result.items[0].exp
           this.level = this.level_service.calculateLevel(this.exp)
 
@@ -138,8 +145,12 @@ export class InformationComponent implements OnInit {
         this.form.controls['firstname'].setValue(result.firstname)
         this.form.controls['sid'].setValue(result.sid)
         this.form.controls['lastname'].setValue(result.lastname)
-        this.form.controls['class'].setValue(result.class)
-        console.log(result)
+
+        this.member.returnClassroom(result.class).then(res=>{
+          this.form.controls['class'].setValue(res.items._id)
+          this.classroom = res.items.name
+        })
+
         this.exp = result.exp
         this.level = this.level_service.calculateLevel(this.exp)
 
@@ -147,6 +158,13 @@ export class InformationComponent implements OnInit {
           this.image_name = result.image
         }
       })
+  }
+
+  getClassroom(_id:String){
+    this.member.returnClassroom(_id).then(result=>{
+      console.log(result)
+      return result.items.name;
+    })
   }
 
   // ปุ่มแก้ไขข้อมูลผู้ใช้
