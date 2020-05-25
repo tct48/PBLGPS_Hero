@@ -1,4 +1,5 @@
 <app-auth-content>
+    <!-- card 1 -->
     <div class="card mt-3" style="border-top:5px solid black;border-radius:5">
         <div class="card-header">
             <h5>จัดการชั้นเรียน</h5>
@@ -32,7 +33,7 @@
                             <td>{{ i+1 }}</td>
                             <td>{{ data.name }}</td>
                             <td>
-                                <a class="pointer text-info" style="text-decoration: underline;">ดูสมาชิกในห้องเรียน</a>&nbsp;
+                                <a class="pointer text-info" (click)="onLoadStudent(data)" style="text-decoration: underline;">ดูสมาชิกในห้องเรียน</a> | &nbsp;
                                 <a class="pointer text-danger" (click)="onDelete(data._id)" style="text-decoration: underline;">ลบชั้นเรียน</a>
                             </td>
                         </tr>
@@ -41,5 +42,107 @@
             </div> 
             <span class="badge badge-pill badge-dark py-1" style="float: right;">จำนวนห้องเรียนทั้งหมด {{ total_classroom }}</span>
         </div>
+    </div>
+
+    <!-- card 2 -->
+    <div class="card mt-3" *ngIf="title" style="border-top:5px solid orangered;border-radius:3px;border-top-left-radius: 3px; border-top-right-radius: 3px;">
+        <div class="card-header">
+            <h5>บันทึกการเช็คชื่อเข้าเรียนออนไลน์ ({{ title }}) </h5>
+        </div>
+
+        <div class="card-body">
+            <div class="input-group mb-3">
+                <input type="text"
+                placeholder="เลือกวันที่เช็คชื่อ ..."
+                class="form-control"
+                [(ngModel)] = "dateAdd"
+                bsDatepicker>
+                <div class="input-group-append">
+                    <button (click)="addAttendence()" class="btn btn-outline-primary" type="button">
+                        <i class="fa fa-plus-circle"></i> เริ่มเช็คชื่อ
+                    </button>
+                </div>
+            </div>
+            
+            <div class="table-responsive-md">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td>ครั้งที่</td>
+                            <td>วันที่</td>
+                            <td>สร้างเมื่อ</td>
+                            <td>สถานะ</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of attendence_item;let i = index;">
+                            <td>{{ i+1 }}</td>
+                            <td>{{ data.date | date:'EEEE. dd/MMMM/yyyy' }}</td>
+                            <td>{{ data.created | dateAgo }}</td>
+                            <td>
+                                <a class="text-info" (click)="statusAttendence(data)" *ngIf="data.status==1" style=" border-bottom: 1px dotted;">
+                                    อนุญาติให้เข้าห้องเรียน
+                                </a>
+                                <a class="text-danger" (click)="statusAttendence(data)" *ngIf="data.status==0" style="border-bottom: 1px dotted orangered;">
+                                    ไม่อนุญาติให้เข้าห้องเรียน
+                                </a>
+                            </td>
+                            <td>
+                                <a (click)="deleteAttendence(data._id)">
+                                    <button type="button" class="close" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- card 3 -->
+    <div class="card mt-3 mb-5" *ngIf="title">
+        <div class="card-header">
+            <h5>นักเรียนชั้น {{ title }}</h5>
+        </div>
+         <!-- แสดงรายชื่อนักเรียนทั้งหมดในห้อง -->
+         <div class="table-responsive-md">
+            <table class="table table-hover table-outline mb-0">
+               <!-- ตารางแสดง User TH -->
+               <thead class="thead-light">
+                 <tr>
+                   <th class="text-center"><i class="icon-people"></i></th>
+                   <th>ชื่อจริง - นามสกุล</th>
+                   <th>เบอร์โทรศัพท์</th>
+                   <th>Action</th>
+                 </tr>
+               </thead>
+               <!-- Table TR -->
+               <tbody>
+                 <tr *ngFor="let data of items;let i = index">
+                   <td class="text-center">
+                       {{ i+1 }}
+                   </td>
+                   <td>
+                     <div>{{ data.firstname }} {{ data.lastname }}</div>
+                   </td>
+                   <td>
+                     {{ data.phone }}
+                   </td>
+                   <td>
+                       <a class="text-info">ประวัติการเข้าเรียน</a>
+                   </td>
+                 </tr>
+               </tbody>               
+               <tfoot>
+                    <tr>
+                        <td colspan="3"><b>จำนวนทั้งสิ้น </b></td>
+                        <td class="text-right mr-2">{{ total_items }}</td>
+                    </tr>
+                </tfoot>
+             </table>
+         </div>
     </div>
 </app-auth-content>

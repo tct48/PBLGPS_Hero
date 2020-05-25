@@ -12,6 +12,7 @@ import { AppURL } from '../app.url';
 import { ExerciseComponent } from './components/exercise/exercise.component';
 import { SubMenuComponent } from './components/sub-menu/sub-menu.component';
 import { ClassroomComponent } from './components/member/classroom/classroom.component';
+import { AttendenceComponent } from './components/member/attendence/attendence.component';
 
 const RouterLists: Routes = [
     { path: '', redirectTo: AppURL.Login, pathMatch: 'full' },
@@ -25,7 +26,8 @@ const RouterLists: Routes = [
     { path: AuthURL.ManageResource, component: ManageResourceComponent },
     { path : AuthURL.Exercise, component: ExerciseComponent},
     { path: AuthURL.Menu, component: SubMenuComponent },
-    { path: AuthURL.Classroom, component: ClassroomComponent }
+    { path: AuthURL.Classroom, component: ClassroomComponent },
+    { path: AuthURL.Attendence, component: AttendenceComponent }
     // { path: AuthURL.Signin , component:SigninComponent }
 ];
 

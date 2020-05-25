@@ -1,0 +1,35 @@
+<app-auth-content>
+    <div class="card mt-3" style="border-top:5px solid orangered;border-radius:3px;border-top-left-radius: 3px; border-top-right-radius: 3px;">
+        <div class="card-header">
+            <h5>การลงชื่อใช้งานออนไลน์</h5>
+        </div>
+        <div class="card-body">            
+            <div class="table-responsive-md">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td>ครั้งที่</td>
+                            <td>วันที่</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of items;let i = index;">
+                            <td>{{ i+1 }}</td>
+                            <td>{{ data.date | date:'EEEE. dd/MMMM/yyyy' }}</td>
+                            <td>
+                                <a (click)="onCheckIn(data._id)" class="text-success" *ngIf="onCheckUser(data.user)==false && data.status==1" style="border-bottom: 1px dotted;">
+                                    ลงชื่อเข้าเรียน
+                                </a>
+                                <a class="text-secondary" *ngIf="data.status==0" style="border-bottom: 1px dotted;">
+                                    ไม่สามารถลงชื่อเข้าเรียนได้แล้ว
+                                </a>
+                                <span class="text-info" *ngIf="onCheckUser(data.user)==true">มาเรียน</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</app-auth-content>

@@ -31,12 +31,40 @@ export class MemberService {
             .toPromise() as Promise<IMember>
     }
 
+    // เพิ่มการเข้าเรียน
+    addAttendence(model:any){
+        return this.http.requestPost('attendence',model)
+        .toPromise() as Promise<IAttendence>
+    }
+
+    patchAttendence(_id:string,model:any){
+        return this.http.requestPatch(`attendence/switch/${_id}`,this.authen.getAuthenticated(),model)
+            .toPromise() as Promise<any>
+    }
+
+    // นักศึกษาลงชื่อเข้าใช้
+    checkInAttendence(_id:string,model:any){
+        return this.http.requestPatch(`attendence/${_id}`, this.authen.getAuthenticated(), model)
+            .toPromise() as Promise<any>
+    }
+
+    loadAttendence(ref?:string){
+        return this.http.requestGet(`attendence?ref=${ref}`,this.authen.getAuthenticated())
+        .toPromise() as Promise<IAttendence>
+    }
+    
+    deleteAttendence(_id?:string){
+        return this.http.requestDelete(`attendence/${_id}`,this.authen.getAuthenticated())
+            .toPromise() as Promise<IResponse>
+    }
+
     // เพิ่มชั้นเรียน
     addClassroom(model:any){
         return this.http.requestPost('classroom',model)
         .toPromise() as Promise<IClassroom>
     }
 
+    //คืนค่าห้องเรียน
     returnClassroom(model:any){
         return this.http.requestGet(`classroom/${model}`, this.authen.getAuthenticated())
         .toPromise() as Promise<IClassroom>
@@ -100,15 +128,26 @@ export interface IMember {
     items?: any
 
     _id: string
-    firstname: string
-    lastname: string
-    username: string
-    password: string
+    firstname?: string
+    lastname?: string
+    username?: string
+    password?: string
     c_password?: string
-    phone: string
-    email: string
-    picture: string
+    phone?: string
+    email?: string
+    picture?: string
     exp?: number
     activity?: Date
     class?:string
+}
+
+export interface IAttendence{
+    total_items?:number;
+    items?: any;
+
+    id:string;
+    ref:string;
+    date:Date;
+    created:Date;
+    status:number;
 }

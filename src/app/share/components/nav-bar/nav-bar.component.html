@@ -42,7 +42,11 @@
           [routerLink]="['/auth/leaderboard']">กระดานผู้นำ<br />(LEADERBOARD)</a>
         <a class="nav-item nav-link border-right px-4" routerLinkActive="active"
           [routerLink]="['/auth/information']">ข้อมูลผู้เรียน<br />(INFORMATION)</a>
-        <a class="nav-item nav-link px-4" href="#">แนะนำระบบ<br />(GUIDE)</a>
+        <a class="nav-item nav-link border-right px-4" href="#">แนะนำระบบ<br />(GUIDE)</a>
+        <a class="nav-item nav-link px-4" [routerLink]="['/auth/attendence']" routerLinkActive="active">
+          เช็คชื่อออนไลน์<br>
+          (ATTENDENCE)
+        </a>
       </div>
       <!-- กรณี role เป็น admin -->
       <div class="navbar-nav text-center" *ngIf="UserLogin.role == 'admin'">

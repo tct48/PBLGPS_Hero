@@ -10,5 +10,6 @@ export const AuthURL = {
     Exercise : 'exercise',
     Quiz: 'quiz',
     Menu: 'menu',
-    Classroom: 'classroom'
+    Classroom: 'classroom',
+    Attendence: 'attendence'
 }

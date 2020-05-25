@@ -11,6 +11,7 @@ import { FooterComponent } from './components/footer/footer.component'
 import { NavBarComponent } from './components/nav-bar/nav-bar.component'
 import { AuthContentComponent } from './components/auth-content/auth-content.component'
 
+
 @NgModule({
     declarations: [NavBarComponent, FooterComponent, AuthContentComponent],
     imports: [

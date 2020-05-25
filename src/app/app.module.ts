@@ -13,8 +13,11 @@ import { HttpClientModule } from '@angular/common/http'
 import { CarouselModule } from 'ngx-bootstrap/carousel'
 import { PaginationModule } from 'ngx-bootstrap/pagination'
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular'
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+
 
 // component
 import { Cloudinary } from 'cloudinary-core'
@@ -48,6 +51,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { ExerciseComponent } from './authentication/components/exercise/exercise.component'
 import { SubMenuComponent } from './authentication/components/sub-menu/sub-menu.component'
 import { ClassroomComponent } from './authentication/components/member/classroom/classroom.component'
+import { AttendenceComponent } from './authentication/components/member/attendence/attendence.component'
 
 @NgModule({
     declarations: [
@@ -68,6 +72,7 @@ import { ClassroomComponent } from './authentication/components/member/classroom
         ClassroomComponent,
         InformationComponent,
         LeaderboardComponent,
+        AttendenceComponent,
         ManageResourceComponent,
     ],
     imports: [
@@ -87,6 +92,7 @@ import { ClassroomComponent } from './authentication/components/member/classroom
         CollapseModule.forRoot(), 
         CarouselModule.forRoot(),
         ProgressbarModule.forRoot(),
+        BsDatepickerModule.forRoot(),
         TypeaheadModule.forRoot(),
         PaginationModule.forRoot(),
         CloudinaryModule.forRoot({ Cloudinary }, {
