@@ -4901,7 +4901,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.member.patchAttendence(model._id, {
               status: status
             }).then(function (result) {});
-            this.alert.success("ไม่อนุญาติให้นักศึกษาเข้าห้องเรียน", "แจ้งเตือน", "error");
+            this.alert.success("ไม่อนุญาติให้นักศึกษาเข้าห้องเรียน", "แจ้งเตือน", "success");
             return this.loadAttendence(this.attendence_id);
           }
 
@@ -4923,6 +4923,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "onDelete",
         value: function onDelete(model) {
           var _this26 = this;
+
+          if (!this.total_items) {
+            return this.alert.notify("กรุณาลบนักศึกษาในชั้นเรียนก่อน", "ไม่สามารถลบชั้นเรียนได้", "error");
+          }
+
+          if (this.total_items > 0) {
+            return this.alert.notify("กรุณาลบนักศึกษาในชั้นเรียนก่อน", "ไม่สามารถลบชั้นเรียนได้", "error");
+          }
 
           this.member.deleteClassroom(model).then(function (result) {
             _this26.alert.success(result.message);
@@ -9803,10 +9811,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       function HttpService(http) {
         _classCallCheck(this, HttpService);
 
-        this.http = http; // private address: string = 'https://backend-pblgps.herokuapp.com/'
-
-        this.address = "http://localhost:3000/";
-      } //Request GET method
+        this.http = http;
+        this.address = 'https://backend-pblgps.herokuapp.com/';
+      } // private address : string = "http://localhost:3000/"
+      //Request GET method
 
 
       _createClass(HttpService, [{

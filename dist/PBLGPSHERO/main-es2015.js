@@ -2529,7 +2529,7 @@ class ClassroomComponent {
         if (model.status == 1) {
             this.member.patchAttendence(model._id, { status: status }).then(result => {
             });
-            this.alert.success("ไม่อนุญาติให้นักศึกษาเข้าห้องเรียน", "แจ้งเตือน", "error");
+            this.alert.success("ไม่อนุญาติให้นักศึกษาเข้าห้องเรียน", "แจ้งเตือน", "success");
             return this.loadAttendence(this.attendence_id);
         }
         this.member.patchAttendence(model._id, { status: status }).then(result => {
@@ -2543,6 +2543,12 @@ class ClassroomComponent {
         return result;
     }
     onDelete(model) {
+        if (!this.total_items) {
+            return this.alert.notify("กรุณาลบนักศึกษาในชั้นเรียนก่อน", "ไม่สามารถลบชั้นเรียนได้", "error");
+        }
+        if (this.total_items > 0) {
+            return this.alert.notify("กรุณาลบนักศึกษาในชั้นเรียนก่อน", "ไม่สามารถลบชั้นเรียนได้", "error");
+        }
         this.member.deleteClassroom(model).then(result => {
             this.alert.success(result.message);
             this.loadDataClassroom();
@@ -5081,9 +5087,9 @@ __webpack_require__.r(__webpack_exports__);
 class HttpService {
     constructor(http) {
         this.http = http;
-        // private address: string = 'https://backend-pblgps.herokuapp.com/'
-        this.address = "http://localhost:3000/";
+        this.address = 'https://backend-pblgps.herokuapp.com/';
     }
+    // private address : string = "http://localhost:3000/"
     //Request GET method
     requestGet(url, accessToken) {
         return this.http
