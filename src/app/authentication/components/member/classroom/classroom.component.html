@@ -103,46 +103,51 @@
     </div>
 
     <!-- card 3 -->
-    <div class="card mt-3 mb-5" *ngIf="title">
+    <div class="card my-3"  style="padding: 0px;border-top:5px solid #e5e5e5;" *ngIf="title">
         <div class="card-header">
             <h5>นักเรียนชั้น {{ title }}</h5>
         </div>
-         <!-- แสดงรายชื่อนักเรียนทั้งหมดในห้อง -->
-         <div class="table-responsive-md">
-            <table class="table table-hover table-outline mb-0">
-               <!-- ตารางแสดง User TH -->
-               <thead class="thead-light">
-                 <tr>
-                   <th class="text-center"><i class="icon-people"></i></th>
-                   <th>ชื่อจริง - นามสกุล</th>
-                   <th>เบอร์โทรศัพท์</th>
-                   <th>Action</th>
-                 </tr>
-               </thead>
-               <!-- Table TR -->
-               <tbody>
-                 <tr *ngFor="let data of items;let i = index">
-                   <td class="text-center">
-                       {{ i+1 }}
-                   </td>
-                   <td>
-                     <div>{{ data.firstname }} {{ data.lastname }}</div>
-                   </td>
-                   <td>
-                     {{ data.phone }}
-                   </td>
-                   <td>
-                       <a class="text-info">ประวัติการเข้าเรียน</a>
-                   </td>
-                 </tr>
-               </tbody>               
-               <tfoot>
-                    <tr>
-                        <td colspan="3"><b>จำนวนทั้งสิ้น </b></td>
-                        <td class="text-right mr-2">{{ total_items }}</td>
-                    </tr>
-                </tfoot>
-             </table>
-         </div>
-    </div>
+
+        <div class="card-body" style="padding: 0px;" class="px-2">
+            <div class="table-responsive-md">
+                <table class="table table-hover table-outline" style="border-top: 0px;">
+                    <thead class="thead-light" style="border-top: 0px;" >
+                        <tr>
+                            <td>#</td>
+                            <td class="text-center">ชื่อจริง - นามสกุล</td>
+                            <td class="text-center" *ngFor="let data of attendence_item;let i = index;">
+                                {{ i+1 }}
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr  *ngFor="let item of items;let j = index;">
+                            <td>{{ j+1 }}</td>
+                            <td>
+                                {{item.firstname}} {{ item.lastname }}
+                            </td>
+                            <td *ngFor="let data of attendence_item;let i = index;">
+                                <span tooltip="สัปดาห์ที่ {{ i+1 }} ( วันที่ {{ data.date | date:'dd-MMMM-yyyy' }} )" *ngIf="getAttended(item._id,data.user)==true;else falseValue" class="text-info pointer" style="border-bottom: 1px dotted;" >
+                                    เข้าเรียน
+                                </span>
+                                <ng-template #falseValue>
+                                    <span tooltip="สัปดาห์ที่ {{ i+1 }} ( วันที่ {{ data.date | date:'dd-MMMM-yyyy' }} )" class="text-warning pointer" style="border-bottom: 1px dotted;">ขาดเรียน</span>
+                                </ng-template>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3"><b>จำนวนทั้งสิ้น </b></td>
+                            <td class="text-right mr-2">{{ total_items }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>   
+        </div>
+
+                 
+    </div> 
+
+    
 </app-auth-content>

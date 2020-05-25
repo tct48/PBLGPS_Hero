@@ -21,9 +21,6 @@ export class ClassroomComponent implements OnInit {
   constructor(
     private member: MemberService,
     private alert: AlertService,
-    private router: Router,
-    private localeService: BsLocaleService,
-    private activate_route: ActivatedRoute
   ) { 
     this.loadDataClassroom();
   }
@@ -92,6 +89,7 @@ export class ClassroomComponent implements OnInit {
   loadAttendence(_id:string){
     this.member.loadAttendence(_id).then(result=>{
       this.attendence_item=result.items
+      console.log(this.attendence_item)
     })
   }
 
@@ -130,6 +128,12 @@ export class ClassroomComponent implements OnInit {
       this.alert.success("อนุญาติให้นักศึกษาเข้าห้องเรียน")
     })
     return this.loadAttendence(this.attendence_id);
+  }
+
+  getAttended(model:string, attend:any){
+      var data:Array<String> = attend;
+      var result = data.includes(model)
+      return result;
   }
 
   onDelete(model:string){

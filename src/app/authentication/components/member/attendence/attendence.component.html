@@ -3,13 +3,74 @@
         <div class="card-header">
             <h5>การลงชื่อใช้งานออนไลน์</h5>
         </div>
-        <div class="card-body">            
+        <div class="card-body">  
+            <div class="row">
+                <!-- จำนวนครั้งที่เรียนทั้งหมด -->
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body py-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="text-center mt-2" style="color: #00a1ab;padding:0px;">{{ total_numbers }}</h5>
+                            </div>
+                            <div class="col-md-6">
+                                <p style="padding:0px;margin:0px;">Total number of studies</p>
+                            </div> 
+                        </div>                      
+                    </div>
+                    <div class="card-footer text-white" style="background-color: #00a1ab;">
+                        % จำนวนครั้งที่เรียนทั้งหมด
+                    </div>
+                </div>  
+            </div>  
+            
+            <!-- จำนวนครั้งที่มาเรียน -->
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body py-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="text-center mt-2" style="color: #00263b;padding:0px;">{{ atteneded }}</h5>
+                            </div>
+                            <div class="col-md-6">
+                                <p style="padding:0px;margin:0px;">Number of times attended</p>
+                            </div> 
+                        </div>                      
+                    </div>
+                    <div class="card-footer text-white" style="background-color: #00263b;">
+                        % จำนวนครั้งที่เข้าเรียน
+                    </div>
+                </div>  
+            </div> 
+
+            <!-- จำนวนครั้งที่ขาดเรียน -->
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body py-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="text-center mt-2" style="color: #ff5200;padding:0px;">{{ absent }}</h5>
+                            </div>
+                            <div class="col-md-6">
+                                <p style="padding:0px;margin:0px;">Number of absences</p>
+                            </div> 
+                        </div>                      
+                    </div>
+                    <div class="card-footer text-white" style="background-color: #ff5200;">
+                        % จำนวนครั้งที่ขาดเรียน
+                    </div>
+                </div>  
+            </div> 
+            </div>
+            
+            
             <div class="table-responsive-md">
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <td>ครั้งที่</td>
                             <td>วันที่</td>
+                            <td>เวลา</td>
                             <td>Action</td>
                         </tr>
                     </thead>
@@ -17,11 +78,12 @@
                         <tr *ngFor="let data of items;let i = index;">
                             <td>{{ i+1 }}</td>
                             <td>{{ data.date | date:'EEEE. dd/MMMM/yyyy' }}</td>
+                            <td>{{ data.created | dateAgo }}</td>
                             <td>
                                 <a (click)="onCheckIn(data._id)" class="text-success" *ngIf="onCheckUser(data.user)==false && data.status==1" style="border-bottom: 1px dotted;">
                                     ลงชื่อเข้าเรียน
                                 </a>
-                                <a class="text-secondary" *ngIf="data.status==0" style="border-bottom: 1px dotted;">
+                                <a class="text-secondary" *ngIf="onCheckUser(data.user)==false && data.status==0" style="border-bottom: 1px dotted;">
                                     ไม่สามารถลงชื่อเข้าเรียนได้แล้ว
                                 </a>
                                 <span class="text-info" *ngIf="onCheckUser(data.user)==true">มาเรียน</span>
@@ -32,4 +94,6 @@
             </div>
         </div>
     </div>
+
+    
 </app-auth-content>

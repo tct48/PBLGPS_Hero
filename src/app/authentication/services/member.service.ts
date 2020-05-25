@@ -37,6 +37,11 @@ export class MemberService {
         .toPromise() as Promise<IAttendence>
     }
 
+    getTimeAttended(userId:string){
+        return this.http.requestGet(`attendence/${userId}`, this.authen.getAuthenticated())
+            .toPromise() as Promise<any>
+    }
+
     patchAttendence(_id:string,model:any){
         return this.http.requestPatch(`attendence/switch/${_id}`,this.authen.getAuthenticated(),model)
             .toPromise() as Promise<any>

@@ -17,11 +17,14 @@ export class AttendenceComponent implements OnInit {
     ) {
         console.log(this.account.UserLogin)
         this.loadAttendence();
+        this.loadTimeAttended();
     }
 
     items:IAttendence;
     assign =0 ;
     total_numbers:number;
+    atteneded:number;
+    absent:number=0;
 
     ngOnInit(): void {}
 
@@ -32,14 +35,24 @@ export class AttendenceComponent implements OnInit {
         }
         this.alert.success("ลงชื่อเข้าเรียนสำเร็จ!")
         this.loadAttendence();
-        console.log(result)
+        this.loadTimeAttended();
+        this.absent=this.total_numbers-this.atteneded;
+      })
+    }
+
+    loadTimeAttended(){
+      this.member.getTimeAttended(this.account.UserLogin._id).then(result=>{
+        this.atteneded = result.total_items;
+        this.absent=this.total_numbers-this.atteneded;
       })
     }
 
     loadAttendence(){
       this.member.loadAttendence(this.account.UserLogin.class).then(result=>{
         this.items = result.items;
+        console.log(this.items)
         this.total_numbers = result.total_items;
+        this.absent=this.total_numbers-this.atteneded;
       })
     }
 
