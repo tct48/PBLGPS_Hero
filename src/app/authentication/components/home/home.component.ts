@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
         // เรียกดูคะแนนถ้ามีคะแนนแล้ว แสดงว่าทำ PRE-TEST แล้วไม่สามารถทำได้
         this.grade.getScoreExercise('PRPS-TEST').then(result=>{
             if(result.total_items==0){
-                this.router.navigate(['', AppURL.Authen, AuthURL.Exercise], {
+                this.router.navigate(['', AppURL.Authen, AuthURL.ExercisePrps], {
                     queryParams: { id },
                 })
                 this.status=3;

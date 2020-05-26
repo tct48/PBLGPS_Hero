@@ -37,27 +37,31 @@ export class MemberService {
         .toPromise() as Promise<IAttendence>
     }
 
+    // get ครั้งที่มาเรียนของนักเรียน
     getTimeAttended(userId:string){
         return this.http.requestGet(`attendence/${userId}`, this.authen.getAuthenticated())
             .toPromise() as Promise<any>
     }
 
+    // เปิดให้นักศึกษาเซ็นชื่อเข้าเรียน
     patchAttendence(_id:string,model:any){
         return this.http.requestPatch(`attendence/switch/${_id}`,this.authen.getAuthenticated(),model)
             .toPromise() as Promise<any>
     }
 
-    // นักศึกษาลงชื่อเข้าใช้
+    // นักศึกษาลงชื่อเข้าเรียน
     checkInAttendence(_id:string,model:any){
         return this.http.requestPatch(`attendence/${_id}`, this.authen.getAuthenticated(), model)
             .toPromise() as Promise<any>
     }
 
+    // get ครั้งที่ วันที่เรียนของห้องห้องนั้น
     loadAttendence(ref?:string){
         return this.http.requestGet(`attendence?ref=${ref}`,this.authen.getAuthenticated())
         .toPromise() as Promise<IAttendence>
     }
     
+    // ลบครั้งที่เรียนนั้น ๆ
     deleteAttendence(_id?:string){
         return this.http.requestDelete(`attendence/${_id}`,this.authen.getAuthenticated())
             .toPromise() as Promise<IResponse>

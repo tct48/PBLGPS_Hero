@@ -14,6 +14,7 @@ import { SubMenuComponent } from './components/sub-menu/sub-menu.component';
 import { ClassroomComponent } from './components/member/classroom/classroom.component';
 import { AttendenceComponent } from './components/member/attendence/attendence.component';
 import { PrpsQuizComponent } from './components/quiz/prps-quiz/prps-quiz.component';
+import { ExercisePrpsComponent } from './components/exercise/exercise-prps/exercise-prps.component';
 
 const RouterLists: Routes = [
     { path: '', redirectTo: AppURL.Login, pathMatch: 'full' },
@@ -29,7 +30,8 @@ const RouterLists: Routes = [
     { path: AuthURL.Menu, component: SubMenuComponent },
     { path: AuthURL.Classroom, component: ClassroomComponent },
     { path: AuthURL.Attendence, component: AttendenceComponent },
-    { path: AuthURL.QuizPrPs, component:  PrpsQuizComponent}
+    { path: AuthURL.QuizPrPs, component:  PrpsQuizComponent},
+    { path: AuthURL.ExercisePrps, component: ExercisePrpsComponent }
     // { path: AuthURL.Signin , component:SigninComponent }
 ];
 

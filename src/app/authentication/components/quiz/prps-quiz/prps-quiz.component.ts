@@ -3,19 +3,26 @@ import { Component, OnInit } from '@angular/core'
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class'
 import { ArrayType } from '@angular/compiler'
 import { FormGroup } from '@angular/forms'
+import { AlertService } from 'src/app/share/services/alert.service'
+import { QuizService } from 'src/app/authentication/services/quiz.service'
 
 @Component({
     selector: 'app-prps-quiz',
     templateUrl: './prps-quiz.component.html',
     styleUrls: ['./prps-quiz.component.css'],
+    providers: [QuizService]
 })
 export class PrpsQuizComponent implements OnInit {
-    constructor() {}
+    constructor(
+        private alert: AlertService,
+        private quiz: QuizService
+    ) {}
 
     ngOnInit(): void {}
 
     form = {
         situation: '',
+        ref:'',
         question: [],
     }
 
@@ -46,8 +53,12 @@ export class PrpsQuizComponent implements OnInit {
     model = []
 
     onTest(number: number) {
+        if(!this.selectedOption){
+            return this.alert.notify("กรุณาเลือกประเภทแบบประเมินก่อน")}
+
         this.form = {
             situation: 'situation[' + this.formLength + ']',
+            ref:this.selectedOption._id,
             question: [],
         }
 
@@ -85,7 +96,7 @@ export class PrpsQuizComponent implements OnInit {
         console.log('คำถามทั้งหมด ' + this.number_of_form.question)
         console.log('ตัวเลิอกคำตอบทั้งหมด ' + this.number_of_form.answer)
 
-        return console.log(this.model)
+        return console.log(this.model[0])
     }
 
     old_first: any
@@ -93,13 +104,12 @@ export class PrpsQuizComponent implements OnInit {
     old_third: any
 
     choose(event, first: any, seccond: any, third: any) {
-        
-
         if (first == this.old_first) {
             if (seccond == this.old_seccond) {
-                if (third != this.old_third) {
-                    this.model[first].question[seccond].answer[this.old_third].score = 0
-                }
+                this.model[first].question[seccond].answer[0].score=0;
+                this.model[first].question[seccond].answer[1].score=0;
+                this.model[first].question[seccond].answer[2].score=0;
+                this.model[first].question[seccond].answer[3].score=0;
             }
         }
 
@@ -114,24 +124,26 @@ export class PrpsQuizComponent implements OnInit {
           seccond: this.old_seccond,
           third: this.old_third,
       }
-
-        
-        console.log(obj)
-        // if(this.model)
-        //   if (this.stack_main == main) {
-        //       this.article[main].answer[this.stack_index].correct = 0
-        //   }
-        //   this.article[main].answer[index].correct = 1
-
-        //   this.stack_main = main
-        //   this.stack_index = index
     }
 
-    onSubmit() {}
+    onSubmit() {
+        for(var i=0; i<this.model.length;i++){
+            this.quiz.addPrPs(this.model[i]).then(result=>{
+                console.log(result);
+                this.alert.success(result.message);
+            })
+        }
+        
+    }
 }
 
 export interface IPRPSQUIZ {
-    situation: Array<String>
-    question: Array<String>
-    answer: Array<String>
+    total_items?:number
+    items?:any
+    message?: string
+
+    situation: any
+    question: any
+    ref :any
+    created : any    
 }

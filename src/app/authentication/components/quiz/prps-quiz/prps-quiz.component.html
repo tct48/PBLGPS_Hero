@@ -27,23 +27,23 @@
       <div class="card-body">
           <div class="form-group">
             <label for="disabledTextInput">สถานการณ์ :</label>
-            <textarea class="form-control" [(ngModel)]="data.situation" name="{{data.situation}}"  id="" cols="30" rows="7">
-              {{ data.situation }}
+            <textarea class="form-control" (ngModel)="data.situation" name="{{data.situation}}"  id="" cols="30" rows="7">
+
             </textarea>
           </div>
           <div *ngFor="let data of model[i].question;let j = index;">
             <div class="form-group">
-              <label for="disabledTextInput">คำถามข้อที่ {{ j+1 }} :</label>
-              <input type="text" [(ngModel)]="data.name" name="{{ data.name }}" class="form-control" placeholder="คำถามข้อที่ 1 {{ data.name }}">      
+              <label for="disabledTextInput">คำถามข้อที่ {{ i*4+j+1 }} :</label>
+              <input type="text" [(ngModel)]="data.name" name="{{ data.name }}" class="form-control" placeholder="คำถามข้อที่ 1">      
             </div>
             <div class="input-group" *ngFor="let sub_data of model[i].question[j].answer;let k = index;">
               <div class="input-group-prepend">
                 <div class="input-group-text">
                 <input type="radio" [value]="sub_data.score" (click)="choose($event, i,j, k)"  aria-label="Radio button for following text input">
-                </div>
+                </div> 
                 <button *ngIf="sub_data.score==1" class="btn btn-blue text-white"><i class="fa fa-hand-o-right" aria-hidden="true"></i> ข้อนี้ถูกต้อง</button>
               </div>
-              <input type="text" [(ngModel)]="sub_data.name" name="{{sub_data.name}}" class="form-control" placeholder="ตัวเลือกที่ {{ k+1 }} | {{ sub_data.name }}">
+              <input type="text" [(ngModel)]="sub_data.name" name="{{sub_data.name}}" class="form-control" placeholder="ตัวเลือกที่ {{ k+1 }}">
             </div>
           </div>
       </div>
@@ -55,11 +55,8 @@
     <button class="btn btn-primary" (click)="onTest(1)">
       1
     </button>
-    <button class="btn btn-primary" (click)="onTest(2)">
-      2
-    </button>
-    <button class="btn btn-primary" (click)="onTest(3)">
-      3
+    <button class="btn btn-primary" (click)="onSubmit()">
+      ส่งคำตอบ
     </button>
   </div>
 </app-auth-content>

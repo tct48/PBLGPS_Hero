@@ -12,5 +12,6 @@ export const AuthURL = {
     Menu: 'menu',
     Classroom: 'classroom',
     Attendence: 'attendence',
-    QuizPrPs:'prps-test'
+    QuizPrPs:'prps-test',
+    ExercisePrps:'exercise-prps'
 }
