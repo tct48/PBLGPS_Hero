@@ -26,6 +26,11 @@ export class PrpsQuizComponent implements OnInit {
         question: [],
     }
 
+    form2={
+        ref:'',
+        situation:[]
+    }
+
     number_of_form = {
         situation: 0,
         question: 0,
@@ -51,6 +56,63 @@ export class PrpsQuizComponent implements OnInit {
     formLength: number = 0
 
     model = []
+
+    onFuckOff(){
+        this.form2.situation.push({
+            name: "lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum",
+            question:[{
+                name:"question[" + this.form2.situation.length + "][0]",
+                choice:[{
+                    name: "answer[" + this.form2.situation.length + "][0][0]",
+                    score:0
+                },{
+                    name: "answer[" + this.form2.situation.length + "][0][1]",
+                    score:1
+                },{
+                    name: "answer[" + this.form2.situation.length + "][0][2]",
+                    score:0
+                }]
+            },{
+                name:"question[" + this.form2.situation.length + "][1]",
+                choice:[{
+                    name: "answer[" + this.form2.situation.length + "][1][0]",
+                    score:0
+                },{
+                    name: "answer[" + this.form2.situation.length + "][1][1]",
+                    score:1
+                },{
+                    name: "answer[" + this.form2.situation.length + "][1][2]",
+                    score:0
+                }]
+            },{
+                name:"question[" + this.form2.situation.length + "][2]",
+                choice:[{
+                    name: "answer[" + this.form2.situation.length + "][2][0]",
+                    score:0
+                },{
+                    name: "answer[" + this.form2.situation.length + "][2][1]",
+                    score:1
+                },{
+                    name: "answer[" + this.form2.situation.length + "][2][2]",
+                    score:0
+                }]
+            },{
+                name:"question[" + this.form2.situation.length + "][3]",
+                choice:[{
+                    name: "answer[" + this.form2.situation.length + "][3][0]",
+                    score:0
+                },{
+                    name: "answer[" + this.form2.situation.length + "][3][1]",
+                    score:1
+                },{
+                    name: "answer[" + this.form2.situation.length + "][3][2]",
+                    score:0
+                }]
+            },]
+        })
+        console.log(this.form2)
+        this.formLength+=1;
+    }
 
     onTest(number: number) {
         if(!this.selectedOption){
