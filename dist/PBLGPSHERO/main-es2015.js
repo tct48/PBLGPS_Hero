@@ -118,7 +118,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _authentication_components_sub_menu_sub_menu_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./authentication/components/sub-menu/sub-menu.component */ "./src/app/authentication/components/sub-menu/sub-menu.component.ts");
 /* harmony import */ var _authentication_components_member_classroom_classroom_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./authentication/components/member/classroom/classroom.component */ "./src/app/authentication/components/member/classroom/classroom.component.ts");
 /* harmony import */ var _authentication_components_member_attendence_attendence_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./authentication/components/member/attendence/attendence.component */ "./src/app/authentication/components/member/attendence/attendence.component.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _authentication_components_quiz_prps_quiz_prps_quiz_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./authentication/components/quiz/prps-quiz/prps-quiz.component */ "./src/app/authentication/components/quiz/prps-quiz/prps-quiz.component.ts");
+/* harmony import */ var _authentication_components_exercise_exercise_prps_exercise_prps_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./authentication/components/exercise/exercise-prps/exercise-prps.component */ "./src/app/authentication/components/exercise/exercise-prps/exercise-prps.component.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 // common
 
 
@@ -153,6 +155,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // pipe
+
+
 
 
 
@@ -212,14 +216,16 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector
         _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_20__["SignupComponent"],
         _authentication_components_sub_menu_sub_menu_component__WEBPACK_IMPORTED_MODULE_37__["SubMenuComponent"],
         _authentication_components_resource_content_content_component__WEBPACK_IMPORTED_MODULE_25__["ContentComponent"],
+        _authentication_components_quiz_prps_quiz_prps_quiz_component__WEBPACK_IMPORTED_MODULE_40__["PrpsQuizComponent"],
         _authentication_components_resource_resource_component__WEBPACK_IMPORTED_MODULE_24__["ResourceComponent"],
         _authentication_components_exercise_exercise_component__WEBPACK_IMPORTED_MODULE_36__["ExerciseComponent"],
         _components_homepage_homepage_component__WEBPACK_IMPORTED_MODULE_21__["HomepageComponent"],
         _authentication_components_member_classroom_classroom_component__WEBPACK_IMPORTED_MODULE_38__["ClassroomComponent"],
         _authentication_components_information_information_component__WEBPACK_IMPORTED_MODULE_27__["InformationComponent"],
         _authentication_components_leaderboard_leaderboard_component__WEBPACK_IMPORTED_MODULE_26__["LeaderboardComponent"],
+        _authentication_components_exercise_exercise_prps_exercise_prps_component__WEBPACK_IMPORTED_MODULE_41__["ExercisePrpsComponent"],
         _authentication_components_member_attendence_attendence_component__WEBPACK_IMPORTED_MODULE_39__["AttendenceComponent"],
-        _authentication_components_manage_resource_manage_resource_component__WEBPACK_IMPORTED_MODULE_28__["ManageResourceComponent"]], imports: [_angular_router__WEBPACK_IMPORTED_MODULE_40__["RouterModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_15__["FormsModule"],
+        _authentication_components_manage_resource_manage_resource_component__WEBPACK_IMPORTED_MODULE_28__["ManageResourceComponent"]], imports: [_angular_router__WEBPACK_IMPORTED_MODULE_42__["RouterModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_15__["FormsModule"],
         _share_shareds_module__WEBPACK_IMPORTED_MODULE_7__["SharedsModule"],
         _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
         _angular_material_radio__WEBPACK_IMPORTED_MODULE_35__["MatRadioModule"],
@@ -243,12 +249,14 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector
                     _components_signup_signup_component__WEBPACK_IMPORTED_MODULE_20__["SignupComponent"],
                     _authentication_components_sub_menu_sub_menu_component__WEBPACK_IMPORTED_MODULE_37__["SubMenuComponent"],
                     _authentication_components_resource_content_content_component__WEBPACK_IMPORTED_MODULE_25__["ContentComponent"],
+                    _authentication_components_quiz_prps_quiz_prps_quiz_component__WEBPACK_IMPORTED_MODULE_40__["PrpsQuizComponent"],
                     _authentication_components_resource_resource_component__WEBPACK_IMPORTED_MODULE_24__["ResourceComponent"],
                     _authentication_components_exercise_exercise_component__WEBPACK_IMPORTED_MODULE_36__["ExerciseComponent"],
                     _components_homepage_homepage_component__WEBPACK_IMPORTED_MODULE_21__["HomepageComponent"],
                     _authentication_components_member_classroom_classroom_component__WEBPACK_IMPORTED_MODULE_38__["ClassroomComponent"],
                     _authentication_components_information_information_component__WEBPACK_IMPORTED_MODULE_27__["InformationComponent"],
                     _authentication_components_leaderboard_leaderboard_component__WEBPACK_IMPORTED_MODULE_26__["LeaderboardComponent"],
+                    _authentication_components_exercise_exercise_prps_exercise_prps_component__WEBPACK_IMPORTED_MODULE_41__["ExercisePrpsComponent"],
                     _authentication_components_member_attendence_attendence_component__WEBPACK_IMPORTED_MODULE_39__["AttendenceComponent"],
                     _authentication_components_manage_resource_manage_resource_component__WEBPACK_IMPORTED_MODULE_28__["ManageResourceComponent"],
                 ],
@@ -415,6 +423,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_sub_menu_sub_menu_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/sub-menu/sub-menu.component */ "./src/app/authentication/components/sub-menu/sub-menu.component.ts");
 /* harmony import */ var _components_member_classroom_classroom_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/member/classroom/classroom.component */ "./src/app/authentication/components/member/classroom/classroom.component.ts");
 /* harmony import */ var _components_member_attendence_attendence_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/member/attendence/attendence.component */ "./src/app/authentication/components/member/attendence/attendence.component.ts");
+/* harmony import */ var _components_quiz_prps_quiz_prps_quiz_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/quiz/prps-quiz/prps-quiz.component */ "./src/app/authentication/components/quiz/prps-quiz/prps-quiz.component.ts");
+/* harmony import */ var _components_exercise_exercise_prps_exercise_prps_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/exercise/exercise-prps/exercise-prps.component */ "./src/app/authentication/components/exercise/exercise-prps/exercise-prps.component.ts");
+
+
 
 
 
@@ -443,7 +455,9 @@ const RouterLists = [
     { path: _authentication_url__WEBPACK_IMPORTED_MODULE_0__["AuthURL"].Exercise, component: _components_exercise_exercise_component__WEBPACK_IMPORTED_MODULE_11__["ExerciseComponent"] },
     { path: _authentication_url__WEBPACK_IMPORTED_MODULE_0__["AuthURL"].Menu, component: _components_sub_menu_sub_menu_component__WEBPACK_IMPORTED_MODULE_12__["SubMenuComponent"] },
     { path: _authentication_url__WEBPACK_IMPORTED_MODULE_0__["AuthURL"].Classroom, component: _components_member_classroom_classroom_component__WEBPACK_IMPORTED_MODULE_13__["ClassroomComponent"] },
-    { path: _authentication_url__WEBPACK_IMPORTED_MODULE_0__["AuthURL"].Attendence, component: _components_member_attendence_attendence_component__WEBPACK_IMPORTED_MODULE_14__["AttendenceComponent"] }
+    { path: _authentication_url__WEBPACK_IMPORTED_MODULE_0__["AuthURL"].Attendence, component: _components_member_attendence_attendence_component__WEBPACK_IMPORTED_MODULE_14__["AttendenceComponent"] },
+    { path: _authentication_url__WEBPACK_IMPORTED_MODULE_0__["AuthURL"].QuizPrPs, component: _components_quiz_prps_quiz_prps_quiz_component__WEBPACK_IMPORTED_MODULE_15__["PrpsQuizComponent"] },
+    { path: _authentication_url__WEBPACK_IMPORTED_MODULE_0__["AuthURL"].ExercisePrps, component: _components_exercise_exercise_prps_exercise_prps_component__WEBPACK_IMPORTED_MODULE_16__["ExercisePrpsComponent"] }
     // { path: AuthURL.Signin , component:SigninComponent }
 ];
 const AuthenticationRouting = _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forChild(RouterLists);
@@ -474,8 +488,50 @@ const AuthURL = {
     Quiz: 'quiz',
     Menu: 'menu',
     Classroom: 'classroom',
-    Attendence: 'attendence'
+    Attendence: 'attendence',
+    QuizPrPs: 'prps-test',
+    ExercisePrps: 'exercise-prps'
 };
+
+
+/***/ }),
+
+/***/ "./src/app/authentication/components/exercise/exercise-prps/exercise-prps.component.ts":
+/*!*********************************************************************************************!*\
+  !*** ./src/app/authentication/components/exercise/exercise-prps/exercise-prps.component.ts ***!
+  \*********************************************************************************************/
+/*! exports provided: ExercisePrpsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ExercisePrpsComponent", function() { return ExercisePrpsComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _share_components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../share/components/auth-content/auth-content.component */ "./src/app/share/components/auth-content/auth-content.component.ts");
+
+
+
+class ExercisePrpsComponent {
+    constructor() { }
+    ngOnInit() {
+    }
+}
+ExercisePrpsComponent.ɵfac = function ExercisePrpsComponent_Factory(t) { return new (t || ExercisePrpsComponent)(); };
+ExercisePrpsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ExercisePrpsComponent, selectors: [["app-exercise-prps"]], decls: 3, vars: 0, template: function ExercisePrpsComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "app-auth-content");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "exercise-prps works!");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    } }, directives: [_share_components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_1__["AuthContentComponent"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2F1dGhlbnRpY2F0aW9uL2NvbXBvbmVudHMvZXhlcmNpc2UvZXhlcmNpc2UtcHJwcy9leGVyY2lzZS1wcnBzLmNvbXBvbmVudC5jc3MifQ== */"] });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](ExercisePrpsComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
+        args: [{
+                selector: 'app-exercise-prps',
+                templateUrl: './exercise-prps.component.html',
+                styleUrls: ['./exercise-prps.component.css']
+            }]
+    }], function () { return []; }, null); })();
 
 
 /***/ }),
@@ -849,7 +905,7 @@ class HomeComponent {
         // เรียกดูคะแนนถ้ามีคะแนนแล้ว แสดงว่าทำ PRE-TEST แล้วไม่สามารถทำได้
         this.grade.getScoreExercise('PRPS-TEST').then(result => {
             if (result.total_items == 0) {
-                this.router.navigate(['', src_app_app_url__WEBPACK_IMPORTED_MODULE_1__["AppURL"].Authen, _authentication_url__WEBPACK_IMPORTED_MODULE_2__["AuthURL"].Exercise], {
+                this.router.navigate(['', src_app_app_url__WEBPACK_IMPORTED_MODULE_1__["AppURL"].Authen, _authentication_url__WEBPACK_IMPORTED_MODULE_2__["AuthURL"].ExercisePrps], {
                     queryParams: { id },
                 });
                 this.status = 3;
@@ -2983,6 +3039,282 @@ MemberComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineCo
 
 /***/ }),
 
+/***/ "./src/app/authentication/components/quiz/prps-quiz/prps-quiz.component.ts":
+/*!*********************************************************************************!*\
+  !*** ./src/app/authentication/components/quiz/prps-quiz/prps-quiz.component.ts ***!
+  \*********************************************************************************/
+/*! exports provided: PrpsQuizComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PrpsQuizComponent", function() { return PrpsQuizComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var src_app_authentication_services_quiz_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/authentication/services/quiz.service */ "./src/app/authentication/services/quiz.service.ts");
+/* harmony import */ var src_app_share_services_alert_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/share/services/alert.service */ "./src/app/share/services/alert.service.ts");
+/* harmony import */ var _share_components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../share/components/auth-content/auth-content.component */ "./src/app/share/components/auth-content/auth-content.component.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
+/* harmony import */ var ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-bootstrap/typeahead */ "./node_modules/ngx-bootstrap/__ivy_ngcc__/typeahead/fesm2015/ngx-bootstrap-typeahead.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+
+
+
+
+
+
+
+
+
+
+function PrpsQuizComponent_div_18_div_8_div_5_button_4_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "button", 26);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "i", 27);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " \u0E02\u0E49\u0E2D\u0E19\u0E35\u0E49\u0E16\u0E39\u0E01\u0E15\u0E49\u0E2D\u0E07");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+} }
+function PrpsQuizComponent_div_18_div_8_div_5_Template(rf, ctx) { if (rf & 1) {
+    const _r11 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 22);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "input", 23);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function PrpsQuizComponent_div_18_div_8_div_5_Template_input_click_3_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r11); const k_r8 = ctx.index; const j_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().index; const i_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().index; const ctx_r10 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r10.choose($event, i_r2, j_r5, k_r8); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, PrpsQuizComponent_div_18_div_8_div_5_button_4_Template, 3, 0, "button", 24);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "input", 25);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function PrpsQuizComponent_div_18_div_8_div_5_Template_input_ngModelChange_5_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r11); const sub_data_r7 = ctx.$implicit; return sub_data_r7.name = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const sub_data_r7 = ctx.$implicit;
+    const k_r8 = ctx.index;
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("value", sub_data_r7.score);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", sub_data_r7.score == 1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("name", sub_data_r7.name);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("placeholder", "\u0E15\u0E31\u0E27\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E17\u0E35\u0E48 ", k_r8 + 1, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", sub_data_r7.name);
+} }
+function PrpsQuizComponent_div_18_div_8_Template(rf, ctx) { if (rf & 1) {
+    const _r16 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 14);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "label", 15);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "input", 18);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function PrpsQuizComponent_div_18_div_8_Template_input_ngModelChange_4_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r16); const data_r4 = ctx.$implicit; return data_r4.name = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, PrpsQuizComponent_div_18_div_8_div_5_Template, 6, 5, "div", 19);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const data_r4 = ctx.$implicit;
+    const j_r5 = ctx.index;
+    const i_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().index;
+    const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("\u0E04\u0E33\u0E16\u0E32\u0E21\u0E02\u0E49\u0E2D\u0E17\u0E35\u0E48 ", i_r2 * 4 + j_r5 + 1, " :");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("name", data_r4.name);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", data_r4.name);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx_r3.model[i_r2].question[j_r5].answer);
+} }
+function PrpsQuizComponent_div_18_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 12);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "form");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 13);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 14);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "label", 15);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "\u0E2A\u0E16\u0E32\u0E19\u0E01\u0E32\u0E23\u0E13\u0E4C :");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "textarea", 16);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModel", function PrpsQuizComponent_div_18_Template_textarea_ngModel_6_listener() { const data_r1 = ctx.$implicit; return data_r1.situation; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, "\n            ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, PrpsQuizComponent_div_18_div_8_Template, 6, 4, "div", 17);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const data_r1 = ctx.$implicit;
+    const i_r2 = ctx.index;
+    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("name", data_r1.situation);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx_r0.model[i_r2].question);
+} }
+const _c0 = function () { return ["/auth/menu"]; };
+class PrpsQuizComponent {
+    constructor(alert, quiz) {
+        this.alert = alert;
+        this.quiz = quiz;
+        this.form = {
+            situation: '',
+            ref: '',
+            question: [],
+        };
+        this.number_of_form = {
+            situation: 0,
+            question: 0,
+            answer: 0,
+        };
+        this.formTemplate = PrpsQuizComponent;
+        this.states = [
+            { id: 1, name: 'ก่อนเรียน', _id: 'PRE-PRPS-TEST' },
+            { id: 2, name: 'หลังเรียน', _id: 'POST-PRPS-TEST' },
+        ];
+        this.formLength = 0;
+        this.model = [];
+    }
+    ngOnInit() { }
+    onSelect(event) {
+        this.selectedOption = event.item;
+        // console.log(this.selectedOption.ref);
+    }
+    onTest(number) {
+        if (!this.selectedOption) {
+            return this.alert.notify("กรุณาเลือกประเภทแบบประเมินก่อน");
+        }
+        this.form = {
+            situation: 'situation[' + this.formLength + ']',
+            ref: this.selectedOption._id,
+            question: [],
+        };
+        for (var i = 0; i < 4; i++) {
+            this.form.question.push({
+                name: 'question[' + this.formLength + '][' + i + ']',
+                answer: [
+                    {
+                        name: 'answer[' + this.formLength + '][' + i + '][0]',
+                        score: 0,
+                    },
+                    {
+                        name: 'answer[' + this.formLength + '][' + i + '][1]',
+                        score: 0,
+                    },
+                    {
+                        name: 'answer[' + this.formLength + '][' + i + '][2]',
+                        score: 0,
+                    },
+                    {
+                        name: 'answer[' + this.formLength + '][' + i + '][3]',
+                        score: 0,
+                    },
+                ],
+            });
+        }
+        this.formLength += 1;
+        this.model.push(this.form);
+        this.number_of_form.situation += 1;
+        this.number_of_form.question += 4;
+        this.number_of_form.answer += 16;
+        console.log('สถานการณ์ทั้งหมด ' + this.number_of_form.situation);
+        console.log('คำถามทั้งหมด ' + this.number_of_form.question);
+        console.log('ตัวเลิอกคำตอบทั้งหมด ' + this.number_of_form.answer);
+        return console.log(this.model[0]);
+    }
+    choose(event, first, seccond, third) {
+        if (first == this.old_first) {
+            if (seccond == this.old_seccond) {
+                this.model[first].question[seccond].answer[0].score = 0;
+                this.model[first].question[seccond].answer[1].score = 0;
+                this.model[first].question[seccond].answer[2].score = 0;
+                this.model[first].question[seccond].answer[3].score = 0;
+            }
+        }
+        this.model[first].question[seccond].answer[third].score = 1;
+        this.old_first = first;
+        this.old_seccond = seccond;
+        this.old_third = third;
+        var obj = {
+            first: this.old_first,
+            seccond: this.old_seccond,
+            third: this.old_third,
+        };
+    }
+    onSubmit() {
+        for (var i = 0; i < this.model.length; i++) {
+            this.quiz.addPrPs(this.model[i]).then(result => {
+                console.log(result);
+                this.alert.success(result.message);
+            });
+        }
+    }
+}
+PrpsQuizComponent.ɵfac = function PrpsQuizComponent_Factory(t) { return new (t || PrpsQuizComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_share_services_alert_service__WEBPACK_IMPORTED_MODULE_2__["AlertService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_authentication_services_quiz_service__WEBPACK_IMPORTED_MODULE_1__["QuizService"])); };
+PrpsQuizComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: PrpsQuizComponent, selectors: [["app-prps-quiz"]], features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([src_app_authentication_services_quiz_service__WEBPACK_IMPORTED_MODULE_1__["QuizService"]])], decls: 24, vars: 7, consts: [[1, "col-md-12"], [1, "breadcrumb"], [1, "breadcrumb-item", 3, "routerLink"], ["aria-current", "page", 1, "breadcrumb-item", "active"], [1, "border-aqua", "border-bottom"], [1, "container"], ["aria-hidden", "true", 1, "fa", "fa-newspaper-o"], [1, "bg-light", "px-3", "py-3", "my-3", 2, "border", "1px solid lightgray", "border-radius", "5px"], ["typeaheadOptionsLimit", "5", "typeaheadOptionField", "name", "placeholder", "\u0E2B\u0E19\u0E48\u0E27\u0E22\u0E01\u0E32\u0E23\u0E40\u0E23\u0E35\u0E22\u0E19\u0E23\u0E39\u0E49\u0E17\u0E35\u0E48 1,2,3", "required", "", 1, "form-control", 3, "ngModel", "typeahead", "typeaheadMinLength", "isAnimated", "ngModelChange", "typeaheadOnSelect"], ["class", "card my-3", "style", "border-top: 5px solid darkgray;", 4, "ngFor", "ngForOf"], [1, "mx-5"], [1, "btn", "btn-primary", 3, "click"], [1, "card", "my-3", 2, "border-top", "5px solid darkgray"], [1, "card-body"], [1, "form-group"], ["for", "disabledTextInput"], ["id", "", "cols", "30", "rows", "7", 1, "form-control", 3, "name", "ngModel"], [4, "ngFor", "ngForOf"], ["type", "text", "placeholder", "\u0E04\u0E33\u0E16\u0E32\u0E21\u0E02\u0E49\u0E2D\u0E17\u0E35\u0E48 1", 1, "form-control", 3, "ngModel", "name", "ngModelChange"], ["class", "input-group", 4, "ngFor", "ngForOf"], [1, "input-group"], [1, "input-group-prepend"], [1, "input-group-text"], ["type", "radio", "aria-label", "Radio button for following text input", 3, "value", "click"], ["class", "btn btn-blue text-white", 4, "ngIf"], ["type", "text", 1, "form-control", 3, "ngModel", "name", "placeholder", "ngModelChange"], [1, "btn", "btn-blue", "text-white"], ["aria-hidden", "true", 1, "fa", "fa-hand-o-right"]], template: function PrpsQuizComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "app-auth-content");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "nav", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "a", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, "\u0E40\u0E21\u0E19\u0E39\u0E2B\u0E25\u0E31\u0E01");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "li", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, " \u0E41\u0E1A\u0E1A\u0E1B\u0E23\u0E30\u0E40\u0E21\u0E34\u0E19\u0E17\u0E31\u0E01\u0E29\u0E30\u0E01\u0E32\u0E23\u0E41\u0E01\u0E49\u0E1B\u0E31\u0E0D\u0E2B\u0E32 \u0E01\u0E48\u0E2D\u0E19 - \u0E2B\u0E25\u0E31\u0E07 \u0E40\u0E23\u0E35\u0E22\u0E19 ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "div", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "div", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "h4");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](10, "i", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, " \u0E41\u0E1A\u0E1A\u0E1B\u0E23\u0E30\u0E40\u0E21\u0E34\u0E19\u0E17\u0E31\u0E01\u0E29\u0E30\u0E01\u0E32\u0E23\u0E41\u0E01\u0E49\u0E1B\u0E31\u0E0D\u0E2B\u0E32 \u0E01\u0E48\u0E2D\u0E19 - \u0E2B\u0E25\u0E31\u0E07 \u0E40\u0E23\u0E35\u0E22\u0E19");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](13, "\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E41\u0E1A\u0E1A\u0E1D\u0E36\u0E01\u0E2B\u0E31\u0E14\u0E43\u0E2B\u0E49\u0E2A\u0E2D\u0E14\u0E04\u0E25\u0E49\u0E2D\u0E07\u0E01\u0E31\u0E1A \u0E41\u0E2B\u0E25\u0E48\u0E07\u0E01\u0E32\u0E23\u0E40\u0E23\u0E35\u0E22\u0E19\u0E23\u0E39\u0E49 \u0E2B\u0E23\u0E37\u0E2D\u0E15\u0E23\u0E07\u0E01\u0E31\u0E1A\u0E02\u0E49\u0E2D\u0E01\u0E32\u0E23\u0E27\u0E31\u0E14\u0E1B\u0E23\u0E30\u0E40\u0E21\u0E34\u0E19\u0E1C\u0E25");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "div", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "h5");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](16, "\u0E41\u0E1A\u0E1A\u0E17\u0E14\u0E2A\u0E2D\u0E1A\u0E19\u0E35\u0E49\u0E40\u0E1B\u0E47\u0E19\u0E41\u0E1A\u0E1A\u0E1B\u0E23\u0E30\u0E40\u0E21\u0E34\u0E19\u0E17\u0E31\u0E01\u0E29\u0E30\u0E01\u0E32\u0E23\u0E41\u0E01\u0E49\u0E1B\u0E31\u0E0D\u0E2B\u0E32");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "input", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function PrpsQuizComponent_Template_input_ngModelChange_17_listener($event) { return ctx.selectedValue = $event; })("typeaheadOnSelect", function PrpsQuizComponent_Template_input_typeaheadOnSelect_17_listener($event) { return ctx.onSelect($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](18, PrpsQuizComponent_div_18_Template, 9, 2, "div", 9);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "div", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "button", 11);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function PrpsQuizComponent_Template_button_click_20_listener() { return ctx.onTest(1); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](21, " 1 ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "button", 11);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function PrpsQuizComponent_Template_button_click_22_listener() { return ctx.onSubmit(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](23, " \u0E2A\u0E48\u0E07\u0E04\u0E33\u0E15\u0E2D\u0E1A ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](6, _c0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.selectedValue)("typeahead", ctx.states)("typeaheadMinLength", 0)("isAnimated", true);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.model);
+    } }, directives: [_share_components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_3__["AuthContentComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterLinkWithHref"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["RequiredValidator"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgModel"], ngx_bootstrap_typeahead__WEBPACK_IMPORTED_MODULE_6__["TypeaheadDirective"], _angular_common__WEBPACK_IMPORTED_MODULE_7__["NgForOf"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgForm"], _angular_common__WEBPACK_IMPORTED_MODULE_7__["NgIf"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2F1dGhlbnRpY2F0aW9uL2NvbXBvbmVudHMvcXVpei9wcnBzLXF1aXovcHJwcy1xdWl6LmNvbXBvbmVudC5jc3MifQ== */"] });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](PrpsQuizComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
+        args: [{
+                selector: 'app-prps-quiz',
+                templateUrl: './prps-quiz.component.html',
+                styleUrls: ['./prps-quiz.component.css'],
+                providers: [src_app_authentication_services_quiz_service__WEBPACK_IMPORTED_MODULE_1__["QuizService"]]
+            }]
+    }], function () { return [{ type: src_app_share_services_alert_service__WEBPACK_IMPORTED_MODULE_2__["AlertService"] }, { type: src_app_authentication_services_quiz_service__WEBPACK_IMPORTED_MODULE_1__["QuizService"] }]; }, null); })();
+
+
+/***/ }),
+
 /***/ "./src/app/authentication/components/quiz/quiz.component.ts":
 /*!******************************************************************!*\
   !*** ./src/app/authentication/components/quiz/quiz.component.ts ***!
@@ -3785,13 +4117,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const _c0 = function () { return ["/auth/quiz"]; };
+const _c1 = function () { return ["/auth/prps-test"]; };
 class SubMenuComponent {
     constructor() { }
     ngOnInit() {
     }
 }
 SubMenuComponent.ɵfac = function SubMenuComponent_Factory(t) { return new (t || SubMenuComponent)(); };
-SubMenuComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SubMenuComponent, selectors: [["app-sub-menu"]], decls: 18, vars: 2, consts: [["aria-hidden", "true", 1, "fa", "fa-list"], [1, "d-flex", "justify-content-around", "pr-2", 2, "height", "160px"], [1, "btn", "btn-primary", 3, "routerLink"], [1, "btn", "btn-warning", "text-white"], [2, "color", "black"]], template: function SubMenuComponent_Template(rf, ctx) { if (rf & 1) {
+SubMenuComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SubMenuComponent, selectors: [["app-sub-menu"]], decls: 17, vars: 4, consts: [["aria-hidden", "true", 1, "fa", "fa-list"], [1, "d-flex", "justify-content-around", "pr-2", 2, "height", "160px"], [1, "btn", "btn-primary", 3, "routerLink"], [1, "btn", "btn-warning", "text-white", 3, "routerLink"]], template: function SubMenuComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "app-auth-content");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "h4");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "i", 0);
@@ -3809,17 +4142,17 @@ SubMenuComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineC
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, "\u0E41\u0E1A\u0E1A\u0E1D\u0E36\u0E01\u0E2B\u0E31\u0E14\u0E2B\u0E19\u0E48\u0E27\u0E22\u0E01\u0E32\u0E23\u0E40\u0E23\u0E35\u0E22\u0E19\u0E23\u0E39\u0E49");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "button", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, "\u0E1B\u0E23\u0E30\u0E40\u0E21\u0E34\u0E19\u0E17\u0E31\u0E01\u0E29\u0E30\u0E01\u0E32\u0E23\u0E41\u0E01\u0E49\u0E1B\u0E31\u0E0D\u0E2B\u0E32 ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "span", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](16, "br");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17, "(\u0E22\u0E31\u0E07\u0E43\u0E0A\u0E49\u0E07\u0E32\u0E19\u0E44\u0E21\u0E48\u0E44\u0E14\u0E49)");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, " \u0E41\u0E1A\u0E1A\u0E1B\u0E23\u0E30\u0E40\u0E21\u0E34\u0E19\u0E17\u0E31\u0E01\u0E29\u0E30\u0E01\u0E32\u0E23\u0E41\u0E01\u0E49\u0E1B\u0E31\u0E0D\u0E2B\u0E32");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](15, "br");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](16, " \u0E01\u0E48\u0E2D\u0E19 - \u0E2B\u0E25\u0E31\u0E07 \u0E40\u0E23\u0E35\u0E22\u0E19 ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](1, _c0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](2, _c0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](3, _c1));
     } }, directives: [_share_components_auth_content_auth_content_component__WEBPACK_IMPORTED_MODULE_1__["AuthContentComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterLink"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2F1dGhlbnRpY2F0aW9uL2NvbXBvbmVudHMvc3ViLW1lbnUvc3ViLW1lbnUuY29tcG9uZW50LmNzcyJ9 */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](SubMenuComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
@@ -4146,23 +4479,27 @@ class MemberService {
         return this.http.requestPost('attendence', model)
             .toPromise();
     }
+    // get ครั้งที่มาเรียนของนักเรียน
     getTimeAttended(userId) {
         return this.http.requestGet(`attendence/${userId}`, this.authen.getAuthenticated())
             .toPromise();
     }
+    // เปิดให้นักศึกษาเซ็นชื่อเข้าเรียน
     patchAttendence(_id, model) {
         return this.http.requestPatch(`attendence/switch/${_id}`, this.authen.getAuthenticated(), model)
             .toPromise();
     }
-    // นักศึกษาลงชื่อเข้าใช้
+    // นักศึกษาลงชื่อเข้าเรียน
     checkInAttendence(_id, model) {
         return this.http.requestPatch(`attendence/${_id}`, this.authen.getAuthenticated(), model)
             .toPromise();
     }
+    // get ครั้งที่ วันที่เรียนของห้องห้องนั้น
     loadAttendence(ref) {
         return this.http.requestGet(`attendence?ref=${ref}`, this.authen.getAuthenticated())
             .toPromise();
     }
+    // ลบครั้งที่เรียนนั้น ๆ
     deleteAttendence(_id) {
         return this.http.requestDelete(`attendence/${_id}`, this.authen.getAuthenticated())
             .toPromise();
@@ -4252,6 +4589,14 @@ class QuizService {
     addQuiz(model) {
         return this.http
             .requestPost(`quiz/`, model)
+            .toPromise();
+    }
+    addPrPs(model) {
+        return this.http.requestPost('prps/', model)
+            .toPromise();
+    }
+    getPrpsByRef(ref) {
+        return this.http.requestGet(`prps/${ref}`, this.authen.getAuthenticated())
             .toPromise();
     }
 }
