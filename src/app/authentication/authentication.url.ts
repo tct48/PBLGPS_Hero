@@ -11,5 +11,6 @@ export const AuthURL = {
     Quiz: 'quiz',
     Menu: 'menu',
     Classroom: 'classroom',
-    Attendence: 'attendence'
+    Attendence: 'attendence',
+    QuizPrPs:'prps-test'
 }

@@ -52,6 +52,7 @@ import { ExerciseComponent } from './authentication/components/exercise/exercise
 import { SubMenuComponent } from './authentication/components/sub-menu/sub-menu.component'
 import { ClassroomComponent } from './authentication/components/member/classroom/classroom.component'
 import { AttendenceComponent } from './authentication/components/member/attendence/attendence.component'
+import { PrpsQuizComponent } from './authentication/components/quiz/prps-quiz/prps-quiz.component'
 
 @NgModule({
     declarations: [
@@ -66,6 +67,7 @@ import { AttendenceComponent } from './authentication/components/member/attenden
         SignupComponent,
         SubMenuComponent,
         ContentComponent,
+        PrpsQuizComponent,
         ResourceComponent,
         ExerciseComponent,
         HomepageComponent,

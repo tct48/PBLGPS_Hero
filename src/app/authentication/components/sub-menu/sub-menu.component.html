@@ -5,8 +5,9 @@
     <div class="d-flex justify-content-around pr-2" style="height: 160px;">
         <button class="btn btn-primary" [routerLink]="['/auth/quiz']">แบบทดสอบก่อน-หลังเรียน<br>หรือ<br>แบบฝึกหัดหน่วยการเรียนรู้</button>
 
-        <button class="btn btn-warning text-white">ประเมินทักษะการแก้ปัญหา
-        <span style="color:black;"><br>(ยังใช้งานไม่ได้)</span>
+        <button class="btn btn-warning text-white" [routerLink]="['/auth/prps-test']">
+          แบบประเมินทักษะการแก้ปัญหา<br>
+          ก่อน - หลัง เรียน
         </button>
     </div>
 </app-auth-content>

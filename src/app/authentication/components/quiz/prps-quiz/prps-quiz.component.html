@@ -1,0 +1,65 @@
+<app-auth-content>    
+  <div class="col-md-12">
+    <nav class="breadcrumb">
+      <a class="breadcrumb-item" [routerLink]="['/auth/menu']">เมนูหลัก</a>
+      <li class="breadcrumb-item active" aria-current="page">
+        แบบประเมินทักษะการแก้ปัญหา ก่อน - หลัง เรียน
+      </li>
+    </nav>
+  </div>    
+
+  <div class="border-aqua border-bottom">
+    <div class="container">
+      <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i> แบบประเมินทักษะการแก้ปัญหา ก่อน - หลัง เรียน</h4>
+      <p>เพิ่มแบบฝึกหัดให้สอดคล้องกับ แหล่งการเรียนรู้ หรือตรงกับข้อการวัดประเมินผล</p>
+    </div>
+  </div>
+
+  <div class="bg-light px-3 py-3 my-3" style="border: 1px solid lightgray;border-radius: 5px;">
+    <h5>แบบทดสอบนี้เป็นแบบประเมินทักษะการแก้ปัญหา</h5>
+    <input [(ngModel)]="selectedValue" [typeahead]="states" [typeaheadMinLength]="0" typeaheadOptionsLimit="5"
+        typeaheadOptionField="name" placeholder="หน่วยการเรียนรู้ที่ 1,2,3" [isAnimated]="true"
+        (typeaheadOnSelect)="onSelect($event)" class="form-control" required>
+  </div>
+
+  <div class="card my-3" style="border-top: 5px solid darkgray;" *ngFor="let data of model; let i = index;">
+    <form>
+      <div class="card-body">
+          <div class="form-group">
+            <label for="disabledTextInput">สถานการณ์ :</label>
+            <textarea class="form-control" [(ngModel)]="data.situation" name="{{data.situation}}"  id="" cols="30" rows="7">
+              {{ data.situation }}
+            </textarea>
+          </div>
+          <div *ngFor="let data of model[i].question;let j = index;">
+            <div class="form-group">
+              <label for="disabledTextInput">คำถามข้อที่ {{ j+1 }} :</label>
+              <input type="text" [(ngModel)]="data.name" name="{{ data.name }}" class="form-control" placeholder="คำถามข้อที่ 1 {{ data.name }}">      
+            </div>
+            <div class="input-group" *ngFor="let sub_data of model[i].question[j].answer;let k = index;">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                <input type="radio" [value]="sub_data.score" (click)="choose($event, i,j, k)"  aria-label="Radio button for following text input">
+                </div>
+                <button *ngIf="sub_data.score==1" class="btn btn-blue text-white"><i class="fa fa-hand-o-right" aria-hidden="true"></i> ข้อนี้ถูกต้อง</button>
+              </div>
+              <input type="text" [(ngModel)]="sub_data.name" name="{{sub_data.name}}" class="form-control" placeholder="ตัวเลือกที่ {{ k+1 }} | {{ sub_data.name }}">
+            </div>
+          </div>
+      </div>
+    </form>
+      
+  </div>
+
+  <div class="mx-5">
+    <button class="btn btn-primary" (click)="onTest(1)">
+      1
+    </button>
+    <button class="btn btn-primary" (click)="onTest(2)">
+      2
+    </button>
+    <button class="btn btn-primary" (click)="onTest(3)">
+      3
+    </button>
+  </div>
+</app-auth-content>
