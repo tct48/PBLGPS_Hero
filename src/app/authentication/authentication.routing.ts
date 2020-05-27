@@ -15,6 +15,7 @@ import { ClassroomComponent } from './components/member/classroom/classroom.comp
 import { AttendenceComponent } from './components/member/attendence/attendence.component';
 import { PrpsQuizComponent } from './components/quiz/prps-quiz/prps-quiz.component';
 import { ExercisePrpsComponent } from './components/exercise/exercise-prps/exercise-prps.component';
+import { DynamicFormComponent } from './components/quiz/dynamic-form/dynamic-form.component';
 
 const RouterLists: Routes = [
     { path: '', redirectTo: AppURL.Login, pathMatch: 'full' },

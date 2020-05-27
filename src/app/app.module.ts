@@ -54,6 +54,7 @@ import { ClassroomComponent } from './authentication/components/member/classroom
 import { AttendenceComponent } from './authentication/components/member/attendence/attendence.component'
 import { PrpsQuizComponent } from './authentication/components/quiz/prps-quiz/prps-quiz.component'
 import { ExercisePrpsComponent } from './authentication/components/exercise/exercise-prps/exercise-prps.component'
+import { DynamicFormComponent } from './authentication/components/quiz/dynamic-form/dynamic-form.component'
 
 @NgModule({
     declarations: [
@@ -75,6 +76,7 @@ import { ExercisePrpsComponent } from './authentication/components/exercise/exer
         ClassroomComponent,
         InformationComponent,
         LeaderboardComponent,
+        DynamicFormComponent,
         ExercisePrpsComponent,
         AttendenceComponent,
         ManageResourceComponent,

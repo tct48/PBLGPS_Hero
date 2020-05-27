@@ -4,32 +4,16 @@ import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class'
 import { ArrayType } from '@angular/compiler'
 import { FormGroup } from '@angular/forms'
 import { AlertService } from 'src/app/share/services/alert.service'
-import { QuizService } from 'src/app/authentication/services/quiz.service'
 
 @Component({
     selector: 'app-prps-quiz',
     templateUrl: './prps-quiz.component.html',
     styleUrls: ['./prps-quiz.component.css'],
-    providers: [QuizService]
 })
 export class PrpsQuizComponent implements OnInit {
-    constructor(
-        private alert: AlertService,
-        private quiz: QuizService
-    ) {}
+    constructor(private alert:AlertService) {}
 
     ngOnInit(): void {}
-
-    form = {
-        situation: '',
-        ref:'',
-        question: [],
-    }
-
-    form2={
-        ref:'',
-        situation:[]
-    }
 
     number_of_form = {
         situation: 0,
@@ -37,8 +21,15 @@ export class PrpsQuizComponent implements OnInit {
         answer: 0,
     }
 
-    answer: ['answer[0]', 'answer[1]', 'answer[2]', 'answer[3]']
-    forms: FormGroup
+    interfaceFormat = ['1', '2', '3', '4']
+
+    // form
+    form: any
+    name: String
+    question = ['', '', '', '']
+    answer = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+    score = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
     formTemplate: any = PrpsQuizComponent
 
     selectedValue: string
@@ -50,162 +41,78 @@ export class PrpsQuizComponent implements OnInit {
 
     onSelect(event: TypeaheadMatch): void {
         this.selectedOption = event.item
-        // console.log(this.selectedOption.ref);
     }
 
     formLength: number = 0
 
     model = []
 
-    onFuckOff(){
-        this.form2.situation.push({
-            name: "lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum",
-            question:[{
-                name:"question[" + this.form2.situation.length + "][0]",
-                choice:[{
-                    name: "answer[" + this.form2.situation.length + "][0][0]",
-                    score:0
-                },{
-                    name: "answer[" + this.form2.situation.length + "][0][1]",
-                    score:1
-                },{
-                    name: "answer[" + this.form2.situation.length + "][0][2]",
-                    score:0
-                }]
-            },{
-                name:"question[" + this.form2.situation.length + "][1]",
-                choice:[{
-                    name: "answer[" + this.form2.situation.length + "][1][0]",
-                    score:0
-                },{
-                    name: "answer[" + this.form2.situation.length + "][1][1]",
-                    score:1
-                },{
-                    name: "answer[" + this.form2.situation.length + "][1][2]",
-                    score:0
-                }]
-            },{
-                name:"question[" + this.form2.situation.length + "][2]",
-                choice:[{
-                    name: "answer[" + this.form2.situation.length + "][2][0]",
-                    score:0
-                },{
-                    name: "answer[" + this.form2.situation.length + "][2][1]",
-                    score:1
-                },{
-                    name: "answer[" + this.form2.situation.length + "][2][2]",
-                    score:0
-                }]
-            },{
-                name:"question[" + this.form2.situation.length + "][3]",
-                choice:[{
-                    name: "answer[" + this.form2.situation.length + "][3][0]",
-                    score:0
-                },{
-                    name: "answer[" + this.form2.situation.length + "][3][1]",
-                    score:1
-                },{
-                    name: "answer[" + this.form2.situation.length + "][3][2]",
-                    score:0
-                }]
-            },]
-        })
-        console.log(this.form2)
-        this.formLength+=1;
-    }
-
-    onTest(number: number) {
-        if(!this.selectedOption){
-            return this.alert.notify("กรุณาเลือกประเภทแบบประเมินก่อน")}
-
-        this.form = {
-            situation: 'situation[' + this.formLength + ']',
-            ref:this.selectedOption._id,
-            question: [],
-        }
-
-        for (var i = 0; i < 4; i++) {
-            this.form.question.push({
-                name: 'question[' + this.formLength + '][' + i + ']',
-                answer: [
-                    {
-                        name: 'answer[' + this.formLength + '][' + i + '][0]',
-                        score: 0,
-                    },
-                    {
-                        name: 'answer[' + this.formLength + '][' + i + '][1]',
-                        score: 0,
-                    },
-                    {
-                        name: 'answer[' + this.formLength + '][' + i + '][2]',
-                        score: 0,
-                    },
-                    {
-                        name: 'answer[' + this.formLength + '][' + i + '][3]',
-                        score: 0,
-                    },
-                ],
-            })
-        }
-
-        this.formLength += 1
-        this.model.push(this.form)
-        this.number_of_form.situation += 1
-        this.number_of_form.question += 4
-        this.number_of_form.answer += 16
-
-        console.log('สถานการณ์ทั้งหมด ' + this.number_of_form.situation)
-        console.log('คำถามทั้งหมด ' + this.number_of_form.question)
-        console.log('ตัวเลิอกคำตอบทั้งหมด ' + this.number_of_form.answer)
-
-        return console.log(this.model[0])
-    }
-
     old_first: any
     old_seccond: any
     old_third: any
 
-    choose(event, first: any, seccond: any, third: any) {
-        if (first == this.old_first) {
-            if (seccond == this.old_seccond) {
-                this.model[first].question[seccond].answer[0].score=0;
-                this.model[first].question[seccond].answer[1].score=0;
-                this.model[first].question[seccond].answer[2].score=0;
-                this.model[first].question[seccond].answer[3].score=0;
-            }
+    choose(event, j: number, i: number) {
+        var dumb = 3
+        if (j == 0) {
+            this.score[0] = 0
+            this.score[1] = 0
+            this.score[2] = 0
+            this.score[3] = 0
+
+            return this.score[i] = 1
+        } else if (j == 1) {
+            this.score[4] = 0
+            this.score[5] = 0
+            this.score[6] = 0
+            this.score[7] = 0
+        } else if (j == 2) {
+            this.score[8] = 0
+            this.score[9] = 0
+            this.score[10] = 0
+            this.score[11] = 0
+        }else if (j==3){
+            this.score[12] = 0
+            this.score[13] = 0
+            this.score[14] = 0
+            this.score[15] = 0
         }
 
-        this.model[first].question[seccond].answer[third].score = 1
-
-        this.old_first = first
-        this.old_seccond = seccond
-        this.old_third = third
-
-        var obj = {
-          first: this.old_first,
-          seccond: this.old_seccond,
-          third: this.old_third,
-      }
+        this.score[3*j+j+i]=1;
+        
+        console.log(this.score)
     }
 
     onSubmit() {
-        for(var i=0; i<this.model.length;i++){
-            this.quiz.addPrPs(this.model[i]).then(result=>{
-                console.log(result);
-                this.alert.success(result.message);
-            })
+        if(!this.selectedOption){
+            return this.alert.notify("กรุณาเลือกประเภทบททดสอบ");
         }
-        
+
+        var dummy=0;
+        for(var i=0;i<16;i++){
+            if(this.score[i]==1)
+                dummy+=1;
+        }
+
+        if(dummy<4){
+            return this.alert.notify("กรุณาระบุคำตอบให้ครบทุกข้อ!");
+        }
+
+        var obj = {
+            ref : this.selectedOption._id,
+            name: this.name,
+            question: this.question,
+            answers: {
+                name : this.answer,
+                score: this.score
+            }
+        }
+        console.log(obj);
+        return this.alert.success("เพิ่มแบบทดสอบสำเร็จ !")
     }
 }
 
 export interface IPRPSQUIZ {
-    total_items?:number
-    items?:any
-    message?: string
-
-    situation: any
-    question: any
-    ref :any
-    created : any    
+    situation: Array<String>
+    question: Array<String>
+    answer: Array<String>
 }

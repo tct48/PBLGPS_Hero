@@ -1,0 +1,49 @@
+<app-auth-content>
+    <form [formGroup]="dynamicForm" (submit)="onSubmit()">
+        <div formArrayName="mobiles">
+            <h3>Enter Mobile Number</h3>
+            <button (click)="addNewMobile()">Add New Mobile</button>
+
+            <div *ngFor="let item of mobiles.controls; let i = index">
+                <label>Mobile {{ i + 1 }}</label>
+                <input type="text" [formControlName]="i" />
+            </div>
+            <button type="submit">ดูข้อมูลหน่อยดิ้</button>
+        </div>
+    </form>
+
+    <form [formGroup]="form" (submit)="onSubmit()">
+        <div formArrayName="situations">
+            <h3>Make Sure Situation</h3>
+            <button (click)="addNewSituation()">
+                เพิ่มสถานการณ์
+            </button>
+            <button (click)="addNewQuestion()">
+                เพิ่มคำถาม
+            </button>
+            <button (click)="addNewAnswer()">
+                เพิ่มคำถาม
+            </button>
+
+            <div *ngFor="let data of situations.controls; let j = index">
+                <label>สถานการณ์ที่ {{ j+1 }}</label>
+                <input class="form-control" type="text" formControlName="j" >
+                
+            </div>
+        </div>
+
+        <div formArrayName="questions">
+            <div *ngFor="let sub_data of questions.controls; let k = index;">
+                <label>คำถามข้อที่ {{ k+1 }}</label>
+                <input class="form-control" type="text" [formControlName]="k">
+            </div>
+        </div>
+
+        <div formArrayName="answers">
+            <div *ngFor="let data of answers.controls; let l = index;">
+                <label>คำตอบข้อที่ {{ l+1 }}</label>
+                <input class="form-control" type="text" [formControlName]="l">
+            </div>
+        </div>
+    </form>
+</app-auth-content>

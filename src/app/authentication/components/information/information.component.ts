@@ -104,6 +104,7 @@ export class InformationComponent implements OnInit {
       etc:['']
     })
   }
+  alternateSituation:[];
 
   // โหลดฟอร์มครั้งแรก
   private initialLoadUpdateFormData() {

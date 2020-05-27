@@ -8,7 +8,7 @@ import { ExercisePrpsComponent } from './components/exercise/exercise-prps/exerc
   declarations: [],
   imports: [
     CommonModule,
-    SharedsModule,
+    SharedsModule, 
     AuthenticationRouting,
   ],
   providers:[]
