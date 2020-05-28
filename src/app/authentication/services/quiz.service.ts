@@ -36,6 +36,12 @@ export class QuizService {
             .toPromise() as Promise<IPRPSQUIZ>
     }
 
+    getAllPrPsbyRef(ref?:string){
+        // ref="PRE-PRPS-TEST OR POST-PRPS-TEST"
+        return this.http.requestGet(`prps/${ref}`,this.authen.getAuthenticated())
+            .toPromise() as Promise<IPRPSQUIZ>
+    }
+
     getPrpsByRef(ref:string){
         return this.http.requestGet(`prps/${ref}`, this.authen.getAuthenticated())
             .toPromise() as Promise<IPRPSQUIZ>

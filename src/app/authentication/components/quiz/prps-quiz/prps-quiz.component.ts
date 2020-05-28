@@ -4,14 +4,22 @@ import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class'
 import { ArrayType } from '@angular/compiler'
 import { FormGroup } from '@angular/forms'
 import { AlertService } from 'src/app/share/services/alert.service'
+import { QuizService } from 'src/app/authentication/services/quiz.service'
+import { Router } from '@angular/router'
+import { AuthURL } from 'src/app/authentication/authentication.url'
 
 @Component({
     selector: 'app-prps-quiz',
     templateUrl: './prps-quiz.component.html',
     styleUrls: ['./prps-quiz.component.css'],
+    providers: [ QuizService]
 })
 export class PrpsQuizComponent implements OnInit {
-    constructor(private alert:AlertService) {}
+    constructor(
+        private alert: AlertService, 
+        private quiz: QuizService,
+        private router: Router
+        ) {}
 
     ngOnInit(): void {}
 
@@ -59,7 +67,7 @@ export class PrpsQuizComponent implements OnInit {
             this.score[2] = 0
             this.score[3] = 0
 
-            return this.score[i] = 1
+            return (this.score[i] = 1)
         } else if (j == 1) {
             this.score[4] = 0
             this.score[5] = 0
@@ -70,48 +78,92 @@ export class PrpsQuizComponent implements OnInit {
             this.score[9] = 0
             this.score[10] = 0
             this.score[11] = 0
-        }else if (j==3){
+        } else if (j == 3) {
             this.score[12] = 0
             this.score[13] = 0
             this.score[14] = 0
             this.score[15] = 0
         }
 
-        this.score[3*j+j+i]=1;
-        
+        this.score[3 * j + j + i] = 1
+
         console.log(this.score)
     }
 
     onSubmit() {
-        if(!this.selectedOption){
-            return this.alert.notify("กรุณาเลือกประเภทบททดสอบ");
+        if (!this.selectedOption) {
+            return this.alert.notify('กรุณาเลือกประเภทบททดสอบ')
         }
 
-        var dummy=0;
-        for(var i=0;i<16;i++){
-            if(this.score[i]==1)
-                dummy+=1;
+        var dummy = 0
+        for (var i = 0; i < 16; i++) {
+            if (this.score[i] == 1) dummy += 1
         }
 
-        if(dummy<4){
-            return this.alert.notify("กรุณาระบุคำตอบให้ครบทุกข้อ!");
+        if (dummy < 4) {
+            return this.alert.notify('กรุณาระบุคำตอบให้ครบทุกข้อ!')
         }
+
+        var dumb=[];
 
         var obj = {
-            ref : this.selectedOption._id,
-            name: this.name,
-            question: this.question,
-            answers: {
-                name : this.answer,
-                score: this.score
-            }
+            ref: this.selectedOption._id,
+            situation: this.name,
+            questions: this.question,
+            answers:[]
         }
-        console.log(obj);
-        return this.alert.success("เพิ่มแบบทดสอบสำเร็จ !")
+
+        // section1
+        for(var i=0;i<4;i++){
+            dumb.push({
+                name:this.answer[i],
+                score: this.score[i]
+            })
+        }
+
+        obj.answers.push(dumb)
+        dumb=[];
+
+        for(var i=4;i<8;i++){
+            dumb.push({
+                name:this.answer[i],
+                score: this.score[i]
+            })
+        }
+
+        obj.answers.push(dumb)
+        dumb=[];
+
+        for(var i=8;i<12;i++){
+            dumb.push({
+                name:this.answer[i],
+                score: this.score[i]
+            })
+        }
+        obj.answers.push(dumb)
+        dumb=[];
+        
+        for(var i=12;i<16;i++){
+            dumb.push({
+                name:this.answer[i],
+                score: this.score[i]
+            })
+        }
+        obj.answers.push(dumb)
+        dumb=[];
+        
+        this.quiz.addPrPs(obj).then(result=>{
+            this.alert.success(result.message);
+            this.router.navigate(['', AuthURL.Home])
+        })
     }
 }
 
 export interface IPRPSQUIZ {
+    message?:string
+    total_items?:number
+    items?:any
+
     situation: Array<String>
     question: Array<String>
     answer: Array<String>

@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
     ngOnInit(): void {}
 
     onClickPreTest(id:string) {
-        if(this.status==1 || this.status==2){
+        if(this.status==1 || this.status==2 || this.status==3){
             this.alert.success('คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' + this.preTest);
             return;
         }
@@ -50,7 +50,6 @@ export class HomeComponent implements OnInit {
         this.grade.getScoreExercise('PRE-TEST').then(result=>{
             if(result.total_items>0){
                 this.alert.success('คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' + result.item.score);
-                this.status=1;
                 this.preTest=result.item.score;
                 return;
             }else{
@@ -60,7 +59,6 @@ export class HomeComponent implements OnInit {
             }
 
         })
-
         this.status=1;
     }
 
@@ -73,17 +71,15 @@ export class HomeComponent implements OnInit {
             return this.alert.success('คะแนน "ประเมินทักษะการแก้ปัญหา" ของคุณคือ ' + this.prpsTest);
         }
         // เรียกดูคะแนนถ้ามีคะแนนแล้ว แสดงว่าทำ PRE-TEST แล้วไม่สามารถทำได้
-        this.grade.getScoreExercise('PRPS-TEST').then(result=>{
-            if(result.total_items==0){
+        this.grade.getScoreExercise('PRE-TEST').then(result=>{
+            if(result.total_items>=0){
                 this.router.navigate(['', AppURL.Authen, AuthURL.ExercisePrps], {
                     queryParams: { id },
                 })
                 this.status=3;
                 return;
             }else{
-                this.alert.success('คะแนน "ประเมินทักษะการแก้ปัญหา" ของคุณคือ ' + result.item.score);
-                this.status=4;
-                this.prpsTest=result.item.score;
+                return this.alert.notify('กรุณาทำ "แบบฝึกหัดก่อนเรียน" ก่อน!')
             }
         })
     }
