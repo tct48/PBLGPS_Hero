@@ -15,7 +15,7 @@ export class AttendenceComponent implements OnInit {
         private member: MemberService,
         private alert: AlertService,
     ) {
-        console.log(this.account.UserLogin)
+        // console.log(this.account.UserLogin)
         this.loadAttendence();
         this.loadTimeAttended();
     }
@@ -50,7 +50,7 @@ export class AttendenceComponent implements OnInit {
     loadAttendence(){
       this.member.loadAttendence(this.account.UserLogin.class).then(result=>{
         this.items = result.items;
-        console.log(this.items)
+        // console.log(this.items)
         this.total_numbers = result.total_items;
         this.absent=this.total_numbers-this.atteneded;
       })

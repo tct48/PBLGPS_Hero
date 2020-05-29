@@ -38,6 +38,7 @@ export class ClassroomComponent implements OnInit {
 
   classroom_id:String;
   dateAdd=null;
+  colspan:number=0;
 
   title:String;
   total_items:number;
@@ -89,7 +90,8 @@ export class ClassroomComponent implements OnInit {
   loadAttendence(_id:string){
     this.member.loadAttendence(_id).then(result=>{
       this.attendence_item=result.items
-      console.log(this.attendence_item)
+      this.colspan = result.total_items
+      // console.log(this.attendence_item)
     })
   }
 

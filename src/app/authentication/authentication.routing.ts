@@ -16,6 +16,7 @@ import { AttendenceComponent } from './components/member/attendence/attendence.c
 import { PrpsQuizComponent } from './components/quiz/prps-quiz/prps-quiz.component';
 import { ExercisePrpsComponent } from './components/exercise/exercise-prps/exercise-prps.component';
 import { DynamicFormComponent } from './components/quiz/dynamic-form/dynamic-form.component';
+import { GuildComponent } from './components/member/guild/guild.component';
 
 const RouterLists: Routes = [
     { path: '', redirectTo: AppURL.Login, pathMatch: 'full' },
@@ -32,7 +33,8 @@ const RouterLists: Routes = [
     { path: AuthURL.Classroom, component: ClassroomComponent },
     { path: AuthURL.Attendence, component: AttendenceComponent },
     { path: AuthURL.QuizPrPs, component:  PrpsQuizComponent},
-    { path: AuthURL.ExercisePrps, component: ExercisePrpsComponent }
+    { path: AuthURL.ExercisePrps, component: ExercisePrpsComponent },
+    { path: AuthURL.Guild,component:GuildComponent}
     // { path: AuthURL.Signin , component:SigninComponent }
 ];
 

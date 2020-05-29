@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core'
+import { HttpService } from 'src/app/services/http.service'
+import { AuthenService } from 'src/app/services/authen.service'
 
 @Injectable()
 export class LevelService {
-    constructor() {}
+    constructor(
+        private http:HttpService,
+        private authen: AuthenService
+    ) {}
 
     // คำนวณ Level
     calculateLevel(exp) {
@@ -150,5 +155,12 @@ export class LevelService {
 
         return Number(level)
         // return Number(level)/10;
+    }
+
+    // เพิ่ม exp
+    addExptoUser(_id:string,exp:number){
+        // id is userId
+        return this.http.requestPatch(`user/exp/${_id}`,this.authen.getAuthenticated(),{exp : exp})
+        .toPromise() as Promise<any>
     }
 }

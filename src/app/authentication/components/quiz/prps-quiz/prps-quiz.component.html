@@ -48,8 +48,8 @@
                     <button *ngIf="score[3*j+j+i]==1" class="btn btn-blue text-white"><i class="fa fa-hand-o-right" aria-hidden="true"></i> ข้อนี้ถูกต้อง</button>
                   </div>
                 </div>
-                <input *ngIf="j==0" type="text" class="form-control" [(ngModel)]="answer[i]" name="{{j}}{{i}}" placeholder="ตัวเลือกที่ [{{j}}][{{i}}]">
-                <input *ngIf="j>0" type="text" class="form-control" [(ngModel)]="answer[3*j+j+i]" name="{{j}}{{i}}" placeholder="ตัวเลือกที่ [{{j}}][{{i}}]">
+                <input *ngIf="j==0" type="text" class="form-control" [(ngModel)]="answer[i]" name="{{j}}{{i}}" placeholder="ตัวเลือกที่ {{i}}">
+                <input *ngIf="j>0" type="text" class="form-control" [(ngModel)]="answer[3*j+j+i]" name="{{j}}{{i}}" placeholder="ตัวเลือกที่ {{i+1}}">
               </div>  
             </div>
           </div>
@@ -58,7 +58,7 @@
       
   </div>
 
-  <div class="mx-5">
+  <div class="mx-5 mb-4">
     <button class="btn btn-primary" (click)="onSubmit()">
       เพิ่มแบบประเมินทักษะกาแก้ปัญหา
     </button>

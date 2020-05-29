@@ -32,8 +32,5 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## ขั้นถัดไป
-- ทำเมื่อได้คะแนนแล้วทำแทรกเหรียญตรา ลงใน user && เพิ่ม EXP
-- แบบทดสอบหลายตัวเลือกเปลี่ยนเป็น ตัวเลือกเดียว text_area
-3. รายชื่อสมาชิกในห้องเรียน
-4. เช็คชื่อ
-5. ทำ Pre-Test แล้วแบ่งกลุ่ม เก่ง - กลาง - อ่อน
+1. ทำ Guild
+2. ทำ Pre-Test แล้วแบ่งกลุ่ม เก่ง - กลาง - อ่อน

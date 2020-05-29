@@ -55,6 +55,7 @@ import { AttendenceComponent } from './authentication/components/member/attenden
 import { PrpsQuizComponent } from './authentication/components/quiz/prps-quiz/prps-quiz.component'
 import { ExercisePrpsComponent } from './authentication/components/exercise/exercise-prps/exercise-prps.component'
 import { DynamicFormComponent } from './authentication/components/quiz/dynamic-form/dynamic-form.component'
+import { GuildComponent } from './authentication/components/member/guild/guild.component'
 
 @NgModule({
     declarations: [
@@ -64,6 +65,7 @@ import { DynamicFormComponent } from './authentication/components/quiz/dynamic-f
         HomeComponent,
         HahaComponent,
         QuizComponent,
+        GuildComponent,
         MemberComponent,
         SigninComponent,
         SignupComponent,

@@ -109,6 +109,10 @@
         </div>
 
         <div class="card-body" style="padding: 0px;" class="px-2">
+            <div class="my-3 text-right">
+                <span class="badge badge-pill badge-success mx-2">มาเรียน</span>
+                <span class="badge badge-pill badge-danger">ขาดเรียน</span>
+            </div>
             <div class="table-responsive-md">
                 <table class="table table-hover table-outline" style="border-top: 0px;">
                     <thead class="thead-light" style="border-top: 0px;" >
@@ -126,20 +130,14 @@
                             <td>
                                 {{item.firstname}} {{ item.lastname }}
                             </td>
-                            <td *ngFor="let data of attendence_item;let i = index;">
-                                <span tooltip="สัปดาห์ที่ {{ i+1 }} ( วันที่ {{ data.date | date:'dd-MMMM-yyyy' }} )" *ngIf="getAttended(item._id,data.user)==true;else falseValue" class="text-info pointer" style="border-bottom: 1px dotted;" >
-                                    เข้าเรียน
-                                </span>
-                                <ng-template #falseValue>
-                                    <span tooltip="สัปดาห์ที่ {{ i+1 }} ( วันที่ {{ data.date | date:'dd-MMMM-yyyy' }} )" class="text-warning pointer" style="border-bottom: 1px dotted;">ขาดเรียน</span>
-                                </ng-template>
+                            <td *ngFor="let data of attendence_item;let i = index;" tooltip="{{data.date | date : 'dd-MMMM-yyyy'}}" class="border" [ngClass]="getAttended(item._id,data.user)==true?'bg-success':'bg-danger'" >
                             </td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="3"><b>จำนวนทั้งสิ้น </b></td>
-                            <td class="text-right mr-2">{{ total_items }}</td>
+                            <td [attr.colspan]="colspan"><b>นักศึกษาทั้งหมด </b></td>
+                            <td class="text-right mr-2">{{ total_items }} คน</td>
                         </tr>
                     </tfoot>
                 </table>
