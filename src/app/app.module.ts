@@ -14,6 +14,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel'
 import { PaginationModule } from 'ngx-bootstrap/pagination'
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular'
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { SortableModule } from 'ngx-bootstrap/sortable';
 
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
@@ -56,6 +57,7 @@ import { PrpsQuizComponent } from './authentication/components/quiz/prps-quiz/pr
 import { ExercisePrpsComponent } from './authentication/components/exercise/exercise-prps/exercise-prps.component'
 import { DynamicFormComponent } from './authentication/components/quiz/dynamic-form/dynamic-form.component'
 import { GuildComponent } from './authentication/components/member/guild/guild.component'
+import { CreateComponent } from './authentication/components/member/guild/create/create.component'
 
 @NgModule({
     declarations: [
@@ -66,6 +68,7 @@ import { GuildComponent } from './authentication/components/member/guild/guild.c
         HahaComponent,
         QuizComponent,
         GuildComponent,
+        CreateComponent,
         MemberComponent,
         SigninComponent,
         SignupComponent,
@@ -99,6 +102,7 @@ import { GuildComponent } from './authentication/components/member/guild/guild.c
         BrowserAnimationsModule,
         CollapseModule.forRoot(), 
         CarouselModule.forRoot(),
+        SortableModule.forRoot(),
         ProgressbarModule.forRoot(),
         BsDatepickerModule.forRoot(),
         TypeaheadModule.forRoot(),

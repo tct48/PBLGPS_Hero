@@ -94,10 +94,21 @@ export class MemberService {
         .toPromise() as Promise<IClassroom>
     }
 
+    // guild
+    loadUserbyGuild(id?:string){
+        return this.http.requestGet(`guild/${id}`, this.authen.getAuthenticated())
+         .toPromise() as Promise<IMember>
+    }
+
     // โหลดสมาชิกในห้องเรียนทั้งหมด
     loadMemberFromClassroom(model:any){
         return this.http.requestGet(`classroom/student/${model}`,this.authen.getAuthenticated())
         .toPromise() as Promise<IMember>
+    }
+
+    getUserByID(id:String){
+        return this.http.requestGet(`user/userid/${id}`, this.authen.getAuthenticated())
+            .toPromise() as Promise<IMember>
     }
 
     onChangePassword(model:any){
@@ -116,7 +127,7 @@ export interface IResponse {
     message: string
 }
 
-export interface IClassroom{3
+export interface IClassroom{
     total_items?:number
     items?:any
     message?:string
@@ -124,6 +135,7 @@ export interface IClassroom{3
     _id:String;
     name:String;
 }
+
 
 export interface OptionSearch {
     sp: Number
@@ -148,6 +160,7 @@ export interface IMember {
     exp?: number
     activity?: Date
     class?:string
+    score?:number
 }
 
 export interface IAttendence{

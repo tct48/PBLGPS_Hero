@@ -1,0 +1,109 @@
+<app-auth-content>
+    <div class="my-3 py-3">
+        <h3>จัดกลุ่มผู้เรียน</h3>
+    </div>
+    <div class="row mb-5">
+        <!-- left -->
+        <div class="col-md-6">
+            <h5>
+                นักศึกษาที่ยังไม่มีกิล์ดอยู่
+            </h5>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark text-center">
+                        <tr>
+                            <th>ชื่อจริง - นามสกุล</th>
+                            <th>คะแนน PRE-TEST</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of items; let i = index">
+                            <td>{{ data.firstname }} {{ data.lastname }}</td>
+                            <td>{{ score[i] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- right -->
+        <div class="col-md-6">
+            <h5>นักศึกษาที่ยังไม่มีกิล์ดอยู่</h5>
+            <div class="list-group" role="group">
+                <bs-sortable
+                    *ngIf="items"
+                    [(ngModel)]="items"
+                    fieldName="firstname"
+                    itemClass="list-group-item list-group-item-action pointer"
+                    itemActiveClass="list-group-item-active"
+                    placeholderItem="ลากมาวางที่นี่ นักศึกษาที่ไม่มีกิล์ดอยู่ {{
+                        items.length
+                    }}"
+                    placeholderClass="placeholderStyle"
+                    wrapperClass="sortable-wrapper"
+                ></bs-sortable>
+            </div>
+            <!-- <pre class="code-preview">{{ items | json }}</pre> -->
+        </div>
+        <div class="col-md-6">
+            &nbsp;
+        </div>
+        <div class="col-md-6 my-2">
+            <div class="card">
+                <div class="card-header">
+                    <h5>เด็กเรียนเก่ง</h5>
+                </div>
+                <div class="card-body">
+                    <bs-sortable
+                        [(ngModel)]="itemObjectsTop"
+                        itemClass="list-group-item list-group-item-action pointer"
+                        itemActiveClass="list-group-item-active"
+                        placeholderItem="ลากมาวางที่นี่"
+                        placeholderClass="placeholderStyle"
+                        wrapperClass="sortable-wrapper"
+                    ></bs-sortable>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            &nbsp;
+        </div>
+        <!-- ปานกลาง -->
+        <div class="col-md-6 my-2">
+            <div class="card">
+                <div class="card-header">
+                    <h5>ปานกลาง</h5>
+                </div>
+                <div class="card-body">
+                    <bs-sortable
+                        [(ngModel)]="itemObjectsMiddle"
+                        itemClass="list-group-item list-group-item-action pointer"
+                        itemActiveClass="list-group-item-active"
+                        placeholderItem="ลากมาวางที่นี่"
+                        placeholderClass="placeholderStyle"
+                        wrapperClass="sortable-wrapper"
+                    ></bs-sortable>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            &nbsp;
+        </div>
+        <div class="col-md-6 my-2">
+            <div class="card">
+                <div class="card-header">
+                    <h5>เด็กอ่อน</h5>
+                </div>
+                <div class="card-body">
+                    <bs-sortable
+                        [(ngModel)]="itemObjectsBottom"
+                        itemClass="list-group-item list-group-item-action pointer"
+                        itemActiveClass="list-group-item-active"
+                        placeholderItem="ลากมาวางที่นี่"
+                        placeholderClass="placeholderStyle"
+                        wrapperClass="sortable-wrapper"
+                    ></bs-sortable>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-auth-content>

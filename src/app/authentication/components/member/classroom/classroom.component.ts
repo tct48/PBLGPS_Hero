@@ -21,6 +21,7 @@ export class ClassroomComponent implements OnInit {
   constructor(
     private member: MemberService,
     private alert: AlertService,
+    private router: Router
   ) { 
     this.loadDataClassroom();
   }
@@ -136,6 +137,12 @@ export class ClassroomComponent implements OnInit {
       var data:Array<String> = attend;
       var result = data.includes(model)
       return result;
+  }
+
+  onGroupCreate(_id:String){
+    this.router.navigate(['', AppURL.Authen, AuthURL.CreateGroup], {
+      queryParams: { _id },
+  })
   }
 
   onDelete(model:string){

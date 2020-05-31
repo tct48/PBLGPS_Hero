@@ -14,5 +14,6 @@ export const AuthURL = {
     Attendence: 'attendence',
     Guild: 'guild',
     QuizPrPs:'prps-test',
-    ExercisePrps:'exercise-prps'
+    ExercisePrps:'exercise-prps',
+    CreateGroup:'group-create'
 }

@@ -20,6 +20,11 @@ export class GradeService {
         .toPromise() as Promise<IGrade>
     }
 
+    getScoreExerciseById(id:string,exercise:string){
+        return this.http.requestGet(`grade/${id}/${exercise}`)
+        .toPromise() as Promise<IGrade>
+    }
+
     // คำนวณ Level
 }
 
@@ -29,6 +34,7 @@ export interface IGrade{
 
     _id:string,
     name:string,
+    exp?:number,
     score:number,
     ref:string,
     user:string,

@@ -34,6 +34,7 @@
                             <td>{{ data.name }}</td>
                             <td>
                                 <a class="pointer text-info" (click)="onLoadStudent(data)" style="text-decoration: underline;">ดูสมาชิกในห้องเรียน</a> | &nbsp;
+                                <a class="pointer text-primary" (click)="onGroupCreate(data._id)" style="text-decoration: underline;">แบ่งกิล์ดผู้เรียน</a> | &nbsp;
                                 <a class="pointer text-danger" (click)="onDelete(data._id)" style="text-decoration: underline;">ลบชั้นเรียน</a>
                             </td>
                         </tr>
