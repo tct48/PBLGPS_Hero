@@ -110,7 +110,5 @@ export class CreateComponent implements OnInit {
     }
 
     this.loadMember();
-    console.log(model);
-    console.log(data);
   }
 }

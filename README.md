@@ -32,5 +32,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## ขั้นถัดไป
-1. ทำ Guild
-2. ทำ Pre-Test แล้วแบ่งกลุ่ม เก่ง - กลาง - อ่อน
+1. PRE-TEST & POST-TEST ต่าง ๆ ถ้าทำแล้วซ้ำอีกไม่ได้!!

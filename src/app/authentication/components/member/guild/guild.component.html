@@ -5,7 +5,7 @@
             <div class="row no-gutters">
                 <div class="col-md-1" style="display: flex; align-items: center;">
                     <img
-                        src="../../../../../assets/image/guild/skull.jpg"
+                        [src]="guild_image[guild_name-1]"
                         class="card-img"
                         style="margin: auto;"
                         alt="..."
@@ -31,8 +31,8 @@
                     <tr>
                         <!-- <th>x</th>
                         <th>x</th> -->
-                        <th tooltip="PRETEST">1</th>
-                        <th>2</th>
+                        <th tooltip="PRETEST (คะแนนเต็ม 10)">1</th>
+                        <th tooltip="Pre-PrPs (คะแนนเต็ม 40)">2</th>
                         <th>3</th>
                         <th>4</th>
                         <th>5</th>
@@ -50,7 +50,7 @@
                         <td>{{ data.firstname }} {{ data.lastname }}</td>
                         <td>{{ getLevel(data.exp) }}</td>
                         <td>{{ PRETEST[i] }}</td>
-                        <td></td>
+                        <td>{{ PrePRPS[i] }}</td>
                         <td></td>
                         <td></td>
                         <td></td>

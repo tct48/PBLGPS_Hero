@@ -7,12 +7,13 @@ import { AuthURL } from '../../authentication.url'
 import { AccountService } from 'src/app/share/services/account.service'
 import { GradeService } from '../../services/grade.service'
 import { AuthenService } from 'src/app/services/authen.service'
+import { LevelService } from '../../services/level.service'
 
 @Component({
     selector: 'app-exercise',
     templateUrl: './exercise.component.html',
     styleUrls: ['./exercise.component.css'],
-    providers: [QuizService, GradeService],
+    providers: [QuizService, GradeService, LevelService],
 })
 export class ExerciseComponent implements OnInit {
     _id: string
@@ -30,7 +31,8 @@ export class ExerciseComponent implements OnInit {
         private account: AccountService,
         private router: Router,
         private grade: GradeService,
-        private authen: AuthenService
+        private authen: AuthenService,
+        private level:LevelService
     ) {
         this.activateRouter.queryParams.forEach((params) => {
             this._id = params.id
@@ -110,9 +112,24 @@ export class ExerciseComponent implements OnInit {
             user: this.account.UserLogin._id,
         }
 
+        
+
         this.grade.addScoreExercise(obj).then(() => {
             this.alert.success('คะแนน PRE-TEST ของคุณ คือ ' + this.total_score)
-            this.router.navigate(['', AppURL.Authen, AuthURL.Home])
+
+            if(this._id=="PRE-TEST"){
+                var B = this.total_score
+                var C = 40
+                var D = 10;
+    
+                var A = B/C*D;
+    
+                this.level.addExptoUser(this.account.UserLogin._id, A).then(()=>{
+                    this.alert.success("คุณได้รับค่าประสบการณ์เพิ่มขึ้น " + A + " แต้ม")
+                    this.router.navigate(['', AppURL.Authen, AuthURL.Home])
+                })
+            }
+            
         })
     }
 

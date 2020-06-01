@@ -27,11 +27,18 @@ export class GuildComponent implements OnInit {
 
             for(var i=0;i<this.total_user;i++){
                 this.grade.getScoreExerciseById(result.items[i]._id,'PRE-TEST').then(result=>{
-                    console.log(result)
                     if(result.total_items==0){
-                        this.PRETEST.push("null");
+                        this.PRETEST.push("-");
                     }else{
                         this.PRETEST.push(result.item.score)
+                    }
+                })
+
+                this.grade.getScoreExerciseById(result.items[i]._id,'PRE-PRPS-TEST').then(result=>{
+                    if(result.total_items==0){
+                        this.PrePRPS.push("-");
+                    }else{
+                        this.PrePRPS.push(result.item.score)
                     }
                 })
             }
@@ -45,8 +52,16 @@ export class GuildComponent implements OnInit {
     items: any
     guild_name:number;
     description=["The strongest guild.", "Famous guild", "Guild that loves peace", "Guild hiding in the dark.", "Guilds who like to war more than use the brain."]
+    guild_image=[
+        "../../../../../assets/image/guild/guild4.png",
+        "../../../../../assets/image/guild/guild1.png",
+        "../../../../../assets/image/guild/guild3.jpg",
+        "../../../../../assets/image/guild/skull.png",
+        "../../../../../assets/image/guild/guild2.png",
+    ]
 
     PRETEST=[];
+    PrePRPS=[];
 
     getLevel(exp: number) {
         return this.level.calculateLevel(exp)

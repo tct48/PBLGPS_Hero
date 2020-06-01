@@ -7,12 +7,13 @@ import { AccountService } from 'src/app/share/services/account.service'
 import { GradeService } from 'src/app/authentication/services/grade.service'
 import { AppURL } from 'src/app/app.url'
 import { AuthURL } from 'src/app/authentication/authentication.url'
+import { LevelService } from 'src/app/authentication/services/level.service'
 
 @Component({
     selector: 'app-exercise-prps',
     templateUrl: './exercise-prps.component.html',
     styleUrls: ['./exercise-prps.component.css'],
-    providers: [QuizService, GradeService],
+    providers: [QuizService, GradeService, LevelService],
 })
 export class ExercisePrpsComponent implements OnInit {
     constructor(
@@ -21,7 +22,8 @@ export class ExercisePrpsComponent implements OnInit {
         private alert: AlertService,
         private account: AccountService,
         private grade : GradeService,
-        private router : Router
+        private router : Router,
+        private level: LevelService
     ) {
         this.activateRouter.queryParams.forEach((params) => {
             this._id = params.id
@@ -111,12 +113,23 @@ export class ExercisePrpsComponent implements OnInit {
             user: this.account.UserLogin._id,
         }
 
+        
+
         this.grade.addScoreExercise(obj).then(() => {
           this.alert.success(
             'คะแนนของคุณคือ ' + this.your_score + '/40',
             'แบบทดสอบ ' + this._id
         )
-            this.router.navigate(['', AppURL.Authen, AuthURL.Home])
+            if(this._id=="PRE-PRPS-TEST"){
+                var B = Number(this.your_score);
+                var C = 40;
+                var D = 10;
+                var A = B/C*D;
+                this.level.addExptoUser(this.account.UserLogin._id,A).then(()=>{
+                    this.alert.success("คุณได้รับค่าประสบการณ์เพิ่มขึ้น " + A + " แต้ม");
+                    this.router.navigate(['', AppURL.Authen, AuthURL.Home])
+                })
+            }
         })
 
         

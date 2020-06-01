@@ -42,44 +42,51 @@ export class HomeComponent implements OnInit {
     ngOnInit(): void {}
 
     onClickPreTest(id:string) {
-        if(this.status==1 || this.status==2 || this.status==3){
-            this.alert.success('คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' + this.preTest);
-            return;
+        if(this.status==1){
+            return this.alert.success('คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' + this.preTest);
         }
-        // เรียกดูคะแนนถ้ามีคะแนนแล้ว แสดงว่าทำ PRE-TEST แล้วไม่สามารถทำได้
-        this.grade.getScoreExercise('PRE-TEST').then(result=>{
-            if(result.total_items>0){
-                this.alert.success('คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' + result.item.score);
-                this.preTest=result.item.score;
-                return;
-            }else{
+
+        this.grade.getScoreExerciseById(this.account.UserLogin._id,'PRE-TEST').then(result=>{
+            if(result.total_items==0){
                 this.router.navigate(['', AppURL.Authen, AuthURL.Exercise], {
                     queryParams: { id },
                 })
+            }else{
+                this.status=1;
+                this.preTest = result.item.score
+                return this.alert.success('คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' + this.preTest);
             }
-
         })
-        this.status=1;
     }
 
     onClickPrPS(id:string) {
         if(this.status==2){
-            return this.alert.notify('ขณะนี้ระบบยังไม่เปิดการใช้งานแบบประเมินทักษะการแก้ปัญหา','แจ้งเตือน','warning');
-        }else if(this.status==3){
             return this.alert.notify('กรุณาทำ "แบบฝึกหัดก่อนเรียน" ก่อน!')
-        }else if(this.status==4){
-            return this.alert.success('คะแนน "ประเมินทักษะการแก้ปัญหา" ของคุณคือ ' + this.prpsTest);
         }
-        // เรียกดูคะแนนถ้ามีคะแนนแล้ว แสดงว่าทำ PRE-TEST แล้วไม่สามารถทำได้
-        this.grade.getScoreExercise('PRE-TEST').then(result=>{
-            if(result.total_items>=0){
-                this.router.navigate(['', AppURL.Authen, AuthURL.ExercisePrps], {
-                    queryParams: { id },
-                })
-                this.status=3;
+
+        console.log(this.account.UserLogin.guild)
+        if(!this.account.UserLogin.guild){
+            return this.alert.notify("ยังไม่มีกิล์ด ไม่สามารถดำเนินงานต่อได้ !")
+        }
+
+        this.grade.getScoreExerciseById(this.account.UserLogin._id,'PRE-TEST').then(result=>{
+            
+            if(result.total_items==0){
+                this.status=2;
+                this.alert.notify('กรุณาทำ "แบบฝึกหัดก่อนเรียน" ก่อน!')
                 return;
-            }else{
-                return this.alert.notify('กรุณาทำ "แบบฝึกหัดก่อนเรียน" ก่อน!')
+            }
+            if(result.total_items>0){
+                this.grade.getScoreExerciseById(this.account.UserLogin._id,'PRE-PRPS-TEST').then(result=>{
+                    if(result.total_items==0){
+                        this.router.navigate(['', AppURL.Authen, AuthURL.ExercisePrps], {
+                            queryParams: { id },
+                        })
+                    }else{
+                        this.prpsTest = result.item.score
+                        return this.alert.success('คะแนน "แบบประเมินทักษะการแก้ปัญหาก่อนเรียน" ของคุณคือ ' + this.prpsTest);
+                    }
+                })
             }
         })
     }
