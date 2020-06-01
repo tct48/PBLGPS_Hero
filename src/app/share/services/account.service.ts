@@ -30,6 +30,7 @@ export class AccountService {
         this.UserLogin.role = UserLogin.role
         this.UserLogin.exp = UserLogin.exp
         this.UserLogin.class = UserLogin.class
+        this.UserLogin.guild = UserLogin.guild
         // console.log(this.UserLogin);
         return this.UserLogin
     }
@@ -99,6 +100,7 @@ export interface IAccount {
     sid?: string
 
     exp?: number
+    guild?:string
     role?: string
 }
 

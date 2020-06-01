@@ -3,12 +3,16 @@
 <header class="app-header pt-2 pb-2" style="display: block;">
   <a class="app-header__logo" href="index.html"><img src="../../assets/image/logo2.png" /></a>
   <!-- Navbar Right Menu-->
-  <ul class="app-nav">
+  <ul class="app-nav" style="z-index: 10;">
     <!-- User Menu-->
     <li class="dropdown">
       <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i
           class="fa fa-sort-desc fa-lg"></i></a>
       <ul class="dropdown-menu settings-menu dropdown-menu-right">
+        <li>
+          <a class="dropdown-item" style="cursor: pointer;"  [routerLink]="['/auth/guild']">
+            <i class="fa fa-users"></i> กิล์ดของฉัน</a>
+        </li>
         <li>
           <a class="dropdown-item" style="cursor: pointer;" (click)="onLogout()">
             <i class="fa fa-sign-out fa-lg"></i> Logout</a>
@@ -19,7 +23,7 @@
 </header>
 
 <!-- แถบ Navbar -->
-<div style="border: 1px 0 1px 0 solid black; display: block;">
+<div style="border: 1px 0 1px 0 solid black; display: block;position: relative;z-index: 1;">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
     <a class="navbar-brand" href="#"></a>
     <button class="navbar-toggler" style="float: right;" type="button" data-toggle="collapse"

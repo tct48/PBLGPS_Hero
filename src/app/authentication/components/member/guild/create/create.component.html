@@ -4,9 +4,9 @@
     </div>
     <div class="row mb-5">
         <!-- left -->
-        <div class="col-md-6">
+        <div class="col-md-12">
             <h5>
-                นักศึกษาที่ยังไม่มีกิล์ดอยู่
+                นักศึกษาทั้งหมด
             </h5>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
@@ -14,12 +14,21 @@
                         <tr>
                             <th>ชื่อจริง - นามสกุล</th>
                             <th>คะแนน PRE-TEST</th>
+                            <th>กิล์ด</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let data of items; let i = index">
+                        <tr *ngFor="let data of display_data; let i = index">
                             <td>{{ data.firstname }} {{ data.lastname }}</td>
                             <td>{{ score[i] }}</td>
+                            <td class="text-center">
+                                <span *ngIf="!data.guild" class="font-weight-bold">ไม่มีกิล์ดอยู่</span>
+                                <span *ngIf="data.guild">{{ data.guild }} 
+                                    <button type="button" (click)="cancelGroup(data)" class="close" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </span>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -27,7 +36,7 @@
         </div>
         <!-- right -->
         <div class="col-md-6">
-            <h5>นักศึกษาที่ยังไม่มีกิล์ดอยู่</h5>
+            <h5>นักศึกษาทั้งหมด</h5>
             <div class="list-group" role="group">
                 <bs-sortable
                     *ngIf="items"
@@ -44,13 +53,10 @@
             </div>
             <!-- <pre class="code-preview">{{ items | json }}</pre> -->
         </div>
-        <div class="col-md-6">
-            &nbsp;
-        </div>
         <div class="col-md-6 my-2">
             <div class="card">
                 <div class="card-header">
-                    <h5>เด็กเรียนเก่ง</h5>
+                    <h5><img src="../../../../../../assets/image/Crown4.png" class="pointer"> เด็กเรียนเก่ง</h5>
                 </div>
                 <div class="card-body">
                     <bs-sortable
@@ -62,20 +68,27 @@
                         wrapperClass="sortable-wrapper"
                     ></bs-sortable>
                 </div>
+                <div *ngIf="itemObjectsTop" class="card-footer text-right">
+                    <span class="mr-2" *ngIf="itemObjectsTop.length>0"> จำนวน {{ itemObjectsTop.length }} คน</span>
+                    <button *ngIf="itemObjectsTop.length>0" class="btn btn-primary" (click)="onSubmit('เด็กเรียนเก่ง')">
+                        บันทึก
+                    </button>
+                </div>
             </div>
         </div>
+
+        <!-- ปานกลาง -->
         <div class="col-md-6">
             &nbsp;
         </div>
-        <!-- ปานกลาง -->
         <div class="col-md-6 my-2">
             <div class="card">
                 <div class="card-header">
-                    <h5>ปานกลาง</h5>
+                    <h5><img src="../../../../../../assets/image/Crown3.png" class="pointer"> ค่อนข้างดี</h5>
                 </div>
                 <div class="card-body">
                     <bs-sortable
-                        [(ngModel)]="itemObjectsMiddle"
+                        [(ngModel)]="itemObjectsMiddleTop"
                         itemClass="list-group-item list-group-item-action pointer"
                         itemActiveClass="list-group-item-active"
                         placeholderItem="ลากมาวางที่นี่"
@@ -83,8 +96,70 @@
                         wrapperClass="sortable-wrapper"
                     ></bs-sortable>
                 </div>
+                <div *ngIf="itemObjectsMiddleTop" class="card-footer text-right">
+                    <span class="mr-2" *ngIf="itemObjectsMiddleTop.length>0"> จำนวน {{ itemObjectsMiddleTop.length }} คน</span>
+                    <button *ngIf="itemObjectsMiddleTop.length>0" class="btn btn-primary"  (click)="onSubmit('ค่อนข้างดี')">
+                        บันทึก
+                    </button>
+                </div>
             </div>
         </div>
+
+        <div class="col-md-6">
+            &nbsp;
+        </div>
+        <div class="col-md-6 my-2">
+            <div class="card">
+                <div class="card-header">
+                    <h5><img src="../../../../../../assets/image/Crown2.png" class="pointer"> ปานกลาง</h5>
+                </div>
+                <div class="card-body">
+                    <bs-sortable
+                        [(ngModel)]="itemObjectsMiddle"
+                        itemClass="list-group-item list-group-item-action pointer"
+                        itemActiveClass="list-group-item-active"
+                        placeholderItem="ลากมาวางที่นี่" 
+                        placeholderClass="placeholderStyle"
+                        wrapperClass="sortable-wrapper"
+                    ></bs-sortable>
+                </div>
+                <div *ngIf="itemObjectsMiddle" class="card-footer text-right">
+                    <span class="mr-2" *ngIf="itemObjectsMiddle.length>0"> จำนวน {{ itemObjectsMiddle.length }} คน</span>
+                    <button *ngIf="itemObjectsMiddle.length>0" class="btn btn-primary"  (click)="onSubmit('ปานกลาง')">
+                        บันทึก
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            &nbsp;
+        </div>
+        <div class="col-md-6 my-2">
+            <div class="card">
+                <div class="card-header">
+                    <h5>พอใช้</h5>
+                </div>
+                <div class="card-body">
+                    <bs-sortable
+                        [(ngModel)]="itemObjectsSoSo"
+                        itemClass="list-group-item list-group-item-action pointer"
+                        itemActiveClass="list-group-item-active"
+                        placeholderItem="ลากมาวางที่นี่" 
+                        placeholderClass="placeholderStyle"
+                        wrapperClass="sortable-wrapper"
+                    ></bs-sortable>
+                </div>
+                <div *ngIf="itemObjectsSoSo" class="card-footer text-right">
+                    <span class="mr-2" *ngIf="itemObjectsSoSo.length>0"> จำนวน {{ itemObjectsSoSo.length }} คน</span>
+                    <button  *ngIf="itemObjectsSoSo.length>0" class="btn btn-primary"  (click)="onSubmit('พอใช้')">
+                        บันทึก
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
         <div class="col-md-6">
             &nbsp;
         </div>
@@ -102,6 +177,12 @@
                         placeholderClass="placeholderStyle"
                         wrapperClass="sortable-wrapper"
                     ></bs-sortable>
+                </div>
+                <div *ngIf="itemObjectsBottom" class="card-footer text-right">
+                    <span class="mr-2" *ngIf="itemObjectsBottom.length>0"> จำนวน {{ itemObjectsBottom.length }} คน</span>
+                    <button *ngIf="itemObjectsBottom.length>0" class="btn btn-primary"  (click)="onSubmit('เด็กอ่อน')">
+                        บันทึก
+                    </button>
                 </div>
             </div>
         </div>

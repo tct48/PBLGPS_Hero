@@ -1,6 +1,6 @@
 <app-auth-content>
     <!-- Guild header -->
-    <div *ngIf="guild_id">
+    <div>
         <div class="my-3 p-2" style="border:1px solid lightgray;border-bottom: 5px solid lightgray;border-radius: 10px;">
             <div class="row no-gutters">
                 <div class="col-md-1" style="display: flex; align-items: center;">
@@ -13,8 +13,8 @@
                 </div>
                 <div class="col-md-11" style="display: flex; align-items: center;">
                     <div class="card-body">
-                        <h5 class="card-title">กิล์ดอันดับ 1 (Guild)</h5>
-                        <p class="card-text">The strongest guild.</p>
+                        <h5 class="card-title">กิล์ดอันดับ {{ guild_name }} (Guild)</h5>
+                        <p class="card-text">{{ description[guild_name-1] }}</p>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                     <tr>
                         <!-- <th>x</th>
                         <th>x</th> -->
-                        <th>1</th>
+                        <th tooltip="PRETEST">1</th>
                         <th>2</th>
                         <th>3</th>
                         <th>4</th>
@@ -46,10 +46,10 @@
                     </tr>
                 </thead>
                 <tbody *ngIf="items">
-                    <tr *ngFor="let data of detail_user;let i = index;">
+                    <tr *ngFor="let data of items;let i = index;">
                         <td>{{ data.firstname }} {{ data.lastname }}</td>
                         <td>{{ getLevel(data.exp) }}</td>
-                        <td></td>
+                        <td>{{ PRETEST[i] }}</td>
                         <td></td>
                         <td></td>
                         <td></td>

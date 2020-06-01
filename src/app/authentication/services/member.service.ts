@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core'
 import { HttpService } from 'src/app/services/http.service'
 import { AuthenService } from 'src/app/services/authen.service'
+import { HttpClient } from '@angular/common/http'
 
 @Injectable()
 export class MemberService {
-    constructor(private http: HttpService, private authen: AuthenService) {}
+    constructor(private http: HttpService
+        , private https:HttpClient
+        , private authen: AuthenService) {}
 
     // service แก้ไขสมาชิก
     updateMember(uid: any, model: IMember) {
@@ -95,8 +98,8 @@ export class MemberService {
     }
 
     // guild
-    loadUserbyGuild(id?:string){
-        return this.http.requestGet(`guild/${id}`, this.authen.getAuthenticated())
+    loadUserbyGuild(_id?:string){
+        return this.http.requestGet(`guild/${_id}`, this.authen.getAuthenticated())
          .toPromise() as Promise<IMember>
     }
 
@@ -158,6 +161,7 @@ export interface IMember {
     email?: string
     picture?: string
     exp?: number
+    guild?:string
     activity?: Date
     class?:string
     score?:number

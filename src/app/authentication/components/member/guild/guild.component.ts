@@ -20,45 +20,50 @@ export class GuildComponent implements OnInit {
       private level: LevelService,
       private account: AccountService,
       private grade : GradeService) {
-        this.classroom = this.account.UserLogin.class;
-        if (this.guild_id)
-            this.member
-                .loadUserbyGuild('5ed0b69ec449952490ed6e9d')
-                .then((result) => {
-                    this.total_user = result.items.user.length
-                    this.items = result.items
-                    this.setDetailUser()
+        this.member.loadUserbyGuild(this.account.UserLogin._id).then(result=>{
+            this.total_user = result.items.length
+            this.items = result.items
+            this.setGuildName(this.items[0].guild)
+
+            for(var i=0;i<this.total_user;i++){
+                this.grade.getScoreExerciseById(result.items[i]._id,'PRE-TEST').then(result=>{
+                    console.log(result)
+                    if(result.total_items==0){
+                        this.PRETEST.push("null");
+                    }else{
+                        this.PRETEST.push(result.item.score)
+                    }
                 })
-        else {
-          this.member.loadMemberFromClassroom(this.classroom).then(result=>{
-            this.total_user = result.items.length;
-            // console.log(result)
-            // console.log(this.no_group_user)
-            this.ur_id = this.account.UserLogin._id
-          })
-        }
+            }
+
+            console.log(result)
+        })
     }
 
     ngOnInit(): void {}
-    guild_id: String='1ss'
-    ur_id:String
-
     total_user: number
     items: any
-    classroom:String
-    detail_user = [];
+    guild_name:number;
+    description=["The strongest guild.", "Famous guild", "Guild that loves peace", "Guild hiding in the dark.", "Guilds who like to war more than use the brain."]
 
-    setDetailUser() {
-        this.detail_user = []
-        for (var i = 0; i < this.total_user; i++) {
-            this.member.getUserByID(this.items.user[i]).then((result) => {
-                this.detail_user.push(result.items[0])
-            })
-        }
-        // console.log(this.detail_user)
-    }
+    PRETEST=[];
 
     getLevel(exp: number) {
         return this.level.calculateLevel(exp)
+    }
+
+
+    setGuildName(model:string){
+        if(model=="เด็กเรียนเก่ง"){
+            this.guild_name=1
+        }else if(model=="ค่อนข้างดี"){
+            this.guild_name=2
+        }else if(model=="ปานกลาง"){
+            this.guild_name=3
+        }else if(model=="พอใช้"){
+            this.guild_name=4
+        }else{
+            this.guild_name=5
+        }
     }
 }
