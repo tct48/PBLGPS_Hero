@@ -10,7 +10,7 @@
           class="fa fa-sort-desc fa-lg"></i></a>
       <ul class="dropdown-menu settings-menu dropdown-menu-right">
         <li>
-          <a class="dropdown-item" style="cursor: pointer;"  [routerLink]="['/auth/guild']">
+          <a class="dropdown-item" *ngIf="UserLogin.role=='student'" style="cursor: pointer;"  [routerLink]="['/auth/guild']">
             <i class="fa fa-users"></i> กิล์ดของฉัน</a>
         </li>
         <li>
@@ -39,7 +39,7 @@
         <a class="nav-item border-right nav-link px-4" [routerLink]="['/auth/stage']" routerLinkActive="active">กิจกรรมประจำด่าน<br />(STAGE)
           <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link border-right px-4" [routerLink]="['/auth/quest']" routerLinkActive="active">ภารกิจ<br />(QUEST)</a>
-        <a class="nav-item nav-link border-right px-4" routerLinkActive="active">แบบทดสอบ<br />(QUIZ)</a>
+        <a class="nav-item nav-link border-right px-4" [routerLink]="['/auth/Quiz']" routerLinkActive="active">แบบทดสอบ<br />(QUIZ)</a>
         <a class="nav-item nav-link border-right px-4" routerLinkActive="active"
           [routerLink]="['/auth/resource']">แหล่งการเรียนรู้<br />(RESOURCE)</a>
         <a class="nav-item nav-link border-right px-4" routerLinkActive="active"

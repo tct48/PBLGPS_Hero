@@ -61,6 +61,7 @@ import { CreateComponent } from './authentication/components/member/guild/create
 import { StageComponent } from './authentication/components/stage/stage.component'
 import { ExerciseStageComponent } from './authentication/components/exercise/exercise-stage/exercise-stage.component'
 import { QuestComponent } from './authentication/components/quest/quest.component'
+import { QuizgameComponent } from './authentication/components/quizgame/quizgame.component'
 
 @NgModule({
     declarations: [
@@ -79,6 +80,7 @@ import { QuestComponent } from './authentication/components/quest/quest.componen
         SignupComponent,
         SubMenuComponent,
         ContentComponent,
+        QuizgameComponent,
         PrpsQuizComponent,
         ResourceComponent,
         ExerciseComponent,
