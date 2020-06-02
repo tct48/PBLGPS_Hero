@@ -58,6 +58,9 @@ import { ExercisePrpsComponent } from './authentication/components/exercise/exer
 import { DynamicFormComponent } from './authentication/components/quiz/dynamic-form/dynamic-form.component'
 import { GuildComponent } from './authentication/components/member/guild/guild.component'
 import { CreateComponent } from './authentication/components/member/guild/create/create.component'
+import { StageComponent } from './authentication/components/stage/stage.component'
+import { ExerciseStageComponent } from './authentication/components/exercise/exercise-stage/exercise-stage.component'
+import { QuestComponent } from './authentication/components/quest/quest.component'
 
 @NgModule({
     declarations: [
@@ -67,6 +70,8 @@ import { CreateComponent } from './authentication/components/member/guild/create
         HomeComponent,
         HahaComponent,
         QuizComponent,
+        QuestComponent,
+        StageComponent,
         GuildComponent,
         CreateComponent,
         MemberComponent,
@@ -84,6 +89,7 @@ import { CreateComponent } from './authentication/components/member/guild/create
         DynamicFormComponent,
         ExercisePrpsComponent,
         AttendenceComponent,
+        ExerciseStageComponent,
         ManageResourceComponent,
     ],
     imports: [

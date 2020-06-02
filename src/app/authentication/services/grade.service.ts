@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core'
 import { HttpService } from 'src/app/services/http.service';
 import { AccountService } from 'src/app/share/services/account.service';
+import { AuthenService } from 'src/app/services/authen.service';
 
 @Injectable()
 export class GradeService {
     constructor(
         private http : HttpService,
-        private account: AccountService
+        private account: AccountService,
+        private authen: AuthenService
     ) {
     }
 
@@ -23,6 +25,11 @@ export class GradeService {
     getScoreExerciseById(id:string,exercise:string){
         return this.http.requestGet(`grade/${id}/${exercise}`)
         .toPromise() as Promise<IGrade>
+    }
+
+    updateScoreExcerciseById(exercise_id:string,model:any){
+        return this.http.requestPatch(`grade/${exercise_id}`,this.authen.getAuthenticated(),model)
+            .toPromise() as Promise<IGrade>
     }
 
     // คำนวณ Level

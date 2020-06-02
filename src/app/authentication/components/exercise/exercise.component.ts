@@ -112,8 +112,6 @@ export class ExerciseComponent implements OnInit {
             user: this.account.UserLogin._id,
         }
 
-        
-
         this.grade.addScoreExercise(obj).then(() => {
             this.alert.success('คะแนน PRE-TEST ของคุณ คือ ' + this.total_score)
 

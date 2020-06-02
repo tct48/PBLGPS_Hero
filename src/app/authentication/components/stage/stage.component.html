@@ -1,0 +1,60 @@
+<app-auth-content>
+    <div class="my-3 p-2" style="border:1px solid lightgray;border-bottom: 5px solid lightgray;border-radius: 10px;">
+        <div class="row no-gutters">
+            <div class="col-md-1" style="display: flex; align-items: center;">
+                <img
+                    [src]="guild_image[guild_name-1]"
+                    class="card-img"
+                    style="margin: auto;"
+                    alt="..."
+                />
+            </div>
+            <div class="col-md-11" style="display: flex; align-items: center;">
+                <div class="card-body">
+                    <h5 class="card-title">กิล์ดอันดับ {{ guild_name }} (Guild)</h5>
+                    <p class="card-text">{{ description[guild_name-1] }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-10">
+            <div class="p-2 table-responsive">
+                <table class="table table-hover table-border"> 
+                    <thead>
+                        <tr class="text-center">
+                            <th style="vertical-align: middle;" rowspan="2">ชื่อ<br>(Name)</th>
+                            <th style="vertical-align: middle;" rowspan="2">Action</th>
+                            <th class="text-center">รหัสกิล์ด <br> (GUILD ID)</th>
+                            <th class="text-center">สถานะ (STATUS)</th>
+                        </tr> 
+                    </thead>
+                    <tbody *ngIf="items">
+                        <tr *ngFor="let data of items;let i = index;">
+                            <td>{{ data.firstname }} {{ data.lastname }}</td>
+                            <td>
+                                <button class="btn btn-primary" (click)="onReady(data._id,i)">
+                                    เข้าร่วม
+                                </button>
+                            </td>
+                            <td class="text-center">{{ guild_name }}</td>
+                            <td class="text-center">
+                                <span class="text-danger" style="border-bottom: 1px dotted black;" *ngIf="!ready[i]">OFF</span>
+                                <span class="text-info" style="border-bottom: 1px dotted black;" *ngIf="ready[i]">ON</span>
+                            </td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-2 text-center">
+            <img src="../../../../assets/image/stage.png" alt="">
+            <button class="btn btn-info" (click)="onSubmit()">
+                เข้าร่วม
+            </button>
+        </div>
+    </div>
+
+    
+</app-auth-content>

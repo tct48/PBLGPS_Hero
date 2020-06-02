@@ -38,9 +38,18 @@ export class GuildComponent implements OnInit {
                     if(result.total_items==0){
                         this.PrePRPS.push("-");
                     }else{
-                        this.PrePRPS.push(result.item.score)
+                        this.PrePRPS.push(Math.ceil(result.item.score/40*10))
                     }
                 })
+
+                this.grade.getScoreExerciseById(result.items[i]._id,'ATTENDENCE').then(result=>{
+                    if(result.total_items==0){
+                        this.ATTENDENCE.push("-");
+                    }else{
+                        this.ATTENDENCE.push(Math.round(result.item.score/18*10))
+                    }
+                })
+
             }
 
             console.log(result)
@@ -62,6 +71,7 @@ export class GuildComponent implements OnInit {
 
     PRETEST=[];
     PrePRPS=[];
+    ATTENDENCE=[];
 
     getLevel(exp: number) {
         return this.level.calculateLevel(exp)

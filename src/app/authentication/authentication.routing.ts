@@ -18,6 +18,9 @@ import { ExercisePrpsComponent } from './components/exercise/exercise-prps/exerc
 import { DynamicFormComponent } from './components/quiz/dynamic-form/dynamic-form.component';
 import { GuildComponent } from './components/member/guild/guild.component';
 import { CreateComponent } from './components/member/guild/create/create.component';
+import { StageComponent } from './components/stage/stage.component';
+import { ExerciseStageComponent } from './components/exercise/exercise-stage/exercise-stage.component';
+import { QuestComponent } from './components/quest/quest.component';
 
 const RouterLists: Routes = [
     { path: '', redirectTo: AppURL.Login, pathMatch: 'full' },
@@ -36,7 +39,10 @@ const RouterLists: Routes = [
     { path: AuthURL.QuizPrPs, component:  PrpsQuizComponent},
     { path: AuthURL.ExercisePrps, component: ExercisePrpsComponent },
     { path: AuthURL.Guild,component:GuildComponent},
-    { path: AuthURL.CreateGroup, component:CreateComponent }
+    { path: AuthURL.CreateGroup, component:CreateComponent },
+    { path: AuthURL.Stage, component:StageComponent },
+    { path: AuthURL.ExerciseStage, component:ExerciseStageComponent },
+    { path:AuthURL.Quest, component:QuestComponent }
     // { path: AuthURL.Signin , component:SigninComponent }
 ];
 
