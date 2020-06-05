@@ -21,6 +21,7 @@ import { CreateComponent } from './components/member/guild/create/create.compone
 import { StageComponent } from './components/stage/stage.component';
 import { ExerciseStageComponent } from './components/exercise/exercise-stage/exercise-stage.component';
 import { QuestComponent } from './components/quest/quest.component';
+import { QuizgameComponent } from './components/quizgame/quizgame.component';
 
 const RouterLists: Routes = [
     { path: '', redirectTo: AppURL.Login, pathMatch: 'full' },
@@ -42,7 +43,8 @@ const RouterLists: Routes = [
     { path: AuthURL.CreateGroup, component:CreateComponent },
     { path: AuthURL.Stage, component:StageComponent },
     { path: AuthURL.ExerciseStage, component:ExerciseStageComponent },
-    { path:AuthURL.Quest, component:QuestComponent }
+    { path:AuthURL.Quest, component:QuestComponent },
+    { path:AuthURL.QuizGame, component:QuizgameComponent }
     // { path: AuthURL.Signin , component:SigninComponent }
 ];
 

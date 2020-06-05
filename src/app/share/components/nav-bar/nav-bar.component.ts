@@ -51,6 +51,7 @@ export class NavBarComponent implements OnInit {
             })
     }
 
+
     // ออกจากระบบ
     onLogout() {
         this.authen.clearAuthenticated()
