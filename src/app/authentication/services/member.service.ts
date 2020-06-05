@@ -52,6 +52,11 @@ export class MemberService {
             .toPromise() as Promise<any>
     }
 
+    patchAttendenceSick(_id:string,model:any){
+        return this.http.requestPatch(`attendence/sick/${_id}`,this.authen.getAuthenticated(),model)
+            .toPromise() as Promise<any>
+    }
+
     // นักศึกษาลงชื่อเข้าเรียน
     checkInAttendence(_id:string,model:any){
         return this.http.requestPatch(`attendence/${_id}`, this.authen.getAuthenticated(), model)

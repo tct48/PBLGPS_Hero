@@ -11,7 +11,33 @@
       </strong>
     </div>
 
-    <div class="col-md-9 py-3">
+    <!-- table -->
+    <div class="table-responsive my-3" *ngIf="toogle==false">
+      <table class="table  table-bordered table-hover">
+        <thead class="thead-dark text-center">
+          <th>#</th>
+          <th>หัวข้อ</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of items;let i = index;">
+            <td>{{ i+1 }}</td>
+            <td>{{ data.name }}</td>
+            <td>
+              <a (click)="onLoadUpdate(data)"><i class="fa fa-pencil-square-o text-warning mx-2"></i></a>
+              <a (click)="onDelete(data._id)"><i class="fa fa-trash-o text-danger"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="my-2 text-right">
+        <button class="btn btn-info" (click)="switchToogle()">
+          เพิ่มแบบฝึกหัด
+        </button>
+      </div>
+    </div>
+
+    <div class="col-md-9 py-3" *ngIf="toogle==true">
       <!-- ฟอร์มเพิ่ม แหล่งข้อมูล -->
       <div class="card">
         <!-- ส่วนหัวข้อเพิ่มข้อมูล -->
@@ -129,17 +155,20 @@
 
     <!-- ส่วนปุ่มกด -->
 
-    <div class="col-md-3 py-3">
+    <div class="col-md-3 py-3" *ngIf="toogle==true">
       <div class="card">
         <div class="card-header">
           Action
         </div>
         <div class="card-body">
-          <button (click)="onPreview()" class="btn btn-primary col-md-12">
-            add
+          <button (click)="switchToogle()" class="btn btn-danger col-md-12 mb-2">
+            ยกเลิก
           </button>
-          <button (click)="onSubmit()" class="btn btn-success col-md-12 my-2">
-            save
+          <button (click)="onUpdate(items._id)" class="btn btn-warning text-white col-md-12 border" *ngIf="update==true">
+            แก้ไขและบันทึก
+          </button>
+          <button (click)="onSubmit()" class="btn btn-success col-md-12 my-2" *ngIf="update==false">
+            บันทึก
           </button>
         </div>
       </div>

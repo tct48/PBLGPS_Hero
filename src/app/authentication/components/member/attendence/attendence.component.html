@@ -80,13 +80,19 @@
                             <td>วัน {{ data.date | date:'EEEE' }} ที่ {{ data.date | date:'dd MMMM yyyy' }}</td>
                             <td>{{ data.created | dateAgo }}</td>
                             <td>
-                                <a (click)="onCheckIn(data._id)" class="text-success" *ngIf="onCheckUser(data.user)==false && data.status==1" style="border-bottom: 1px dotted;">
+                                <a (click)="onCheckIn(data._id)" class="text-success" *ngIf="onCheckUser(data)==false && data.status==1" style="border-bottom: 1px dotted;">
                                     ลงชื่อเข้าเรียน
                                 </a>
-                                <a class="text-secondary" *ngIf="onCheckUser(data.user)==false && data.status==0" style="border-bottom: 1px dotted;">
+                                <div>
+
+                                </div>
+                                <a class="text-secondary" *ngIf="onCheckUser(data)==false && data.status==0" style="border-bottom: 1px dotted;">
                                     ไม่สามารถลงชื่อเข้าเรียนได้แล้ว
                                 </a>
-                                <span class="text-info" *ngIf="onCheckUser(data.user)==true">มาเรียน</span>
+                                <a class="text-warning" *ngIf="onCheckUser(data)=='sick'" style="border-bottom: 1px dotted;">
+                                    ลาป่วย/ลากิจ
+                                </a>
+                                <span class="text-info" *ngIf="onCheckUser(data)==true">มาเรียน</span>
                             </td>
                         </tr>
                     </tbody>

@@ -17,7 +17,7 @@ export class ResourceService {
     onShowOneChapter(_id: string) {
         return this.http
             .requestGet(`chapter/${_id}`, this.authen.getAuthenticated())
-            .toPromise() as Promise<IChapter>
+            .toPromise() as Promise<any>
     }
 
     // สร้างแหล่งเรียนรู้
@@ -25,6 +25,14 @@ export class ResourceService {
         return this.http.requestPost(`chapter`, model).toPromise() as Promise<
             any
         >
+    }
+
+    onUpdateChapter(_id:string,model:any){
+        return this.http.requestPatch(`chapter/${_id}`,this.authen.getAuthenticated(),model).toPromise() as Promise<any>
+    }
+
+    onDeleteChapter(_id:string){
+        return this.http.requestDelete(`chapter/${_id}`,this.authen.getAuthenticated()).toPromise() as Promise<any>
     }
 }
 

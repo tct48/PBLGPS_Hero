@@ -112,6 +112,7 @@
         <div class="card-body" style="padding: 0px;" class="px-2">
             <div class="my-3 text-right">
                 <span class="badge badge-pill badge-success mx-2">มาเรียน</span>
+                <span class="badge badge-pill badge-warning mx-2">ลาป่วย/ลากิจกรรม</span>
                 <span class="badge badge-pill badge-danger">ขาดเรียน</span>
             </div>
             <div class="table-responsive-md">
@@ -128,10 +129,10 @@
                     <tbody>
                         <tr  *ngFor="let item of items;let j = index;">
                             <td>{{ j+1 }}</td>
-                            <td>
+                            <td >
                                 {{item.firstname}} {{ item.lastname }}
                             </td>
-                            <td *ngFor="let data of attendence_item;let i = index;" tooltip="{{data.date | date : 'dd-MMMM-yyyy'}}" class="border" [ngClass]="getAttended(item._id,data.user)==true?'bg-success':'bg-danger'" >
+                            <td *ngFor="let data of attendence_item;let i = index;" (click)="updateAttendence(data,item)" tooltip="{{data.date | date : 'dd-MMMM-yyyy'}}" class="border pointer text-center" [ngClass]="getAttended(item._id,data.user)==true?'bg-success':data.sick==item._id?'bg-warning':'bg-danger'" >
                             </td>
                         </tr>
                     </tbody>
@@ -142,10 +143,9 @@
                         </tr>
                     </tfoot>
                 </table>
+                
             </div>   
         </div>
-
-                 
     </div> 
 
     

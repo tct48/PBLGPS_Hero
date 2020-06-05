@@ -4,11 +4,6 @@ import { AlertService } from 'src/app/share/services/alert.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppURL } from 'src/app/app.url';
 import { AuthURL } from 'src/app/authentication/authentication.url';
-import { defineLocale } from 'ngx-bootstrap/chronos';
-import { deLocale } from 'ngx-bootstrap/locale';
-
-import { BsLocaleService } from 'ngx-bootstrap/datepicker';
-
  
 @Component({
   selector: 'app-classroom',
@@ -45,8 +40,12 @@ export class ClassroomComponent implements OnInit {
   total_items:number;
   items:IMember;
 
+
+
   attendence_id:any;
   attendence_item:IAttendence;
+
+  attendence_sick=[];
   room:String="5eca83a411df253bb42f2eee";
 
   ngOnInit(): void {
@@ -91,8 +90,9 @@ export class ClassroomComponent implements OnInit {
   loadAttendence(_id:string){
     this.member.loadAttendence(_id).then(result=>{
       this.attendence_item=result.items
+      this.attendence_sick=result.items.sick
       this.colspan = result.total_items
-      // console.log(this.attendence_item)
+      console.log(result)
     })
   }
 
@@ -137,6 +137,20 @@ export class ClassroomComponent implements OnInit {
       var data:Array<String> = attend;
       var result = data.includes(model)
       return result;
+  }
+
+  updateAttendence(attendence:any,user:any){
+    var data:Array<String> = attendence.user;
+    var result = data.includes(user._id)
+
+    if(result==true){
+      return;
+    }
+
+    this.member.patchAttendenceSick(attendence._id,{sick:user._id}).then(result=>{
+      this.alert.success("ดำเนินการสำเร็จ")
+      this.loadAttendence(this.attendence_id)
+    })
   }
 
   onGroupCreate(_id:String){

@@ -37,7 +37,7 @@ export class AttendenceComponent implements OnInit {
         if(result.code == "500"){
           return this.alert.notify("ลงชื่อเข้าเรียนไปแล้ว..!","แจ้งเตือน", "warning")
         }
-        this.alert.success("ลงชื่อเข้าเรียนสำเร็จ!")
+        this.alert.success(result.message)
 
         var A=1
 
@@ -94,8 +94,15 @@ export class AttendenceComponent implements OnInit {
       })
     }
 
-    onCheckUser(user:Array<string>){
-      var data = user.includes(this.account.UserLogin._id)
-      return data;
+    onCheckUser(data:any){
+      var dumb = data.user.includes(this.account.UserLogin._id)
+      if(dumb==false){
+        var sick = data.sick.includes(this.account.UserLogin._id)
+        if(sick==true){
+          return "sick"
+        }
+      }
+      return dumb;
     }
+
 }

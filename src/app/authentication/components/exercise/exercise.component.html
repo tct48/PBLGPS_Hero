@@ -1,8 +1,21 @@
 <app-auth-content>
+    <nav class="breadcrumb">
+        <a class="breadcrumb-item" [routerLink]="['/auth/resource']"
+            >แหล่งการเรียนรู้</a
+        >
+        <li
+            class="breadcrumb-item active"
+            aria-current="page"
+            *ngIf="item?.name"
+        >
+            {{ item.name }}
+        </li>
+    </nav>
     <div class="border-aqua border-bottom mb-4" *ngIf="item">
         <div class="container">
             <h4>
-                <i class="fa fa-newspaper-o" aria-hidden="true"></i> แบบทดสอบ {{ item.name }}
+                <i class="fa fa-newspaper-o" aria-hidden="true"></i> แบบทดสอบ
+                {{ item.name }}
             </h4>
             <p>
                 เพิ่มแบบฝึกหัดให้สอดคล้องกับ แหล่งการเรียนรู้
@@ -10,48 +23,103 @@
             </p>
         </div>
     </div>
-    
+
     <h5 class="text-center">
-        วิชาการสื่อสารข้อมูล และเครือข่าย<br>
+        วิชาการสื่อสารข้อมูล และเครือข่าย<br />
         {{ item?.name }}
     </h5>
-    <p *ngIf="item"><b>คำชี้แจง : </b>แบบทดสอบก่อนเรียนนี้ เป็นแบบทดสอบแบบ 4 ตัวเลือก จำนวน {{ total_items }} ข้อ</p>
+    <p *ngIf="item">
+        <b>คำชี้แจง : </b>แบบทดสอบก่อนเรียนนี้ เป็นแบบทดสอบแบบ 4 ตัวเลือก จำนวน
+        {{ total_items }} ข้อ
+    </p>
 
     <div class="row">
         <div class="col-md-10">
-            <div class="card my-4 text-black"
-            style="border:1px solid rgb(90,156,255);border-left: 10px solid rgb(90, 156, 255);"
-            *ngIf="item"
+            <div
+                class="card my-4 text-black"
+                style="
+                    border: 1px solid rgb(90, 156, 255);
+                    border-left: 10px solid rgb(90, 156, 255);
+                "
+                *ngIf="item"
             >
-            <div class="card-header">
-              <p style="font-size: x-large;margin:0px;">
-                  {{ item.choice[index].question }}
-              </p>
-            </div>
-            <div class="card-body">
-              <!-- radio button -->
-              <span>
-                <div class="input-group mb-2" *ngFor="let data of item.choice[index].answer;let j = index;">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                      <input type="radio" [checked]="onSelect(index,j)" (click)="choose(data.correct,index,j)" value="data.correct" name="item.choice[index]._id"  aria-label="Radio button for following text input">
-                    </div>
-                  </div>
-                  <input type="text" [value]="data.name" class="form-control" aria-label="Text input with radio button" readonly=true>
+                <div class="card-header">
+                    <p style="font-size: x-large; margin: 0px;">
+                        {{ item.choice[index].question }}
+                    </p>
                 </div>
-              </span>
+                <div class="card-body">
+                    <!-- radio button -->
+                    <span>
+                        <div
+                            class="input-group mb-2"
+                            *ngFor="
+                                let data of item.choice[index].answer;
+                                let j = index
+                            "
+                        >
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input
+                                        type="radio"
+                                        [checked]="onSelect(index, j)"
+                                        (click)="choose(data.correct, index, j)"
+                                        value="data.correct"
+                                        name="item.choice[index]._id"
+                                        aria-label="Radio button for following text input"
+                                    />
+                                </div>
+                            </div>
+                            <input
+                                type="text"
+                                [value]="data.name"
+                                class="form-control"
+                                aria-label="Text input with radio button"
+                                readonly="true"
+                            />
+                        </div>
+                    </span>
+                </div>
             </div>
-          </div>
         </div>
-        
+
         <div class="col-md-2 mt-4">
-            <p>คำถามที่ {{ index +1 }}/2 | page {{ index +1 }}/{{ total_items }}</p>
-            <progressbar max="2" [value]="your_answer.length" type="success" striped="true" animate="true"></progressbar>
+            <p>
+                คำถามที่ {{ index + 1 }}/2 | page {{ index + 1 }}/{{
+                    total_items
+                }}
+            </p>
+            <progressbar
+                max="2"
+                [value]="your_answer.length"
+                type="success"
+                striped="true"
+                animate="true"
+            ></progressbar>
         </div>
     </div>
-    
-    <button class="btn btn-primary" (click)="onPreviousExercise()" *ngIf="index>0"> << ย้อนกลับ</button> &nbsp;
-    <button class="btn btn-primary button-next" *ngIf="index!=total_items-1" (click)="onNextExercise()">ต่อไป >></button>
-    <button class="btn btn-primary button-next ml-2" style="border:1px solid darkgreen;background-color: rgb(44, 194, 94);" *ngIf="your_answer.length==total_items" (click)="onSubmit()">ส่งคำตอบ</button>
-    
+
+    <button
+        class="btn btn-primary"
+        (click)="onPreviousExercise()"
+        *ngIf="index > 0"
+    >
+        << ย้อนกลับ
+    </button>
+    &nbsp;
+    <button
+        class="btn btn-primary button-next"
+        *ngIf="index != total_items - 1"
+        (click)="onNextExercise()"
+    >
+        ต่อไป >>
+    </button>
+    <button
+        class="btn btn-primary button-next ml-2"
+        style="border: 1px solid darkgreen; background-color: rgb(44, 194, 94);"
+        *ngIf="your_answer.length == total_items"
+        (click)="onSubmit()"
+    >
+        ส่งคำตอบ
+    </button>
 </app-auth-content>
