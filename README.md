@@ -33,3 +33,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## ขั้นถัดไป
 1. PRE-TEST & POST-TEST ต่าง ๆ ถ้าทำแล้วซ้ำอีกไม่ได้!!
+2. กระดานผู้นำ แบ่งห้อง (Admin)

@@ -1,23 +1,102 @@
 <app-auth-content>
-    <div class="row mt-3">
+    <nav class="breadcrumb my-2">
+        <a class="breadcrumb-item"  (click)="setStage(0)">
+            กิจกรรมประจำด่าน
+        </a>
+        <li class="breadcrumb-item active" aria-current="page" *ngIf="stage">
+            สถานการณ์ที่ {{ stage }}
+        </li>
+    </nav>
+
+    <div class="row" *ngIf="menu == false">
+        <div class="col-md-2">
+            <!-- รูปภาพ -->
+            <img src="../../../../assets/image/stage.png" alt="">
+        </div>
+        <div class="col-md-10">
+            <!-- สถานการณ์ -->
+            <div>
+                <div class="row px-5 py-3 my-3 text-center">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary col-md-12 my-2" (click)="setStage()">
+                            สถานการณ์ที่ 1
+                        </button>
+                        <button class="btn btn-secondary col-md-12 my-2" (click)="onDisable()">
+                            <i class="fa fa-lock"> </i>สถานการณ์ที่ 3
+                        </button>
+                        <button class="btn btn-secondary col-md-12 my-2" (click)="onDisable()">
+                            <i class="fa fa-lock"> </i>สถานการณ์ที่ 5
+                        </button>
+                        <button class="btn btn-secondary col-md-12 my-2" (click)="onDisable()">
+                            <i class="fa fa-lock"> </i>สถานการณ์ที่ 7
+                        </button>
+                        <button class="btn btn-secondary col-md-12 my-2" (click)="onDisable()">
+                            <i class="fa fa-lock"> </i>สถานการณ์ที่ 9
+                        </button>
+                        <button class="btn btn-secondary col-md-12 my-2" (click)="onDisable()">
+                            <i class="fa fa-lock"> </i>ถานการณ์ที่ 11
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-secondary col-md-12 my-2" (click)="onDisable()">
+                            <i class="fa fa-lock"> </i>สถานการณ์ที่ 2
+                        </button>
+                        <button class="btn btn-secondary col-md-12 my-2" (click)="onDisable()">
+                            <i class="fa fa-lock"> </i>สถานการณ์ที่ 4
+                        </button>
+                        <button class="btn btn-secondary col-md-12 my-2" (click)="onDisable()">
+                            <i class="fa fa-lock"> </i>สถานการณ์ที่ 6
+                        </button>
+                        <button class="btn btn-secondary col-md-12 my-2" (click)="onDisable()">
+                            <i class="fa fa-lock"> </i>สถานการณ์ที่ 8
+                        </button>
+                        <button class="btn btn-secondary col-md-12 my-2" (click)="onDisable()">
+                            <i class="fa fa-lock"> </i>ถานการณ์ที่ 10
+                        </button>
+                        <button class="btn btn-secondary col-md-12 my-2" (click)="onDisable()">
+                            <i class="fa fa-lock"> </i>ถานการณ์ที่ 12
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3" *ngIf="menu == true">
         <div class="col-md-3 text-center">
             <div class="jumbotron py-2 px-3">
                 Stage is available on Google Docs and mindmeister.com.
             </div>
-            <img src="../../../../../assets/image/google doc.jpg" style="max-width: 100px;">
-            <p class="my-2 mb-4" style="font-weight: bold;">Ex File Name: U1_SP1_G1</p>
-            <img src="../../../../../assets/image/mind_meister.png" style="max-width: 100px;">
-            <a href="https://www.mindmeister.com/" target="_blank" class="text-warning">www.mindmeister.com</a>
+            <img
+                src="../../../../../assets/image/google doc.jpg"
+                style="max-width: 100px;"
+            />
+            <p class="my-2 mb-4" style="font-weight: bold;">
+                Ex File Name: U1_SP1_G1
+            </p>
+            <img
+                src="../../../../../assets/image/mind_meister.png"
+                style="max-width: 100px;"
+            />
+            <a
+                href="https://www.mindmeister.com/"
+                target="_blank"
+                class="text-warning"
+                >www.mindmeister.com</a
+            >
         </div>
         <div class="col-md-9 px-4">
             <h5>สถานการณ์ปัญหาที่ 1</h5>
             <p class="text-justify py-2 px-2" style="text-indent: 30px;">
-                อนุชิตเรียนอยู่ระดับ ปวช. 1 และวันนี้อาจารย์ที่สอนวิชาเครือข่ายคอมพิวเตอร์เบื้องต้นได้สั่งให้หาข้อมูลเรื่องสื่อกลางในการสื่อสารข้อมูลแบบใช้สายและอาทิตย์หน้าให้นำเสนองานหน้าชั้นเรียนแต่อนุชิตไม่เคยนำเสนองานหน้าชั้นเรียนและไม่รู้ว่าต้องใช้โปรแกรมอะไรในการทำ
+                อนุชิตเรียนอยู่ระดับ ปวช. 1
+                และวันนี้อาจารย์ที่สอนวิชาเครือข่ายคอมพิวเตอร์เบื้องต้นได้สั่งให้หาข้อมูลเรื่องสื่อกลางในการสื่อสารข้อมูลแบบใช้สายและอาทิตย์หน้าให้นำเสนองานหน้าชั้นเรียนแต่อนุชิตไม่เคยนำเสนองานหน้าชั้นเรียนและไม่รู้ว่าต้องใช้โปรแกรมอะไรในการทำ
             </p>
-            <input type="file">
+            <input type="file" />
             &nbsp;
             <button class="btn btn-info">Upload</button>
-            <p class="small text-muted">ทำการ upload ไฟล์เข้าระบบหลังจากทำกิจกรรมประจำด่านเสร็จ</p>
+            <p class="small text-muted">
+                ทำการ upload ไฟล์เข้าระบบหลังจากทำกิจกรรมประจำด่านเสร็จ
+            </p>
         </div>
     </div>
 </app-auth-content>

@@ -15,72 +15,94 @@
     </div>
   </div>
 
-  <!-- card topic -->
-  <div class="card mb-2">
-    <div class="card-header">
-      <label for="">ใช้แบบทดสอบนี้กับแบบฝึกหัด :</label>
-      <input [(ngModel)]="selectedValue" [typeahead]="states" [typeaheadMinLength]="0" typeaheadOptionsLimit="5"
-        typeaheadOptionField="name" placeholder="หน่วยการเรียนรู้ที่ 1,2,3" [isAnimated]="true"
-        (typeaheadOnSelect)="onSelect($event)" class="form-control" required>
-    </div>
-    <div class="card-body form-group">
-      <input type="text" class="form-control"
-        style="background-color:rgb(245, 245, 245);border:0px; border-bottom:1px thick darkgray;"
-        placeholder="คำอธิบายแบบฟอร์ม" />
-    </div>
+  <div class="table-responsive" *ngIf="menu==false">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark text-center">
+        <tr>
+          <th>#</th>
+          <th>แบบฝึกหัด</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of list_item;let i = index;">
+          <td>{{ i+1 }}</td>
+          <td>{{ data.name }}</td>
+          <td>
+            <a (click)="onLoadUpdate(data)"><i class="fa fa-pencil-square-o text-warning mx-2"></i></a>
+            <a (click)="onDelete(data._id)"><i class="fa fa-trash-o text-danger"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-info" style="float: right;" (click)="addQuizItem()">
+      เพิ่มแบบฝึกหัด
+    </button>
   </div>
 
-  <!-- body question -->
-  <div #scrollMe class="card my-4 text-black" *ngFor="let data of article;let i = index;"
-    style="border:1px solid rgb(90,156,255);border-left: 10px solid rgb(90, 156, 255);">
-    <div class="card-header">
-      <div class="row">
-        <div class="col-md-12" style="padding-left: 10;">
-          <input type="text"
-            style="display: block;width: 100%;background-color: rgba(0, 0, 0, 0);border:0px;border-bottom: 2px solid rgb(212, 212, 212);font-size:xx-large;"
-            placeholder="คำถาม ?" [(ngModel)]="data.question" required />
-        </div> 
-        <!-- <div class="col-md-2">
-          <button class="btn btn-info btn-block"
-            style="background-color: rgb(90, 156, 255);border:0px;height: 100%;" (click)="onSwitchInput()">
-            <span *ngIf="switchInput==0">
-              หลายตัวเลือก
-            </span>
-            <span *ngIf="switchInput==1">
-              ตัวเลือกเดียว
-            </span>
-          </button>
-        </div> -->
+  <!-- card topic -->
+  <div *ngIf="menu==true">
+    <div class="card mb-2">
+      <div class="card-header">
+        <label for="">ใช้แบบทดสอบนี้กับแบบฝึกหัด :</label>
+        <input [(ngModel)]="selectedValue" [typeahead]="states" [typeaheadMinLength]="0" typeaheadOptionsLimit="5"
+          typeaheadOptionField="name" placeholder="หน่วยการเรียนรู้ที่ 1,2,3" [isAnimated]="true"
+          (typeaheadOnSelect)="onSelect($event)" class="form-control" required>
+      </div>
+      <div class="card-body form-group">
+        <input type="text" class="form-control"
+          style="background-color:rgb(245, 245, 245);border:0px; border-bottom:1px thick darkgray;"
+          placeholder="คำอธิบายแบบฟอร์ม" />
       </div>
     </div>
-    <div class="card-body">
-      <!-- radio button -->
-      <span *ngFor="let sub_data of article[i].answer;let j = index">
-        <div class="input-group mb-2" >
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <input type="radio" name="data._id" [value]="sub_data.correct" (click)="choose($event, i,j)"  aria-label="Radio button for following text input">
-            </div>
-            <button *ngIf="sub_data.correct==1" class="btn btn-blue text-white"><i class="fa fa-hand-o-right" aria-hidden="true"></i> ข้อนี้ถูกต้อง</button>
-          </div>
-          <input *ngIf="switchInput==0" type="text" class="form-control" aria-label="Text input with radio button" [(ngModel)]="sub_data.name" placeholder="ตัวเลือกที่ {{ j+1 }}">
-        </div>
-      </span>
-      <!-- <textarea *ngIf="switchInput==1 " class="form-control" [(ngModel)]="article[i].answer"></textarea> -->
-      <a (click)="onAddSubArticle(i)" *ngIf="switchInput==0"><i class="fa fa-plus"></i> เพิ่มตัวเลือก</a>
-    </div>
-  </div>
-  
-  <button class="btn btn-info" (click)="onAddArticle(article.length)"
-    style="background-color: rgb(90, 156, 255);border:0px;height: 100%;">เพิ่มข้อแบบฝึกหัด</button>
-  <button *ngIf="article.length>1" class="btn btn-info ml-1" (click)="onAddArticle(article.length-1,'minus')"
-    style="background-color: rgb(165, 165, 165);border:0px;height: 100%;">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <button *ngIf="article.length>1" (click)="submit()" class="btn btn-info text-white" style="border:1px solid darkgreen;background-color: rgb(44, 194, 94);float: right;">ยืนยัน</button>
 
-  <div class="border-top text-right my-2">
-    <b>จำนวนข้อ </b>{{ article.length }}
+    <!-- body question -->
+    <div #scrollMe class="card my-4 text-black" *ngFor="let data of article;let i = index;"
+      style="border:1px solid rgb(90,156,255);border-left: 10px solid rgb(90, 156, 255);">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-12" style="padding-left: 10;">
+            <input type="text"
+              style="display: block;width: 100%;background-color: rgba(0, 0, 0, 0);border:0px;border-bottom: 2px solid rgb(212, 212, 212);font-size:xx-large;"
+              placeholder="คำถาม ?" [(ngModel)]="data.question" required />
+          </div> 
+        </div>
+      </div>
+      <div class="card-body">
+        <!-- radio button -->
+        <span *ngFor="let sub_data of article[i].answer;let j = index">
+          <div class="input-group mb-2" >
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input type="radio" name="{{data._id}}" [value]="sub_data.correct" (click)="choose($event, i,j)"  aria-label="Radio button for following text input">
+              </div>
+              <button *ngIf="sub_data.correct==1" class="btn btn-blue text-white"><i class="fa fa-hand-o-right" aria-hidden="true"></i> ข้อนี้ถูกต้อง</button>
+            </div>
+            <input *ngIf="switchInput==0" type="text" class="form-control" aria-label="Text input with radio button" [(ngModel)]="sub_data.name" placeholder="ตัวเลือกที่ {{ j+1 }}">
+          </div>
+        </span>
+        <!-- <textarea *ngIf="switchInput==1 " class="form-control" [(ngModel)]="article[i].answer"></textarea> -->
+        <a (click)="onAddSubArticle(i)" *ngIf="switchInput==0"><i class="fa fa-plus"></i> เพิ่มตัวเลือก</a>
+      </div>
+    </div>
+    
+    <button class="btn btn-info" (click)="onAddArticle(article.length)"
+      style="background-color: rgb(90, 156, 255);border:0px;height: 100%;">เพิ่มข้อแบบฝึกหัด</button>
+    <button *ngIf="article.length>1" class="btn btn-info ml-1" (click)="onAddArticle(article.length-1,'minus')"
+      style="background-color: rgb(165, 165, 165);border:0px;height: 100%;">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <button *ngIf="!fix_id" (click)="submit()" class="btn btn-info text-white" style="border:1px solid darkgreen;background-color: rgb(44, 194, 94);float: right;">บันทึกข้อมูล</button>
+    <button *ngIf="fix_id" (click)="onCancel()" class="btn btn-danger text-white" style="float: right;">
+      ยกเลิก
+    </button>
+    <button *ngIf="fix_id" (click)="updateSubmit()" class="btn btn-warning text-white mx-2" style="float:right;">
+      บันทึกการแก้ไข
+    </button>
+    <div class="border-top text-right my-2">
+      <b>จำนวนข้อ </b>{{ article.length }}
+    </div>
+    
   </div>
 
 

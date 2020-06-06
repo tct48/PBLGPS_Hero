@@ -12,4 +12,5 @@ export class SubMenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  text:string = "สุดขอบฟ้าหัวใจพี่จะไปถึง"
 }

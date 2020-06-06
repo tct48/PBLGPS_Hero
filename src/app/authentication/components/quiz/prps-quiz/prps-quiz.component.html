@@ -15,52 +15,95 @@
     </div>
   </div>
 
-  <div class="bg-light px-3 py-3 my-3" style="border: 1px solid lightgray;border-radius: 5px;">
-    <h5>แบบทดสอบนี้เป็นแบบประเมินทักษะการแก้ปัญหา</h5>
-    <input [(ngModel)]="selectedValue" [typeahead]="states" [typeaheadMinLength]="0" typeaheadOptionsLimit="5"
-        typeaheadOptionField="name" placeholder="หน่วยการเรียนรู้ที่ 1,2,3" [isAnimated]="true"
-        (typeaheadOnSelect)="onSelect($event)" class="form-control" required>
-  </div>
-
-  <div class="card my-3" style="border-top: 5px solid darkgray;">
-    <form>
-      <div class="card-body">
-          <div class="form-group">
-            <label for="disabledTextInput">สถานการณ์ :</label>
-            <textarea class="form-control" [(ngModel)]="name" name="name"  id="" cols="30" rows="7">
-
-            </textarea>
-          </div>
-          <div>
-            <div class="form-group mt-2" *ngFor="let data of interfaceFormat;let j = index;">
-              <label for="disabledTextInput">คำถามข้อที่ : {{ j+1 }}</label>
-              <input type="text" [(ngModel)]="question[j]" name="{{ j }}" class="form-control" placeholder="คำถามข้อที่ {{j+1}} |">     
-              <div class="input-group m-1" *ngFor="let sub_data of interfaceFormat;let i = index;">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                   <input *ngIf="j==0" type="radio" (change)="choose($event,j,i)" value="score[i]" name="{{j}}">
-                   <input *ngIf="j>0" type="radio" (change)="choose($event,j,i)" value="score[3*j+j+i]" name="{{j}}">
-                  </div> 
-                  <div *ngIf="j==0">
-                    <button *ngIf="score[i]==1" class="btn btn-blue text-white"><i class="fa fa-hand-o-right" aria-hidden="true"></i> ข้อนี้ถูกต้อง</button>
-                  </div>
-                  <div *ngIf="j>0">
-                    <button *ngIf="score[3*j+j+i]==1" class="btn btn-blue text-white"><i class="fa fa-hand-o-right" aria-hidden="true"></i> ข้อนี้ถูกต้อง</button>
-                  </div>
-                </div>
-                <input *ngIf="j==0" type="text" class="form-control" [(ngModel)]="answer[i]" name="{{j}}{{i}}" placeholder="ตัวเลือกที่ {{i}}">
-                <input *ngIf="j>0" type="text" class="form-control" [(ngModel)]="answer[3*j+j+i]" name="{{j}}{{i}}" placeholder="ตัวเลือกที่ {{i+1}}">
-              </div>  
-            </div>
-          </div>
-      </div>
-    </form>
-      
-  </div>
-
-  <div class="mx-5 mb-4">
-    <button class="btn btn-primary" (click)="onSubmit()">
-      เพิ่มแบบประเมินทักษะกาแก้ปัญหา
+  <!-- ตาราง List -->
+  <div class="table-responsive" *ngIf="menu==false">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark text-center">
+        <tr>
+          <th>#</th>
+          <th>ประเภท</th>
+          <th>แบบฝึกหัด</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of list_item;let i = index;">
+          <td class="text-center">{{ i+1 }}</td>
+          <td class="text-center">
+            <span class="text-info" *ngIf="data.ref=='PRE-PRPS-TEST'">
+              แบบทดสอบก่อนเรียน
+            </span>
+            <span class="text-danger" *ngIf="data.ref=='POST-PRPS-TEST'">
+              แบบทดสอบหลังเรียน
+            </span>
+          </td>
+          <td>{{ data.situation | slice:0:65 }}....</td>
+          <td>
+            <a (click)="onLoadUpdate(data._id)"><i class="fa fa-pencil-square-o text-warning mx-2"></i></a>
+            <a (click)="onDelete(data._id)"><i class="fa fa-trash-o text-danger"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-info" style="float: right;">
+      เพิ่มแบบฝึกหัด
     </button>
   </div>
+
+  <div *ngIf="menu==true">
+    <div class="bg-light px-3 py-3 my-3" style="border: 1px solid lightgray;border-radius: 5px;">
+      <h5>แบบทดสอบนี้เป็นแบบประเมินทักษะการแก้ปัญหา</h5>
+      <input [(ngModel)]="selectedValue" [typeahead]="states" [typeaheadMinLength]="0" typeaheadOptionsLimit="5"
+          typeaheadOptionField="name" placeholder="หน่วยการเรียนรู้ที่ 1,2,3" [isAnimated]="true"
+          (typeaheadOnSelect)="onSelect($event)" class="form-control" required>
+    </div>
+
+    <div class="card my-3" style="border-top: 5px solid darkgray;">
+      <form>
+        <div class="card-body">
+            <div class="form-group">
+              <label for="disabledTextInput">สถานการณ์ :</label>
+              <textarea class="form-control" [(ngModel)]="name" name="name"  id="" cols="30" rows="7">
+
+              </textarea>
+            </div>
+            <div>
+              <div class="form-group mt-2" *ngFor="let data of interfaceFormat;let j = index;">
+                <label for="disabledTextInput">คำถามข้อที่ : {{ j+1 }}</label>
+                <input type="text" [(ngModel)]="question[j]" name="{{ j }}" class="form-control" placeholder="คำถามข้อที่ {{j+1}} |">     
+                <div class="input-group m-1" *ngFor="let sub_data of interfaceFormat;let i = index;">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                    <input *ngIf="j==0" type="radio" (change)="choose($event,j,i)" value="score[i]" name="{{j}}">
+                    <input *ngIf="j>0" type="radio" (change)="choose($event,j,i)" value="score[3*j+j+i]" name="{{j}}">
+                    </div> 
+                    <div *ngIf="j==0">
+                      <button *ngIf="score[i]==1" class="btn btn-blue text-white"><i class="fa fa-hand-o-right" aria-hidden="true"></i> ข้อนี้ถูกต้อง</button>
+                    </div>
+                    <div *ngIf="j>0">
+                      <button *ngIf="score[3*j+j+i]==1" class="btn btn-blue text-white"><i class="fa fa-hand-o-right" aria-hidden="true"></i> ข้อนี้ถูกต้อง</button>
+                    </div>
+                  </div>
+                  <input *ngIf="j==0" type="text" class="form-control" [(ngModel)]="answer[i]" name="{{j}}{{i}}" placeholder="ตัวเลือกที่ {{i}}">
+                  <input *ngIf="j>0" type="text" class="form-control" [(ngModel)]="answer[3*j+j+i]" name="{{j}}{{i}}" placeholder="ตัวเลือกที่ {{i+1}}">
+                </div>  
+              </div>
+            </div>
+        </div>
+      </form>
+        
+    </div>
+
+    <div class="mx-5 mb-4">
+    <button *ngIf="!_id" class="btn btn-primary" (click)="onSubmit()">
+      เพิ่มแบบประเมินทักษะกาแก้ปัญหา
+    </button>
+    <button *ngIf="_id" class="btn btn-warning text-white mx-2" (click)="onUpdate()">
+      บันทึกการแก้ไข
+    </button>
+    <button *ngIf="_id" class="btn btn-danger text-white" (click)="onCancel()">
+      ยกเลิก
+    </button>
+  </div>
+</div>
 </app-auth-content>
