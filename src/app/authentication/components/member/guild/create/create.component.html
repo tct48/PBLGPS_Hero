@@ -1,4 +1,12 @@
 <app-auth-content>
+    <div class="col-md-12">
+        <nav class="breadcrumb">
+            <a class="breadcrumb-item" [routerLink]="['/auth/classroom']">จัดการชั้นเรียน</a>
+            <li class="breadcrumb-item active" aria-current="page">
+                แบ่งกิล์ดผู้เรียน
+            </li>
+        </nav>
+    </div>   
     <div class="my-3 py-3">
         <h3>จัดกลุ่มผู้เรียน</h3>
     </div>
@@ -13,178 +21,36 @@
                     <thead class="thead-dark text-center">
                         <tr>
                             <th>ชื่อจริง - นามสกุล</th>
-                            <th>คะแนน PRE-TEST</th>
+                            <th *ngIf="this.score">คะแนน PRE-TEST</th>
                             <th>กิล์ด</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let data of display_data; let i = index">
                             <td>{{ data.firstname }} {{ data.lastname }}</td>
-                            <td>{{ score[i] }}</td>
+                            <td *ngIf="test_score[i]">
+                                <span *ngFor="let subdata of test_score;let j = index;">
+                                    <p *ngIf="subdata._id==data._id">
+                                        {{ subdata.score }}
+                                    </p>
+                                </span>
+                            </td>
                             <td class="text-center">
                                 <span *ngIf="!data.guild" class="font-weight-bold">ไม่มีกิล์ดอยู่</span>
-                                <span *ngIf="data.guild">{{ data.guild }} 
-                                    <button type="button" (click)="cancelGroup(data)" class="close" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </span>
+                                <span *ngIf="data.guild">{{ data.guild }}</span>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <!-- right -->
-        <div class="col-md-6">
-            <h5>นักศึกษาทั้งหมด</h5>
-            <div class="list-group" role="group">
-                <bs-sortable
-                    *ngIf="items"
-                    [(ngModel)]="items"
-                    fieldName="firstname"
-                    itemClass="list-group-item list-group-item-action pointer"
-                    itemActiveClass="list-group-item-active"
-                    placeholderItem="ลากมาวางที่นี่ นักศึกษาที่ไม่มีกิล์ดอยู่ {{
-                        items.length
-                    }}"
-                    placeholderClass="placeholderStyle"
-                    wrapperClass="sortable-wrapper"
-                ></bs-sortable>
-            </div>
-            <!-- <pre class="code-preview">{{ items | json }}</pre> -->
-        </div>
-        <div class="col-md-6 my-2">
-            <div class="card">
-                <div class="card-header">
-                    <h5><img src="../../../../../../assets/image/Crown4.png" class="pointer"> เด็กเรียนเก่ง</h5>
-                </div>
-                <div class="card-body">
-                    <bs-sortable
-                        [(ngModel)]="itemObjectsTop"
-                        itemClass="list-group-item list-group-item-action pointer"
-                        itemActiveClass="list-group-item-active"
-                        placeholderItem="ลากมาวางที่นี่"
-                        placeholderClass="placeholderStyle"
-                        wrapperClass="sortable-wrapper"
-                    ></bs-sortable>
-                </div>
-                <div *ngIf="itemObjectsTop" class="card-footer text-right">
-                    <span class="mr-2" *ngIf="itemObjectsTop.length>0"> จำนวน {{ itemObjectsTop.length }} คน</span>
-                    <button *ngIf="itemObjectsTop.length>0" class="btn btn-primary" (click)="onSubmit('เด็กเรียนเก่ง')">
-                        บันทึก
-                    </button>
-                </div>
-            </div>
-        </div>
 
-        <!-- ปานกลาง -->
-        <div class="col-md-6">
-            &nbsp;
-        </div>
-        <div class="col-md-6 my-2">
-            <div class="card">
-                <div class="card-header">
-                    <h5><img src="../../../../../../assets/image/Crown3.png" class="pointer"> ค่อนข้างดี</h5>
-                </div>
-                <div class="card-body">
-                    <bs-sortable
-                        [(ngModel)]="itemObjectsMiddleTop"
-                        itemClass="list-group-item list-group-item-action pointer"
-                        itemActiveClass="list-group-item-active"
-                        placeholderItem="ลากมาวางที่นี่"
-                        placeholderClass="placeholderStyle"
-                        wrapperClass="sortable-wrapper"
-                    ></bs-sortable>
-                </div>
-                <div *ngIf="itemObjectsMiddleTop" class="card-footer text-right">
-                    <span class="mr-2" *ngIf="itemObjectsMiddleTop.length>0"> จำนวน {{ itemObjectsMiddleTop.length }} คน</span>
-                    <button *ngIf="itemObjectsMiddleTop.length>0" class="btn btn-primary"  (click)="onSubmit('ค่อนข้างดี')">
-                        บันทึก
-                    </button>
-                </div>
-            </div>
-        </div>
+        <button class="btn btn-info col-md-12 my-3 mx-2" (click)="onTest()">
+            ทดลองแบ่งกลุ่ม
+        </button>
 
-        <div class="col-md-6">
-            &nbsp;
-        </div>
-        <div class="col-md-6 my-2">
-            <div class="card">
-                <div class="card-header">
-                    <h5><img src="../../../../../../assets/image/Crown2.png" class="pointer"> ปานกลาง</h5>
-                </div>
-                <div class="card-body">
-                    <bs-sortable
-                        [(ngModel)]="itemObjectsMiddle"
-                        itemClass="list-group-item list-group-item-action pointer"
-                        itemActiveClass="list-group-item-active"
-                        placeholderItem="ลากมาวางที่นี่" 
-                        placeholderClass="placeholderStyle"
-                        wrapperClass="sortable-wrapper"
-                    ></bs-sortable>
-                </div>
-                <div *ngIf="itemObjectsMiddle" class="card-footer text-right">
-                    <span class="mr-2" *ngIf="itemObjectsMiddle.length>0"> จำนวน {{ itemObjectsMiddle.length }} คน</span>
-                    <button *ngIf="itemObjectsMiddle.length>0" class="btn btn-primary"  (click)="onSubmit('ปานกลาง')">
-                        บันทึก
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            &nbsp;
-        </div>
-        <div class="col-md-6 my-2">
-            <div class="card">
-                <div class="card-header">
-                    <h5>พอใช้</h5>
-                </div>
-                <div class="card-body">
-                    <bs-sortable
-                        [(ngModel)]="itemObjectsSoSo"
-                        itemClass="list-group-item list-group-item-action pointer"
-                        itemActiveClass="list-group-item-active"
-                        placeholderItem="ลากมาวางที่นี่" 
-                        placeholderClass="placeholderStyle"
-                        wrapperClass="sortable-wrapper"
-                    ></bs-sortable>
-                </div>
-                <div *ngIf="itemObjectsSoSo" class="card-footer text-right">
-                    <span class="mr-2" *ngIf="itemObjectsSoSo.length>0"> จำนวน {{ itemObjectsSoSo.length }} คน</span>
-                    <button  *ngIf="itemObjectsSoSo.length>0" class="btn btn-primary"  (click)="onSubmit('พอใช้')">
-                        บันทึก
-                    </button>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-6">
-            &nbsp;
-        </div>
-        <div class="col-md-6 my-2">
-            <div class="card">
-                <div class="card-header">
-                    <h5>เด็กอ่อน</h5>
-                </div>
-                <div class="card-body">
-                    <bs-sortable
-                        [(ngModel)]="itemObjectsBottom"
-                        itemClass="list-group-item list-group-item-action pointer"
-                        itemActiveClass="list-group-item-active"
-                        placeholderItem="ลากมาวางที่นี่"
-                        placeholderClass="placeholderStyle"
-                        wrapperClass="sortable-wrapper"
-                    ></bs-sortable>
-                </div>
-                <div *ngIf="itemObjectsBottom" class="card-footer text-right">
-                    <span class="mr-2" *ngIf="itemObjectsBottom.length>0"> จำนวน {{ itemObjectsBottom.length }} คน</span>
-                    <button *ngIf="itemObjectsBottom.length>0" class="btn btn-primary"  (click)="onSubmit('เด็กอ่อน')">
-                        บันทึก
-                    </button>
-                </div>
-            </div>
-        </div>
+        <pre *ngIf="test" class="code my-3 border py-2 col-md-12 mx-2 bg-secondary text-white" [innerHtml]="test">
+            <!-- {{ test }} -->
+        </pre>
     </div>
 </app-auth-content>

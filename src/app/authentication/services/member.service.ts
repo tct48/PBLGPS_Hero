@@ -156,7 +156,7 @@ export interface IMember {
     total_items?: any
     items?: any
 
-    _id: string
+    _id?: string
     firstname?: string
     lastname?: string
     username?: string

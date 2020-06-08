@@ -4,6 +4,7 @@ import { MemberService, IMember } from 'src/app/authentication/services/member.s
 import { GradeService } from 'src/app/authentication/services/grade.service';
 import { AlertService } from 'src/app/share/services/alert.service';
 
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -30,6 +31,7 @@ export class CreateComponent implements OnInit {
   display_data:IMember[];
 
   score=[];
+  test_score=[];
 
   itemObjectsTop:any[];
   itemObjectsMiddle:any[];
@@ -45,8 +47,16 @@ export class CreateComponent implements OnInit {
     this.grade.getScoreExerciseById(_id,'PRE-TEST').then(result=>{
       try{
           this.score.push(result.item.score)
+          this.test_score.push({
+            score: result.item.score,
+            _id: _id
+          })
       }catch{
-        this.score.push("ยังไม่ได้ทำแบบทดสอบ Pre-Test!");
+        this.score.push("ยังไม่ได้ทำแบบทดสอบ Pre-Test!")
+        this.test_score.push({
+          score: "ยังไม่ได้ทำแบบทดสอบ Pre-Test!",
+          _id:_id
+        });
       }
     });
   }
@@ -58,16 +68,23 @@ export class CreateComponent implements OnInit {
       var round;
       for (var i =0 ;i<result.total_items;i++){
         this.getPreTest(result.items[i]._id)
+        this.test_score=this.score;
       }
     })
   }
 
   cancelGroup(member:IMember){
     member.guild='';
+
+    this.score=[];
+    this.test_score=[]
+    
     this.member.updateMember(member._id,member).then(result=>{
       this.alert.success("ยกเลิกกิล์ดผู้เรียนสำเร็จ" ,"สำเร็จ")
       this.loadMember();
     })
+
+    console.log(this.test_score)
   }
 
   onSubmit(model:String,range_case?:String){
@@ -109,6 +126,71 @@ export class CreateComponent implements OnInit {
       this.itemObjectsBottom=[];
     }
 
+    this.loadMember();
+  }
+
+  test:string;
+  onTest(){  
+    var length = this.display_data.length
+    var number_of_person;
+    var fix=0;
+
+    if(length==4){
+      number_of_person=2;
+    }else{
+      if(length%3==0 || length%3==2){
+        number_of_person=3;
+      }else{
+        number_of_person=4;
+      }
+      if(length>=25 && length%3==1){
+        number_of_person=3;
+        fix=1;
+      }
+    }
+
+
+
+    this.test = "นักเรียนทั้งหมด " + length +"<br>"
+    this.test+="แบ่งออกเป็น "+ Math.round(length/number_of_person) +" กลุ่มกลุ่มละ " + number_of_person + " คนดังนี้<br>"
+    var data=[];
+    var old=0;
+    var group=1;
+
+    for(var i=0;i<length;i++){
+      if(Math.floor(i/number_of_person)==old){
+        data.push(this.display_data[i]._id)
+      }else{
+        old+=1;
+        data=[];
+        data.push(this.display_data[i]._id)
+      }
+
+      if(fix==1 && i==length-1){
+        data.push(this.display_data[i]._id)
+      }
+
+      if(data.length==number_of_person || i==length-1){
+        for(var j=0;j<data.length;j++){
+          this.member.updateMember(data[j],{guild:group+""}).then(result=>{
+            console.log("เพิ่ม User ไปยังกิล์ด " + i);
+          })
+        }    
+        group++;
+      }
+    }
+    this.score=[];
+    this.test_score=[];
+    
+    Swal.fire({
+      title: 'จัดการแบ่งกิล์ดสำเร็จ!',
+      showClass: {
+        popup: 'animate__animated animate__bounceIn'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    })
     this.loadMember();
   }
 }

@@ -28,6 +28,8 @@ export class ClassroomComponent implements OnInit {
     valueData: null,
 }
 
+  title_name:string='';
+
   Classroom_item:IClassroom;
   total_classroom:number;
   classroom_name:String;
@@ -77,6 +79,8 @@ export class ClassroomComponent implements OnInit {
       this.items = result.items
       this.total_items = result.total_items
     })
+
+    this.title_name="ดูสมาชิกในห้องเรียน"
   }
 
   loadDataClassroom(){

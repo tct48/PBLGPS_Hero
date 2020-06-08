@@ -1,4 +1,12 @@
 <app-auth-content>
+    <div class="col-md-12">
+    <nav class="breadcrumb">
+        <a class="breadcrumb-item" [routerLink]="['/auth/classroom']">จัดการชั้นเรียน</a>
+        <li *ngIf="title_name" class="breadcrumb-item active" aria-current="page">
+            {{ title_name }}
+        </li>
+    </nav>
+    </div>    
     <!-- card 1 -->
     <div class="card mt-3" style="border-top:5px solid black;border-radius:5">
         <div class="card-header">

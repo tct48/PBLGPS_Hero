@@ -7,6 +7,10 @@ import { AccountService } from 'src/app/share/services/account.service'
 import { AuthenService } from 'src/app/services/authen.service'
 import { LevelService } from 'src/app/authentication/services/level.service'
 import { GradeService } from 'src/app/authentication/services/grade.service'
+import { Router } from '@angular/router'
+import { AppURL } from 'src/app/app.url'
+import { AuthURL } from 'src/app/authentication/authentication.url'
+import { AlertService } from 'src/app/share/services/alert.service'
 
 @Component({
     selector: 'app-guild',
@@ -19,10 +23,18 @@ export class GuildComponent implements OnInit {
       private member: MemberService, 
       private level: LevelService,
       private account: AccountService,
-      private grade : GradeService) {
+      private grade : GradeService,
+      private route: Router,
+      private alert:AlertService) {
         this.member.loadUserbyGuild(this.account.UserLogin._id).then(result=>{
             this.total_user = result.items.length
             this.items = result.items
+
+            if(this.items[0].guild=" "){
+                this.alert.notify("กรุณาเข้าร่วมกิล์ดก่อน!")
+                this.route.navigate(['', AppURL.Authen, AuthURL.Home])
+            }
+
             this.setGuildName(this.items[0].guild)
 
             for(var i=0;i<this.total_user;i++){

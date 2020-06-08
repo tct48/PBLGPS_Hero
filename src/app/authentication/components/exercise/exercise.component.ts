@@ -59,7 +59,7 @@ export class ExerciseComponent implements OnInit {
                     })
             });
 
-        // โหลดข้อมูลแบบฝึกหัด
+        // โหลดข้อมูลแบบฝึกหัด 
         this.quiz
             .getAllQuiz(this._id)
             .then((result) => {
