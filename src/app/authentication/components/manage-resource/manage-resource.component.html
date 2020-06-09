@@ -1,5 +1,18 @@
 <app-auth-content>
   <div class="row py-4">
+    <!-- bradecrumb -->
+    <nav class="breadcrumb col-md-12">
+      <a class="breadcrumb-item" (click)="switchToogle()"
+          >จัดการแหล่งข้อมูล</a
+      >
+      <li
+          class="breadcrumb-item active"
+          aria-current="page"
+          *ngIf="toogle==true"
+      >
+          เพิ่ม หรือแก้ไขข้อมูล
+      </li>
+  </nav>
     <!-- ส่วน Title -->
     <div class="col-md-12">
       <h3>
@@ -51,6 +64,20 @@
                 <label for="name">หน่วยที่</label>
                 <input class="form-control" [(ngModel)]="name" id="name" type="text"
                   placeholder="(ตัวอย่าง) หน่วยที่ 01" required />
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="name">จุดประสงค์การเรียนรู้</label>
+                <ckeditor [editor]="Editor" [(ngModel)]="purpose" (change)="onChange($event)"
+                    data="<p>:: ตัวอย่าง ::</p><ul><li>เอกสารประกอบการเรียนการสอนรูปแบบไฟล์</li></ul>"></ckeditor>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="name">สาระการเรียนรู้</label>
+                <textarea class="form-control" [(ngModel)]="learning"
+                placeholder="สาระการเรียนรู้"></textarea>
               </div>
             </div>
           </div>

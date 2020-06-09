@@ -2,16 +2,19 @@ import { Injectable } from '@angular/core'
 import { AlertService } from './alert.service'
 import { HttpService } from 'src/app/services/http.service'
 import { AuthenService } from 'src/app/services/authen.service'
+import { Observable, BehaviorSubject } from 'rxjs'
 
 @Injectable({
     providedIn: 'root',
 })
 export class AccountService {
+    currentUser:Observable<IAccount>
     constructor(
         private http: HttpService,
         private alert: AlertService,
         private authen: AuthenService
-    ) {}
+    ) {
+    }
 
     public UserLogin: IAccount = {} as any
     // Set ข้อมูล User และ Return UserLogin
@@ -33,6 +36,10 @@ export class AccountService {
         this.UserLogin.guild = UserLogin.guild
         // console.log(this.UserLogin);
         return this.UserLogin
+    }
+
+    setUserMenu(){
+        this.UserLogin.menu = true;
     }
 
     // เซตค่า UserLogin
@@ -102,6 +109,7 @@ export interface IAccount {
     exp?: number
     guild?:string
     role?: string
+    menu?:boolean
 }
 
 export interface IRegister {

@@ -49,6 +49,8 @@ export class ManageResourceComponent implements OnInit {
     text: string[] = ['']
     file: string[] = ['']
     title: string[] = ['']
+    purpose:string; //จุดประสงค์การเรียนรู้
+    learning:string; //สาระการเรียนรู้
     // ===  end === //
 
     data: string //dummy
@@ -108,6 +110,8 @@ export class ManageResourceComponent implements OnInit {
             this.pdf[1] = item.pdf.url
             this.pdf[2] = item.pdf.text
             this.youtube_title = item.youtube.title
+            this.purpose = item.purpose
+            this.learning = item.learning
 
             var round = item.youtube.video.text.length
             for (var i = 0; i < round; i++) {
@@ -221,11 +225,14 @@ export class ManageResourceComponent implements OnInit {
                 title: this.hyperText_title,
                 text: this.hyperText,
             },
+            purpose: this.purpose,
+            learning: this.learning
         }
 
         this.resource.onUpdateChapter(this.update_id,model).then((result) => {
-            this.alert.success('เพิ่มข้อมูลเรียบร้อยแล้ว !')
-            this.router.navigate(['/', AppURL.Authen, AuthURL.Home])
+            this.alert.success('แก้ไขข้อมูลเรียบร้อยแล้ว !')
+            this.router.navigate(['/', AppURL.Authen, AuthURL.ManageResource])
+            this.switchToogle()
         })
     }
 
@@ -257,6 +264,8 @@ export class ManageResourceComponent implements OnInit {
                         title: this.hyperText_title,
                         text: this.hyperText,
                     },
+                    purpose:this.purpose,
+                    learning:this.learning
                 }
 
                 this.resource.onCreateChapter(model).then(() => {

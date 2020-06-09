@@ -1,4 +1,3 @@
-
 import { Router } from '@angular/router'
 import { AppURL } from 'src/app/app.url'
 import { Component, OnInit } from '@angular/core'
@@ -9,37 +8,44 @@ import { AccountService, IAccount } from '../../services/account.service'
 import { MemberService } from 'src/app/authentication/services/member.service'
 import { GradeService } from 'src/app/authentication/services/grade.service'
 
-
 declare let App
 @Component({
     selector: 'app-nav-bar',
     templateUrl: './nav-bar.component.html',
     styleUrls: ['./nav-bar.component.css'],
-    providers:[GradeService]
+    providers: [GradeService],
 })
 export class NavBarComponent implements OnInit {
     constructor(
         private router: Router,
         private alert: AlertService,
-        private authen: AuthenService, 
+        private authen: AuthenService,
         private account: AccountService,
-        private grade : GradeService
+        private grade: GradeService
     ) {
-        this.initialLoadUserLogin()
-        this.UserLogin = this.account.UserLogin
+        if (this.menu == false || !this.UserLogin.menu) {
+            this.initialLoadUserLogin()
+            this.UserLogin = this.account.UserLogin
+            this.UserLogin
+        }
 
-        this.UserLogin
-        
+        console.log(this.UserLogin.menu)
     }
+    private currentUser: IAccount
 
     ngOnInit(): void {}
 
-    menu= false;
+    menu:boolean=false;
 
-    login:any
+    login: any
     AppURL = AppURL
     AuthURL = AuthURL
     UserLogin: IAccount = {} as any
+
+    get isAdmin() {
+        return ;
+        // return this.currentUser && this.currentUser.role === Role.Admin;
+    }
 
     // โหลด User Login
     public initialLoadUserLogin() {
@@ -52,12 +58,14 @@ export class NavBarComponent implements OnInit {
             .then((userLogin) => {
                 this.UserLogin = userLogin
                 this.login = 1
-                
-                this.grade.getScoreExerciseById(this.UserLogin._id,"PRE-PRPS-TEST").then(result=>{
-                    if(result.total_items>0){
-                        this.menu=true;
-                    }
-                })
+
+                this.grade
+                    .getScoreExerciseById(this.UserLogin._id, 'PRE-PRPS-TEST')
+                    .then((result) => {
+                        if (result.total_items > 0) {
+                            this.account.setUserMenu();
+                        }
+                    })
             })
             .catch((err) => {
                 this.alert.notify(err.message)
@@ -66,11 +74,11 @@ export class NavBarComponent implements OnInit {
             })
     }
 
-
     // ออกจากระบบ
     onLogout() {
         this.authen.clearAuthenticated()
         this.account.onLogout()
+        this.account.UserLogin = {} as any;
         this.login = null
         this.router.navigate(['/', AppURL.Login])
     }

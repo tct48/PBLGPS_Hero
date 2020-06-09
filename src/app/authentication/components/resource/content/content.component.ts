@@ -37,6 +37,8 @@ export class ContentComponent implements OnInit {
 
         this.resource.onShowOneChapter(this.chapter_id).then(async (result) => {
             this.item = await result.item[0]
+            console.log(this.item)
+            
 
             if (!this.item) {
                 this.router.navigate(['/', AppURL.Authen, AuthURL.Resource])

@@ -24,18 +24,12 @@
                     ">
           จุดประสงค์การเรียนรู้
         </h4>
-        <ol class="text-muted medium">
-          <li>
-            รู้หลักการและพื้นฐานเกี่ยวกับองค์ประกอบของเครื่องคอมพิวเตอร์
-          </li>
-          <li>รู้ความหมายหน้าที่และความสำคัญของระบบปฏิบัติการ</li>
-          <li>มีทักษะในการใช้โปรแกรมระบบปฏิบัติการเบื้องต้น</li>
-          <li>มีทักษะในการใช้โปรแกรมยูทิลิตี้ได้</li>
-          <li>
-            มีกิจนิสัยและส่งเสริมคุณธรรม จริยธรรม
-            ค่านิยมที่ดีในการใช้คอมพิวเตอร์
-          </li>
-        </ol>
+        <div *ngIf="item">
+          
+        <div *ngIf="item.purpose"  [innerHtml]="item.purpose" class="text-muted medium">
+          <!-- แสดงผลจุดประสงค์ -->
+        </div>
+        <span *ngIf="!item.learning" class="text-muted medium ml-3">ไม่มีข้อมูล</span>
         <h4 class="mt-2 px-2 py-1 text-center pointer" style="
                         background-color: lightgray;
                         border: 1px solid lightgray;
@@ -43,12 +37,11 @@
                     ">
           สาระการเรียนรู้
         </h4>
-        <p class="text-muted medium" style="text-indent: 20px; text-align: justify;">
-          ศึกษาและปฏิบัติเกี่ยวกับองค์ประกอบของเครื่องคอมพิวเตอร์
-          หลักการทำงานของคอมพิวเตอร์และอุปกรณ์ต่อพ่วง
-          สื่อบันทึกข้อมูลความหมายและหน้าที่ของระบบปฏิบัติการประเภทของโปรแกรมระบบปฏิบัติการ
-          การใช้โปรแกรมระบบปฏิบัติการ การใช้โปรแกรมยูทิลิตี้
+        <p class="text-muted medium"  style="text-indent: 20px; text-align: justify;">
+          <span *ngIf="item.learning">{{ item.learning }}</span>
+          <span *ngIf="!item.learning">ไม่มีข้อมูล</span>
         </p>
+      </div>
       </div>
     </div>
 
