@@ -42,6 +42,8 @@ export class InformationComponent implements OnInit {
     this.initialLoadUpdateFormData()
   }
 
+  role:string;
+
   exp: number;
   level: number;
   mem_id: String;
@@ -60,6 +62,13 @@ export class InformationComponent implements OnInit {
   }
 
   ngOnInit(): void { }
+
+  // คลิปเปลี่ยนสถานะ
+  onRoleClick(role:string){
+    return this.member.updateRole(this.mem_id,{role:role}).then(result=>{
+      this.alert.success("เปลี่ยนสถานะผู้ใช้เป็น '" + role +"'");
+    })
+  }
 
   // เปิดดูคะแนนรายหัวข้อ
   onOpenScore(title: string) {
@@ -113,7 +122,6 @@ export class InformationComponent implements OnInit {
       return this.account
         .getUserByID(this.mem_id, this.authen.getAuthenticated())
         .then((result) => {
-          // console.log(result);
           this.form.controls['email'].setValue(result.items[0].email)
           this.form.controls['phone'].setValue(result.items[0].phone)
           this.form.controls['firstname'].setValue(
@@ -128,6 +136,7 @@ export class InformationComponent implements OnInit {
             this.form.controls['class'].setValue(res.items._id)
             this.classroom = res.items.name;
           })
+          this.role=result.items[0].role;
 
           this.exp = result.items[0].exp
           this.level = this.level_service.calculateLevel(this.exp)

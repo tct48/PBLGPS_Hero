@@ -64,7 +64,6 @@ export class PrpsQuizComponent implements OnInit {
     onLoadListItem(){
         this.quiz.getAllPrpsList().then(result=>{
             this.list_item= result.items
-            console.log(result)
         })
     }
 

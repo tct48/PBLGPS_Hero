@@ -18,6 +18,12 @@ export class MemberService {
             .toPromise() as Promise<IResponse>
     }
 
+    updateRole(uid:String,role:any){
+        return this.http
+            .requestPatch(`user/${uid}`, this.authen.getAuthenticated(), role)
+            .toPromise() as Promise<IResponse>
+    }
+
     // โหลดสมาชิก
     loadMember(option: OptionSearch, role?: string) {
         if (option.valueData) {

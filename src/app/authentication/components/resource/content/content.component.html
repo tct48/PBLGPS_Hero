@@ -52,9 +52,15 @@
         <!-- หัวข้อ 1 -->
         <li *ngIf="item?.pdf.title">
           <span>
-            <a (click)="showPDF(item.pdf.url)">{{ item.pdf.title }}</a>
-            <div [innerHtml]="item.pdf.text"></div>
+            {{ item.pdf.title }}
           </span>
+          <ul>
+            <li *ngFor="let subdata of item.pdf.file.text;let i=index;">
+              <span (click)="showPDF(item.pdf.file.url[i])" class="pointer">
+                {{ subdata }}
+              </span>
+            </li>
+          </ul>
         </li>
         <!-- หัวข้อ 2 -->
         <li *ngIf="item?.youtube.title">

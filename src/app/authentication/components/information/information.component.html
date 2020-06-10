@@ -69,7 +69,23 @@
           <img src="../../../../assets/image/no-image.png" class="avatar-image" *ngIf="!image_name" />
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-9" *ngIf="UserLogin">
+          <div class="form-check col-md-6 mr-3 mb-3" *ngIf="UserLogin.role=='admin'">
+            <h4>
+              <input class="form-check-input pointer" [(ngModel)]="role" (click)="onRoleClick('student')" type="radio" value="student" checked>
+              <label class="form-check-label badge badge-dark" style="font-weight: normal;" for="exampleRadios1">
+                นักศึกษา
+              </label>
+            </h4>
+          </div>
+          <div class="form-check col-md-6" *ngIf="UserLogin.role=='admin'">
+            <h4>
+              <input class="form-check-input pointer" [(ngModel)]="role" (click)="onRoleClick('admin')" type="radio" value="admin">
+              <label class="form-check-label badge badge-info" style="font-weight: normal;" for="exampleRadios2">
+                ผู้ดูแลระบบ
+              </label>
+            </h4>
+          </div>
           <form [formGroup]="form" (submit)="onSubmit()">
             <div class="form-group">
               <label>รหัสนักศึกษา :</label>

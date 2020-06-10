@@ -36,9 +36,7 @@ export class ContentComponent implements OnInit {
         })
 
         this.resource.onShowOneChapter(this.chapter_id).then(async (result) => {
-            this.item = await result.item[0]
-            console.log(this.item)
-            
+            this.item = await result.item[0]            
 
             if (!this.item) {
                 this.router.navigate(['/', AppURL.Authen, AuthURL.Resource])
@@ -61,7 +59,6 @@ export class ContentComponent implements OnInit {
     ngOnInit(): void {}
 
     showPDF(url: any) {
-        console.log(url)
         var pdf: any
         if (!url) return
         if (url.substring(url.length - 5) == '/view') {

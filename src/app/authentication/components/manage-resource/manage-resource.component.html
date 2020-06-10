@@ -96,11 +96,38 @@
               </div>
               <div class="card-body">
                 <div class="form-group">
-                  <label for="ccnumber">หัวข้อ</label>
-                  <input class="form-control my-1" [(ngModel)]="pdf[0]" type="text"
+                  <label for="ccnumber">หัวข้อ</label>                  
+                  <input class="form-control my-1" [(ngModel)]="pdf_title" type="text"
                     placeholder="(ตัวอย่าง) เอกสารประกอบการเรียนการสอนรูปแบบไฟล์ PDF" required />
+                    <span class="pb-2" style="display:block;width:100%;text-align: right;">
+                      <button class="btn btn-outline-primary mr-1" (click)="onAddText2(number_title.length)">
+                        + เพิ่มไฟล์ PDF
+                      </button>
+                      <button class="btn btn-outline-danger" *ngIf="number_title2.length > 1" (click)="onPopText2()">
+                        -
+                      </button>
+                    </span>
                 </div>
-                <div class="form-group">
+
+                <div class="card mb-1" *ngFor="let data of number_title2; let i = index">
+                  <div class="card-header">
+                    แนบ PDF : {{ i + 1 }}
+                  </div>
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="ccnumber">ลิงก์ Video บทเรียนประกอบการสอน</label>
+                      <input class="form-control" [(ngModel)]="pdfs[i]" type="text"
+                        placeholder="(ตัวอย่าง) https://www.youtube.com/watch?v=WBU5oHRrTUo" />
+                    </div>
+                    <div class="form-group">
+                      <label for="ccmonth">หัวข้อไฟล์ PDF</label>
+                      <input class="form-control" type="text" [(ngModel)]="text2[i]"
+                        placeholder="หัวข้อย่อย" />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="form-group">
                   <label for="ccnumber">แนบไฟล์ PDF</label>
                   <input class="form-control" [(ngModel)]="pdf[1]" type="text"
                     placeholder="(ตัวอย่าง) ./assets/pdf/document.pdf" required />
@@ -109,7 +136,7 @@
                   <label for="ccmonth">รายละเอียดหัวข้อ</label>
                   <ckeditor [editor]="Editor" [(ngModel)]="pdf[2]" (change)="onChange($event)"
                     data="<p>:: ตัวอย่าง ::</p><ul><li>เอกสารประกอบการเรียนการสอนรูปแบบไฟล์</li></ul>"></ckeditor>
-                </div>
+                </div> -->
               </div>
             </div>
           </tab>
@@ -141,9 +168,6 @@
                   <div class="card-body">
                     <div class="form-group">
                       <label for="ccnumber">ลิงก์ Video บทเรียนประกอบการสอน</label>
-                      <!-- <a (click)="urlTypeClick()" style="float: right;color:#FFF;"
-                        class="badge badge-pill badge-secondary"
-                        [innerHtml]="url_type?'เพิ่มลิงก์ Youtube':'เพิมลิงก์ EduPuzzle'"></a> -->
                       <input class="form-control" [(ngModel)]="url[i]" type="text"
                         placeholder="(ตัวอย่าง) https://www.youtube.com/watch?v=WBU5oHRrTUo" />
                     </div>

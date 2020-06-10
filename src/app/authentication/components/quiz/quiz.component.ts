@@ -115,10 +115,8 @@ export class QuizComponent implements OnInit {
 
     onLoadUpdate(data) {
         this.menu = true
-        // console.log(data)
+        
         this.quiz.getAllQuiz(data._id).then((result) => {
-            // console.log("BBE")
-            console.log(result)
             this.fix_id = result.items._id
             this.selectedValue = result.items.name
             this.article = result.items.choice

@@ -41,10 +41,12 @@ export class ManageResourceComponent implements OnInit {
     // Object to save //
     name: string
     form: FormGroup
+    pdf_title:string
     youtube_title: string
     hyperText: string = ''
     hyperText_title: string
-    pdf: string[] = ['', '', '']
+    pdfs: string[]= ['','']
+    text2:string[] = ['']
     url: string[] = ['', '']
     text: string[] = ['']
     file: string[] = ['']
@@ -58,6 +60,7 @@ export class ManageResourceComponent implements OnInit {
     data2: string
     status_button = 0
     number_title = [1]
+    number_title2 = [1]
     isCollapsed = true
     switch_display = 'pdf'
     url_type: boolean = true // true is youtube && false is edupuzzle
@@ -70,6 +73,14 @@ export class ManageResourceComponent implements OnInit {
     onAddText(number?: any) {
         if (number) {
             this.number_title.push(number + 1)
+            return
+        }
+        this.status_button += 1
+    }
+
+    onAddText2(number?: any) {
+        if (number) {
+            this.number_title2.push(number + 1)
             return
         }
         this.status_button += 1
@@ -96,19 +107,26 @@ export class ManageResourceComponent implements OnInit {
         this.text.pop()
     }
 
+    onPopText2(){
+        this.number_title2.pop()
+        this.pdfs.pop()
+        if(this.text2.length>this.number_title2.length)
+        this.text2.pop()
+    }
+
     onLoadUpdate(data) {
         this.switchToogle()
         this.update = true
         this.resource.onShowOneChapter(data._id).then((result) => {
-            console.log(result.item[0])
             var item = result.item[0]
 
             this.update_id = item._id
 
             this.name = item.name
-            this.pdf[0] = item.pdf.title
-            this.pdf[1] = item.pdf.url
-            this.pdf[2] = item.pdf.text
+            this.pdf_title = item.pdf.title
+            // this.pdf[0] = item.pdf.title
+            // this.pdf[1] = item.pdf.url
+            // this.pdf[2] = item.pdf.text
             this.youtube_title = item.youtube.title
             this.purpose = item.purpose
             this.learning = item.learning
@@ -117,6 +135,9 @@ export class ManageResourceComponent implements OnInit {
             for (var i = 0; i < round; i++) {
                 this.text[i] = item.youtube.video.text[i]
                 this.url[i] = item.youtube.video.url[i]
+
+                this.text2[i] = item.pdf.file.text[i]
+                this.pdfs[i] = item.pdf.file.url[i]
             }
 
             this.hyperText_title = item.hypertext.title
@@ -210,9 +231,11 @@ export class ManageResourceComponent implements OnInit {
         var model = {
             name: this.name,
             pdf: {
-                title: this.pdf[0],
-                url: this.pdf[1],
-                text: this.pdf[2],
+                title: this.pdf_title,
+                file:{
+                    text: this.text2,
+                    url:this.pdfs
+                }
             },
             youtube: {
                 title: this.youtube_title,
@@ -249,9 +272,11 @@ export class ManageResourceComponent implements OnInit {
                 var model = {
                     name: this.name,
                     pdf: {
-                        title: this.pdf[0],
-                        url: this.pdf[1],
-                        text: this.pdf[2],
+                        title: this.pdf_title,
+                        file: {
+                            text: this.text2,
+                            url: this.pdfs
+                        }
                     },
                     youtube: {
                         title: this.youtube_title,
