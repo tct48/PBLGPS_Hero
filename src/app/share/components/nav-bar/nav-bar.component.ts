@@ -28,8 +28,6 @@ export class NavBarComponent implements OnInit {
             this.UserLogin = this.account.UserLogin
             this.UserLogin
         }
-
-        console.log(this.UserLogin.menu)
     }
     private currentUser: IAccount
 

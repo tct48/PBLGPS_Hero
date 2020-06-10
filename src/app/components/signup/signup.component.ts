@@ -29,6 +29,7 @@ import {
 })
 @Injectable()
 export class SignupComponent implements OnInit {
+    
     constructor(
         private builder: FormBuilder,
         private alert: AlertService,
@@ -55,6 +56,8 @@ export class SignupComponent implements OnInit {
     selectedOption: any
     states: any[]
 
+    radioModel:string="student";
+
     onSelect(event: TypeaheadMatch): void {
         this.selectedOption = event.item
     }
@@ -72,11 +75,14 @@ export class SignupComponent implements OnInit {
             email: ['', Validators.required],
             class: ['', Validators.required],
             image: [''],
+            role:['']
         })
     }
 
     // ปุ่มแก้ไข
     onSubmit() {
+        this.form.controls['role'].setValue(this.radioModel);
+        
         if (this.form.invalid) {
             return this.alert.notify('กรุณากรอกข้อมูลให้ครบถ้วน!')
         }

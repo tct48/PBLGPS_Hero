@@ -14,7 +14,11 @@ export class MemberService {
         return this.member
     }
 
-    getTopPlayer() {
+    getTopPlayer(classroom?:string) {
+        if(classroom){
+            return this.http.requestGet(`user/leaderboard/${classroom}`, this.authen.getAuthenticated())
+                .toPromise() as Promise<ITopPlayer>
+        }else
         return this.http
             .requestGet('user/leaderboard', this.authen.getAuthenticated())
             .toPromise() as Promise<ITopPlayer>

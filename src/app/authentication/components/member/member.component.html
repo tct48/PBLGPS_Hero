@@ -18,6 +18,21 @@
       </div>
     </div>
 
+    <div class="form-check mr-3 mb-3">
+      <input class="form-check-input" [(ngModel)]="role" (click)="onRoleClick('student')" type="radio" value="student" checked>
+      <label class="form-check-label badge badge-dark" for="exampleRadios1">
+        นักศึกษาทั้งหมด
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" [(ngModel)]="role" (click)="onRoleClick('admin')" type="radio" value="admin">
+      <label class="form-check-label badge badge-info" for="exampleRadios2">
+        ผู้ดูแลระบบ
+      </label>
+    </div>
+
+    {{ role }}
+
     <table class="table table-responsive-sm table-hover table-outline mb-0">
       <!-- ตารางแสดง User TH -->
       <thead class="thead-light">

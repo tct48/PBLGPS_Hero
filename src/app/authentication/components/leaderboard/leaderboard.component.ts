@@ -18,7 +18,7 @@ export class LeaderboardComponent implements OnInit {
         private level: LevelService,
         private member: MemberService,
         private authen: AuthenService,
-        private account: AccountService,
+        private account: AccountService
     ) {
         if (!this.UserLogin) {
             this.loadUserLogin()
@@ -31,7 +31,8 @@ export class LeaderboardComponent implements OnInit {
     lvl: Number
     Leaderboard: any
     UserLogin: IAccount
-    
+    status: string
+
     // ภาพ มงกุฎ
     crown_image = [
         '../../../../assets/image/Crown4.png',
@@ -41,7 +42,14 @@ export class LeaderboardComponent implements OnInit {
         '../../../../assets/image/Crown5.png',
     ]
 
-
+    loadTopPlayerFromMyClassroom() {
+        if (this.status != 'B') {
+            this.member.getTopPlayer(this.UserLogin.class).then((result) => {
+                this.Leaderboard = result.items
+            })
+            this.status = 'B'
+        }
+    }
 
     // ดึงข้อมูล UserLogin
     loadUserLogin() {
@@ -54,9 +62,12 @@ export class LeaderboardComponent implements OnInit {
 
     // ดึงข้อมูล Top 5 Player
     loadTopPlayer() {
-        this.member.getTopPlayer().then((result) => {
-            this.Leaderboard = result.items
-        })
+        if (this.status != 'A') {
+            this.member.getTopPlayer().then((result) => {
+                this.Leaderboard = result.items
+            })
+            this.status = 'A'
+        }
     }
 
     // คำนวณ Level

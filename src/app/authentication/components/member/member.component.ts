@@ -46,6 +46,8 @@ export class MemberComponent implements OnInit {
         valueData: null,
     }
 
+    role:string='student';
+
     // ref
     cp: Number;
     mem_id: String;
@@ -66,6 +68,18 @@ export class MemberComponent implements OnInit {
                 Number(this.total_items) / Number(this.option.lp)
             )
             this.cp = Number(this.option.sp) + 1
+        })
+    }
+
+    onRoleClick(role:string){        
+        this.member.loadMember(this.option,role).then((result)=>{
+            this.total_items=result.total_items
+            this.items = result.items
+
+            this.size_pagination = Math.round(
+                Number(this.total_items)/ Number(this.option.lp)
+            )
+            this.cp = Number(this.option.sp)+1
         })
     }
 
@@ -93,7 +107,7 @@ export class MemberComponent implements OnInit {
         this.option.sp = 0
         this.option.valueData = this.searchText
 
-        this.member.loadMember(this.option).then((result) => {
+        this.member.loadMember(this.option,this.role).then((result) => {
             this.total_items = result.total_items
             this.items = result.items
 

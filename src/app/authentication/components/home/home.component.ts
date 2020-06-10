@@ -63,8 +63,7 @@ export class HomeComponent implements OnInit {
         if(this.status==2){
             return this.alert.notify('กรุณาทำ "แบบฝึกหัดก่อนเรียน" ก่อน!')
         }
-
-        console.log(this.account.UserLogin.guild)
+        
         if(!this.account.UserLogin.guild){
             return this.alert.notify("ยังไม่มีกิล์ด ไม่สามารถดำเนินงานต่อได้ !")
         }

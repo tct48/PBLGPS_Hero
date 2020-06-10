@@ -5,9 +5,11 @@ import { HttpClient } from '@angular/common/http'
 
 @Injectable()
 export class MemberService {
-    constructor(private http: HttpService
-        , private https:HttpClient
-        , private authen: AuthenService) {}
+    constructor(
+        private http: HttpService,
+        private https: HttpClient,
+        private authen: AuthenService
+    ) {}
 
     // service แก้ไขสมาชิก
     updateMember(uid: any, model: IMember) {
@@ -17,111 +19,168 @@ export class MemberService {
     }
 
     // โหลดสมาชิก
-    loadMember(option: OptionSearch) {
+    loadMember(option: OptionSearch, role?: string) {
         if (option.valueData) {
+            if (!role) {
+                console.log('1')
+                return this.http
+                    .requestGet(
+                        `user/search?sp=${option.sp}&lp=${option.lp}&search=${option.valueData}`,
+                        this.authen.getAuthenticated()
+                    )
+                    .toPromise() as Promise<IMember>
+            } else {
+                return this.http
+                    .requestGet(
+                        `user/search?sp=${option.sp}&lp=${option.lp}&search=${option.valueData}&role=${role}`,
+                        this.authen.getAuthenticated()
+                    )
+                    .toPromise() as Promise<IMember>
+            }
+        }
+        if (role) {
             return this.http
                 .requestGet(
-                    `user/search?sp=${option.sp}&lp=${option.lp}&search=${option.valueData}`,
+                    `user/search?sp=${option.sp}&lp=${option.lp}&search=&role=${role}`,
                     this.authen.getAuthenticated()
                 )
                 .toPromise() as Promise<IMember>
-        }
-        return this.http
+        }else{
+            return this.http
             .requestGet(
                 `user?sp=${option.sp}&lp=${option.lp}`,
                 this.authen.getAuthenticated()
             )
             .toPromise() as Promise<IMember>
+        }
+        
     }
 
     // เพิ่มการเข้าเรียน
-    addAttendence(model:any){
-        return this.http.requestPost('attendence',model)
-        .toPromise() as Promise<IAttendence>
+    addAttendence(model: any) {
+        return this.http
+            .requestPost('attendence', model)
+            .toPromise() as Promise<IAttendence>
     }
 
     // get ครั้งที่มาเรียนของนักเรียน
-    getTimeAttended(userId:string){
-        return this.http.requestGet(`attendence/${userId}`, this.authen.getAuthenticated())
+    getTimeAttended(userId: string) {
+        return this.http
+            .requestGet(`attendence/${userId}`, this.authen.getAuthenticated())
             .toPromise() as Promise<any>
     }
 
     // เปิดให้นักศึกษาเซ็นชื่อเข้าเรียน
-    patchAttendence(_id:string,model:any){
-        return this.http.requestPatch(`attendence/switch/${_id}`,this.authen.getAuthenticated(),model)
+    patchAttendence(_id: string, model: any) {
+        return this.http
+            .requestPatch(
+                `attendence/switch/${_id}`,
+                this.authen.getAuthenticated(),
+                model
+            )
             .toPromise() as Promise<any>
     }
 
-    patchAttendenceSick(_id:string,model:any){
-        return this.http.requestPatch(`attendence/sick/${_id}`,this.authen.getAuthenticated(),model)
+    patchAttendenceSick(_id: string, model: any) {
+        return this.http
+            .requestPatch(
+                `attendence/sick/${_id}`,
+                this.authen.getAuthenticated(),
+                model
+            )
             .toPromise() as Promise<any>
     }
 
     // นักศึกษาลงชื่อเข้าเรียน
-    checkInAttendence(_id:string,model:any){
-        return this.http.requestPatch(`attendence/${_id}`, this.authen.getAuthenticated(), model)
+    checkInAttendence(_id: string, model: any) {
+        return this.http
+            .requestPatch(
+                `attendence/${_id}`,
+                this.authen.getAuthenticated(),
+                model
+            )
             .toPromise() as Promise<any>
     }
 
     // get ครั้งที่ วันที่เรียนของห้องห้องนั้น
-    loadAttendence(ref?:string){
-        return this.http.requestGet(`attendence?ref=${ref}`,this.authen.getAuthenticated())
-        .toPromise() as Promise<IAttendence>
+    loadAttendence(ref?: string) {
+        return this.http
+            .requestGet(`attendence?ref=${ref}`, this.authen.getAuthenticated())
+            .toPromise() as Promise<IAttendence>
     }
-    
+
     // ลบครั้งที่เรียนนั้น ๆ
-    deleteAttendence(_id?:string){
-        return this.http.requestDelete(`attendence/${_id}`,this.authen.getAuthenticated())
+    deleteAttendence(_id?: string) {
+        return this.http
+            .requestDelete(`attendence/${_id}`, this.authen.getAuthenticated())
             .toPromise() as Promise<IResponse>
     }
 
     // เพิ่มชั้นเรียน
-    addClassroom(model:any){
-        return this.http.requestPost('classroom',model)
-        .toPromise() as Promise<IClassroom>
+    addClassroom(model: any) {
+        return this.http.requestPost('classroom', model).toPromise() as Promise<
+            IClassroom
+        >
     }
 
     //คืนค่าห้องเรียน
-    returnClassroom(model:any){
-        return this.http.requestGet(`classroom/${model}`, this.authen.getAuthenticated())
-        .toPromise() as Promise<IClassroom>
+    returnClassroom(model: any) {
+        return this.http
+            .requestGet(`classroom/${model}`, this.authen.getAuthenticated())
+            .toPromise() as Promise<IClassroom>
     }
 
     // ลบชั้นเรียน
-    deleteClassroom(id:any){
-        return this.http.requestDelete(`classroom/${id}`,this.authen.getAuthenticated())
-        .toPromise() as Promise<IClassroom>
+    deleteClassroom(id: any) {
+        return this.http
+            .requestDelete(`classroom/${id}`, this.authen.getAuthenticated())
+            .toPromise() as Promise<IClassroom>
     }
 
     // โหลดห้องเรียนทั้งหมด
-    loadClassroom(option?: OptionSearch){
-        if(!option)
-        return this.http.requestGet(`classroom?sp=0&lp=10`,this.authen.getAuthenticated())
-        .toPromise() as Promise<IClassroom>
-        return this.http.requestGet(`classroom?sp=${option.sp}&lp=${option.lp}`,this.authen.getAuthenticated())
-        .toPromise() as Promise<IClassroom>
+    loadClassroom(option?: OptionSearch) {
+        if (!option)
+            return this.http
+                .requestGet(
+                    `classroom?sp=0&lp=10`,
+                    this.authen.getAuthenticated()
+                )
+                .toPromise() as Promise<IClassroom>
+        return this.http
+            .requestGet(
+                `classroom?sp=${option.sp}&lp=${option.lp}`,
+                this.authen.getAuthenticated()
+            )
+            .toPromise() as Promise<IClassroom>
     }
 
     // guild
-    loadUserbyGuild(_id?:string){
-        return this.http.requestGet(`guild/${_id}`, this.authen.getAuthenticated())
-         .toPromise() as Promise<IMember>
-    }
-
-    // โหลดสมาชิกในห้องเรียนทั้งหมด
-    loadMemberFromClassroom(model:any){
-        return this.http.requestGet(`classroom/student/${model}`,this.authen.getAuthenticated())
-        .toPromise() as Promise<IMember>
-    }
-
-    getUserByID(id:String){
-        return this.http.requestGet(`user/userid/${id}`, this.authen.getAuthenticated())
+    loadUserbyGuild(_id?: string) {
+        return this.http
+            .requestGet(`guild/${_id}`, this.authen.getAuthenticated())
             .toPromise() as Promise<IMember>
     }
 
-    onChangePassword(model:any){
-        return this.http.requestPost('user/changePassword', model)
-            .toPromise() as Promise<IResponse>;
+    // โหลดสมาชิกในห้องเรียนทั้งหมด
+    loadMemberFromClassroom(model: any) {
+        return this.http
+            .requestGet(
+                `classroom/student/${model}`,
+                this.authen.getAuthenticated()
+            )
+            .toPromise() as Promise<IMember>
+    }
+
+    getUserByID(id: String) {
+        return this.http
+            .requestGet(`user/userid/${id}`, this.authen.getAuthenticated())
+            .toPromise() as Promise<IMember>
+    }
+
+    onChangePassword(model: any) {
+        return this.http
+            .requestPost('user/changePassword', model)
+            .toPromise() as Promise<IResponse>
     }
 
     deleteMember(_id) {
@@ -135,15 +194,14 @@ export interface IResponse {
     message: string
 }
 
-export interface IClassroom{
-    total_items?:number
-    items?:any
-    message?:string
+export interface IClassroom {
+    total_items?: number
+    items?: any
+    message?: string
 
-    _id:String;
-    name:String;
+    _id: String
+    name: String
 }
-
 
 export interface OptionSearch {
     sp: Number
@@ -166,19 +224,19 @@ export interface IMember {
     email?: string
     picture?: string
     exp?: number
-    guild?:string
+    guild?: string
     activity?: Date
-    class?:string
-    score?:number
+    class?: string
+    score?: number
 }
 
-export interface IAttendence{
-    total_items?:number;
-    items?: any;
+export interface IAttendence {
+    total_items?: number
+    items?: any
 
-    id:string;
-    ref:string;
-    date:Date;
-    created:Date;
-    status:number;
+    id: string
+    ref: string
+    date: Date
+    created: Date
+    status: number
 }
