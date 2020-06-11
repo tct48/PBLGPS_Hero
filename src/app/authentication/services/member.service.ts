@@ -28,7 +28,6 @@ export class MemberService {
     loadMember(option: OptionSearch, role?: string) {
         if (option.valueData) {
             if (!role) {
-                console.log('1')
                 return this.http
                     .requestGet(
                         `user/search?sp=${option.sp}&lp=${option.lp}&search=${option.valueData}`,

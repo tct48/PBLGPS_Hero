@@ -169,6 +169,10 @@ export class ManageResourceComponent implements OnInit {
                 'https://drive.google.com/file/d/' + url.substr(33) + '/preview'
         }
 
+        if(url.substring(url.length - 17)=='/view?usp=sharing'){
+            url = url.substring(0,url.length-16) + 'preview'
+        }
+        // https://drive.google.com/file/d/1sH0fDksqQpLEW2t78C4sLa9L_Na5KcPy/view?usp=sharing
         try {
             this.url_file = this.sanitizer.bypassSecurityTrustResourceUrl(url)
         } catch (err) {

@@ -75,6 +75,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td *ngIf="!items" colspan="4" class="text-center">
+                                ..Loading...
+                            </td>
+                        </tr>
                         <tr *ngFor="let data of items;let i = index;">
                             <td>{{ i+1 }}</td>
                             <td>วัน {{ data.date | date:'EEEE' }} ที่ {{ data.date | date:'dd MMMM yyyy' }}</td>

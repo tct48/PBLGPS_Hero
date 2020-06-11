@@ -25,6 +25,11 @@
         </tr>
       </thead>
       <tbody>
+        <tr *ngIf="!list_item">
+          <td class="text-center" colspan="3">
+            ..Loading..
+          </td>
+        </tr>
         <tr *ngFor="let data of list_item;let i = index;">
           <td>{{ i+1 }}</td>
           <td>{{ data.name }}</td>
@@ -41,6 +46,7 @@
   </div>
 
   <!-- card topic -->
+    
   <div *ngIf="menu==true">
     <div class="card mb-2">
       <div class="card-header">
@@ -50,6 +56,8 @@
           (typeaheadOnSelect)="onSelect($event)" class="form-control" required>
       </div>
     </div>
+
+    
 
     <!-- body question -->
     <div #scrollMe class="card my-4 text-black" *ngFor="let data of article;let i = index;"

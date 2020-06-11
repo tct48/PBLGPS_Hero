@@ -49,12 +49,14 @@
     <div class="col-md-7 my-3">
       <h1 *ngIf="item?.name">{{ item.name }}</h1>
       <ul>
+        
         <!-- หัวข้อ 1 -->
         <li *ngIf="item?.pdf.title">
           <span>
             {{ item.pdf.title }}
           </span>
           <ul>
+            
             <li *ngFor="let subdata of item.pdf.file.text;let i=index;">
               <span (click)="showPDF(item.pdf.file.url[i])" class="pointer">
                 {{ subdata }}

@@ -35,6 +35,9 @@
                                     </p>
                                 </span>
                             </td>
+                            <td *ngIf="!test_score[i]">
+                                <span class="animate animate__bounceIn">.. Loading ..</span>
+                            </td>
                             <td class="text-center">
                                 <span *ngIf="!data.guild" class="font-weight-bold">ไม่มีกิล์ดอยู่</span>
                                 <span *ngIf="data.guild">{{ data.guild }}</span>

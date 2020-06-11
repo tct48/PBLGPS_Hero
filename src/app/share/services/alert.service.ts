@@ -35,6 +35,7 @@ export class AlertService {
             icon: type,
             timer: 1500,
             timerProgressBar: true,
+            showConfirmButton: false,
         })
     }
 

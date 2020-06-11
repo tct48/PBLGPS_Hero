@@ -36,6 +36,9 @@
         <!-- Right -->
         <div class="col-md-7">
             <div class="row">
+                <p *ngIf="!items">
+                    Loading..
+                </p>
                 <div *ngFor="let data of items; let i = index" class="col-md-6">
                     <button
                         (click)="openContent(data._id)"

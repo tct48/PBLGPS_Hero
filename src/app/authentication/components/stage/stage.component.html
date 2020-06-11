@@ -30,6 +30,13 @@
                             <th class="text-center">สถานะ (STATUS)</th>
                         </tr> 
                     </thead>
+                    <tbody *ngIf="!items">
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                ..Loading..
+                            </td>
+                        </tr>
+                    </tbody>
                     <tbody *ngIf="items">
                         <tr *ngFor="let data of items;let i = index;">
                             <td>{{ data.firstname }} {{ data.lastname }}</td>

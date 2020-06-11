@@ -71,7 +71,22 @@ export class MemberComponent implements OnInit {
         })
     }
 
-    onRoleClick(role:string){        
+    switchLogin(_id:string,status:string){
+        if(status=="ON"){
+            this.member.updateRole(_id,{status:1}).then(result=>{
+                this.alert.success("เปลี่ยนสถานะการเข้าใช้งานสำเร็จ!")
+            })
+        }else{
+            this.member.updateRole(_id,{status:0}).then(result=>{
+                this.alert.success("เปลี่ยนสถานะการเข้าใช้งานสำเร็จ!")
+            }) 
+        }
+
+        this.onRoleClick();
+    }
+
+    onRoleClick(role?:string){
+        this.role=role;    
         this.member.loadMember(this.option,role).then((result)=>{
             this.total_items=result.total_items
             this.items = result.items

@@ -19,5 +19,6 @@ export const AuthURL = {
     Stage:'stage',
     ExerciseStage:'exercise-stage',
     Quest:'quest',
-    QuizGame:'Quiz'
+    QuizGame:'Quiz',
+    Guide: 'guide'
 }

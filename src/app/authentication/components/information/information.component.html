@@ -69,7 +69,11 @@
           <img src="../../../../assets/image/no-image.png" class="avatar-image" *ngIf="!image_name" />
         </div>
 
-        <div class="col-md-9" *ngIf="UserLogin">
+        <h3 *ngIf="!checkData && !checkDataClassroom">
+          ..Loading..
+        </h3>
+
+        <div class="col-md-9" *ngIf="UserLogin && checkData && checkDataClassroom">
           <div class="form-check col-md-6 mr-3 mb-3" *ngIf="UserLogin.role=='admin'">
             <h4>
               <input class="form-check-input pointer" [(ngModel)]="role" (click)="onRoleClick('student')" type="radio" value="student" checked>
@@ -78,6 +82,8 @@
               </label>
             </h4>
           </div>
+          
+
           <div class="form-check col-md-6" *ngIf="UserLogin.role=='admin'">
             <h4>
               <input class="form-check-input pointer" [(ngModel)]="role" (click)="onRoleClick('admin')" type="radio" value="admin">
@@ -86,48 +92,49 @@
               </label>
             </h4>
           </div>
-          <form [formGroup]="form" (submit)="onSubmit()">
-            <div class="form-group">
-              <label>รหัสนักศึกษา :</label>
-              <input type="text" class="form-control" formControlName="sid" placeholder="รหัสนักศึกษา" />
-            </div>
-            <div class="form-group">
-              <label>ชื่อจริง-นามสกุล :</label>
-              <input type="text" class="form-control" formControlName="firstname" placeholder="ชื่อจริง" />
-              <input type="text" class="form-control mt-2" formControlName="lastname" placeholder="นามสกุล" />
-            </div>
-            <div class="form-group">
-              <label>เบอร์โทร :</label>
-              <input type="text" class="form-control" formControlName="phone" placeholder="เบอร์โทร" />
-            </div>
-            <div class="form-group">
-              <label>อีเมล์ :</label>
-              <input type="text" class="form-control" formControlName="email" placeholder="อีเมล์" />
-            </div>
-            <div class="form-group">
-              <label>ชั้นเรียน :</label>
-              <input type="hidden" class="form-control" formControlName="class" [placeholder]="year" readonly/>
-              <input type="text" class="form-control" formControlName="etc" [ngModel]="classroom" [placeholder]="year" readonly/>
-            </div>
-            <button type="submit" class="btn btn-success">
-              Update
-            </button>
-          </form>
+            <form [formGroup]="form" (submit)="onSubmit()">
+              <div class="form-group">
+                <label>รหัสนักศึกษา :</label>
+                <input type="text" class="form-control" formControlName="sid" placeholder="รหัสนักศึกษา" />
+              </div>
+              <div class="form-group">
+                <label>ชื่อจริง-นามสกุล :</label>
+                <input type="text" class="form-control" formControlName="firstname" placeholder="ชื่อจริง" />
+                <input type="text" class="form-control mt-2" formControlName="lastname" placeholder="นามสกุล" />
+              </div>
+              <div class="form-group">
+                <label>เบอร์โทร :</label>
+                <input type="text" class="form-control" formControlName="phone" placeholder="เบอร์โทร" />
+              </div>
+              <div class="form-group">
+                <label>อีเมล์ :</label>
+                <input type="text" class="form-control" formControlName="email" placeholder="อีเมล์" />
+              </div>
+              <div class="form-group">
+                <label>ชั้นเรียน :</label>
+                <input type="hidden" class="form-control" formControlName="class" [placeholder]="year" readonly/>
+                <input type="text" class="form-control" formControlName="etc" [ngModel]="classroom" [placeholder]="year" readonly/>
+              </div>
+              <button type="submit" class="btn btn-success">
+                Update
+              </button>
+            </form>
         </div>
         <!-- แถบค่าประสบการณ์ -->
-        <div class="col-md-3 mt-4 py-3 text-center" style="border-top: 1px solid lightgray;">
+        <div *ngIf="checkData && checkDataClassroom" class="col-md-3 mt-4 py-3 text-center" style="border-top: 1px solid lightgray;">
           ค่าประสบการณ์<br />(Experience)
         </div>
-        <div class="col-md-9 mt-4 py-3" style="border-top: 1px solid lightgray;">
+
+        <div *ngIf="checkData && checkDataClassroom" class="col-md-9 mt-4 py-3" style="border-top: 1px solid lightgray;">
           <div class="form-group">
             <input type="text" class="form-control" [(value)]="exp" placeholder="ค่าประสบการณ์" readonly />
           </div>
         </div>
         <!-- แถบเลเวล -->
-        <div class="col-md-3 py-3 text-center" style="border-top: 1px solid lightgray;">
+        <div *ngIf="checkData && checkDataClassroom" class="col-md-3 py-3 text-center" style="border-top: 1px solid lightgray;">
           ระดับ<br />(Level)
         </div>
-        <div class="col-md-9 py-3" style="border-top: 1px solid lightgray;">
+        <div *ngIf="checkData && checkDataClassroom" class="col-md-9 py-3" style="border-top: 1px solid lightgray;">
           <div class="form-group">
             <input type="text" class="form-control" [(value)]="level" placeholder="เลเวล" readonly/>
           </div>

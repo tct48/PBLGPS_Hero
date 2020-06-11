@@ -68,6 +68,14 @@ export class ContentComponent implements OnInit {
                 'https://drive.google.com/file/d/' + url.substr(33) + '/preview'
         }
 
+        
+        if(url.substring(url.length - 17)=='/view?usp=sharing'){
+            url = url.substring(0,url.length-17) + '/preview'
+            pdf=url;
+        }
+        
+        console.log(pdf)
+
         if (this.isCollapsed == false) {
             this.isCollapsed = true
         }

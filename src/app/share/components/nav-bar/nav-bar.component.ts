@@ -77,7 +77,9 @@ export class NavBarComponent implements OnInit {
         this.authen.clearAuthenticated()
         this.account.onLogout()
         this.account.UserLogin = {} as any;
+
         this.login = null
+        localStorage.clear();
         this.router.navigate(['/', AppURL.Login])
     }
 }

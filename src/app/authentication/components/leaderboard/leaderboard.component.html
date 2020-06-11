@@ -15,6 +15,11 @@
                 <th>Experience</th>
                 <th>Badge</th>
               </tr>
+              <tr *ngIf="!Leaderboard">
+                <td colspan="4" class="text-center">
+                  <span class="animate animate__bounceIn">.. Loading ..</span>
+                </td>
+              </tr>
               <tr *ngFor="let data of Leaderboard;let i = index" class="data" style="font-size:smaller;">
                 <td style="text-align: left;">{{ i+1 }}.{{ data.username }} <img [src]="crown_image[i]"></td>
                 <td>{{ calLevel(data.exp) }}</td>

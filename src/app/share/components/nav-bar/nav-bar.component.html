@@ -46,7 +46,7 @@
           [routerLink]="['/auth/leaderboard']">กระดานผู้นำ<br />(LEADERBOARD)</a>
         <a class="nav-item nav-link border-right px-4" routerLinkActive="active"
           [routerLink]="['/auth/information']">ข้อมูลผู้เรียน<br />(INFORMATION)</a>
-        <a class="nav-item nav-link border-right px-4" href="#">แนะนำระบบ<br />(GUIDE)</a>
+        <a class="nav-item nav-link border-right px-4" [routerLink]="['/auth/guide']" href="#">แนะนำระบบ<br />(GUIDE)</a>
         <a class="nav-item nav-link px-4" [routerLink]="['/auth/attendence']" routerLinkActive="active">
           เช็คชื่อออนไลน์<br>
           (ATTENDENCE)
@@ -64,6 +64,7 @@
           [routerLink]="['/auth/menu']">แบบฝึกหัด <br /><i class="fa fa-newspaper-o"></i></a>
         <a class="nav-item border-right nav-link px-4" routerLinkActive="active"
         [routerLink]="['/auth/classroom']">จัดการชั้นเรียน <br /><i class="fa fa-address-book-o"></i></a>
+        <a class="nav-item nav-link border-right px-4" [routerLink]="['/auth/guide']" href="#">แนะนำระบบ<br />(GUIDE)</a>
       </div>
     </div>
   </nav>

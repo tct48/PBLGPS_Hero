@@ -54,6 +54,9 @@ export class InformationComponent implements OnInit {
   year=new Date().getFullYear()+543;
   x: String = 'user/image/olqpjyoomeqmsfmvjww3'
 
+  checkData:any;
+  checkDataClassroom:any;
+
   badge=["Design", "Device", "Final_City", "Internet", "IP", "LAN", "Monitor", "NOS", "Novice", "Overview", "Security", "Transmission", "WLAN"];
 
   setPath(path:string){
@@ -135,6 +138,7 @@ export class InformationComponent implements OnInit {
           this.member.returnClassroom(result.items[0].class).then(res=>{
             this.form.controls['class'].setValue(res.items._id)
             this.classroom = res.items.name;
+            this.checkDataClassroom = 1
           })
           this.role=result.items[0].role;
 
@@ -144,6 +148,8 @@ export class InformationComponent implements OnInit {
           if (result.items[0].image) {
             this.image_name = result.items[0].image
           }
+
+          this.checkData = 1;
         })
     }
 
@@ -159,6 +165,7 @@ export class InformationComponent implements OnInit {
         this.member.returnClassroom(result.class).then(res=>{
           this.form.controls['class'].setValue(res.items._id)
           this.classroom = res.items.name
+          this.checkDataClassroom=1;
         })
 
         this.exp = result.exp
@@ -167,6 +174,8 @@ export class InformationComponent implements OnInit {
         if (result.image) {
           this.image_name = result.image
         }
+
+        this.checkData = 1;
       })
   }
 

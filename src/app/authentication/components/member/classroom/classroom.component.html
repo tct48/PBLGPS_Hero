@@ -37,6 +37,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr *ngIf="!Classroom_item">
+                            <td colspan="3" class="text-center">
+                                ..Loading..
+                            </td>
+                        </tr>
                         <tr *ngFor="let data of Classroom_item;let i=index">
                             <td>{{ i+1 }}</td>
                             <td>{{ data.name }}</td>

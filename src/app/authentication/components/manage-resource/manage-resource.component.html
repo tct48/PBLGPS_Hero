@@ -33,6 +33,9 @@
           <th>Action</th>
         </thead>
         <tbody>
+          <tr *ngIf="!items">
+            <td class="text-center" colspan="3">Loading...</td>
+          </tr>
           <tr *ngFor="let data of items;let i = index;">
             <td>{{ i+1 }}</td>
             <td>{{ data.name }}</td>

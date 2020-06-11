@@ -33,11 +33,6 @@ export class SigninComponent implements OnInit {
     })
     this.redirectPage()
 
-    this.alert.announce(
-      "อัพเดท &nbsp; <span style='color:orange'> 12 พค 2020, 14:28:51 PM</span>",
-      '1) เพิ่มแหล่งเรียนรู้ได้ <br>2) แสดงผลแหล่งเรียนรู้ได้'
-    )
-
     this.createFormData()
   }
 
@@ -82,8 +77,7 @@ export class SigninComponent implements OnInit {
         this.router.navigateByUrl(this.returnURL)
       })
       .catch((err) => {
-        console.log(err);
-        this.alert.notify(err.Message)
+        this.alert.notify("Username หรือ Password ไม่ถูกต้อง!","แจ้งเตือน","error");
       })
   }
 
@@ -133,25 +127,5 @@ export class SigninComponent implements OnInit {
         // return answers;
       }
     })
-
-    // var data = this.alert.showChangePassword()
-
-
-
-    // console.log(data[0]);
-    // console.log(data[1]);
-    // console.log(data[2]);
-    // setTimeout(()=> {
-    //     if(this.alert.email){
-    //         this.member.onForgetPassword({email : this.alert.email})
-    //         .then(result=>{
-    //             this.alert.notify(result.message,"ลืมรหัสผ่าน","success");
-    //         })
-    //         .catch(err=>{
-    //             console.log(err)
-    //             this.alert.notify(err.Message);
-    //         })
-    //     }
-    // }, Time)
   }
 }

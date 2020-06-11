@@ -62,6 +62,7 @@ import { StageComponent } from './authentication/components/stage/stage.componen
 import { ExerciseStageComponent } from './authentication/components/exercise/exercise-stage/exercise-stage.component'
 import { QuestComponent } from './authentication/components/quest/quest.component'
 import { QuizgameComponent } from './authentication/components/quizgame/quizgame.component'
+import { GuideComponent } from './authentication/components/guide/guide.component'
 
 @NgModule({
     declarations: [
@@ -71,6 +72,7 @@ import { QuizgameComponent } from './authentication/components/quizgame/quizgame
         HomeComponent,
         HahaComponent,
         QuizComponent,
+        GuideComponent,
         QuestComponent,
         StageComponent,
         GuildComponent,
