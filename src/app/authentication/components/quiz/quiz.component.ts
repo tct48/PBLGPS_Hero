@@ -24,8 +24,9 @@ export class QuizComponent implements OnInit {
     constructor(private alert: AlertService, private quiz: QuizService) {
         this.quiz.getAllChapter().then((result) => {
             var data = this.states.concat(result.items)
-
+            console.log(result)
             this.states = data
+            console.log(this.states)
         })
 
         this.loadQuizList()
@@ -40,10 +41,11 @@ export class QuizComponent implements OnInit {
 
     selectedValue: string
     selectedOption: any
-    states: any[] = [{ id: 1, name: 'Pre-test', _id: 'PRE-TEST' }]
+    states: any[] = [{ name: 'Pre-test', _id: 'PRE-TEST' }]
 
     onSelect(event: TypeaheadMatch): void {
         this.selectedOption = event.item
+        console.log(this.selectedOption._id)
         // console.log(this.selectedOption.ref);
     }
 
@@ -116,7 +118,7 @@ export class QuizComponent implements OnInit {
     onLoadUpdate(data) {
         this.menu = true
         
-        this.quiz.getAllQuiz(data._id).then((result) => {
+        this.quiz.getQuizById(data._id).then((result) => {
             this.fix_id = result.items._id
             this.selectedValue = result.items.name
             this.article = result.items.choice
@@ -175,7 +177,7 @@ export class QuizComponent implements OnInit {
         var obj = {
             name: this.selectedValue,
             choice: this.article,
-            ref: this.ref,
+            ref: this.selectedOption._id,
         }
 
         this.quiz.updateQuiz(this.fix_id, obj).then((result) => {

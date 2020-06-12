@@ -115,10 +115,12 @@ export class ManageResourceComponent implements OnInit {
     }
 
     onLoadUpdate(data) {
+        console.log(data)
         this.switchToogle()
         this.update = true
         this.resource.onShowOneChapter(data._id).then((result) => {
             var item = result.item[0]
+            console.log(result)
 
             this.update_id = item._id
 

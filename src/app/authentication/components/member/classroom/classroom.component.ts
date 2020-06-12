@@ -4,6 +4,7 @@ import { AlertService } from 'src/app/share/services/alert.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppURL } from 'src/app/app.url';
 import { AuthURL } from 'src/app/authentication/authentication.url';
+import { ResourceLoader } from '@angular/compiler';
  
 @Component({
   selector: 'app-classroom',
@@ -54,13 +55,11 @@ export class ClassroomComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log("Working")
     this.member.addClassroom({ name :this.classroom_name}).then(result=>{
       this.alert.success(result.message);
       this.loadDataClassroom();
     })
     .catch(err=>{
-      console.log(err)
       if(err.Message=="ValidationError")
       this.alert.notify("กรุณากรอกข้อมูลให้ครบถ้วน!");
     })
@@ -78,6 +77,7 @@ export class ClassroomComponent implements OnInit {
     this.member.loadMemberFromClassroom(model._id).then(result=>{
       this.items = result.items
       this.total_items = result.total_items
+      console.log(result)
     })
 
     this.title_name="ดูสมาชิกในห้องเรียน"
@@ -87,6 +87,8 @@ export class ClassroomComponent implements OnInit {
     this.member.loadClassroom(this.option).then(result=>{
       this.Classroom_item = result.items;
       this.total_classroom = result.total_items;
+      console.log(result)
+      
     })
     this.classroom_name=null;
   }

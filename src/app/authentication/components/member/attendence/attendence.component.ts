@@ -29,6 +29,9 @@ export class AttendenceComponent implements OnInit {
     total_numbers:number;
     atteneded:number;
     absent:number=0;
+    sick:number=0;
+    rate_time:number=0;
+
 
     ngOnInit(): void {}
 
@@ -80,6 +83,15 @@ export class AttendenceComponent implements OnInit {
 
     loadTimeAttended(){
       this.member.getTimeAttended(this.account.UserLogin._id).then(result=>{
+        var round = result.items.length;
+        // var dumb = data.user.includes(this.account.UserLogin._id)
+        for(var i=0;i<round;i++){
+          if(result.items[i].rate_time.includes(this.account.UserLogin._id)){
+            this.rate_time+=1;
+          }
+        }
+
+        
         this.atteneded = result.total_items;
         this.absent=this.total_numbers-this.atteneded;
       })
@@ -88,7 +100,13 @@ export class AttendenceComponent implements OnInit {
     loadAttendence(){
       this.member.loadAttendence(this.account.UserLogin.class).then(result=>{
         this.items = result.items;
-        // console.log(this.items)
+        var round = result.total_items;
+        for(var i =0 ; i<round;i++){
+          if(result.items[i].sick.includes(this.account.UserLogin._id)){
+            this.sick+=1;
+          }
+        }
+
         this.total_numbers = result.total_items;
         this.absent=this.total_numbers-this.atteneded;
       })

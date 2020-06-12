@@ -16,6 +16,12 @@ export class QuizService {
             .toPromise() as Promise<any>
     }
 
+    getQuizById(_id:string){
+        return this.http
+            .requestGet(`quiz/quizId/${_id}`, this.authen.getAuthenticated())
+            .toPromise() as Promise<any>
+    }
+
     deleteQuiz(_id:string){
         return this.http.requestDelete(`quiz/${_id}`,this.authen.getAuthenticated())
             .toPromise() as Promise<any>

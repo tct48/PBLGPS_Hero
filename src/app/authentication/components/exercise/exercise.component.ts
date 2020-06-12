@@ -58,11 +58,13 @@ export class ExerciseComponent implements OnInit {
                         }
                     })
             });
+            console.log(this._id)
 
         // โหลดข้อมูลแบบฝึกหัด 
         this.quiz
             .getAllQuiz(this._id)
             .then((result) => {
+                console.log(result)
                 this.item = result.items
                 this.total_items = result.total_items
                 if (!this.item) {
