@@ -17176,10 +17176,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       function HttpService(http) {
         _classCallCheck(this, HttpService);
 
-        this.http = http; // private address: string = 'https://backend-pblgps.herokuapp.com/'
-
-        this.address = "http://localhost:3000/";
-      } //Request GET method
+        this.http = http;
+        this.address = 'https://backend-pblgps.herokuapp.com/';
+      } // private address : string = "http://localhost:3000/"
+      //Request GET method
 
 
       _createClass(HttpService, [{

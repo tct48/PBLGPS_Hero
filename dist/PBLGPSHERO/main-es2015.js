@@ -8777,9 +8777,9 @@ __webpack_require__.r(__webpack_exports__);
 class HttpService {
     constructor(http) {
         this.http = http;
-        // private address: string = 'https://backend-pblgps.herokuapp.com/'
-        this.address = "http://localhost:3000/";
+        this.address = 'https://backend-pblgps.herokuapp.com/';
     }
+    // private address : string = "http://localhost:3000/"
     //Request GET method
     requestGet(url, accessToken) {
         return this.http
