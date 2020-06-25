@@ -23,30 +23,31 @@ import { ExerciseStageComponent } from './components/exercise/exercise-stage/exe
 import { QuestComponent } from './components/quest/quest.component';
 import { QuizgameComponent } from './components/quizgame/quizgame.component';
 import { GuideComponent } from './components/guide/guide.component';
+import { UserRoleGuard } from '../guard/user-role.guard';
 
 const RouterLists: Routes = [
     { path: '', redirectTo: AppURL.Login, pathMatch: 'full' },
     { path: AuthURL.Home, component: HomeComponent },
-    { path: AuthURL.Leaderboard, component: LeaderboardComponent },
-    { path: AuthURL.Information, component: InformationComponent },
-    { path: AuthURL.Resource, component: ResourceComponent },
-    { path: AuthURL.Content, component: ContentComponent },
-    { path: AuthURL.Member, component: MemberComponent },
-    { path: AuthURL.Quiz, component: QuizComponent },
-    { path: AuthURL.ManageResource, component: ManageResourceComponent },
-    { path : AuthURL.Exercise, component: ExerciseComponent},
-    { path: AuthURL.Menu, component: SubMenuComponent },
-    { path: AuthURL.Classroom, component: ClassroomComponent },
-    { path: AuthURL.Attendence, component: AttendenceComponent },
-    { path: AuthURL.QuizPrPs, component:  PrpsQuizComponent},
-    { path: AuthURL.ExercisePrps, component: ExercisePrpsComponent },
-    { path: AuthURL.Guild,component:GuildComponent},
-    { path: AuthURL.CreateGroup, component:CreateComponent },
-    { path: AuthURL.Stage, component:StageComponent },
-    { path: AuthURL.ExerciseStage, component:ExerciseStageComponent },
-    { path:AuthURL.Quest, component:QuestComponent },
-    { path:AuthURL.QuizGame, component:QuizgameComponent },
-    { path: AuthURL.Guide, component:GuideComponent }
+    { path: AuthURL.Leaderboard, component: LeaderboardComponent , canActivate: [UserRoleGuard], data:{roles:['student']}},
+    { path: AuthURL.Information, component: InformationComponent, canActivate: [UserRoleGuard], data:{roles:['student','admin']} },
+    { path: AuthURL.Resource, component: ResourceComponent, canActivate: [UserRoleGuard], data:{roles:['student','admin']} },
+    { path: AuthURL.Content, component: ContentComponent, canActivate: [UserRoleGuard], data:{roles:['student']} },
+    { path: AuthURL.Member, component: MemberComponent, canActivate: [UserRoleGuard], data:{roles:['admin']} },
+    { path: AuthURL.Quiz, component: QuizComponent, canActivate: [UserRoleGuard], data:{roles:['student','admin']} },
+    { path: AuthURL.ManageResource, component: ManageResourceComponent, canActivate: [UserRoleGuard], data:{roles:['admin']} },
+    { path : AuthURL.Exercise, component: ExerciseComponent, canActivate: [UserRoleGuard], data:{roles:['student']}},
+    { path: AuthURL.Menu, component: SubMenuComponent, canActivate: [UserRoleGuard], data:{roles:['admin']} },
+    { path: AuthURL.Classroom, component: ClassroomComponent, canActivate: [UserRoleGuard], data:{roles:['admin']} },
+    { path: AuthURL.Attendence, component: AttendenceComponent, canActivate: [UserRoleGuard], data:{roles:['student','admin']} },
+    { path: AuthURL.QuizPrPs, component:  PrpsQuizComponent, canActivate: [UserRoleGuard], data:{roles:['student']}},
+    { path: AuthURL.ExercisePrps, component: ExercisePrpsComponent, canActivate: [UserRoleGuard], data:{roles:['student']} },
+    { path: AuthURL.Guild,component:GuildComponent, canActivate: [UserRoleGuard], data:{roles:['student','admin']}},
+    { path: AuthURL.CreateGroup, component:CreateComponent, canActivate: [UserRoleGuard], data:{roles:['admin']} },
+    { path: AuthURL.Stage, component:StageComponent , canActivate: [UserRoleGuard], data:{roles:['student']}},
+    { path: AuthURL.ExerciseStage, component:ExerciseStageComponent , canActivate: [UserRoleGuard], data:{roles:['student']}},
+    { path:AuthURL.Quest, component:QuestComponent, canActivate: [UserRoleGuard], data:{roles:['student']} },
+    { path:AuthURL.QuizGame, component:QuizgameComponent , canActivate: [UserRoleGuard], data:{roles:['student']}},
+    { path: AuthURL.Guide, component:GuideComponent, canActivate: [UserRoleGuard], data:{roles:['student','admin']} }
     // { path: AuthURL.Signin , component:SigninComponent }
 ];
 

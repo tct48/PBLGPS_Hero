@@ -26,8 +26,6 @@ import { AppComponent } from './app.component'
 import { HahaComponent } from './components/haha/haha.component'
 import { SigninComponent } from './components/signin/signin.component'
 import { SignupComponent } from './components/signup/signup.component'
-import { HomepageComponent } from './components/homepage/homepage.component'
-import { HomeComponent } from './authentication/components/home/home.component'
 import { MemberComponent } from './authentication/components/member/member.component'
 import { ResourceComponent } from './authentication/components/resource/resource.component'
 import { ContentComponent } from './authentication/components/resource/content/content.component'
@@ -63,13 +61,13 @@ import { ExerciseStageComponent } from './authentication/components/exercise/exe
 import { QuestComponent } from './authentication/components/quest/quest.component'
 import { QuizgameComponent } from './authentication/components/quizgame/quizgame.component'
 import { GuideComponent } from './authentication/components/guide/guide.component'
+import { CommonModule } from '@angular/common'
 
 @NgModule({
     declarations: [
         Youtube,
         DateAgoPipe,
         AppComponent,
-        HomeComponent,
         HahaComponent,
         QuizComponent,
         GuideComponent,
@@ -86,7 +84,6 @@ import { GuideComponent } from './authentication/components/guide/guide.componen
         PrpsQuizComponent,
         ResourceComponent,
         ExerciseComponent,
-        HomepageComponent,
         ClassroomComponent,
         InformationComponent,
         LeaderboardComponent,
@@ -97,14 +94,15 @@ import { GuideComponent } from './authentication/components/guide/guide.componen
         ManageResourceComponent,
     ],
     imports: [
+        CommonModule,
+        BrowserModule,
         AppRouting,
+        HttpClientModule,
         FormsModule,
         SharedsModule,
-        BrowserModule,
         MatRadioModule,
         CKEditorModule,
         PdfViewerModule,
-        HttpClientModule, 
         ReactiveFormsModule,
         AuthenticationModule,
         TabsModule.forRoot(),

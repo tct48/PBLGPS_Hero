@@ -36,7 +36,7 @@ export class ContentComponent implements OnInit {
         })
 
         this.resource.onShowOneChapter(this.chapter_id).then(async (result) => {
-            this.item = await result.item[0]            
+            this.item = result.item[0]      
 
             if (!this.item) {
                 this.router.navigate(['/', AppURL.Authen, AuthURL.Resource])
@@ -44,6 +44,7 @@ export class ContentComponent implements OnInit {
             }
         })
     }
+    xx="SE"
 
     chapter_id: string
     item: any

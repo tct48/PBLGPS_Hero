@@ -1,4 +1,5 @@
 <app-auth-content>
+  {{ xx }}
   <div class="row my-4">
     <!-- ส่วนยืดหด -->
     <div class="col-md-12">
@@ -35,7 +36,7 @@
                         border: 1px solid lightgray;
                         border-radius: 15px;
                     ">
-          สาระการเรียนรู้
+          สาระการเรียนรู้ {{ xx }}
         </h4>
         <p class="text-muted medium"  style="text-indent: 20px; text-align: justify;">
           <span *ngIf="item.learning">{{ item.learning }}</span>
@@ -74,7 +75,7 @@
           </ul>
         </li>
         <!-- หัวข้อ 3 -->
-        <li *ngIf="item?.hypertext.text"> 
+        <li *ngIf="item.hypertext"> 
           <span>{{ item.hypertext.title }}</span>
           <div style="max-width: 100%;" [innerHtml]="item.hypertext.text"></div>
         </li>
