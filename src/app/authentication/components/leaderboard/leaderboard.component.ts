@@ -30,7 +30,7 @@ export class LeaderboardComponent implements OnInit {
 
     lvl: Number
     Leaderboard: any
-    UserLogin: IAccount
+    UserLogin: any
     status: string
 
     // ภาพ มงกุฎ
@@ -56,7 +56,7 @@ export class LeaderboardComponent implements OnInit {
         this.account
             .getUserLogin(this.authen.getAuthenticated())
             .then((result) => {
-                this.UserLogin = result
+                this.UserLogin = this.authen.setUserLogin();
             })
     }
 

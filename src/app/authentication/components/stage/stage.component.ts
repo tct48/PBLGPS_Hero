@@ -24,7 +24,7 @@ export class StageComponent implements OnInit {
         private router: Router
     ) {
         this.member
-            .loadUserbyGuild(this.account.UserLogin._id)
+            .loadUserbyGuild(localStorage.getItem("_id"))
             .then((result) => {
                 this.total_user = result.items.length
                 this.items = result.items

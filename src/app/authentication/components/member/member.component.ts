@@ -17,6 +17,7 @@ import {
     AccountService,
     IAccount,
 } from 'src/app/share/services/account.service'
+import { AuthenService } from 'src/app/services/authen.service'
 
 @Component({
     selector: 'app-member',
@@ -31,8 +32,9 @@ export class MemberComponent implements OnInit {
         private level: LevelService,
         private member: MemberService,
         private account: AccountService,
+        private authen: AuthenService,
     ) {
-        this.UserLogin = this.account.UserLogin
+        this.UserLogin = this.authen.setUserLogin();
 
         this.onLoadMember()
     }
@@ -56,7 +58,7 @@ export class MemberComponent implements OnInit {
     size_pagination: Number;
 
     searchText: string;
-    UserLogin: IAccount;
+    UserLogin: any;
 
     // เรียกดูสมาชิก onInit
     onLoadMember() {

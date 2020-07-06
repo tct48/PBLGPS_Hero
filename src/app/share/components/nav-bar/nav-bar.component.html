@@ -21,9 +21,8 @@
     </li>
   </ul>
 </header>
-
 <!-- แถบ Navbar -->
-<div style="border: 1px 0 1px 0 solid black; display: block;position: relative;z-index: 1;">
+<div *ngIf="UserLogin.role" class="animate__animated  animate__fadeIn" style="border: 1px 0 1px 0 solid black; display: block;position: relative;z-index: 1;">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
     <a class="navbar-brand" href="#"></a>
     <button class="navbar-toggler" style="float: right;" type="button" data-toggle="collapse"

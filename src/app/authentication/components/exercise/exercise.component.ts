@@ -111,7 +111,7 @@ export class ExerciseComponent implements OnInit {
             ref: this._id,
             name: this.item.name,
             score: this.total_score,
-            user: this.account.UserLogin._id,
+            user: localStorage.getItem("_id"),
         }
 
         this.grade.addScoreExercise(obj).then(() => {
@@ -124,7 +124,7 @@ export class ExerciseComponent implements OnInit {
     
                 var A = B/C*D;
     
-                this.level.addExptoUser(this.account.UserLogin._id, A).then(()=>{
+                this.level.addExptoUser(localStorage.getItem("_id"), A).then(()=>{
                     this.alert.success("คุณได้รับค่าประสบการณ์เพิ่มขึ้น " + A + " แต้ม")
                     this.router.navigate(['', AppURL.Authen, AuthURL.Home])
                 })

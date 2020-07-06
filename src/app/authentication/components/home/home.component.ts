@@ -29,12 +29,12 @@ export class HomeComponent implements OnInit {
         this.account
             .getUserLogin(this.authen.getAuthenticated())
             .then((result) => {
-                this.UserLogin = result
+                this.UserLogin = this.authen.setUserLogin();
             })
     }
 
     url:any= this.sanitizer.bypassSecurityTrustResourceUrl("https://edpuzzle.com/embed/assignments/5ebe9cbb40d77c3f106af0f4/watch");
-    UserLogin: IAccount
+    UserLogin: any
     status:number = 0;
     preTest:number=0;
     prpsTest:number=0;
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
             return this.alert.success('คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' + this.preTest);
         }
 
-        this.grade.getScoreExerciseById(this.account.UserLogin._id,'PRE-TEST').then(result=>{
+        this.grade.getScoreExerciseById(localStorage.getItem("_id"),'PRE-TEST').then(result=>{
             if(result.total_items==0){
                 this.router.navigate(['', AppURL.Authen, AuthURL.Exercise], {
                     queryParams: { id },
@@ -64,11 +64,11 @@ export class HomeComponent implements OnInit {
             return this.alert.notify('กรุณาทำ "แบบฝึกหัดก่อนเรียน" ก่อน!')
         }
         
-        if(!this.account.UserLogin.guild){
+        if(!localStorage.getItem("guild")){
             return this.alert.notify("ยังไม่มีกิล์ด ไม่สามารถดำเนินงานต่อได้ !")
         }
 
-        this.grade.getScoreExerciseById(this.account.UserLogin._id,'PRE-TEST').then(result=>{
+        this.grade.getScoreExerciseById(localStorage.getItem("_id"),'PRE-TEST').then(result=>{
             
             if(result.total_items==0){
                 this.status=2;
@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
                 return;
             }
             if(result.total_items>0){
-                this.grade.getScoreExerciseById(this.account.UserLogin._id,'PRE-PRPS-TEST').then(result=>{
+                this.grade.getScoreExerciseById(localStorage.getItem("_id"),'PRE-PRPS-TEST').then(result=>{
                     if(result.total_items==0){
                         this.router.navigate(['', AppURL.Authen, AuthURL.ExercisePrps], {
                             queryParams: { id },

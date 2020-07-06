@@ -32,7 +32,7 @@ export class UserRoleGuard implements CanActivate {
         .getUserLogin(this.authen.getAuthenticated())
         .then(userLogin => {
           console.log(roles.filter(item => item == userLogin.role).length)
-          if (roles.filter(item => item == userLogin.role).length > 0)
+          if (roles.filter(item => item == localStorage.getItem("role")).length > 0)
             resolve(true);
           else {
             this.alert.notify('คุณไม่มีสิทธิ์ในการเข้าถึง URL ดังกล่าว !', 'danger');

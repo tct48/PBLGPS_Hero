@@ -50,7 +50,7 @@ export class InformationComponent implements OnInit {
   form: FormGroup;
   classroom: String;
   image_name: String;
-  UserLogin: IAccount;
+  UserLogin: any;
   year=new Date().getFullYear()+543;
   x: String = 'user/image/olqpjyoomeqmsfmvjww3'
 
@@ -95,7 +95,7 @@ export class InformationComponent implements OnInit {
     this.account
       .getUserLogin(this.authen.getAuthenticated())
       .then((userLogin) => {
-        this.UserLogin = userLogin
+        this.UserLogin = this.authen.setUserLogin();
       })
       .catch((err) => {
         this.alert.notify(err.message)

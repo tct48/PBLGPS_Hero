@@ -110,7 +110,7 @@ export class ExercisePrpsComponent implements OnInit {
             ref: this._id,
             name: this._id,
             score: this.your_score,
-            user: this.account.UserLogin._id,
+            user: localStorage.getItem("_id"),
         }
 
         
@@ -125,7 +125,7 @@ export class ExercisePrpsComponent implements OnInit {
                 var C = 40;
                 var D = 10;
                 var A = B/C*D;
-                this.level.addExptoUser(this.account.UserLogin._id,A).then(()=>{
+                this.level.addExptoUser(localStorage.getItem("_id"),A).then(()=>{
                     this.alert.success("คุณได้รับค่าประสบการณ์เพิ่มขึ้น " + A + " แต้ม");
                     this.router.navigate(['', AppURL.Authen, AuthURL.Home])
                 })

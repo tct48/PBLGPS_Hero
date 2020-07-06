@@ -71,9 +71,9 @@ export class SigninComponent implements OnInit {
       .onLogin(this.form.value)
       .then((res) => {
         // เก็บ AccessToken
-        this.authen.setAuthenticated(res.accessToken)
+        this.authen.setAuthenticated(res.accessToken,res.current_user)
         this.alert.success('ยินดีต้อนรับเข้าสู่ระบบ')
-        this.account.getUserLogin(this.authen.getAuthenticated())
+        this.account.getUserByID(localStorage.getItem("_id"),this.authen.getAuthenticated())
         this.router.navigateByUrl(this.returnURL)
       })
       .catch((err) => {

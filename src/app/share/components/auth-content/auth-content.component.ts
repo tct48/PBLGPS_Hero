@@ -25,7 +25,7 @@ export class AuthContentComponent implements OnInit {
     ngOnInit(): void {}
 
     
-    UserLogin: IAccount
+    UserLogin: any
 
     // load user login
     public initialLoadUserLogin() {
@@ -36,7 +36,7 @@ export class AuthContentComponent implements OnInit {
         this.account
             .getUserLogin(this.authen.getAuthenticated())
             .then((userLogin) => {
-                this.UserLogin = userLogin
+                this.UserLogin = this.UserLogin = this.authen.setUserLogin();
             })
             .catch((err) => {
                 this.alert.notify(err.message)

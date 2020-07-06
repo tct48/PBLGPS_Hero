@@ -18,7 +18,7 @@ export class GradeService {
     }
 
     getScoreExercise(exercise:string){
-        return this.http.requestGet(`grade/${this.account.UserLogin._id}/${exercise}`)
+        return this.http.requestGet(`grade/${localStorage.getItem("_id")}/${exercise}`)
         .toPromise() as Promise<IGrade>
     }
 

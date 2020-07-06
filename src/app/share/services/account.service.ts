@@ -62,7 +62,7 @@ export class AccountService {
     onLogin(model: ILogin) {
         return this.http
             .requestPost('user/login', model)
-            .toPromise() as Promise<{ accessToken: string }>
+            .toPromise() as Promise<{ accessToken: string,current_user:any }>
     }
 
     // ล๊อกเอาท์

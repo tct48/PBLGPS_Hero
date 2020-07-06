@@ -25,7 +25,7 @@ export class GuideComponent implements OnInit {
         this.account
             .getUserLogin(this.authen.getAuthenticated())
             .then((result) => {
-                this.UserLogin = result
+                this.UserLogin = this.authen.setUserLogin();
                 console.log(this.UserLogin)
             })
 
@@ -37,7 +37,7 @@ export class GuideComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    UserLogin: IAccount
+    UserLogin: any
     items: IGuide[]
 
     onClickMenu(menu?: string) {

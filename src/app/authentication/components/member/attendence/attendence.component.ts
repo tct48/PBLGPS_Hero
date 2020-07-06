@@ -36,7 +36,7 @@ export class AttendenceComponent implements OnInit {
     ngOnInit(): void {}
 
     onCheckIn(_id:string){
-      this.member.checkInAttendence(_id,{user:this.account.UserLogin._id}).then(result=>{
+      this.member.checkInAttendence(_id,{user:localStorage.getItem("_id")}).then(result=>{
         if(result.code == "500"){
           return this.alert.notify("ลงชื่อเข้าเรียนไปแล้ว..!","แจ้งเตือน", "warning")
         }
@@ -44,7 +44,7 @@ export class AttendenceComponent implements OnInit {
 
         var A=1
 
-        this.grade.getScoreExerciseById(this.account.UserLogin._id,'ATTENDENCE').then(sub_result=>{
+        this.grade.getScoreExerciseById(localStorage.getItem("_id"),'ATTENDENCE').then(sub_result=>{
           console.log(sub_result)
           // พึ่งเข้าเรียนครั้งแรกเพิ่มคะแนนมาเรียน
           if(sub_result.total_items==0){
@@ -52,12 +52,12 @@ export class AttendenceComponent implements OnInit {
               name: 'คะแนนมาเรียน (Attendence)',
               score: A,
               ref: 'ATTENDENCE',
-              user: this.account.UserLogin._id
+              user: localStorage.getItem("_id")
             }
 
             setTimeout(()=>{
               this.grade.addScoreExercise(obj).then(()=>{
-                this.level.addExptoUser(this.account.UserLogin._id,A*10).then(result=>{
+                this.level.addExptoUser(localStorage.getItem("_id"),A*10).then(result=>{
                   this.alert.success("คุณได้รับแต้ม Exp เพิ่มขึ้น " + A*10 + " แต้ม")
                 })
               })
@@ -66,7 +66,7 @@ export class AttendenceComponent implements OnInit {
 
           if(sub_result.total_items>0 && sub_result.total_items<=17){
             this.grade.updateScoreExcerciseById(sub_result.item._id,{score:sub_result.item.score+1}).then(sub=>{
-              this.level.addExptoUser(this.account.UserLogin._id,A*10).then(result=>{
+              this.level.addExptoUser(localStorage.getItem("_id"),A*10).then(result=>{
                 this.alert.success("คุณได้รับแต้ม Exp เพิ่มขึ้น " + A*10 + " แต้ม")
               })
             })
@@ -77,16 +77,16 @@ export class AttendenceComponent implements OnInit {
 
         this.loadAttendence();
         this.loadTimeAttended();
-        this.absent=this.total_numbers-this.atteneded;
       })
     }
 
     loadTimeAttended(){
-      this.member.getTimeAttended(this.account.UserLogin._id).then(result=>{
+      this.member.getTimeAttended(localStorage.getItem("_id")).then(result=>{
         var round = result.items.length;
-        // var dumb = data.user.includes(this.account.UserLogin._id)
+        // var dumb = data.user.includes(localStorage.getItem("_id"))
+        console.log(result.items)
         for(var i=0;i<round;i++){
-          if(result.items[i].rate_time.includes(this.account.UserLogin._id)){
+          if(result.items[i].rate_time.includes(localStorage.getItem("_id"))){
             this.rate_time+=1;
           }
         }
@@ -94,18 +94,22 @@ export class AttendenceComponent implements OnInit {
         
         this.atteneded = result.total_items;
         this.absent=this.total_numbers-this.atteneded;
+        console.log(this.atteneded);
+        console.log(this.rate_time)
       })
     }
 
     loadAttendence(){
-      this.member.loadAttendence(this.account.UserLogin.class).then(result=>{
+      this.member.loadAttendence(localStorage.getItem("classroom")).then(result=>{
         this.items = result.items;
         var round = result.total_items;
         for(var i =0 ; i<round;i++){
-          if(result.items[i].sick.includes(this.account.UserLogin._id)){
+          if(result.items[i].sick.includes(localStorage.getItem("_id"))){
             this.sick+=1;
           }
         }
+
+        console.log(result)
 
         this.total_numbers = result.total_items;
         this.absent=this.total_numbers-this.atteneded;
@@ -113,9 +117,9 @@ export class AttendenceComponent implements OnInit {
     }
 
     onCheckUser(data:any){
-      var dumb = data.user.includes(this.account.UserLogin._id)
+      var dumb = data.user.includes(localStorage.getItem("_id"))
       if(dumb==false){
-        var sick = data.sick.includes(this.account.UserLogin._id)
+        var sick = data.sick.includes(localStorage.getItem("_id"))
         if(sick==true){
           return "sick"
         }

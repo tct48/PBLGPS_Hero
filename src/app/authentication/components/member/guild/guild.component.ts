@@ -26,7 +26,7 @@ export class GuildComponent implements OnInit {
       private grade : GradeService,
       private route: Router,
       private alert:AlertService) {
-        this.member.loadUserbyGuild(this.account.UserLogin._id).then(result=>{
+        this.member.loadUserbyGuild(localStorage.getItem("_id")).then(result=>{
             this.total_user = result.items.length
             this.items = result.items
 

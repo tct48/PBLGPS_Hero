@@ -25,8 +25,7 @@ export class NavBarComponent implements OnInit {
     ) {
         if (this.menu == false || !this.UserLogin.menu) {
             this.initialLoadUserLogin()
-            this.UserLogin = this.account.UserLogin
-            this.UserLogin
+
         }
     }
     private currentUser: IAccount
@@ -38,7 +37,7 @@ export class NavBarComponent implements OnInit {
     login: any
     AppURL = AppURL
     AuthURL = AuthURL
-    UserLogin: IAccount = {} as any
+    UserLogin: any = {} as any
 
     get isAdmin() {
         return ;
@@ -54,9 +53,8 @@ export class NavBarComponent implements OnInit {
         this.account
             .getUserLogin(this.authen.getAuthenticated())
             .then((userLogin) => {
-                this.UserLogin = userLogin
                 this.login = 1
-
+                this.UserLogin = this.authen.setUserLogin();
                 this.grade
                     .getScoreExerciseById(this.UserLogin._id, 'PRE-PRPS-TEST')
                     .then((result) => {
