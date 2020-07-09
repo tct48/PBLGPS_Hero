@@ -86,7 +86,7 @@ export class MemberComponent implements OnInit {
         this.option.lp = this.lp;
         this.onLoadMember();
     }
-    
+
     option: OptionSearch = {
         sp: 0,
         lp: this.lp,
@@ -115,7 +115,7 @@ export class MemberComponent implements OnInit {
         }else{
             this.member.updateRole(_id,{status:0}).then(result=>{
                 this.alert.success("เปลี่ยนสถานะการเข้าใช้งานสำเร็จ!")
-            }) 
+            })
         }
 
         this.onRoleClick();
@@ -134,7 +134,7 @@ export class MemberComponent implements OnInit {
     }
 
     onRoleClick(role?:string){
-        this.role=role;    
+        this.role=role;
         console.log(this.role)
         this.member.loadMember(this.option,role).then((result)=>{
             this.total_items=result.total_items

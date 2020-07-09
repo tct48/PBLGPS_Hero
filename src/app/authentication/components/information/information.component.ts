@@ -77,12 +77,12 @@ export class InformationComponent implements OnInit {
   onOpenScore(title: string) {
     this.grade.getScoreExercise(title).then(result=>{
       if(result.total_items>0)
-      return this.alert.showScore(result.item.name, result.item.score)
+      return this.alert.show_score(result.item.name, result.item.score)
 
-      this.alert.notify("ยังไม่มีคะแนนส่วนดังกล่าว!")
+      this.alert.show_score("ยังไม่มีคะแนนส่วนดังกล่าว!","แจ้งเตือน","danger")
     })
     .catch(err=>{
-      this.alert.notify("ยังไม่มีคะแนนส่วนดังกล่าว!")
+      this.alert.show_score("ยังไม่มีคะแนนส่วนดังกล่าว!","แจ้งเตือน","danger")
     })
   }
 

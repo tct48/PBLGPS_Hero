@@ -29,7 +29,7 @@ import {
 })
 @Injectable()
 export class SignupComponent implements OnInit {
-    
+
     constructor(
         private builder: FormBuilder,
         private alert: AlertService,
@@ -82,7 +82,7 @@ export class SignupComponent implements OnInit {
     // ปุ่มแก้ไข
     onSubmit() {
         this.form.controls['role'].setValue(this.radioModel);
-        
+
         if (this.radioModel=='student' && this.form.invalid) {
             return this.alert.notify('กรุณากรอกข้อมูลให้ครบถ้วน!')
         }
@@ -116,6 +116,7 @@ export class SignupComponent implements OnInit {
             obj = this.form.value
             obj.sid = "-"
         }
+        obj.role = this.radioModel
 
         this.account.onRegister(obj).then(() => {
             this.alert.success('สมัครสมาชิกเรียบร้อยแล้ว!')

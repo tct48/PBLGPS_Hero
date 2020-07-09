@@ -40,8 +40,8 @@
             <td>{{ i+1 }}</td>
             <td>{{ data.name }}</td>
             <td>
-              <a (click)="onLoadUpdate(data)"><i class="fa fa-pencil-square-o text-warning mx-2"></i></a>
-              <a (click)="onDelete(data._id)"><i class="fa fa-trash-o text-danger"></i></a>
+              <a (click)="onLoadUpdate(data)" tooltip="แก้ไขข้อมูล"><i class="fa fa-pencil-square-o text-warning mx-2"></i></a>
+              <a (click)="onDelete(data._id)" tooltip="ลบข้อมูล"><i class="fa fa-trash-o text-danger"></i></a>
             </td>
           </tr>
         </tbody>
@@ -99,7 +99,7 @@
               </div>
               <div class="card-body">
                 <div class="form-group">
-                  <label for="ccnumber">หัวข้อ</label>                  
+                  <label for="ccnumber">หัวข้อ</label>
                   <input class="form-control my-1" [(ngModel)]="pdf_title" type="text"
                     placeholder="(ตัวอย่าง) เอกสารประกอบการเรียนการสอนรูปแบบไฟล์ PDF" required />
                     <span class="pb-2" style="display:block;width:100%;text-align: right;">
