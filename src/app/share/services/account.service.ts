@@ -67,7 +67,7 @@ export class AccountService {
 
     // ล๊อกเอาท์
     onLogout() {
-        this.alert.notify('ขอบคุณที่ใช้งาน')
+        this.alert.notify('ขอบคุณที่ใช้งาน','ขอบคุณ', 'success')
     }
 
     // สมัครสมาชิก

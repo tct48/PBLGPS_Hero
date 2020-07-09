@@ -127,7 +127,7 @@ div.custom-menu div ul li a {
 .leaderboard {
   width: 600px;
   margin: auto;
-  height: 290px;
+  height: 450px;
   box-sizing: border-box;
   padding: 80px 15px 10px 15px;
   background-image: url('./assets/image/leaderboard.png');

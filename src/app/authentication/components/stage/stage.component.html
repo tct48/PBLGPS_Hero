@@ -1,17 +1,17 @@
 <app-auth-content>
     <div class="my-3 p-2" style="border:1px solid lightgray;border-bottom: 5px solid lightgray;border-radius: 10px;">
         <div class="row no-gutters">
-            <div class="col-md-1" style="display: flex; align-items: center;">
+            <div class="col-md-1" style="display: flex; align-items: center;" *ngIf="items">
                 <img
-                    [src]="guild_image[guild_name-1]"
+                    [src]="guild_image[items[0].guild]"
                     class="card-img"
                     style="margin: auto;"
                     alt="..."
                 />
             </div>
             <div class="col-md-11" style="display: flex; align-items: center;">
-                <div class="card-body">
-                    <h5 class="card-title">กิล์ดอันดับ {{ guild_name }} (Guild)</h5>
+                <div class="card-body" *ngIf="items">
+                    <h5 class="card-title">กิล์ดอันดับ {{ items[0].guild }} (Guild)</h5>
                     <p class="card-text">{{ description[guild_name-1] }}</p>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                                     เข้าร่วม
                                 </button>
                             </td>
-                            <td class="text-center">{{ guild_name }}</td>
+                            <td class="text-center">{{ data.guild }}</td>
                             <td class="text-center">
                                 <span class="text-danger" style="border-bottom: 1px dotted black;" *ngIf="!ready[i]">OFF</span>
                                 <span class="text-info" style="border-bottom: 1px dotted black;" *ngIf="ready[i]">ON</span>

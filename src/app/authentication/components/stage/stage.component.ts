@@ -28,9 +28,6 @@ export class StageComponent implements OnInit {
             .then((result) => {
                 this.total_user = result.items.length
                 this.items = result.items
-                this.setGuildName(this.items[0].guild)
-
-                console.log(this.items)
             })
     }
 

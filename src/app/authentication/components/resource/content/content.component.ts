@@ -44,7 +44,6 @@ export class ContentComponent implements OnInit {
             }
         })
     }
-    xx="SE"
 
     chapter_id: string
     item: any

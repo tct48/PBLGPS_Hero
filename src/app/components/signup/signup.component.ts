@@ -83,7 +83,7 @@ export class SignupComponent implements OnInit {
     onSubmit() {
         this.form.controls['role'].setValue(this.radioModel);
         
-        if (this.form.invalid) {
+        if (this.radioModel=='student' && this.form.invalid) {
             return this.alert.notify('กรุณากรอกข้อมูลให้ครบถ้วน!')
         }
         var formdata = new FormData()
@@ -107,9 +107,15 @@ export class SignupComponent implements OnInit {
             })
             return
         }
+        var obj;
 
-        var obj = this.form.value
-        obj.class = this.selectedOption._id
+        if(this.radioModel=='student'){
+            obj = this.form.value
+            obj.class = this.selectedOption._id
+        }else{
+            obj = this.form.value
+            obj.sid = "-"
+        }
 
         this.account.onRegister(obj).then(() => {
             this.alert.success('สมัครสมาชิกเรียบร้อยแล้ว!')

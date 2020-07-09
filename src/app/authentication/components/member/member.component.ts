@@ -18,7 +18,7 @@ import {
     IAccount,
 } from 'src/app/share/services/account.service'
 import { AuthenService } from 'src/app/services/authen.service'
-
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class'
 @Component({
     selector: 'app-member',
     templateUrl: './member.component.html',
@@ -35,23 +35,23 @@ export class MemberComponent implements OnInit {
         private authen: AuthenService,
     ) {
         this.UserLogin = this.authen.setUserLogin();
+        this.states = [5, 15 , 30, 50]
+        this.member.loadClassroom().then((result) => {
+            this.states = result.items
+        })
 
-        this.onLoadMember()
+        this.searchText=""
+        this.onLoadMember('student')
     }
 
     ngOnInit(): void {}
 
-    option: OptionSearch = {
-        sp: 0,
-        lp: 5,
-        keySearch: null,
-        valueData: null,
-    }
 
     role:string='student';
 
     // ref
     cp: Number;
+    lp = 10;
     mem_id: String;
     items: IMember;
     total_items: Number;
@@ -60,9 +60,43 @@ export class MemberComponent implements OnInit {
     searchText: string;
     UserLogin: any;
 
+    selectedValue: string
+    selectedOption: any
+    states: any[]
+
+    radioModel:string="student";
+
+    onSelect(event: TypeaheadMatch): void {
+        this.selectedOption = event.item
+        this.option.sp=0;
+        this.option.lp = this.lp;
+
+        this.member.loadMember(this.option,this.role,this.selectedOption._id).then(result=>{
+            this.total_items = result.total_items;
+            this.items = result.items;
+
+            this.size_pagination = Math.round(
+                Number(this.total_items) / Number(this.option.lp)
+            )
+            this.cp = Number(this.option.sp) + 1
+        })
+    }
+
+    onChange(data){
+        this.option.lp = this.lp;
+        this.onLoadMember();
+    }
+    
+    option: OptionSearch = {
+        sp: 0,
+        lp: this.lp,
+        keySearch: null,
+        valueData: null,
+    }
+
     // เรียกดูสมาชิก onInit
-    onLoadMember() {
-        this.member.loadMember(this.option).then((result) => {
+    onLoadMember(role?:string) {
+        this.member.loadMember(this.option,role).then((result) => {
             this.total_items = result.total_items
             this.items = result.items
 
@@ -87,8 +121,21 @@ export class MemberComponent implements OnInit {
         this.onRoleClick();
     }
 
+    onRoleChange(data){
+        this.member.loadMember(this.option,this.role).then(result=>{
+            this.total_items = result.total_items
+            this.items = result.items
+
+            this.size_pagination = Math.round(
+                Number(this.total_items)/ Number(this.option.lp)
+            )
+            this.cp = Number(this.option.sp)+1
+        })
+    }
+
     onRoleClick(role?:string){
         this.role=role;    
+        console.log(this.role)
         this.member.loadMember(this.option,role).then((result)=>{
             this.total_items=result.total_items
             this.items = result.items
@@ -118,9 +165,6 @@ export class MemberComponent implements OnInit {
 
     // ค้นหา User
     onSearch() {
-        if (!this.searchText) {
-            this.onLoadMember()
-        }
         this.option.sp = 0
         this.option.valueData = this.searchText
 

@@ -30,7 +30,8 @@ export class GuildComponent implements OnInit {
             this.total_user = result.items.length
             this.items = result.items
 
-            if(this.items[0].guild=" "){
+            console.log(result)
+            if(this.items[0].guild==" "){
                 this.alert.notify("กรุณาเข้าร่วมกิล์ดก่อน!")
                 this.route.navigate(['', AppURL.Authen, AuthURL.Home])
             }

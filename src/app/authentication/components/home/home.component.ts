@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
 
     onClickPreTest(id:string) {
         if(this.status==1){
-            return this.alert.success('คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' + this.preTest);
+            return this.alert.show_score('คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' + this.preTest);
         }
 
         this.grade.getScoreExerciseById(localStorage.getItem("_id"),'PRE-TEST').then(result=>{
@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
             }else{
                 this.status=1;
                 this.preTest = result.item.score
-                return this.alert.success('คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' + this.preTest);
+                return this.alert.show_score('คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' + this.preTest);
             }
         })
     }
@@ -62,10 +62,6 @@ export class HomeComponent implements OnInit {
     onClickPrPS(id:string) {
         if(this.status==2){
             return this.alert.notify('กรุณาทำ "แบบฝึกหัดก่อนเรียน" ก่อน!')
-        }
-        
-        if(!localStorage.getItem("guild")){
-            return this.alert.notify("ยังไม่มีกิล์ด ไม่สามารถดำเนินงานต่อได้ !")
         }
 
         this.grade.getScoreExerciseById(localStorage.getItem("_id"),'PRE-TEST').then(result=>{
@@ -83,7 +79,7 @@ export class HomeComponent implements OnInit {
                         })
                     }else{
                         this.prpsTest = result.item.score
-                        return this.alert.success('คะแนน "แบบประเมินทักษะการแก้ปัญหาก่อนเรียน" ของคุณคือ ' + this.prpsTest);
+                        return this.alert.show_score('คะแนน "แบบประเมินทักษะการแก้ปัญหาก่อนเรียน" ของคุณคือ ' + this.prpsTest);
                     }
                 })
             }

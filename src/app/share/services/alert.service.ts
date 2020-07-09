@@ -3,6 +3,7 @@ import 'sweetalert2/src/sweetalert2.scss'
 import { Injectable } from '@angular/core'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import { Observable } from 'rxjs'
+import { title } from 'process'
 
 @Injectable({
     providedIn: 'root',
@@ -23,6 +24,8 @@ export class AlertService {
         })
     }
 
+    
+
     // แก้ไขข้อมูลสำเร็จ
     success(
         message: string,
@@ -36,6 +39,19 @@ export class AlertService {
             timer: 1500,
             timerProgressBar: true,
             showConfirmButton: false,
+        })
+    }
+
+    show_score(
+        message: string,
+        title:string = 'แจ้งเตือน',
+        type: string = 'success'
+    ){
+        Swal.fire({
+            title: title,
+            text: message,
+            icon: type,
+            showConfirmButton: true
         })
     }
 

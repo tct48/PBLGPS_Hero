@@ -4,9 +4,9 @@
         เมนูเริ่มต้น
     </h3>
     <!-- CARD MENU -->
-    <div class="row my-3">
+    <div class="row my-3" *ngIf="UserLogin">
         <!-- เมนูแบบทดสอบ PRE-TEST -->
-        <div class="col-md-6">
+        <div class="col-md-6" *ngIf="UserLogin.role!='admin'">
             <div class="card">
                 <h4 class="card-header">
                     แบบทดสอบก่อนเรียน
@@ -32,7 +32,7 @@
         </div>
 
         <!-- บบทดสอบ PRPS-TEST -->
-        <div class="col-md-6">
+        <div class="col-md-6" *ngIf="UserLogin.role!='admin'">
             <div class="card">
                 <h4 class="card-header">
                     แบบประเมินทักษะการแก้ไขปัญหาก่อนเรียน
@@ -55,5 +55,14 @@
                 </div>
             </div>
         </div>
+
+        <div *ngIf="UserLogin.role=='admin'">
+            <img src="https://mk0jobsdbth2vucqkbt6.kinstacdn.com/wp-content/uploads/sites/3/2014/09/%E0%B8%87%E0%B8%B2%E0%B8%99-admin-%E0%B8%84%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B8%B2%E0%B8%99%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%A3.png" alt="">
+            <p>
+                รูปตัวอย่าง
+            </p>
+        </div>
     </div>
+
+    
 </app-auth-content>

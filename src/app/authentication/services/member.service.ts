@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpService } from 'src/app/services/http.service'
 import { AuthenService } from 'src/app/services/authen.service'
 import { HttpClient } from '@angular/common/http'
+import { isNull } from 'util'
 
 @Injectable()
 export class MemberService {
@@ -25,40 +26,20 @@ export class MemberService {
     }
 
     // โหลดสมาชิก
-    loadMember(option: OptionSearch, role?: string) {
-        if (option.valueData) {
-            if (!role) {
-                return this.http
-                    .requestGet(
-                        `user/search?sp=${option.sp}&lp=${option.lp}&search=${option.valueData}`,
-                        this.authen.getAuthenticated()
-                    )
-                    .toPromise() as Promise<IMember>
-            } else {
-                return this.http
-                    .requestGet(
-                        `user/search?sp=${option.sp}&lp=${option.lp}&search=${option.valueData}&role=${role}`,
-                        this.authen.getAuthenticated()
-                    )
-                    .toPromise() as Promise<IMember>
-            }
+    loadMember(option: OptionSearch, role?: string, classroom:string='') {
+        if(isNull(option.valueData)==true){
+            option.valueData="";
         }
-        if (role) {
-            return this.http
-                .requestGet(
-                    `user/search?sp=${option.sp}&lp=${option.lp}&search=&role=${role}`,
-                    this.authen.getAuthenticated()
-                )
-                .toPromise() as Promise<IMember>
-        }else{
-            return this.http
-            .requestGet(
-                `user?sp=${option.sp}&lp=${option.lp}`,
-                this.authen.getAuthenticated()
-            )
-            .toPromise() as Promise<IMember>
+        var url = `user/search?sp=${option.sp}&lp=${option.lp}&search=${option.valueData}`;
+
+        if(role){
+            url += `&role=${role}`;
         }
-        
+
+        if(classroom){
+            url += `&classroom=${classroom}`
+        }
+        return this.http.requestGet(url,this.authen.getAuthenticated()).toPromise() as Promise<IMember>        
     }
 
     // เพิ่มการเข้าเรียน

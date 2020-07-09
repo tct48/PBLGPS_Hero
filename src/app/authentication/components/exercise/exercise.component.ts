@@ -115,17 +115,15 @@ export class ExerciseComponent implements OnInit {
         }
 
         this.grade.addScoreExercise(obj).then(() => {
-            this.alert.success('คะแนน PRE-TEST ของคุณ คือ ' + this.total_score)
-
             if(this._id=="PRE-TEST"){
                 var B = this.total_score
                 var C = 40
-                var D = 10;
+                var D = 2;
     
-                var A = B/C*D;
+                var A = (B/C*D)*10;
     
                 this.level.addExptoUser(localStorage.getItem("_id"), A).then(()=>{
-                    this.alert.success("คุณได้รับค่าประสบการณ์เพิ่มขึ้น " + A + " แต้ม")
+                    this.alert.show_score("คุณได้รับค่าประสบการณ์เพิ่มขึ้น " + A + " แต้ม</br>ตอบถูกทั้งหมด " + this.total_score + " ข้อ",this.item.name)
                     this.router.navigate(['', AppURL.Authen, AuthURL.Home])
                 })
             }

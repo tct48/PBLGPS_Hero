@@ -23,9 +23,18 @@ export class NavBarComponent implements OnInit {
         private account: AccountService,
         private grade: GradeService
     ) {
+        this.grade.getScoreExerciseById(localStorage.getItem("_id"),'PRE-TEST').then(result=>{
+            if(result.total_items>0){
+                this.UserLogin.menu = true
+            }else{
+                this.UserLogin.menu= false
+            }
+        })
+
+        
+
         if (this.menu == false || !this.UserLogin.menu) {
             this.initialLoadUserLogin()
-
         }
     }
     private currentUser: IAccount
@@ -55,13 +64,21 @@ export class NavBarComponent implements OnInit {
             .then((userLogin) => {
                 this.login = 1
                 this.UserLogin = this.authen.setUserLogin();
+                if(this.UserLogin.role == "admin"){
+                    this.UserLogin.menu =true;
+                }
                 this.grade
-                    .getScoreExerciseById(this.UserLogin._id, 'PRE-PRPS-TEST')
+                    .getScoreExerciseById(this.UserLogin._id, 'PRE-TEST')
                     .then((result) => {
                         if (result.total_items > 0) {
                             this.account.setUserMenu();
                         }
                     })
+                this.grade.getScoreExerciseById(localStorage.getItem("_id"),'PRE-TEST').then(result=>{
+                    if(result.total_items>0){
+                        this.UserLogin.menu = true
+                    }
+                })
             })
             .catch((err) => {
                 this.alert.notify(err.message)

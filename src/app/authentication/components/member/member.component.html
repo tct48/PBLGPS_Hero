@@ -4,7 +4,15 @@
       <i class="fa fa-id-card-o" aria-hidden="true"></i> สมาชิกทั้งหมด
     </h3>
     <br />
-    <p>จำนวนทั้งสิ้น {{ total_items }}</p>
+    <div class="col-md-6">
+      <p class="mb-0">จำนวนทั้งสิ้น {{ total_items }}</p>
+    </div>
+    <div class="col-md-6">
+      <p class="text-right mb-0">
+        items/per page.  
+        <input type="number" style="width: 50px;" [(ngModel)]="lp" (ngModelChange)="onChange($event)">
+      </p>
+    </div>
     <!-- ส่วนค้นหา -->
     <div class="col-md-12 my-3">
       <div class="input-group">
@@ -18,18 +26,29 @@
       </div>
     </div>
 
-    <div class="form-check mr-3 mb-3">
-      <input class="form-check-input" [(ngModel)]="role" (click)="onRoleClick('student')" type="radio" value="student" checked>
-      <label class="form-check-label badge badge-dark" for="exampleRadios1">
-        นักศึกษาทั้งหมด
-      </label>
+    <div class="col-md-6 mb-3">
+      <div class="form-check mr-3 mb-3">
+        <input class="form-check-input" [(ngModel)]="role" (ngModelChange)="onRoleChange($event)" type="radio" value="student" checked>
+        <label class="form-check-label badge badge-dark" for="exampleRadios1">
+          นักศึกษาทั้งหมด
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" [(ngModel)]="role" (ngModelChange)="onRoleChange($event)" type="radio" value="admin">
+        <label class="form-check-label badge badge-info" for="exampleRadios2">
+          ผู้ดูแลระบบ
+        </label>
+      </div>
     </div>
-    <div class="form-check">
-      <input class="form-check-input" [(ngModel)]="role" (click)="onRoleClick('admin')" type="radio" value="admin">
-      <label class="form-check-label badge badge-info" for="exampleRadios2">
-        ผู้ดูแลระบบ
-      </label>
+    <div class="col-md-6">
+      <div class="form-group" *ngIf="role=='student'">
+        <label for="disabledTextInput" *ngIf="radioModel=='student'">ระดับชั้นเรียน :</label>
+        <input [(ngModel)]="selectedValue" [typeahead]="states" [typeaheadMinLength]="0" typeaheadOptionsLimit="5"
+          typeaheadOptionField="name" placeholder="ชั้นเรียน" [isAnimated]="true"
+          (typeaheadOnSelect)="onSelect($event)" class="form-control" required>
+      </div>
     </div>
+    
 
     <table class="table table-responsive-sm table-hover table-outline mb-0">
       <!-- ตารางแสดง User TH -->
