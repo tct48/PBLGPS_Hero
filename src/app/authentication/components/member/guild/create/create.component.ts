@@ -18,11 +18,10 @@ export class CreateComponent implements OnInit {
     private member:MemberService,
     private grade: GradeService,
     private alert: AlertService,
-  ) { 
+  ) {
     this.activateRoute.queryParams.forEach((params) => {
       this.classroom = params._id
     })
-
     this.loadMember();
   }
 
@@ -78,7 +77,7 @@ export class CreateComponent implements OnInit {
 
     this.score=[];
     this.test_score=[]
-    
+
     this.member.updateMember(member._id,member).then(result=>{
       this.alert.success("ยกเลิกกิล์ดผู้เรียนสำเร็จ" ,"สำเร็จ")
       this.loadMember();
@@ -90,7 +89,7 @@ export class CreateComponent implements OnInit {
   onSubmit(model:String,range_case?:String){
     var data=null;
     if(model=="เด็กเรียนเก่ง"){
-      data=this.itemObjectsTop;        
+      data=this.itemObjectsTop;
     }else if(model=="ค่อนข้างดี"){
       data = this.itemObjectsMiddleTop
     }else if(model=="ปานกลาง"){
@@ -104,7 +103,7 @@ export class CreateComponent implements OnInit {
     for(var i=0;i<data.length;i++){
       data[i].guild=model;
     }
-    
+
     var fullName='';
 
     for(var i=0;i<data.length;i++){
@@ -115,7 +114,7 @@ export class CreateComponent implements OnInit {
     }
 
     if(model=="เด็กเรียนเก่ง"){
-      this.itemObjectsTop=[];        
+      this.itemObjectsTop=[];
     }else if(model=="ค่อนข้างดี"){
       this.itemObjectsMiddleTop =[];
     }else if(model=="ปานกลาง"){
@@ -130,7 +129,53 @@ export class CreateComponent implements OnInit {
   }
 
   test:string;
-  onTest(){  
+  private group:string[][];
+
+  onSelectGroup(){
+    var number_of_group = Math.floor(this.display_data.length/3);
+    var data = [];
+    var top = [];
+    var middle = [];
+    var bottom = [];
+
+    for(var j=0;j<2;j++){
+      for(var i=0;i<number_of_group;i++){
+        if(j!=0){
+          middle.push(this.display_data[j*number_of_group+i])
+        }else{
+          top.push(this.display_data[i])
+        }
+      }
+    }
+    for(var i=number_of_group*2;i<this.display_data.length;i++){
+      bottom.push(this.display_data[i]);
+    }
+    console.log("เด็กเก่ง");
+    console.log(top );
+    console.log("ปานกลาง");
+    console.log(middle);
+    console.log("อ่อน");
+    console.log(bottom)
+
+
+    var k = top.length;
+
+    for(var j=0;j<k;j++){ //5 กลุ่ม กลุ่มละ 4 คน
+      this.group[j].push(top.pop())
+      this.group[j].push(middle.pop())
+      this.group[j].push(bottom.pop())
+      console.log(this.group);
+    }
+
+    console.log(this.group)
+    console.log("หมดได้แล้วมั้ง !")
+    console.log(top)
+
+
+    this.alert.show_score("จำนวน = "+number_of_group)
+  }
+
+  onTest(){
     var length = this.display_data.length
     var number_of_person;
     var fix=0;
@@ -171,17 +216,19 @@ export class CreateComponent implements OnInit {
       }
 
       if(data.length==number_of_person || i==length-1){
-        for(var j=0;j<data.length;j++){
-          this.member.updateMember(data[j],{guild:group+""}).then(result=>{
-            console.log("เพิ่ม User ไปยังกิล์ด " + i);
-          })
-        }    
+        // for(var j=0;j<data.length;j++){
+        //   this.member.updateMember(data[j],{guild:group+""}).then(result=>{
+        //     console.log("เพิ่ม User ไปยังกิล์ด " + i);
+        //   })
+        // }
         group++;
       }
     }
+
+    console.log(data);
     this.score=[];
     this.test_score=[];
-    
+
     Swal.fire({
       title: 'จัดการแบ่งกิล์ดสำเร็จ!',
       showClass: {
