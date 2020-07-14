@@ -96,6 +96,7 @@ export class SignupComponent implements OnInit {
                 var obj = this.form.value
                 obj.image = public_id
                 obj.class = this.selectedOption._id
+                obj.role = this.radioModel
                 setTimeout(() => {
                     this.account.onRegister(obj).then((result) => {
                         this.alert.success('สมัครสมาชิกเรียบร้อยแล้ว!')

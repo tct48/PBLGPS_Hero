@@ -20,6 +20,11 @@
             <p>
                 เพิ่มแบบฝึกหัดให้สอดคล้องกับ แหล่งการเรียนรู้
                 หรือตรงกับข้อการวัดประเมินผล {{ item.detail }}
+                <span *ngIf="leftTime!=0" style="font-size: larger;font-weight: bold; float: right;" class="text-danger">
+                    <i class="fa fa-clock-o"> </i>&nbsp; 
+                    <!-- ,notify: [ 2, 5] -->
+                    <countdown *ngIf="leftTime!=0" #cd1 [config]="{leftTime: leftTime, format: 'mm:ss'}" (event)="handleEvent($event)"></countdown>
+                </span>
             </p>
         </div>
     </div>
@@ -90,8 +95,8 @@
                 }}
             </p>
             <progressbar
-                max="2"
-                [value]="your_answer.length"
+                max="{{ total_items }}"
+                [value]="index+1"
                 type="success"
                 striped="true"
                 animate="true"

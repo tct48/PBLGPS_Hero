@@ -23,10 +23,11 @@ export class QuizComponent implements OnInit {
     @ViewChild('scrollMe') private myScrollContainer: ElementRef
     constructor(private alert: AlertService, private quiz: QuizService) {
         this.quiz.getAllChapter().then((result) => {
-            var data = this.states.concat(result.items)
-            console.log(result)
+            var log = result.items;
+            log.push({_id:"POST-TEST", name: "Post-test"});
+            var data = this.states.concat(log)
             this.states = data
-            console.log(this.states)
+            this.states.concat([])
         })
 
         this.loadQuizList()
@@ -38,6 +39,7 @@ export class QuizComponent implements OnInit {
     list_item: any
     fix_id: string
     ref: string
+    limitTime: number=0;
 
     selectedValue: string
     selectedOption: any
@@ -45,8 +47,6 @@ export class QuizComponent implements OnInit {
 
     onSelect(event: TypeaheadMatch): void {
         this.selectedOption = event.item
-        console.log(this.selectedOption._id)
-        // console.log(this.selectedOption.ref);
     }
 
     article: any[] = []
@@ -123,6 +123,10 @@ export class QuizComponent implements OnInit {
             this.selectedValue = result.items.name
             this.article = result.items.choice
             this.ref = result.items.ref
+            if(!result.items.limit_time)
+            this.limitTime = 0
+            else
+            this.limitTime = result.items.limit_time
         })
     }
 
@@ -156,6 +160,7 @@ export class QuizComponent implements OnInit {
             name: this.selectedOption.name,
             detail: this.selectedOption.region,
             choice: this.article,
+            limit_time: this.limitTime*60,
             ref: this.selectedOption._id,
         }
         this.quiz
@@ -174,10 +179,20 @@ export class QuizComponent implements OnInit {
     }
 
     updateSubmit() {
-        var obj = {
-            name: this.selectedValue,
-            choice: this.article,
-            ref: this.selectedOption._id,
+        var obj;
+        try{
+            obj = {
+                name: this.selectedValue,
+                choice: this.article,
+                ref: this.selectedOption._id,
+                limit_time: this.limitTime
+            }
+        }catch{
+            obj = {
+                name: this.selectedValue,
+                choice: this.article,
+                limit_time: this.limitTime
+            }
         }
 
         this.quiz.updateQuiz(this.fix_id, obj).then((result) => {

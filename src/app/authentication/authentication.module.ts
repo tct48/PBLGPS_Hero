@@ -12,7 +12,7 @@ import { HomeComponent } from './components/home/home.component';
   ],
   imports: [
     CommonModule,
-    SharedsModule, 
+    SharedsModule,
     AuthenticationRouting,
     FormsModule
   ],

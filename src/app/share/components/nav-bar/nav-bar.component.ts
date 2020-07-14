@@ -64,6 +64,8 @@ export class NavBarComponent implements OnInit {
             .then((userLogin) => {
                 this.login = 1
                 this.UserLogin = this.authen.setUserLogin();
+                this.UserLogin.role = localStorage.getItem("role");
+                console.log(this.UserLogin.role)
                 if(this.UserLogin.role == "admin"){
                     this.UserLogin.menu =true;
                 }

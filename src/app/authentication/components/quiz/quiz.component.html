@@ -54,6 +54,9 @@
         <input [(ngModel)]="selectedValue" [typeahead]="states" [typeaheadMinLength]="0" typeaheadOptionsLimit="5"
           typeaheadOptionField="name" placeholder="หน่วยการเรียนรู้ที่ 1,2,3" [isAnimated]="true"
           (typeaheadOnSelect)="onSelect($event)" class="form-control" required>
+        
+        <label for="" class="mt-3">จำกัดเวลา (นาที):</label>
+        <input [(ngModel)]="limitTime" class="form-control" required>
       </div>
     </div>
 

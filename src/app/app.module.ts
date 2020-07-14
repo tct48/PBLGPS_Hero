@@ -63,6 +63,7 @@ import { QuizgameComponent } from './authentication/components/quizgame/quizgame
 import { GuideComponent } from './authentication/components/guide/guide.component'
 import { CommonModule } from '@angular/common'
 
+import { CountdownModule } from 'ngx-countdown';
 @NgModule({
     declarations: [
         Youtube,
@@ -103,6 +104,7 @@ import { CommonModule } from '@angular/common'
         MatRadioModule,
         CKEditorModule,
         PdfViewerModule,
+        CountdownModule,
         ReactiveFormsModule,
         AuthenticationModule,
         TabsModule.forRoot(),

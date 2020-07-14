@@ -40,6 +40,15 @@ export class HomeComponent implements OnInit {
     prpsTest:number=0;
 
     ngOnInit(): void {}
+    
+    handleEvent(data){
+        // console.log(data);
+        if(data.action == "start"){
+            console.log("เริ่มจับเวลา")
+        }else if(data.action=="done"){
+            console.log("จับเวลาเสร็จแล้ว")
+        }
+    }
 
     onClickPreTest(id:string) {
         if(this.status==1){

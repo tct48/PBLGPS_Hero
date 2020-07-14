@@ -21,6 +21,7 @@ export class ExerciseComponent implements OnInit {
     item: IQuiz
     index: number = 0
     total_score: number
+    leftTime : number=0;
 
     your_answer: any[] = []
 
@@ -65,6 +66,7 @@ export class ExerciseComponent implements OnInit {
             .getAllQuiz(this._id)
             .then((result) => {
                 console.log(result)
+                this.leftTime = result.items.limit_time * 60
                 this.item = result.items
                 this.total_items = result.total_items
                 if (!this.item) {
@@ -80,6 +82,16 @@ export class ExerciseComponent implements OnInit {
     }
 
     ngOnInit(): void {}
+
+    handleEvent(data){
+        console.log(data);
+        if(data.action == "start"){
+            console.log("เริ่มจับเวลา")
+        }else if(data.action=="done"){
+            this.alert.show_score("หมดเวลาการทำงาน","แจ้งเตือน","error")
+            this.onSubmit();
+        }
+    }
 
     choose(score, index: number, j: number) {
         this.your_answer[index] = {
@@ -104,7 +116,11 @@ export class ExerciseComponent implements OnInit {
 
         // Array of numbers
         for (var i = 0; i < this.total_items; i++) {
-            this.total_score += this.your_answer[i].score
+            try{
+                this.total_score += this.your_answer[i].score
+            }catch{
+
+            }
         }
 
         var obj = {
