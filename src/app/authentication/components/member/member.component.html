@@ -9,7 +9,7 @@
     </div>
     <div class="col-md-6">
       <p class="text-right mb-0">
-        items/per page.  
+        items/per page.
         <input type="number" style="width: 50px;" [(ngModel)]="lp" (ngModelChange)="onChange($event)">
       </p>
     </div>
@@ -48,7 +48,7 @@
           (typeaheadOnSelect)="onSelect($event)" class="form-control" required>
       </div>
     </div>
-    
+
 
     <table class="table table-responsive-sm table-hover table-outline mb-0">
       <!-- ตารางแสดง User TH -->
@@ -72,7 +72,7 @@
             <div class="avatar">
               <cl-image style="max-width: 36px; height: 36px;" *ngIf="data.image" [(public-id)]="data.image"
                 class="avatar-image avatar-image-member" crop="fit"></cl-image>
-              <img *ngIf="!data.image" style="max-width: 36px;" class="avatar-image avatar-image-member" src="../../../../assets/image/no-image.png" />
+              <img *ngIf="!data.image" style="max-width: 36px;" class="avatar-image avatar-image-member" src="http://www.pblgps.com/assets/image/no-image.png" />
               <span class="avatar-status badge-danger"></span>
             </div>
           </td>

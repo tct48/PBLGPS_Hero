@@ -61,7 +61,7 @@ export class InformationComponent implements OnInit {
 
   setPath(path:string){
     // console.log(path);
-    return "../../../../assets/image/badge/" + path + ".png"
+    return "http://www.pblgps.com/assets/image/badge/" + path + ".png"
   }
 
   ngOnInit(): void { }

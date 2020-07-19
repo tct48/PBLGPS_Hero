@@ -35,11 +35,11 @@ export class LeaderboardComponent implements OnInit {
 
     // ภาพ มงกุฎ
     crown_image = [
-        '../../../../assets/image/Crown4.png',
-        '../../../../assets/image/Crown3.png',
-        '../../../../assets/image/Crown2.png',
-        '../../../../assets/image/Crown5.png',
-        '../../../../assets/image/Crown5.png',
+        'http://www.pblgps.com/assets/image/Crown4.png',
+        'http://www.pblgps.com/assets/image/Crown3.png',
+        'http://www.pblgps.com/assets/image/Crown2.png',
+        'http://www.pblgps.com/assets/image/Crown5.png',
+        'http://www.pblgps.com/assets/image/Crown5.png',
     ]
 
     loadTopPlayerFromMyClassroom() {

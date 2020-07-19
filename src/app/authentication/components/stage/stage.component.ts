@@ -42,11 +42,11 @@ export class StageComponent implements OnInit {
         'Guilds who like to war more than use the brain.',
     ]
     guild_image = [
-        '../../../../../assets/image/guild/guild4.png',
-        '../../../../../assets/image/guild/guild1.png',
-        '../../../../../assets/image/guild/guild3.jpg',
-        '../../../../../assets/image/guild/skull.png',
-        '../../../../../assets/image/guild/guild2.png',
+        'http://www.pblgps.com/assets/image/guild/guild4.png',
+        'http://www.pblgps.com/assets/image/guild/guild1.png',
+        'http://www.pblgps.com/assets/image/guild/guild3.jpg',
+        'http://www.pblgps.com/assets/image/guild/skull.png',
+        'http://www.pblgps.com/assets/image/guild/guild2.png',
     ]
 
     ready = []

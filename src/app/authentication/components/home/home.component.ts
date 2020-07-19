@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
     prpsTest:number=0;
 
     ngOnInit(): void {}
-    
+
     handleEvent(data){
         // console.log(data);
         if(data.action == "start"){
@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
         }
 
         this.grade.getScoreExerciseById(localStorage.getItem("_id"),'PRE-TEST').then(result=>{
-            
+
             if(result.total_items==0){
                 this.status=2;
                 this.alert.notify('กรุณาทำ "แบบฝึกหัดก่อนเรียน" ก่อน!')
@@ -99,10 +99,10 @@ export class HomeComponent implements OnInit {
         if (image.id == 'button1') {
             return image.setAttribute(
                 'src',
-                '../../../../assets/image/01-2.gif'
+                'http://www.pblgps.com/assets/image/01-2.gif'
             )
         }
-        return image.setAttribute('src', '../../../../assets/image/02-2.gif')
+        return image.setAttribute('src', 'http://www.pblgps.com/assets/image/02-2.gif')
     }
 
     unhover(image) {}

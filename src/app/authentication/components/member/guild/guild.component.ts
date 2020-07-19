@@ -20,7 +20,7 @@ import { AlertService } from 'src/app/share/services/alert.service'
 })
 export class GuildComponent implements OnInit {
     constructor(
-      private member: MemberService, 
+      private member: MemberService,
       private level: LevelService,
       private account: AccountService,
       private grade : GradeService,
@@ -75,11 +75,11 @@ export class GuildComponent implements OnInit {
     guild_name:number;
     description=["The strongest guild.", "Famous guild", "Guild that loves peace", "Guild hiding in the dark.", "Guilds who like to war more than use the brain."]
     guild_image=[
-        "../../../../../assets/image/guild/guild4.png",
-        "../../../../../assets/image/guild/guild1.png",
-        "../../../../../assets/image/guild/guild3.jpg",
-        "../../../../../assets/image/guild/skull.png",
-        "../../../../../assets/image/guild/guild2.png",
+        "http://www.pblgps.com/assets/image/guild/guild4.png",
+        "http://www.pblgps.com/assets/image/guild/guild1.png",
+        "http://www.pblgps.com/assets/image/guild/guild3.jpg",
+        "http://www.pblgps.com/assets/image/guild/skull.png",
+        "http://www.pblgps.com/assets/image/guild/guild2.png",
     ]
 
     PRETEST=[];
