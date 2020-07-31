@@ -35,7 +35,8 @@
           <td>{{ data.name }}</td>
           <td>
             <a (click)="onLoadUpdate(data)" tooltip="แก้ไขข้อมูล"><i class="fa fa-pencil-square-o text-warning mx-2"></i></a>
-            <a (click)="onDelete(data._id)" tooltip="ลบข้อมูล"><i class="fa fa-trash-o text-danger"></i></a>
+            <a (click)="onDelete(data._id)" tooltip="ลบข้อมูล"><i class="fa fa-trash-o text-danger mr-2"></i></a>
+            <a (click)="generatePdf(data._id)" tooltip="สั่งพิมพ์"><i class="fa fa-file-pdf-o"></i></a>
           </td>
         </tr>
       </tbody>
@@ -73,7 +74,7 @@
               placeholder="คำถาม ?" [(ngModel)]="data.question" required />
           </div>
           <div class="col-md-1">
-            <button type="button" (click)="onDeleteArticle(data._id)" class="close" aria-label="Close">
+            <button type="button" (click)="onDeleteArticle(data._id)" tooltip="ลบคำถาม" class="close" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -90,7 +91,7 @@
               <button *ngIf="sub_data.correct==1" class="btn btn-blue text-white"><i class="fa fa-hand-o-right" aria-hidden="true"></i> ข้อนี้ถูกต้อง</button>
             </div>
             <input *ngIf="switchInput==0" type="text" class="form-control" aria-label="Text input with radio button" [(ngModel)]="sub_data.name" placeholder="ตัวเลือกที่ {{ j+1 }}">
-            <button type="button" (click)="onDeleteSubArticle(i,j)" class="btn btn-danger close mx-2 px-3" aria-label="Close">
+            <button type="button" (click)="onDeleteSubArticle(i,j)" tooltip="ลบตัวเลือก" class="close mx-2 px-3" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>

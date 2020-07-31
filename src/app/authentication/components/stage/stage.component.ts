@@ -66,6 +66,11 @@ export class StageComponent implements OnInit {
     }
 
     onReady(_id:String,i:number){
+        if(localStorage.getItem("_id")!=_id){
+            this.alert.something_wrong("ไม่สามารถเข้าร่วมแทนผู้อื่นได้")
+            return ;
+        }
+        
       if(!this.ready.includes(_id)==true){
         this.ready[i]=_id;
       }

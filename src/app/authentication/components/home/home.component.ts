@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit {
     status:number = 0;
     preTest:number=0;
     prpsTest:number=0;
+    view:number=0;
 
     ngOnInit(): void {}
 
@@ -103,6 +104,10 @@ export class HomeComponent implements OnInit {
             )
         }
         return image.setAttribute('src', 'http://www.pblgps.com/assets/image/02-2.gif')
+    }
+
+    onSwitchTest(cases:number){
+        this.view = cases;
     }
 
     unhover(image) {}

@@ -74,9 +74,13 @@
           </ul>
         </li>
         <!-- หัวข้อ 3 -->
-        <li *ngIf="item.hypertext"> 
-          <span>{{ item.hypertext.title }}</span>
-          <div style="max-width: 100%;" [innerHtml]="item.hypertext.text"></div>
+        <li *ngIf="item?.hypertext">
+          <span *ngIf="item.hypertext.title">{{ item.hypertext.title }}</span>
+          <ul>
+            <li *ngFor="let data of item.hypertext.url.text;let i = index">
+              <a target="_blank" (click)="showURL(item.hypertext.url.url[i])">{{ data }}</a>
+            </li>
+          </ul>
         </li>
       </ul>
 

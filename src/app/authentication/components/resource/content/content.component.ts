@@ -37,10 +37,10 @@ export class ContentComponent implements OnInit {
 
         this.resource.onShowOneChapter(this.chapter_id).then(async (result) => {
             this.item = result.item[0]      
-
+            console.log(this.item)
             if (!this.item) {
                 this.router.navigate(['/', AppURL.Authen, AuthURL.Resource])
-                this.alert.something_wrong('เกิดข้อผิดพลาก')
+                this.alert.something_wrong('เกิดข้อผิดพลาด')
             }
         })
     }
@@ -99,6 +99,10 @@ export class ContentComponent implements OnInit {
             'https://www.youtube-nocookie.com/embed/' + url
         )
         this.switch_display = 'youtube'
+    }
+
+    showURL(url:string){
+        window.open(url, "_blank")
     }
 
     startQuiz(id: string) {

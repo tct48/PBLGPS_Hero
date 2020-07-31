@@ -46,6 +46,7 @@ export class LeaderboardComponent implements OnInit {
         if (this.status != 'B') {
             this.member.getTopPlayer(this.UserLogin.class).then((result) => {
                 this.Leaderboard = result.items
+                console.log("LoadTopFromClassroom")
             })
             this.status = 'B'
         }
@@ -65,6 +66,7 @@ export class LeaderboardComponent implements OnInit {
         if (this.status != 'A') {
             this.member.getTopPlayer().then((result) => {
                 this.Leaderboard = result.items
+                console.log("Load Top Player")
             })
             this.status = 'A'
         }

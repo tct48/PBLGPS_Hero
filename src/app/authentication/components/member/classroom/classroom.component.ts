@@ -6,6 +6,10 @@ import { AppURL } from 'src/app/app.url';
 import { AuthURL } from 'src/app/authentication/authentication.url';
 import { ResourceLoader } from '@angular/compiler';
  
+
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-classroom',
   templateUrl: './classroom.component.html',
@@ -76,8 +80,7 @@ export class ClassroomComponent implements OnInit {
     this.loadAttendence(model._id);
     this.member.loadMemberFromClassroom(model._id).then(result=>{
       this.items = result.items
-      this.total_items = result.total_items
-      console.log(result)
+      this.total_items = result.total_items;
     })
 
     this.title_name="ดูสมาชิกในห้องเรียน"
@@ -87,7 +90,6 @@ export class ClassroomComponent implements OnInit {
     this.member.loadClassroom(this.option).then(result=>{
       this.Classroom_item = result.items;
       this.total_classroom = result.total_items;
-      console.log(result)
       
     })
     this.classroom_name=null;
@@ -98,7 +100,6 @@ export class ClassroomComponent implements OnInit {
       this.attendence_item=result.items
       this.attendence_sick=result.items.sick
       this.colspan = result.total_items
-      console.log(result)
     })
   }
 
@@ -178,4 +179,107 @@ export class ClassroomComponent implements OnInit {
     })
   }
 
+
+  // ส่วน Export PDF
+  generatePdf(){
+    const documentDefinition = this.getDocumentDefinition();
+    pdfMake.fonts = {
+      THSarabunNew: {
+        normal: 'THSarabunNew.ttf',
+        bold: 'THSarabunNew Bold.ttf',
+        italics: 'THSarabunNew Italic.ttf',
+        bolditalics: 'THSarabunNew BoldItalic.ttf'
+      },
+      Roboto: {
+        normal: 'Roboto-Regular.ttf',
+        bold: 'Roboto-Medium.ttf',
+        italics: 'Roboto-Italic.ttf',
+        bolditalics: 'Roboto-MediumItalic.ttf'
+      }
+    }
+    pdfMake.createPdf(documentDefinition).open();
+   }
+
+  //  get document
+   getDocumentDefinition() {
+    sessionStorage.setItem('resume', JSON.stringify('test1'));
+    return {
+      content: [
+        {
+          text: this.title,
+          bold: true,
+          fontSize: 20,
+          alignment: 'center',
+        },
+        {
+          text: 'ข้อมูลนักศึกษาทั้งหมด',
+          style: 'header'
+        },
+        {
+          text: 'จำนวนทั้งสิ้น ' + this.total_items + ' คน',
+          style: 'name'
+        },
+        this.getEducationObject(this.items),
+      ],
+      defaultStyle:{
+        font: 'THSarabunNew'
+      },
+        styles: {
+          header: {
+            fontSize: 18,
+            bold: true,
+            margin: [0, 20, 0, 10],
+            decoration: 'underline'
+          },
+          name: {
+            fontSize: 16,
+            bold: true
+          },
+          jobTitle: {
+            fontSize: 14,
+            bold: true,
+            italics: true
+          },
+          sign: {
+            margin: [0, 50, 0, 10],
+            alignment: 'right',
+            italics: true
+          },
+          tableHeader: {
+            bold: true,
+            alignment:'center'
+          }
+        }
+    };
+  }
+
+  getEducationObject(educations: any) {
+    return {
+      table: {
+        widths: ['*', '*', '*', '*'],
+        body: [
+          [{
+            text: 'ชื่อจริง',
+            style: 'tableHeader'
+          },
+          {
+            text: 'นามสกุล',
+            style: 'tableHeader'
+          },
+          {
+            text: 'เบอร์โทรศัพท์',
+            style: 'tableHeader'
+          },
+          {
+            text: 'ค่าประสบการณ์',
+            style: 'tableHeader'
+          },
+          ],
+          ...educations.map(ed => {
+            return [ed.firstname, ed.lastname, ed.phone, ed.exp];
+          })
+        ]
+      }
+    };
+  }
 }

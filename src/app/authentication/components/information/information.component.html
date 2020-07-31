@@ -73,7 +73,7 @@
           ..Loading..
         </h3>
 
-        <div class="col-md-9" *ngIf="UserLogin && checkData && checkDataClassroom">
+        <div class="col-md-9" *ngIf="UserLogin && checkData">
           <div class="form-check col-md-6 mr-3 mb-3" *ngIf="UserLogin.role=='admin'">
             <h4>
               <input class="form-check-input pointer" [(ngModel)]="role" (click)="onRoleClick('student')" type="radio" value="student" checked>
@@ -110,7 +110,7 @@
                 <label>อีเมล์ :</label>
                 <input type="text" class="form-control" formControlName="email" placeholder="อีเมล์" />
               </div>
-              <div class="form-group">
+              <div class="form-group" *ngIf="role=='student'">
                 <label>ชั้นเรียน :</label>
                 <input type="hidden" class="form-control" formControlName="class" [placeholder]="year" readonly/>
                 <input type="text" class="form-control" formControlName="etc" [ngModel]="classroom" [placeholder]="year" readonly/>

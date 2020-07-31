@@ -13,6 +13,9 @@ import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class'
 import { AlertService } from 'src/app/share/services/alert.service'
 import { QuizService } from '../../services/quiz.service'
 
+import pdfMake from 'pdfmake/build/pdfmake'
+import pdfFonts from 'pdfmake/build/vfs_fonts'
+pdfMake.vfs = pdfFonts.pdfMake.vfs
 @Component({
     selector: 'app-quiz',
     templateUrl: './quiz.component.html',
@@ -23,8 +26,8 @@ export class QuizComponent implements OnInit {
     @ViewChild('scrollMe') private myScrollContainer: ElementRef
     constructor(private alert: AlertService, private quiz: QuizService) {
         this.quiz.getAllChapter().then((result) => {
-            var log = result.items;
-            log.push({_id:"POST-TEST", name: "Post-test"});
+            var log = result.items
+            log.push({ _id: 'POST-TEST', name: 'Post-test' })
             var data = this.states.concat(log)
             this.states = data
             this.states.concat([])
@@ -39,7 +42,7 @@ export class QuizComponent implements OnInit {
     list_item: any
     fix_id: string
     ref: string
-    limitTime: number=0;
+    limitTime: number = 0
 
     selectedValue: string
     selectedOption: any
@@ -59,12 +62,12 @@ export class QuizComponent implements OnInit {
         })
     }
 
-    onDeleteArticle(_id:number){
-      this.article.splice(_id,1);
+    onDeleteArticle(_id: number) {
+        this.article.splice(_id, 1)
     }
 
-    onDeleteSubArticle(j,index:number){
-      this.article[j].answer.splice(index,1)
+    onDeleteSubArticle(j, index: number) {
+        this.article[j].answer.splice(index, 1)
     }
 
     scrollToBottom(): void {
@@ -127,15 +130,13 @@ export class QuizComponent implements OnInit {
         this.menu = true
 
         this.quiz.getQuizById(data._id).then((result) => {
-          console.log(result)
+            console.log(result)
             this.fix_id = result.items._id
             this.selectedValue = result.items.name
             this.article = result.items.choice
             this.ref = result.items.ref
-            if(!result.items.limit_time)
-            this.limitTime = 0
-            else
-            this.limitTime = result.items.limit_time
+            if (!result.items.limit_time) this.limitTime = 0
+            else this.limitTime = result.items.limit_time
         })
     }
 
@@ -169,7 +170,7 @@ export class QuizComponent implements OnInit {
             name: this.selectedOption.name,
             detail: this.selectedOption.region,
             choice: this.article,
-            limit_time: this.limitTime*60,
+            limit_time: this.limitTime * 60,
             ref: this.selectedOption._id,
         }
         this.quiz
@@ -182,25 +183,25 @@ export class QuizComponent implements OnInit {
             })
     }
 
-    addQuizItem(){
-      this.onCancel();
-      this.menu=true;
+    addQuizItem() {
+        this.onCancel()
+        this.menu = true
     }
 
     updateSubmit() {
-        var obj;
-        try{
+        var obj
+        try {
             obj = {
                 name: this.selectedValue,
                 choice: this.article,
                 ref: this.selectedOption._id,
-                limit_time: this.limitTime
+                limit_time: this.limitTime,
             }
-        }catch{
+        } catch {
             obj = {
                 name: this.selectedValue,
                 choice: this.article,
-                limit_time: this.limitTime
+                limit_time: this.limitTime,
             }
         }
 
@@ -216,6 +217,122 @@ export class QuizComponent implements OnInit {
         this.article = []
         this.menu = false
         this.fix_id = null
+    }
+
+    
+    // ทำ export document to pdf
+    generatePdf(_id?: string) {
+        this.quiz.getQuizById(_id).then((result) => {
+            console.log(result)
+            this.fix_id = result.items._id
+            this.selectedValue = result.items.name
+            this.article = result.items.choice
+            this.ref = result.items.ref
+
+            const documentDefinition = this.getDocumentDefinition()
+            pdfMake.fonts = {
+                THSarabunNew: {
+                    normal: 'THSarabunNew.ttf',
+                    bold: 'THSarabunNew Bold.ttf',
+                    italics: 'THSarabunNew Italic.ttf',
+                    bolditalics: 'THSarabunNew BoldItalic.ttf',
+                },
+                Roboto: {
+                    normal: 'Roboto-Regular.ttf',
+                    bold: 'Roboto-Medium.ttf',
+                    italics: 'Roboto-Italic.ttf',
+                    bolditalics: 'Roboto-MediumItalic.ttf',
+                },
+            }
+            pdfMake.createPdf(documentDefinition).open()
+        })
+    }
+
+    //  get document
+    getDocumentDefinition() {
+        sessionStorage.setItem('resume', JSON.stringify('test1'))
+        var dumb = this.getEducationObject(this.article)
+        return {
+            content: [
+                {
+                    text: 'แบบทดสอบ',
+                    bold: true,
+                    fontSize: 20,
+                    alignment: 'center',
+                },
+                {
+                    text: this.selectedValue,
+                    bold: true,
+                    fontSize: 20,
+                    alignment: 'center',
+                    margin: [0, 0, 0, 20],
+                },
+                this.getEducationObject(this.article),
+            ],
+            info: {
+                title: 'แบบทดสอบ ' + this.selectedValue,
+                author: 'Phd.Ratchapol',
+                subject: 'RESUME',
+                keywords: 'RESUME, ONLINE RESUME',
+            },
+            defaultStyle: {
+                font: 'THSarabunNew',
+            },
+            styles: {
+                header: {
+                    fontSize: 18,
+                    bold: true,
+                    margin: [0, 20, 0, 10],
+                    decoration: 'underline',
+                },
+                name: {
+                    fontSize: 16,
+                    bold: true,
+                },
+                jobTitle: {
+                    fontSize: 14,
+                    bold: true,
+                    italics: true,
+                },
+                sign: {
+                    margin: [0, 50, 0, 10],
+                    alignment: 'right',
+                    italics: true,
+                },
+                tableHeader: {
+                    bold: true,
+                },
+            },
+        }
+    }
+
+    getEducationObject(educations: any) {
+        return educations.map((ed, index) => {
+            return [
+                {
+                    text: index + 1 + '. ' + ed.question,
+                    bold: true,
+                    margin: [0,8,0,0]
+                },
+                ed.answer.map((sub_ed, jndex) => {
+                    var choice = 'ก'
+                    if (jndex == 1) {
+                        choice = 'ข'
+                    } else if (jndex == 2) {
+                        choice = 'ค'
+                    } else if (jndex == 3) {
+                        choice = 'ง'
+                    }
+                    if(sub_ed.correct==0)
+                    return [choice + '. ' + sub_ed.name]
+                    return [{
+                        text: choice + '. ' + sub_ed.name + '*',
+                        bold:true,
+                        color: 'blue'
+                    }]
+                }),
+            ]
+        })
     }
 }
 

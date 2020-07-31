@@ -43,7 +43,8 @@
           <td>{{ data.situation | slice:0:65 }}....</td>
           <td>
             <a (click)="onLoadUpdate(data._id)" tooltip="แก้ไขข้อมูล"><i class="fa fa-pencil-square-o text-warning mx-2"></i></a>
-            <a (click)="onDelete(data._id)" tooltip="ลบข้อมูล"><i class="fa fa-trash-o text-danger"></i></a>
+            <a (click)="onDelete(data._id)" tooltip="ลบข้อมูล"><i class="fa fa-trash-o text-danger mr-2"></i></a>
+            <a (click)="generatePdf(data._id)" tooltip="สั่งพิมพ์"><i class="fa fa-file-pdf-o"></i></a>
           </td>
         </tr>
       </tbody>
@@ -80,11 +81,8 @@
                     <input *ngIf="j==0" type="radio" (change)="choose($event,j,i)" value="score[i]" name="{{j}}">
                     <input *ngIf="j>0" type="radio" (change)="choose($event,j,i)" value="score[3*j+j+i]" name="{{j}}">
                     </div>
-                    <div *ngIf="j==0">
-                      <button *ngIf="score[i]==1" class="btn btn-blue text-white"><i class="fa fa-hand-o-right" aria-hidden="true"></i> ข้อนี้ถูกต้อง</button>
-                    </div>
-                    <div *ngIf="j>0">
-                      <button *ngIf="score[3*j+j+i]==1" class="btn btn-blue text-white"><i class="fa fa-hand-o-right" aria-hidden="true"></i> ข้อนี้ถูกต้อง</button>
+                    <div>
+                      <button *ngIf="score[3*j+i+j]==1" class="btn btn-blue text-white"><i class="fa fa-hand-o-right" aria-hidden="true"></i> ข้อนี้ถูกต้อง</button>
                     </div>
                   </div>
                   <input *ngIf="j==0" type="text" class="form-control" [(ngModel)]="answer[i]" name="{{j}}{{i}}" placeholder="ตัวเลือกที่ {{i}}">

@@ -104,18 +104,18 @@ export class MemberComponent implements OnInit {
             this.size_pagination = Math.round(
                 Number(this.total_items) / Number(this.option.lp)
             )
-            this.cp = Number(this.option.sp) + 1
+            this.cp = Number(this.option.sp) + 1 
         })
-        }else
-        this.member.loadMember(this.option,role).then((result) => {
+        }else{
+        this.member.loadMember(this.option,role,'').then((result) => {
             this.total_items = result.total_items
             this.items = result.items
-
+ 
             this.size_pagination = Math.round(
                 Number(this.total_items) / Number(this.option.lp)
             )
             this.cp = Number(this.option.sp) + 1
-        })
+        })}
     }
 
     switchLogin(_id:string,status:string){
@@ -133,6 +133,7 @@ export class MemberComponent implements OnInit {
     }
 
     onRoleChange(data:string){
+        this.option.sp=0;
         this.member.loadMember(this.option,this.role).then(result=>{
             this.total_items = result.total_items
             this.items = result.items
@@ -160,8 +161,14 @@ export class MemberComponent implements OnInit {
 
     // PageChanged
     pageChanged(event: any): void {
-        this.option.sp = event.page - 1
-        this.onLoadMember(this.role,this.selectedOption._id)
+        this.option.sp = event.page-1;
+        if(this.selectedOption){
+            this.onLoadMember(this.role,this.selectedOption._id)
+        }else{
+            this.onLoadMember(this.role)
+            
+        }
+        
     }
 
     // คำนวณเลเวล

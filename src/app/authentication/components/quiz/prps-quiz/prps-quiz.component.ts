@@ -11,6 +11,10 @@ import { QuizService } from 'src/app/authentication/services/quiz.service'
 import { Router } from '@angular/router'
 import { AuthURL } from 'src/app/authentication/authentication.url'
 
+
+import pdfMake from 'pdfmake/build/pdfmake'
+import pdfFonts from 'pdfmake/build/vfs_fonts'
+pdfMake.vfs = pdfFonts.pdfMake.vfs
 @Component({
     selector: 'app-prps-quiz',
     templateUrl: './prps-quiz.component.html',
@@ -77,40 +81,48 @@ export class PrpsQuizComponent implements OnInit {
             this._id = result.items._id;
             this.name = result.items.situation;
 
+            console.log(result)
+            if(result.items.ref==="PRE-PRPS-TEST"){
+                this.selectedOption = { id: 1, name: 'ก่อนเรียน', _id: 'PRE-PRPS-TEST' }
+            }else{
+                this.selectedOption = { id: 2, name: 'หลังเรียน', _id: 'POST-PRPS-TEST' }
+            }
+            this.selectedValue = this.selectedOption.name;
+
             this.question = result.items.questions;
             this.answer[0] = result.items.answers[0][0].name;
             this.answer[1] = result.items.answers[0][1].name;
             this.answer[2] = result.items.answers[0][2].name;
             this.answer[3] = result.items.answers[0][3].name;
-            this.answer[4] = result.items.answers[0][0].name;
-            this.answer[5] = result.items.answers[0][1].name;
-            this.answer[6] = result.items.answers[0][2].name;
-            this.answer[7] = result.items.answers[0][3].name;
-            this.answer[8] = result.items.answers[0][0].name;
-            this.answer[9] = result.items.answers[0][1].name;
-            this.answer[10] = result.items.answers[0][2].name;
-            this.answer[11] = result.items.answers[0][3].name;
-            this.answer[12] = result.items.answers[0][0].name;
-            this.answer[13] = result.items.answers[0][1].name;
-            this.answer[14] = result.items.answers[0][2].name;
-            this.answer[15] = result.items.answers[0][3].name;
+            this.answer[4] = result.items.answers[1][0].name;
+            this.answer[5] = result.items.answers[1][1].name;
+            this.answer[6] = result.items.answers[1][2].name;
+            this.answer[7] = result.items.answers[1][3].name;
+            this.answer[8] = result.items.answers[2][0].name;
+            this.answer[9] = result.items.answers[2][1].name;
+            this.answer[10] = result.items.answers[2][2].name;
+            this.answer[11] = result.items.answers[2][3].name;
+            this.answer[12] = result.items.answers[3][0].name;
+            this.answer[13] = result.items.answers[3][1].name;
+            this.answer[14] = result.items.answers[3][2].name;
+            this.answer[15] = result.items.answers[3][3].name;
 
             this.score[0] = result.items.answers[0][0].score;
             this.score[1] = result.items.answers[0][1].score;
             this.score[2] = result.items.answers[0][2].score;
             this.score[3] = result.items.answers[0][3].score;
-            this.score[4] = result.items.answers[0][0].score;
-            this.score[5] = result.items.answers[0][1].score;
-            this.score[6] = result.items.answers[0][2].score;
-            this.score[7] = result.items.answers[0][3].score;
-            this.score[8] = result.items.answers[0][0].score;
-            this.score[9] = result.items.answers[0][1].score;
-            this.score[10] = result.items.answers[0][2].score;
-            this.score[11] = result.items.answers[0][3].score;
-            this.score[12] = result.items.answers[0][0].score;
-            this.score[13] = result.items.answers[0][1].score;
-            this.score[14] = result.items.answers[0][2].score;
-            this.score[15] = result.items.answers[0][3].score;
+            this.score[4] = result.items.answers[1][0].score;
+            this.score[5] = result.items.answers[1][1].score;
+            this.score[6] = result.items.answers[1][2].score;
+            this.score[7] = result.items.answers[1][3].score;
+            this.score[8] = result.items.answers[2][0].score;
+            this.score[9] = result.items.answers[2][1].score;
+            this.score[10] = result.items.answers[2][2].score;
+            this.score[11] = result.items.answers[2][3].score;
+            this.score[12] = result.items.answers[3][0].score;
+            this.score[13] = result.items.answers[3][1].score;
+            this.score[14] = result.items.answers[3][2].score;
+            this.score[15] = result.items.answers[3][3].score;
         })
     }
 
@@ -314,6 +326,188 @@ export class PrpsQuizComponent implements OnInit {
     onCancel(){
         this._id=null;
         this.menu=false;
+    }
+
+    // ทำไฟล์เป็น pdf
+    // ทำ export document to pdf
+    generatePdf(_id?: string) {
+        this.quiz.getPrpstoUpdate(_id).then(result=>{
+            console.log(result) 
+
+            const documentDefinition = this.getDocumentDefinition(result.items)
+            pdfMake.fonts = {
+                THSarabunNew: {
+                    normal: 'THSarabunNew.ttf',
+                    bold: 'THSarabunNew Bold.ttf',
+                    italics: 'THSarabunNew Italic.ttf',
+                    bolditalics: 'THSarabunNew BoldItalic.ttf',
+                },
+                Roboto: {
+                    normal: 'Roboto-Regular.ttf',
+                    bold: 'Roboto-Medium.ttf',
+                    italics: 'Roboto-Italic.ttf',
+                    bolditalics: 'Roboto-MediumItalic.ttf',
+                },
+            }
+            pdfMake.createPdf(documentDefinition).open()
+        });
+    }
+
+    //  get document
+    getDocumentDefinition(question?:any) {
+        sessionStorage.setItem('resume', JSON.stringify('test1'))
+        return {
+            content: [
+                {
+                    text: 'แบบทดสอบ',
+                    bold: true,
+                    fontSize: 20,
+                    alignment: 'center',
+                },
+                {
+                    text: question.ref,
+                    bold: true,
+                    fontSize: 20,
+                    alignment: 'center',
+                    margin: [0, 0, 0, 20],
+                },
+                {
+                    text: 'สถานการณ์',
+                    bold:true,
+                    fontSize: 18
+                },
+                this.getEducationObject(question),
+            ],
+            info: {
+                title: 'แบบทดสอบ ' + this.selectedValue,
+                author: 'Phd.Ratchapol',
+                subject: 'RESUME',
+                keywords: 'RESUME, ONLINE RESUME',
+            },
+            defaultStyle: {
+                font: 'THSarabunNew',
+            },
+            styles: {
+                header: {
+                    fontSize: 18,
+                    bold: true,
+                    margin: [0, 20, 0, 10],
+                    decoration: 'underline',
+                },
+                name: {
+                    fontSize: 16,
+                    bold: true,
+                },
+                jobTitle: {
+                    fontSize: 14,
+                    bold: true,
+                    italics: true,
+                },
+                sign: {
+                    margin: [0, 50, 0, 10],
+                    alignment: 'right',
+                    italics: true,
+                },
+                tableHeader: {
+                    bold: true,
+                },
+            },
+        }
+    }
+
+    getEducationObject(educations: any) {
+        console.log(educations);
+        return [
+            {
+                text:educations.situation,
+                alignment: 'center'
+            },
+            educations.questions.map((situation,index)=>{
+                return [
+                    {
+                        text: (index+1) + '. ' + situation,
+                        bold:true,
+                        margin: [0,8,0,0]
+                    },
+                    educations.answers[index].map((sub_quest,index)=>{
+                        var choices = 'ก'
+                        if (index == 1) {
+                            choices = 'ข'
+                        } else if (index == 2) {
+                            choices = 'ค'
+                        } else if (index == 3) {
+                            choices = 'ง'
+                        }
+                        if(sub_quest.score==0)
+                            return [choices + '. ' + sub_quest.name]
+                            return [{
+                                text: choices + '. ' + sub_quest.name + '*',
+                                bold:true,
+                                color: 'blue'
+                            }]
+                    })
+                ]
+            })
+        ]
+        return educations.questions.map((situation)=>{
+            console.log(situation)
+            return [
+                {
+                    text: situation,
+                } 
+                // situation.questions.map((sub_quest, index)=>{
+                    // return [
+                    //     {
+                    //         text: (index+1) + '. ' + sub_quest[index],
+                    //         bold: true,
+                    //     },
+                    //     situation.answers[index].map((choice, j)=>{
+                    //         var choices = 'ก'
+                    //             if (j == 1) {
+                    //                 choices = 'ข'
+                    //             } else if (j == 2) {
+                    //                 choices = 'ค'
+                    //             } else if (j == 3) {
+                    //                 choices = 'ง'
+                    //             }
+                    //             if(choice.correct==0)
+                    //             return [choices + '. ' + choice.name]
+                    //             return [{
+                    //                 text: choices + '. ' + choice.name + '*',
+                    //                 bold:true,
+                    //                 color: 'blue'
+                    //             }]
+                    //     })
+                    // ]
+                // })
+            ]
+        })
+        return educations.map((ed, index) => {
+            return [
+                {
+                    text: index + 1 + '. ' + ed.question,
+                    bold: true,
+                    margin: [0,8,0,0]
+                },
+                ed.answer.map((sub_ed, jndex) => {
+                    var choice = 'ก'
+                    if (jndex == 1) {
+                        choice = 'ข'
+                    } else if (jndex == 2) {
+                        choice = 'ค'
+                    } else if (jndex == 3) {
+                        choice = 'ง'
+                    }
+                    if(sub_ed.correct==0)
+                    return [choice + '. ' + sub_ed.name]
+                    return [{
+                        text: choice + '. ' + sub_ed.name + '*',
+                        bold:true,
+                        color: 'blue'
+                    }]
+                }),
+            ]
+        })
     }
 }
 

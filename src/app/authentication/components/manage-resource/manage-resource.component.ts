@@ -47,7 +47,9 @@ export class ManageResourceComponent implements OnInit {
     hyperText_title: string
     pdfs: string[]= ['','']
     text2:string[] = ['']
+    text3:string[] = ['']
     url: string[] = ['', '']
+    url2:string[] = ['', '']
     text: string[] = ['']
     file: string[] = ['']
     title: string[] = ['']
@@ -61,6 +63,7 @@ export class ManageResourceComponent implements OnInit {
     status_button = 0
     number_title = [1]
     number_title2 = [1]
+    number_title3 = [1]
     isCollapsed = true
     switch_display = 'pdf'
     url_type: boolean = true // true is youtube && false is edupuzzle
@@ -84,6 +87,13 @@ export class ManageResourceComponent implements OnInit {
             return
         }
         this.status_button += 1
+    }
+
+    onAddText3(number?:any){
+        if(number){
+            this.number_title3.push(number+1)
+            return;
+        }
     }
 
     // change page down
@@ -112,6 +122,10 @@ export class ManageResourceComponent implements OnInit {
         this.pdfs.pop()
         if(this.text2.length>this.number_title2.length)
         this.text2.pop()
+    }
+
+    onPopText3(){
+        this.number_title3.pop()
     }
 
     onLoadUpdate(data) {
@@ -252,7 +266,10 @@ export class ManageResourceComponent implements OnInit {
             },
             hypertext: {
                 title: this.hyperText_title,
-                text: this.hyperText,
+                url:{
+                    text: this.text3,
+                    url: this.url2
+                }
             },
             purpose: this.purpose,
             learning: this.learning
@@ -293,7 +310,10 @@ export class ManageResourceComponent implements OnInit {
                     },
                     hypertext: {
                         title: this.hyperText_title,
-                        text: this.hyperText,
+                        url:{
+                            text: this.text3,
+                            url: this.url2
+                        }
                     },
                     purpose:this.purpose,
                     learning:this.learning

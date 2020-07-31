@@ -63,6 +63,16 @@
             </p>
         </div>
 
+        <div class="container">
+            <button class="btn btn-primary btn-block" *ngIf="view==0" (click)="onSwitchTest(1)">
+                <i class="fa fa-eye"></i>
+                เปิดแบบฝึกหัดหลังเรียน
+            </button>
+            <button class="btn btn-dark  btn-block" *ngIf="view==1" (click)="onSwitchTest(0)">
+                <i class="fa fa-eye"></i>
+                ปิดแบบฝึกหัดหลังเรียน
+            </button>
+        </div>
     </div>
 
 

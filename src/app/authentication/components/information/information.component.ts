@@ -69,7 +69,11 @@ export class InformationComponent implements OnInit {
   // คลิปเปลี่ยนสถานะ
   onRoleClick(role:string){
     return this.member.updateRole(this.mem_id,{role:role}).then(result=>{
-      this.alert.success("เปลี่ยนสถานะผู้ใช้เป็น '" + role +"'");
+      this.member.updateMember(this.mem_id,{
+        class:null
+      }).then(()=>{
+        this.alert.success("เปลี่ยนสถานะผู้ใช้เป็น '" + role +"'");
+      })
     })
   }
 
@@ -135,11 +139,15 @@ export class InformationComponent implements OnInit {
             result.items[0].lastname
           )
 
-          this.member.returnClassroom(result.items[0].class).then(res=>{
-            this.form.controls['class'].setValue(res.items._id)
-            this.classroom = res.items.name;
-            this.checkDataClassroom = 1
-          })
+          if(result.items[0].role=='student'){
+            this.member.returnClassroom(result.items[0].class).then(res=>{
+              this.form.controls['class'].setValue(res.items._id)
+              this.classroom = res.items.name;
+              this.checkDataClassroom = 1
+            })
+          }
+          
+
           this.role=result.items[0].role;
 
           this.exp = result.items[0].exp
