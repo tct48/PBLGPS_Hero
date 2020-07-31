@@ -33,6 +33,7 @@
     "ngx-countdown": "^10.0.0",
     "node": "^14.2.0",
     "nodemon": "^2.0.3",
+    "pdfmake": "^0.1.68",
     "rxjs": "~6.5.4",
     "sweetalert2": "^9.10.12",
     "tslib": "^1.11.2",
