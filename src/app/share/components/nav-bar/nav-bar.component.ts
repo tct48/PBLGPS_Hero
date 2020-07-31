@@ -31,7 +31,7 @@ export class NavBarComponent implements OnInit {
             }
         })
 
-        
+
 
         if (this.menu == false || !this.UserLogin.menu) {
             this.initialLoadUserLogin()
@@ -65,7 +65,6 @@ export class NavBarComponent implements OnInit {
                 this.login = 1
                 this.UserLogin = this.authen.setUserLogin();
                 this.UserLogin.role = localStorage.getItem("role");
-                console.log(this.UserLogin.role)
                 if(this.UserLogin.role == "admin"){
                     this.UserLogin.menu =true;
                 }

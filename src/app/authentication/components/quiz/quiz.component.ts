@@ -59,6 +59,14 @@ export class QuizComponent implements OnInit {
         })
     }
 
+    onDeleteArticle(_id:number){
+      this.article.splice(_id,1);
+    }
+
+    onDeleteSubArticle(j,index:number){
+      this.article[j].answer.splice(index,1)
+    }
+
     scrollToBottom(): void {
         try {
             this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight
@@ -81,7 +89,7 @@ export class QuizComponent implements OnInit {
         if (!this.article[index].answer) {
             this.article[index].answer = [
                 {
-                    _id: index + 1,
+                    _id: this.article,
                     name: '',
                     correct: 0,
                 },
@@ -117,8 +125,9 @@ export class QuizComponent implements OnInit {
 
     onLoadUpdate(data) {
         this.menu = true
-        
+
         this.quiz.getQuizById(data._id).then((result) => {
+          console.log(result)
             this.fix_id = result.items._id
             this.selectedValue = result.items.name
             this.article = result.items.choice

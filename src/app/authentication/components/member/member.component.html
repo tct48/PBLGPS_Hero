@@ -120,11 +120,11 @@
           </td>
           <td>
             <div class="btn-group" btnRadioGroup>
-              <label (click)="openMember(data._id)" btnRadio="A" class="btn btn-info" tabindex="0" role="button"><i
+              <label (click)="openMember(data._id)" tooltip="ดูข้อมูล" btnRadio="A" class="btn btn-info" tabindex="0" role="button"><i
                   class="fa fa-eye"></i></label>
-              <label (click)="openMember(data._id)" btnRadio="B" class="btn btn-info" tabindex="0" role="button"><i
+              <label (click)="openMember(data._id)" tooltip="แก้ไขข้อมูล" btnRadio="B" class="btn btn-info" tabindex="0" role="button"><i
                   class="fa fa-pencil-square-o"></i></label>
-              <label (click)="onDeleteClick(data._id)" btnRadio="C" class="btn btn-info" tabindex="0" role="button"><i
+              <label (click)="onDeleteClick(data._id)" tooltip="ลบข้อมูล" btnRadio="C" class="btn btn-info" tabindex="0" role="button"><i
                   class="fa fa-trash"></i></label>
             </div>
           </td>

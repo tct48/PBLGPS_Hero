@@ -95,7 +95,18 @@ export class MemberComponent implements OnInit {
     }
 
     // เรียกดูสมาชิก onInit
-    onLoadMember(role?:string) {
+    onLoadMember(role?:string,classroom?:string) {
+        if(classroom){
+          this.member.loadMember(this.option,role,classroom).then((result) => {
+            this.total_items = result.total_items
+            this.items = result.items
+
+            this.size_pagination = Math.round(
+                Number(this.total_items) / Number(this.option.lp)
+            )
+            this.cp = Number(this.option.sp) + 1
+        })
+        }else
         this.member.loadMember(this.option,role).then((result) => {
             this.total_items = result.total_items
             this.items = result.items
@@ -121,7 +132,7 @@ export class MemberComponent implements OnInit {
         this.onRoleClick();
     }
 
-    onRoleChange(data){
+    onRoleChange(data:string){
         this.member.loadMember(this.option,this.role).then(result=>{
             this.total_items = result.total_items
             this.items = result.items
@@ -150,7 +161,7 @@ export class MemberComponent implements OnInit {
     // PageChanged
     pageChanged(event: any): void {
         this.option.sp = event.page - 1
-        this.onLoadMember()
+        this.onLoadMember(this.role,this.selectedOption._id)
     }
 
     // คำนวณเลเวล

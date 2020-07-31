@@ -31,11 +31,6 @@ export class MemberService {
             option.valueData="";
         }
         var url = `user/search?sp=${option.sp}&lp=${option.lp}&search=${option.valueData}&role=${role}`;
-
-        // if(role){
-        //     url += `&role=${role}`;
-        // }
-
         if(classroom){
             url += `&classroom=${classroom}`
         }

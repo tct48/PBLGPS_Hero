@@ -19,7 +19,7 @@ import { AuthURL } from 'src/app/authentication/authentication.url'
 })
 export class PrpsQuizComponent implements OnInit {
     constructor(
-        private alert: AlertService, 
+        private alert: AlertService,
         private quiz: QuizService,
         private router: Router
         ) {
@@ -65,6 +65,10 @@ export class PrpsQuizComponent implements OnInit {
         this.quiz.getAllPrpsList().then(result=>{
             this.list_item= result.items
         })
+    }
+
+    onInsert(){
+      this.menu=true;
     }
 
     onLoadUpdate(_id:string){
@@ -126,7 +130,7 @@ export class PrpsQuizComponent implements OnInit {
                 this.onLoadListItem();
             }
         })
-        
+
     }
 
     formLength: number = 0
@@ -218,7 +222,7 @@ export class PrpsQuizComponent implements OnInit {
         }
         obj.answers.push(dumb)
         dumb=[];
-        
+
         for(var i=12;i<16;i++){
             dumb.push({
                 name:this.answer[i],
@@ -227,7 +231,7 @@ export class PrpsQuizComponent implements OnInit {
         }
         obj.answers.push(dumb)
         dumb=[];
-        
+
         this.quiz.addPrPs(obj).then(result=>{
             this.alert.success(result.message);
             this.router.navigate(['', AuthURL.Home])
@@ -290,7 +294,7 @@ export class PrpsQuizComponent implements OnInit {
         }
         obj.answers.push(dumb)
         dumb=[];
-        
+
         for(var i=12;i<16;i++){
             dumb.push({
                 name:this.answer[i],
@@ -302,6 +306,7 @@ export class PrpsQuizComponent implements OnInit {
 
         this.quiz.updatePrps(this._id,obj).then(result=>{
             this.alert.success("แก้ไขข้อมูลสำเร็จ !");
+            this.onLoadListItem();
             this.onCancel();
         })
     }

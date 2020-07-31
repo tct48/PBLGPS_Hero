@@ -29,6 +29,8 @@ export class CreateComponent implements OnInit {
   items:IMember[];
   display_data:IMember[];
 
+  per_group:number=3;
+
   score=[];
   test_score=[];
 
@@ -38,7 +40,87 @@ export class CreateComponent implements OnInit {
   itemObjectsSoSo:any[];
   itemObjectsBottom:any[];
 
+
+  test:string;
+  private group:string[][];
+
+
   ngOnInit(): void {
+  }
+
+  onTestGroup(){
+    // จำนวนคน เก่ง & กลาง
+    var top=[];
+    var middle=[];
+    var bottom=[];
+    var numb_top=0;
+    var numb_middle=0;
+    var numb_bottom=0;
+
+    if(this.per_group==3){
+      // อัตราส่วน 33:33:33
+      numb_top = Math.round(this.display_data.length*0.33);
+      numb_bottom = this.display_data.length-(numb_top*2);
+      for(var i=0;i<numb_top;i++){
+        top.push(this.display_data[i]);
+      }
+      this.display_data.splice(0,numb_top);
+      for(var i=0;i<numb_top;i++){
+        middle.push(this.display_data[i]);
+      }
+      this.display_data.splice(0,numb_top);
+      for(var i=0;i<numb_bottom;i++){
+        bottom.push(this.display_data[i]);
+      }
+      this.display_data.splice(0,numb_bottom);
+    }else if(this.per_group==4 || this.per_group==5){
+      // อัตราส่วน 20:60:20
+      numb_top = Math.round(this.display_data.length*0.20);
+      numb_middle = Math.round(this.display_data.length*0.60);
+      numb_bottom = this.display_data.length-(numb_top+numb_middle);
+
+      for(var i=0;i<numb_top;i++){
+        top.push(this.display_data[i]);
+      }
+      this.display_data.splice(0,numb_top);
+      for(var i=0;i<numb_middle;i++){
+        middle.push(this.display_data[i]);
+      }
+      this.display_data.splice(0,numb_middle);
+      for(var i=0;i<numb_bottom;i++){
+        bottom.push(this.display_data[i]);
+      }
+      this.display_data.splice(0,numb_bottom)
+    }
+
+    console.log("เด็กเก่ง");
+    console.log(top);
+    console.log("ปานกลาง");
+    console.log(middle);
+    console.log("อ่อน");
+    console.log(bottom);
+
+    this.itemObjectsTop = top;
+    this.itemObjectsMiddle = middle;
+    this.itemObjectsBottom = bottom;
+
+    var datas=[];
+
+    if(this.per_group==3){
+      // ถ้ากลุ่ม 3 คน
+      console.log("รายละเอียดกลุ่ม")
+      for(var j=0;j<this.itemObjectsTop.length;j++){
+          datas[0] = this.itemObjectsTop[j];
+          datas[1] = this.itemObjectsMiddle[j];
+          if(this.itemObjectsBottom[j]){
+            datas[2] = this.itemObjectsBottom[j];
+          }
+          console.log(datas)
+          datas=[];
+      }
+
+    }
+
   }
 
   getPreTest(_id){
@@ -127,9 +209,6 @@ export class CreateComponent implements OnInit {
 
     this.loadMember();
   }
-
-  test:string;
-  private group:string[][];
 
   onSelectGroup(){
     var number_of_group = Math.floor(this.display_data.length/3);

@@ -88,12 +88,13 @@ export class SignupComponent implements OnInit {
         }
         var formdata = new FormData()
         var public_id
+        var obj;
         if (this.image) {
             formdata.append('file', this.selectedFile)
             this.account.onUploadImage(formdata).then((result) => {
                 public_id = result.public_id
 
-                var obj = this.form.value
+                obj = this.form.value
                 obj.image = public_id
                 obj.class = this.selectedOption._id
                 obj.role = this.radioModel
@@ -108,8 +109,6 @@ export class SignupComponent implements OnInit {
             })
             return
         }
-        var obj;
-
         if(this.radioModel=='student'){
             obj = this.form.value
             obj.class = this.selectedOption._id
