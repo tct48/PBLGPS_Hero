@@ -10,63 +10,39 @@
     <div class="my-3 py-3">
         <h3>จัดกลุ่มผู้เรียน</h3>
     </div>
-    <h4>
-      จำนวนกลุ่มที่ต้องการแบ่ง
-    </h4>
-    <p class="my-3">
-      แบ่งกลุ่มกลุ่มละ {{ per_group }} อัตราส่วน
-      <span *ngIf="per_group==3" class="text-primary">
-        (33:33:33)
-      </span>
-      <span *ngIf="per_group==4||per_group==5" class="text-primary">
-        (20:60:20)
-      </span>
-    </p>
-    <input type="number" [(ngModel)]="per_group" min="3" max="5" >
-    <!-- รายละเอียดกลุ่ม -->
-    <div class="mt-3" *ngIf="itemObjectsTop">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-header" *ngIf="itemObjectsTop">
-              เด็กเรียนเก่ง
-              <span class="text-primary">[{{itemObjectsTop.length}}]</span>
-            </div>
-            <div class="card-body">
-              <p *ngFor="let item of itemObjectsTop">
-                {{ item.firstname }} {{ item.lastname }}
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-header" *ngIf="itemObjectsMiddle">
-              เด็กปานกลาง
-              <span class="text-primary">[{{itemObjectsMiddle.length}}]</span>
-            </div>
-            <div class="card-body">
-              <p *ngFor="let item of itemObjectsMiddle">
-                {{ item.firstname }} {{ item.lastname }}
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-header" *ngIf="itemObjectsBottom">
-              เด็กอ่อน <span class="text-primary">[{{itemObjectsBottom.length}}]</span>
-            </div>
-            <div class="card-body">
-              <p *ngFor="let item of itemObjectsBottom">
-                {{ item.firstname }} {{ item.lastname }}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
+    
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <!-- <th>
+              ระดับความสามารถ
+            </th> -->
+            <th *ngFor="let data of number_of_group;let i = index;">
+              กลุ่ม {{i+1}}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of made[0];let i = index;">
+            <!-- <td  class="bold" *ngIf="i==0">
+              เก่ง
+            </td>
+            <td  class="bold" rowspan="2" *ngIf="i==1">
+              กลาง
+            </td>
+            <td  class="bold" rowspan="2" *ngIf="i==made.length-2">
+              อ่อน
+            </td> -->
+            <td *ngFor="let sub_data of number_of_group;let j = index;">
+              <span *ngIf="made[j][i]">
+                {{ made[j][i].firstname }}
+              </span>
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <div class="row mb-5" *ngIf="!itemObjectsTop">

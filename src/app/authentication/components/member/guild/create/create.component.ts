@@ -49,79 +49,28 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  made:any=[];
+  number_of_group:any;
   onTestGroup(){
-    // จำนวนคน เก่ง & กลาง
-    var top=[];
-    var middle=[];
-    var bottom=[];
-    var numb_top=0;
-    var numb_middle=0;
-    var numb_bottom=0;
-
-    if(this.per_group==3){
-      // อัตราส่วน 33:33:33
-      numb_top = Math.round(this.display_data.length*0.33);
-      numb_bottom = this.display_data.length-(numb_top*2);
-      for(var i=0;i<numb_top;i++){
-        top.push(this.display_data[i]);
+    // let data =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
+    let data = this.items;
+    let numb = 4;
+    this.number_of_group = Array(Math.round(data.length/numb)).fill(5)
+    // console.log(data.length/numb)
+    console.log("แบ่งได้ " + this.number_of_group +" กลุ่ม / กลุ่มละ" + numb + " คน");
+    console.log("จากทั้งหมด " + data.length + " คน")
+    console.log(data[0])
+    this.made=[];
+    for(var i=0;i<data.length;i++){
+      if(i<this.number_of_group.length){
+        this.made[i]=[data[i]];
+      }else{
+        this.made[i%this.number_of_group.length].push(data[i])
       }
-      this.display_data.splice(0,numb_top);
-      for(var i=0;i<numb_top;i++){
-        middle.push(this.display_data[i]);
-      }
-      this.display_data.splice(0,numb_top);
-      for(var i=0;i<numb_bottom;i++){
-        bottom.push(this.display_data[i]);
-      }
-      this.display_data.splice(0,numb_bottom);
-    }else if(this.per_group==4 || this.per_group==5){
-      // อัตราส่วน 20:60:20
-      numb_top = Math.round(this.display_data.length*0.20);
-      numb_middle = Math.round(this.display_data.length*0.60);
-      numb_bottom = this.display_data.length-(numb_top+numb_middle);
-
-      for(var i=0;i<numb_top;i++){
-        top.push(this.display_data[i]);
-      }
-      this.display_data.splice(0,numb_top);
-      for(var i=0;i<numb_middle;i++){
-        middle.push(this.display_data[i]);
-      }
-      this.display_data.splice(0,numb_middle);
-      for(var i=0;i<numb_bottom;i++){
-        bottom.push(this.display_data[i]);
-      }
-      this.display_data.splice(0,numb_bottom)
     }
-
-    console.log("เด็กเก่ง");
-    console.log(top);
-    console.log("ปานกลาง");
-    console.log(middle);
-    console.log("อ่อน");
-    console.log(bottom);
-
-    this.itemObjectsTop = top;
-    this.itemObjectsMiddle = middle;
-    this.itemObjectsBottom = bottom;
-
-    var datas=[];
-
-    if(this.per_group==3){
-      // ถ้ากลุ่ม 3 คน
-      console.log("รายละเอียดกลุ่ม")
-      for(var j=0;j<this.itemObjectsTop.length;j++){
-          datas[0] = this.itemObjectsTop[j];
-          datas[1] = this.itemObjectsMiddle[j];
-          if(this.itemObjectsBottom[j]){
-            datas[2] = this.itemObjectsBottom[j];
-          }
-          console.log(datas)
-          datas=[];
-      }
-
-    }
-
+    
+    console.log(this.made);
+    return;
   }
 
   getPreTest(_id){

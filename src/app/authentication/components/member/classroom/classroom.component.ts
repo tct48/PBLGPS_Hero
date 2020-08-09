@@ -6,6 +6,8 @@ import { AppURL } from 'src/app/app.url';
 import { AuthURL } from 'src/app/authentication/authentication.url';
 import { ResourceLoader } from '@angular/compiler';
  
+import 'sweetalert2/src/sweetalert2.scss'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -167,16 +169,24 @@ export class ClassroomComponent implements OnInit {
   }
 
   onDelete(model:string){
-    if(!this.total_items){
-      return this.alert.notify("กรุณาลบนักศึกษาในชั้นเรียนก่อน", "ไม่สามารถลบชั้นเรียนได้", "error")
-    }
-    if(this.total_items>0){
-      return this.alert.notify("กรุณาลบนักศึกษาในชั้นเรียนก่อน", "ไม่สามารถลบชั้นเรียนได้", "error")
-    }
-    this.member.deleteClassroom(model).then(result=>{
-      this.alert.success(result.message);
-      this.loadDataClassroom();
-    })
+    Swal.fire({
+      title: 'แจ้งเตือน',
+      text: 'คุณต้องการจะลบข้อมูลใช่หรือไม่',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ใช่, ลบเดี๋ยวนี้',
+  }).then((result) => {
+      if (result.value) {
+        this.member.deleteClassroom(model).then(result=>{
+          this.alert.success(result.message);
+          this.loadDataClassroom();
+        }).catch(err=>{
+          this.alert.notify(err.name)
+        })
+      }
+  })
   }
 
 
