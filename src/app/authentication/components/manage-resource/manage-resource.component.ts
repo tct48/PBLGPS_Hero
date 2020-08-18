@@ -247,6 +247,12 @@ export class ManageResourceComponent implements OnInit {
         })
     }
 
+    onChangeView(_id,status){
+        this.resource.onUpdateChapter(_id,{view:status}).then(result=>{
+            this.onLoadChapter();
+        })
+    }
+
     onUpdate(_id) {
         var model = {
             name: this.name,

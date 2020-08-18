@@ -63,7 +63,7 @@
             </p>
         </div>
 
-        <div class="container">
+        <div class="container" *ngIf="UserLogin.role=='admin'">
             <button class="btn btn-primary btn-block" *ngIf="view==0" (click)="onSwitchTest(1)">
                 <i class="fa fa-eye"></i>
                 เปิดแบบฝึกหัดหลังเรียน

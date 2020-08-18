@@ -44,8 +44,17 @@
                         (click)="openContent(data._id)"
                         style="text-decoration: none; width: 100%;"
                         class="action-button shadow animate button-blue"
+                        *ngIf="data.view==true"
                     >
                         {{ data.name }}
+                    </button>
+                    <button
+                        (click)="onAlert()"
+                        style="text-decoration: none; width: 100%;"
+                        class="action-button shadow animate btn-secondary"
+                        *ngIf="!data.view==true"
+                    >
+                        <i class="fa fa-lock"></i> {{ data.name }}
                     </button>
                 </div>
             </div>

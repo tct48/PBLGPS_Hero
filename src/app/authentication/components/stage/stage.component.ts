@@ -77,7 +77,6 @@ export class StageComponent implements OnInit {
     }
 
     onSubmit() {
-      console.log(this.ready)
         if (this.ready.length != this.total_user) {
             return this.alert.notify(
                 'ทีมของคุณยังไม่พร้อม !',

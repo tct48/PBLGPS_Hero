@@ -31,7 +31,6 @@ export class UserRoleGuard implements CanActivate {
       this.account
         .getUserLogin(this.authen.getAuthenticated())
         .then(userLogin => {
-          console.log(roles.filter(item => item == userLogin.role).length)
           if (roles.filter(item => item == localStorage.getItem("role")).length > 0)
             resolve(true);
           else {
