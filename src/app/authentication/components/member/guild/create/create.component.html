@@ -10,8 +10,17 @@
     <div class="my-3 py-3">
         <h3>จัดกลุ่มผู้เรียน</h3>
     </div>
-    
-    <div class="table-responsive">
+
+    <div class="input-group">
+      <input class="form-control" id="input2-group2" name="input2-group2" placeholder="จำนวนคนที่ต้องการแบ่งแต่ละกลุ่ม"
+        type="number" [(ngModel)]="numb" />
+    </div>
+
+    <button class="btn btn-info col-md-12 my-3" (click)="onTestGroup()">
+      แบ่งกลุ่ม
+  </button>
+
+    <div class="table-responsive" id="group" *ngIf="show_group==true">
       <table class="table table-hover">
         <thead>
           <tr>
@@ -38,7 +47,7 @@
               <span *ngIf="made[j][i]">
                 {{ made[j][i].firstname }}
               </span>
-              
+
             </td>
           </tr>
         </tbody>
@@ -84,9 +93,6 @@
         </div>
 
         <!-- <button class="btn btn-info col-md-12 my-3 mx-2" (click)="onSelectGroup()"> -->
-        <button class="btn btn-info col-md-12 my-3 mx-2" (click)="onTestGroup()">
-            ทดลองแบ่งกลุ่ม
-        </button>
 
         <pre *ngIf="test" class="code my-3 border py-2 col-md-12 mx-2 bg-secondary text-white" [innerHtml]="test">
             <!-- {{ test }} -->

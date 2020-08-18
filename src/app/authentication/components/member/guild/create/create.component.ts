@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MemberService, IMember } from 'src/app/authentication/services/member.service';
 import { GradeService } from 'src/app/authentication/services/grade.service';
 import { AlertService } from 'src/app/share/services/alert.service';
+import { ViewportScroller } from '@angular/common';
 
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 
@@ -19,6 +20,7 @@ export class CreateComponent implements OnInit {
     private member:MemberService,
     private grade: GradeService,
     private alert: AlertService,
+    private vps: ViewportScroller
   ) {
     this.activateRoute.queryParams.forEach((params) => {
       this.classroom = params._id
@@ -51,24 +53,47 @@ export class CreateComponent implements OnInit {
 
   made:any=[];
   number_of_group:any;
+  show_group:boolean=false;
+  numb:number;
+  caption:string;
   onTestGroup(){
     // let data =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
+    this.show_group=false;
     let data = this.items;
-    let numb = 4;
+    let numb = this.numb;
     this.number_of_group = Array(Math.round(data.length/numb)).fill(5)
     // console.log(data.length/numb)
-    console.log("แบ่งได้ " + this.number_of_group +" กลุ่ม / กลุ่มละ" + numb + " คน");
+    this.caption = "แบ่งได้ " + this.number_of_group +" กลุ่ม / กลุ่มละ" + numb + " คน";
     console.log("จากทั้งหมด " + data.length + " คน")
-    console.log(data[0])
     this.made=[];
     for(var i=0;i<data.length;i++){
       if(i<this.number_of_group.length){
         this.made[i]=[data[i]];
+        var dumb = (i+1)+"";
+        let _id = this.made[i][this.made[i].length-1]._id;
+        this.member.updateMember(_id,{guild:dumb}).then(()=>{
+          console.log("สำเร็จ[" + dumb + "]");
+        }).catch(()=>{
+          console.log("Error[" + dumb + "]");
+          console.log(this.made[i])
+        })
       }else{
         this.made[i%this.number_of_group.length].push(data[i])
+        let _id = this.made[i%this.number_of_group.length][this.made[i%this.number_of_group.length].length-1]._id;
+        var dumb = (i%this.number_of_group.length+1)+"";
+        this.member.updateMember(_id,{guild:dumb}).then(()=>{
+          console.log("สำเร็จ[" + dumb + "]");
+        }).catch(()=>{
+          console.log("Error[" + dumb + "]");
+        })
+        if(i==data.length-1){
+          this.loadMember()
+          this.show_group=true;
+          this.vps.scrollToAnchor('group');
+        }
       }
     }
-    
+
     console.log(this.made);
     return;
   }
@@ -93,6 +118,10 @@ export class CreateComponent implements OnInit {
   }
 
   loadMember(){
+    this.items=null;
+    this.display_data=null;
+    this.test_score=null;
+    this.score=[];
     this.member.loadMemberFromClassroom(this.classroom).then(result=>{
       this.items = result.items
       this.display_data=this.items
