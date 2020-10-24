@@ -44,36 +44,34 @@ export class AttendenceComponent implements OnInit {
 
         var A=1
 
-        this.grade.getScoreExerciseById(localStorage.getItem("_id"),'ATTENDENCE').then(sub_result=>{
-          console.log(sub_result)
-          // พึ่งเข้าเรียนครั้งแรกเพิ่มคะแนนมาเรียน
-          if(sub_result.total_items==0){
-            var obj={
-              name: 'คะแนนมาเรียน (Attendence)',
-              score: A,
-              ref: 'ATTENDENCE',
-              user: localStorage.getItem("_id")
-            }
+        // this.grade.getScoreExerciseById(localStorage.getItem("_id"),'ATTENDENCE').then(sub_result=>{
+        //   console.log(sub_result)
+        //   พึ่งเข้าเรียนครั้งแรกเพิ่มคะแนนมาเรียน
+        //   if(sub_result.total_items==0){
+        //     var obj={
+        //       name: 'คะแนนมาเรียน (Attendence)',
+        //       score: A,
+        //       ref: 'ATTENDENCE',
+        //       user: localStorage.getItem("_id")
+        //     }
 
-            setTimeout(()=>{
-              this.grade.addScoreExercise(obj).then(()=>{
-                this.level.addExptoUser(localStorage.getItem("_id"),A*10).then(result=>{
-                  this.alert.success("คุณได้รับแต้ม Exp เพิ่มขึ้น " + A*10 + " แต้ม")
-                })
-              })
-            },1000)
-          }
+        //     setTimeout(()=>{
+        //       this.grade.addScoreExercise(obj).then(()=>{
+        //         this.level.addExptoUser(localStorage.getItem("_id"),A*10).then(result=>{
+        //           this.alert.success("คุณได้รับแต้ม Exp เพิ่มขึ้น " + A*10 + " แต้ม")
+        //         })
+        //       })
+        //     },1000)
+        //   }
 
-          if(sub_result.total_items>0 && sub_result.total_items<=17){
-            this.grade.updateScoreExcerciseById(sub_result.item._id,{score:sub_result.item.score+1}).then(sub=>{
-              this.level.addExptoUser(localStorage.getItem("_id"),A*10).then(result=>{
-                this.alert.success("คุณได้รับแต้ม Exp เพิ่มขึ้น " + A*10 + " แต้ม")
-              })
-            })
-          }
-
-
-        })
+        //   if(sub_result.total_items>0 && sub_result.total_items<=17){
+        //     this.grade.updateScoreExcerciseById(sub_result.item._id,{score:sub_result.item.score+1}).then(sub=>{
+        //       this.level.addExptoUser(localStorage.getItem("_id"),A*10).then(result=>{
+        //         this.alert.success("คุณได้รับแต้ม Exp เพิ่มขึ้น " + A*10 + " แต้ม")
+        //       })
+        //     })
+        //   }
+        // })
 
         this.loadAttendence();
         this.loadTimeAttended();

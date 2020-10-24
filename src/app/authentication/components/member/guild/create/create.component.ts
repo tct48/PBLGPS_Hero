@@ -100,21 +100,21 @@ export class CreateComponent implements OnInit {
 
   getPreTest(_id){
     var res;
-    this.grade.getScoreExerciseById(_id,'PRE-TEST').then(result=>{
-      try{
-          this.score.push(result.item.score)
-          this.test_score.push({
-            score: result.item.score,
-            _id: _id
-          })
-      }catch{
-        this.score.push("ยังไม่ได้ทำแบบทดสอบ Pre-Test!")
-        this.test_score.push({
-          score: "ยังไม่ได้ทำแบบทดสอบ Pre-Test!",
-          _id:_id
-        });
-      }
-    });
+    // this.grade.getScoreExerciseById(_id,'PRE-TEST').then(result=>{
+    //   try{
+    //       this.score.push(result.item.score)
+    //       this.test_score.push({
+    //         score: result.item.score,
+    //         _id: _id
+    //       })
+    //   }catch{
+    //     this.score.push("ยังไม่ได้ทำแบบทดสอบ Pre-Test!")
+    //     this.test_score.push({
+    //       score: "ยังไม่ได้ทำแบบทดสอบ Pre-Test!",
+    //       _id:_id
+    //     });
+    //   }
+    // });
   }
 
   loadMember(){

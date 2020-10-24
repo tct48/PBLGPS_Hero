@@ -3,6 +3,7 @@ import { AlertService } from './alert.service'
 import { HttpService } from 'src/app/services/http.service'
 import { AuthenService } from 'src/app/services/authen.service'
 import { Observable, BehaviorSubject } from 'rxjs'
+import { AngularFirestore } from '@angular/fire/firestore'
 
 @Injectable({
     providedIn: 'root',
@@ -12,7 +13,8 @@ export class AccountService {
     constructor(
         private http: HttpService,
         private alert: AlertService,
-        private authen: AuthenService
+        private authen: AuthenService,
+        private fireservice:AngularFirestore
     ) {
     }
 
@@ -44,11 +46,12 @@ export class AccountService {
 
     // เซตค่า UserLogin
     getUserLogin(accessToken: string) {
-        return (this.http
-            .requestGet('user/data', accessToken)
-            .toPromise() as Promise<IAccount>).then((result) =>
-            this.setUserLogin(result)
-        )
+        return "b";
+        // return (this.http
+        //     .requestGet('user/data', accessToken)
+        //     .toPromise() as Promise<IAccount>).then((result) =>
+        //     this.setUserLogin(result)
+        // )
     }
 
     // ข้อมูล User จาก _id
@@ -60,9 +63,10 @@ export class AccountService {
 
     // ล๊อกอิน
     onLogin(model: ILogin) {
-        return this.http
-            .requestPost('user/login', model)
-            .toPromise() as Promise<{ accessToken: string,current_user:any }>
+        return this.fireservice.collection('User', ref => ref.where('username','==',model.username).where('password','==',model.password)).snapshotChanges()
+        // return this.http
+        //     .requestPost('user/login', model)
+        //     .toPromise() as Promise<{ accessToken: string,current_user:any }>
     }
 
     // ล๊อกเอาท์
@@ -71,11 +75,12 @@ export class AccountService {
     }
 
     // สมัครสมาชิก
-    onRegister(model: IRegister) {
+    onRegister(model: any) {
         console.log(model)
-        return this.http
-            .requestPost('user/signup', model)
-            .toPromise() as Promise<IRegister>
+        return this.fireservice.collection('User').add(model)
+        // return this.http
+        //     .requestPost('user/signup', model)
+        //     .toPromise() as Promise<IRegister>
     }
 
     // อัพโหลดรูปภาพ

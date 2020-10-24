@@ -23,19 +23,7 @@ export class NavBarComponent implements OnInit {
         private account: AccountService,
         private grade: GradeService
     ) {
-        this.grade.getScoreExerciseById(localStorage.getItem("_id"),'PRE-TEST').then(result=>{
-            if(result.total_items>0){
-                this.UserLogin.menu = true
-            }else{
-                this.UserLogin.menu= false
-            }
-        })
-
-
-
-        if (this.menu == false || !this.UserLogin.menu) {
-            this.initialLoadUserLogin()
-        }
+        this.initialLoadUserLogin();
     }
     private currentUser: IAccount
 
@@ -55,37 +43,17 @@ export class NavBarComponent implements OnInit {
 
     // โหลด User Login
     public initialLoadUserLogin() {
-        var data = this.authen.getAuthenticated()
-        if (!data) {
-            return
+        if(localStorage.getItem("_id")){
+            this.login=1;
+            this.UserLogin.role = localStorage.getItem("role");
+            if(this.UserLogin.role=="admin"){
+                this.UserLogin.menu = true;
+            }
+        }else{
+            this.router.navigate(['/', AppURL.Login])
+            this.alert.something_wrong();
         }
-        this.account
-            .getUserLogin(this.authen.getAuthenticated())
-            .then((userLogin) => {
-                this.login = 1
-                this.UserLogin = this.authen.setUserLogin();
-                this.UserLogin.role = localStorage.getItem("role");
-                if(this.UserLogin.role == "admin"){
-                    this.UserLogin.menu =true;
-                }
-                this.grade
-                    .getScoreExerciseById(this.UserLogin._id, 'PRE-TEST')
-                    .then((result) => {
-                        if (result.total_items > 0) {
-                            this.account.setUserMenu();
-                        }
-                    })
-                this.grade.getScoreExerciseById(localStorage.getItem("_id"),'PRE-TEST').then(result=>{
-                    if(result.total_items>0){
-                        this.UserLogin.menu = true
-                    }
-                })
-            })
-            .catch((err) => {
-                this.alert.notify(err.message)
-                this.authen.clearAuthenticated()
-                this.router.navigate(['/', AppURL.Login])
-            })
+        return ;
     }
 
     // ออกจากระบบ

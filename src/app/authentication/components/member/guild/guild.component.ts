@@ -39,29 +39,29 @@ export class GuildComponent implements OnInit {
             this.setGuildName(this.items[0].guild)
 
             for(var i=0;i<this.total_user;i++){
-                this.grade.getScoreExerciseById(result.items[i]._id,'PRE-TEST').then(result=>{
-                    if(result.total_items==0){
-                        this.PRETEST.push("-");
-                    }else{
-                        this.PRETEST.push(result.item.score)
-                    }
-                })
+                // this.grade.getScoreExerciseById(result.items[i]._id,'PRE-TEST').then(result=>{
+                //     if(result.total_items==0){
+                //         this.PRETEST.push("-");
+                //     }else{
+                //         this.PRETEST.push(result.item.score)
+                //     }
+                // })
 
-                this.grade.getScoreExerciseById(result.items[i]._id,'PRE-PRPS-TEST').then(result=>{
-                    if(result.total_items==0){
-                        this.PrePRPS.push("-");
-                    }else{
-                        this.PrePRPS.push(Math.ceil(result.item.score/40*10))
-                    }
-                })
+                // this.grade.getScoreExerciseById(result.items[i]._id,'PRE-PRPS-TEST').then(result=>{
+                //     if(result.total_items==0){
+                //         this.PrePRPS.push("-");
+                //     }else{
+                //         this.PrePRPS.push(Math.ceil(result.item.score/40*10))
+                //     }
+                // })
 
-                this.grade.getScoreExerciseById(result.items[i]._id,'ATTENDENCE').then(result=>{
-                    if(result.total_items==0){
-                        this.ATTENDENCE.push("-");
-                    }else{
-                        this.ATTENDENCE.push(Math.round(result.item.score/18*10))
-                    }
-                })
+                // this.grade.getScoreExerciseById(result.items[i]._id,'ATTENDENCE').then(result=>{
+                //     if(result.total_items==0){
+                //         this.ATTENDENCE.push("-");
+                //     }else{
+                //         this.ATTENDENCE.push(Math.round(result.item.score/18*10))
+                //     }
+                // })
 
             }
 

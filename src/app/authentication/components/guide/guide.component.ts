@@ -22,12 +22,6 @@ export class GuideComponent implements OnInit {
         private guide: GuideService,
         private alert: AlertService
     ) {
-        this.account
-            .getUserLogin(this.authen.getAuthenticated())
-            .then((result) => {
-                this.UserLogin = this.authen.setUserLogin();
-                console.log(this.UserLogin)
-            })
 
         this.guide.getAllGuide().then((result) => {
             this.items = result.items

@@ -17,31 +17,11 @@ export class AuthContentComponent implements OnInit {
         private alert: AlertService,
         private router: Router
     ) {
-        if (!this.UserLogin) {
-            this.initialLoadUserLogin()
-        }
+
     }
 
     ngOnInit(): void {}
 
     
     UserLogin: any
-
-    // load user login
-    public initialLoadUserLogin() {
-        var data = this.authen.getAuthenticated()
-        if (!data) {
-            return
-        }
-        this.account
-            .getUserLogin(this.authen.getAuthenticated())
-            .then((userLogin) => {
-                this.UserLogin = this.UserLogin = this.authen.setUserLogin();
-            })
-            .catch((err) => {
-                this.alert.notify(err.message)
-                this.authen.clearAuthenticated()
-                this.router.navigate(['/', AppURL.Login])
-            })
-    }
 }

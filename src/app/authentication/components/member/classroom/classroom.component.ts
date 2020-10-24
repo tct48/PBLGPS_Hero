@@ -37,7 +37,7 @@ export class ClassroomComponent implements OnInit {
 
   title_name:string='';
 
-  Classroom_item:IClassroom;
+  Classroom_item:any;
   total_classroom:number;
   classroom_name:String;
 
@@ -89,11 +89,15 @@ export class ClassroomComponent implements OnInit {
   }
 
   loadDataClassroom(){
-    this.member.loadClassroom(this.option).then(result=>{
-      this.Classroom_item = result.items;
-      this.total_classroom = result.total_items;
-      
-    })
+    this.member.loadClassroom().subscribe(result=>{
+      this.Classroom_item = result.map(e => {
+          return {
+              _id: e.payload.doc.id,
+              name: e.payload.doc.data()['name']
+          }
+      })
+      this.total_classroom = this.Classroom_item.length;
+  });
     this.classroom_name=null;
   }
 

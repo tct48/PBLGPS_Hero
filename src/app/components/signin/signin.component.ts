@@ -41,6 +41,8 @@ export class SigninComponent implements OnInit {
   c_password: any
   form: FormGroup
 
+  UserLogin:any;
+
   AppURL = AppURL
   AuthURL = AuthURL
 
@@ -67,18 +69,25 @@ export class SigninComponent implements OnInit {
     if (this.form.invalid) {
       return this.alert.notify('กรุณากรอกข้อมูลให้ถูกต้อง')
     }
-    this.account
-      .onLogin(this.form.value)
-      .then((res) => {
-        // เก็บ AccessToken
-        this.authen.setAuthenticated(res.accessToken,res.current_user)
-        this.alert.success('ยินดีต้อนรับเข้าสู่ระบบ')
-        this.account.getUserByID(localStorage.getItem("_id"),this.authen.getAuthenticated())
-        this.router.navigateByUrl(this.returnURL)
+    this.account.onLogin(this.form.value).subscribe(result => {
+      this.UserLogin = result.map(e=>{
+        return {
+          _id: e.payload.doc.id,
+          firstname: e.payload.doc.data()['firstname'],
+          lastname: e.payload.doc.data()['lastname'],
+          username: e.payload.doc.data()['username'],
+          email: e.payload.doc.data()['email'],
+          class: e.payload.doc.data()['class'],
+          phone: e.payload.doc.data()['phone'],
+          role: e.payload.doc.data()['role'],
+          sid: e.payload.doc.data()['sid']
+        }
       })
-      .catch((err) => {
-        this.alert.notify("Username หรือ Password ไม่ถูกต้อง!","แจ้งเตือน","error");
-      })
+      this.authen.setAuthenticated("OK",this.UserLogin[0]);
+      this.alert.success('ยินดีต้อนรับเข้าสู่ระบบ');
+      this.account.getUserByID(localStorage.getItem("_id"),this.authen.getAuthenticated());
+      this.router.navigateByUrl(this.returnURL);
+    })
   }
 
   async onChangePassword() {
@@ -88,20 +97,20 @@ export class SigninComponent implements OnInit {
       input: 'text',
       confirmButtonText: 'Next &rarr;',
       showCancelButton: true,
-      progressSteps: ['1', '2','3'],
+      progressSteps: ['1', '2', '3'],
       // timer: timer,
       timerProgressBar: true,
     }).queue([
       {
-        title : 'เปลี่ยนรหัสผ่าน',
-        text : 'กรุรณากรอกยูซเซอร์เนม'
+        title: 'เปลี่ยนรหัสผ่าน',
+        text: 'กรุรณากรอกยูซเซอร์เนม'
       },
       {
         title: 'เปลี่ยนรหัสผ่าน',
         text: 'กรุณากรอกรหัสผ่านเดิม'
       },
       {
-        title : 'เปลี่ยนรหัสผ่าน',
+        title: 'เปลี่ยนรหัสผ่าน',
         text: 'กรุณากรอกรหัสผ่านใหม่'
       }
     ]).then((result) => {
@@ -119,9 +128,9 @@ export class SigninComponent implements OnInit {
           new_password: new_pass
         }
 
-        this.member.onChangePassword(obj).then(()=>{
+        this.member.onChangePassword(obj).then(() => {
           this.alert.success("แก้ไขรหัสผ่านเรียบร้อยแล้ว!")
-        }).catch(err=>{
+        }).catch(err => {
           this.alert.success(err);
         })
         // return answers;

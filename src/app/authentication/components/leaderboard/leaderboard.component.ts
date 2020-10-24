@@ -26,7 +26,7 @@ export class LeaderboardComponent implements OnInit {
         this.loadTopPlayer()
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void { }
 
     lvl: Number
     Leaderboard: any
@@ -43,33 +43,25 @@ export class LeaderboardComponent implements OnInit {
     ]
 
     loadTopPlayerFromMyClassroom() {
-        if (this.status != 'B') {
-            this.member.getTopPlayer(this.UserLogin.class).then((result) => {
-                this.Leaderboard = result.items
-                console.log("LoadTopFromClassroom")
-            })
-            this.status = 'B'
-        }
+        if (this.status == "B")
+            return;
+
+        this.Leaderboard = this.member.getTopPlayer(localStorage.getItem("classroom"));
+        this.status = "B"
     }
 
     // ดึงข้อมูล UserLogin
     loadUserLogin() {
-        this.account
-            .getUserLogin(this.authen.getAuthenticated())
-            .then((result) => {
-                this.UserLogin = this.authen.setUserLogin();
-            })
+        this.UserLogin = this.authen.setUserLogin();
     }
 
     // ดึงข้อมูล Top 5 Player
     loadTopPlayer() {
-        if (this.status != 'A') {
-            this.member.getTopPlayer().then((result) => {
-                this.Leaderboard = result.items
-                console.log("Load Top Player")
-            })
-            this.status = 'A'
-        }
+        if (this.status == "A")
+            return;
+
+        this.Leaderboard = this.member.getTopPlayer();
+        this.status = "A";
     }
 
     // คำนวณ Level

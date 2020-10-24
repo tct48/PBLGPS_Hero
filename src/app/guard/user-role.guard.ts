@@ -15,31 +15,26 @@ export class UserRoleGuard implements CanActivate {
     private authen: AuthenService,
     private account: AccountService,
     private alert: AlertService,
-    private router:Router
+    private router: Router
   ) {
 
   }
 
   AppURL = AppURL;
-  AuthURL =AuthURL;
+  AuthURL = AuthURL;
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return new Promise<boolean>((resolve, reject) => {
       const roles = next.data.roles;
-      this.account
-        .getUserLogin(this.authen.getAuthenticated())
-        .then(userLogin => {
-          if (roles.filter(item => item == localStorage.getItem("role")).length > 0)
-            resolve(true);
-          else {
-            this.alert.notify('คุณไม่มีสิทธิ์ในการเข้าถึง URL ดังกล่าว !', 'danger');
-            this.router.navigate(['/', AppURL.Authen,AuthURL.Home]);
-            resolve(false);
-          }
-        })
-        .catch(() => resolve(false));
+      if (roles.filter(item => item == localStorage.getItem("role")).length > 0)
+        resolve(true);
+      else {
+        this.alert.notify('คุณไม่มีสิทธิ์ในการเข้าถึง URL ดังกล่าว !', 'danger');
+        this.router.navigate(['/', AppURL.Authen, AuthURL.Home]);
+        resolve(false);
+      }
     });
   }
 

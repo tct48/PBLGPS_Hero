@@ -33,7 +33,11 @@ import { LeaderboardComponent } from './authentication/components/leaderboard/le
 import { InformationComponent } from './authentication/components/information/information.component'
 import { ManageResourceComponent } from './authentication/components/manage-resource/manage-resource.component'
 
-
+// firebase
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import {
   CloudinaryModule,
@@ -120,6 +124,9 @@ import { CountdownModule } from 'ngx-countdown';
         CloudinaryModule.forRoot({ Cloudinary }, {
             cloud_name: 'hgflnfcwf',
         } as CloudinaryConfiguration),
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireDatabaseModule,
+        AngularFirestoreModule
     ],
     providers: [],
     bootstrap: [AppComponent],

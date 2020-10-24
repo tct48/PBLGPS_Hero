@@ -92,20 +92,7 @@ export class InformationComponent implements OnInit {
 
   // โหลด UserLogin
   public initialLoadUserLogin() {
-    var data = this.authen.getAuthenticated()
-    if (!data) {
-      return
-    }
-    this.account
-      .getUserLogin(this.authen.getAuthenticated())
-      .then((userLogin) => {
-        this.UserLogin = this.authen.setUserLogin();
-      })
-      .catch((err) => {
-        this.alert.notify(err.message)
-        this.authen.clearAuthenticated()
-        this.router.navigate(['/', AppURL.Login])
-      })
+  
   }
 
   // สร้าง ฟอร์มครั้งแรก
@@ -161,30 +148,6 @@ export class InformationComponent implements OnInit {
         })
     }
 
-    this.account
-      .getUserLogin(this.authen.getAuthenticated())
-      .then((result) => {
-        this.form.controls['email'].setValue(result.email)
-        this.form.controls['phone'].setValue(result.phone)
-        this.form.controls['firstname'].setValue(result.firstname)
-        this.form.controls['sid'].setValue(result.sid)
-        this.form.controls['lastname'].setValue(result.lastname)
-
-        this.member.returnClassroom(result.class).then(res=>{
-          this.form.controls['class'].setValue(res.items._id)
-          this.classroom = res.items.name
-          this.checkDataClassroom=1;
-        })
-
-        this.exp = result.exp
-        this.level = this.level_service.calculateLevel(this.exp)
-
-        if (result.image) {
-          this.image_name = result.image
-        }
-
-        this.checkData = 1;
-      })
   }
 
   getClassroom(_id:String){

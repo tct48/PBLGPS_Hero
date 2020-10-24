@@ -24,76 +24,81 @@ export class HomeComponent implements OnInit {
         private account: AccountService,
         private sanitizer: DomSanitizer,
         private router: Router,
-        private grade:GradeService
+        private grade: GradeService
     ) {
-        this.account
-            .getUserLogin(this.authen.getAuthenticated())
-            .then((result) => {
-                this.UserLogin = this.authen.setUserLogin();
-            })
+        this.UserLogin = this.authen.setUserLogin();
+        console.log(this.UserLogin)
     }
 
-    url:any= this.sanitizer.bypassSecurityTrustResourceUrl("https://edpuzzle.com/embed/assignments/5ebe9cbb40d77c3f106af0f4/watch");
     UserLogin: any
-    status:number = 0;
-    preTest:number=0;
-    prpsTest:number=0;
-    view:number=0;
+    status: number = 0;
+    preTest: number = 0;
+    prpsTest: number = 0;
+    view: number = 0;
 
-    ngOnInit(): void {}
+    ngOnInit(): void { }
 
-    handleEvent(data){
+    handleEvent(data) {
         // console.log(data);
-        if(data.action == "start"){
+        if (data.action == "start") {
             console.log("เริ่มจับเวลา")
-        }else if(data.action=="done"){
+        } else if (data.action == "done") {
             console.log("จับเวลาเสร็จแล้ว")
         }
     }
 
-    onClickPreTest(id:string) {
-        if(this.status==1){
+    onClickPreTest(id: string) {
+        if (this.status == 1) {
             return this.alert.show_score('คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' + this.preTest);
         }
 
-        this.grade.getScoreExerciseById(localStorage.getItem("_id"),'PRE-TEST').then(result=>{
-            if(result.total_items==0){
+        this.grade.getScoreExerciseById(localStorage.getItem("_id"), 'PRE-TEST').subscribe(res => {
+            var result:any;
+            result = res.map(e => {
+                return {
+                    _id: e.payload.doc.id,
+                    // เพิ่มเติม
+                }
+            })
+            console.log(result.length)
+            if(result.length==0){
+                console.log("BEC")
                 this.router.navigate(['', AppURL.Authen, AuthURL.Exercise], {
-                    queryParams: { id },
+                    queryParams: { id }
                 })
             }else{
-                this.status=1;
-                this.preTest = result.item.score
+                this.status = 1;
+                this.preTest = result.item.score;
                 return this.alert.show_score('คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' + this.preTest);
             }
         })
     }
 
-    onClickPrPS(id:string) {
-        if(this.status==2){
+    onClickPrPS(id: string) {
+        if (this.status == 2) {
             return this.alert.notify('กรุณาทำ "แบบฝึกหัดก่อนเรียน" ก่อน!')
         }
 
-        this.grade.getScoreExerciseById(localStorage.getItem("_id"),'PRE-TEST').then(result=>{
+        // this.grade.getScoreExerciseById(localStorage.getItem("_id"), 'PRE-TEST').then(result => {
 
-            if(result.total_items==0){
-                this.status=2;
-                this.alert.notify('กรุณาทำ "แบบฝึกหัดก่อนเรียน" ก่อน!')
-                return;
-            }
-            if(result.total_items>0){
-                this.grade.getScoreExerciseById(localStorage.getItem("_id"),'PRE-PRPS-TEST').then(result=>{
-                    if(result.total_items==0){
-                        this.router.navigate(['', AppURL.Authen, AuthURL.ExercisePrps], {
-                            queryParams: { id },
-                        })
-                    }else{
-                        this.prpsTest = result.item.score
-                        return this.alert.show_score('คะแนน "แบบประเมินทักษะการแก้ปัญหาก่อนเรียน" ของคุณคือ ' + this.prpsTest);
-                    }
-                })
-            }
-        })
+        //     if (result.total_items == 0) {
+        //         this.status = 2;
+        //         this.alert.notify('กรุณาทำ "แบบฝึกหัดก่อนเรียน" ก่อน!')
+        //         return;
+        //     }
+        //     if (result.total_items > 0) {
+        //         this.grade.getScoreExerciseById(localStorage.getItem("_id"), 'PRE-PRPS-TEST').then(result => {
+        //             if (result.total_items == 0) {
+        //                 this.router.navigate(['', AppURL.Authen, AuthURL.ExercisePrps], {
+        //                     queryParams: { id },
+        //                 })
+        //             } else {
+        //                 this.prpsTest = result.item.score
+        //                 return this.alert.show_score('คะแนน "แบบประเมินทักษะการแก้ปัญหาก่อนเรียน" ของคุณคือ ' + this.prpsTest);
+        //             }
+        //         })
+        //     }
+        // })
     }
 
     hover(image) {
@@ -106,9 +111,9 @@ export class HomeComponent implements OnInit {
         return image.setAttribute('src', 'http://www.pblgps.com/assets/image/02-2.gif')
     }
 
-    onSwitchTest(cases:number){
+    onSwitchTest(cases: number) {
         this.view = cases;
     }
 
-    unhover(image) {}
+    unhover(image) { }
 }

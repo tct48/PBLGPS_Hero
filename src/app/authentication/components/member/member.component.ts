@@ -35,11 +35,16 @@ export class MemberComponent implements OnInit {
         private authen: AuthenService,
     ) {
         this.UserLogin = this.authen.setUserLogin();
-        this.states = [5, 15 , 30, 50]
-        this.member.loadClassroom().then((result) => {
-            this.states = result.items
-        })
-
+        this.states = [5, 15 , 30, 50];
+        this.member.loadClassroom().subscribe(result=>{
+            this.states = result.map(e => {
+                return {
+                    _id: e.payload.doc.id,
+                    name: e.payload.doc.data()['name']
+                }
+            })
+        });
+        
         this.searchText=""
         this.onLoadMember('student')
     }

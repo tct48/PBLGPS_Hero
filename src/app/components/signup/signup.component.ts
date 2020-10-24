@@ -39,8 +39,13 @@ export class SignupComponent implements OnInit {
         private member_service: MemberService
     ) {
         this.createFormData()
-        this.member_service.loadClassroom().then((result) => {
-            this.states = result.items
+        this.member_service.loadClassroom().subscribe(result=>{
+            this.states = result.map(e => {
+                return {
+                    _id: e.payload.doc.id,
+                    name: e.payload.doc.data()['name']
+                }
+            })
         })
     }
 
@@ -115,16 +120,24 @@ export class SignupComponent implements OnInit {
         }else{
             obj = this.form.value
             obj.sid = "-"
+            obj.class = "059tykOXXVkOHZmaYXWp"
         }
-        obj.role = this.radioModel
+        obj.role = this.radioModel;
+        obj.exp = 0;
+        console.log(obj)
 
-        this.account.onRegister(obj).then(() => {
-            this.alert.success('สมัครสมาชิกเรียบร้อยแล้ว!')
-            setTimeout(() => {
-                //<<<---    using ()=> syntax
-                this.router.navigate(['/', AppURL.Login])
-            }, 1500)
+        this.account.onRegister(obj).then(result=>{
+            this.alert.success("สมัคสมาชิกเรียบร้อยแล้ว!")
+            this.router.navigate(['/', AppURL.Login])
         })
+
+        // this.account.onRegister(obj).then(() => {
+        //     this.alert.success('สมัครสมาชิกเรียบร้อยแล้ว!')
+        //     setTimeout(() => {
+        //         <<<---    using ()=> syntax
+        //         this.router.navigate(['/', AppURL.Login])
+        //     }, 1500)
+        // })
     }
 
     // เลือกไฟล์

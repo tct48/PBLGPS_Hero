@@ -3,13 +3,15 @@ import { HttpService } from 'src/app/services/http.service'
 import { AuthenService } from 'src/app/services/authen.service'
 import { HttpClient } from '@angular/common/http'
 import { isNull } from 'util'
+import { AngularFirestore } from '@angular/fire/firestore'
 
 @Injectable()
 export class MemberService {
     constructor(
         private http: HttpService,
         private https: HttpClient,
-        private authen: AuthenService
+        private authen: AuthenService,
+        private fireservice:AngularFirestore
     ) {}
 
     // service แก้ไขสมาชิก
@@ -120,19 +122,20 @@ export class MemberService {
 
     // โหลดห้องเรียนทั้งหมด
     loadClassroom(option?: OptionSearch) {
-        if (!option)
-            return this.http
-                .requestGet(
-                    `classroom?sp=0&lp=10`,
-                    this.authen.getAuthenticated()
-                )
-                .toPromise() as Promise<IClassroom>
-        return this.http
-            .requestGet(
-                `classroom?sp=${option.sp}&lp=${option.lp}`,
-                this.authen.getAuthenticated()
-            )
-            .toPromise() as Promise<IClassroom>
+        return this.fireservice.collection('Classroom', ref => ref.where('name','!=','-')).snapshotChanges();
+        // if (!option)
+        //     return this.http
+        //         .requestGet(
+        //             `classroom?sp=0&lp=10`,
+        //             this.authen.getAuthenticated()
+        //         )
+        //         .toPromise() as Promise<IClassroom>
+        // return this.http
+        //     .requestGet(
+        //         `classroom?sp=${option.sp}&lp=${option.lp}`,
+        //         this.authen.getAuthenticated()
+        //     )
+        //     .toPromise() as Promise<IClassroom>
     }
 
     // guild

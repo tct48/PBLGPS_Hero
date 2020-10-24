@@ -38,47 +38,6 @@ export class ExerciseComponent implements OnInit {
         this.activateRouter.queryParams.forEach((params) => {
             this._id = params.id
         })
-
-        this.account
-            .getUserLogin(this.authen.getAuthenticated())
-            .then((result) => {
-                // เรียกดูคะแนนถ้ามีคะแนนแล้ว แสดงว่าทำ PRE-TEST แล้วไม่สามารถทำได้
-                this.grade
-                    .getScoreExercise(this._id)
-                    .then((result) => {
-                        if (result.total_items > 0) {
-                            this.alert.success(
-                                'คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' +
-                                    result.item.score
-                            )
-                            this.router.navigate([
-                                '',
-                                AppURL.Authen,
-                                AuthURL.Home,
-                            ])
-                        }
-                    })
-            });
-            console.log(this._id)
-
-        // โหลดข้อมูลแบบฝึกหัด 
-        this.quiz
-            .getAllQuiz(this._id)
-            .then((result) => {
-                console.log(result)
-                this.leftTime = result.items.limit_time * 60
-                this.item = result.items
-                this.total_items = result.total_items
-                if (!this.item) {
-                    this.alert.something_wrong()
-                    this.router.navigate(['', AppURL.Authen, AuthURL.Home])
-                }
-                // console.log(result);
-            })
-            .catch(() => {
-                this.alert.something_wrong()
-                this.router.navigate(['', AppURL.Authen, AuthURL.Home])
-            })
     }
 
     ngOnInit(): void {}
