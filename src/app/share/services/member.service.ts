@@ -19,37 +19,24 @@ export class MemberService {
     getTopPlayer(classroom?: string) {
         this.item = [];
         if (classroom) {
-            // กรณีเฉพาะห้องตัวเอง
-            var dumb = this.fireservice.collection('User', ref => ref.where('role', '==', 'student')
-                .where('class', '==', classroom).limit(5))
-            dumb.ref.orderBy('exp', 'desc').onSnapshot((snapshot) => {
-                snapshot.docChanges().forEach(change => {
-                    this.item.push(
-                        {
-                            _id: change.doc.id,
-                            username: change.doc.data().username,
-                            exp: change.doc.data().exp,
-                        }
-                    )
-                })
-                console.log(this.item)
-            })
+            //เฉพาะห้องตัวเอง
+            return this.http.requestGet(`member/_GET/leaderboard.php?classroom=${classroom}`, "OK").toPromise() as Promise <any>
         }
+        return this.http.requestGet('member/_GET/leaderboard.php?', "OK").toPromise() as Promise <any>
 
         // ทั้งหมด
-        var dumb = this.fireservice.collection('User', ref => ref.where('role', '==', 'student').limit(5))
-        dumb.ref.orderBy('exp', 'desc').onSnapshot((snapshot) => {
-            snapshot.docChanges().forEach(change => {
-                this.item.push(
-                    {
-                        _id: change.doc.id,
-                        username: change.doc.data().username,
-                        exp: change.doc.data().exp,
-                    }
-                )
-            })
-        })
-        return this.item;
+        // var dumb = this.fireservice.collection('User', ref => ref.where('role', '==', 'student').limit(5))
+        // dumb.ref.orderBy('exp', 'desc').onSnapshot((snapshot) => {
+        //     snapshot.docChanges().forEach(change => {
+        //         this.item.push(
+        //             {
+        //                 _id: change.doc.id,
+        //                 username: change.doc.data().username,
+        //                 exp: change.doc.data().exp,
+        //             }
+        //         )
+        //     })
+        // })
     }
 }
 

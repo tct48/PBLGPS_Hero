@@ -46,7 +46,7 @@ export class MemberComponent implements OnInit {
         });
         
         this.searchText=""
-        this.onLoadMember('student')
+        this.onLoadMember("1",localStorage.getItem("classroom"))
     }
 
     ngOnInit(): void {}
@@ -102,6 +102,7 @@ export class MemberComponent implements OnInit {
     // เรียกดูสมาชิก onInit
     onLoadMember(role?:string,classroom?:string) {
         if(classroom){
+            console.log("28")
           this.member.loadMember(this.option,role,classroom).then((result) => {
             this.total_items = result.total_items
             this.items = result.items
@@ -112,7 +113,8 @@ export class MemberComponent implements OnInit {
             this.cp = Number(this.option.sp) + 1 
         })
         }else{
-        this.member.loadMember(this.option,role,'').then((result) => {
+            console.log("30")
+        this.member.loadMember(this.option,role,localStorage.getItem('classroom')).then((result) => {
             this.total_items = result.total_items
             this.items = result.items
  
@@ -190,8 +192,9 @@ export class MemberComponent implements OnInit {
     onSearch() {
         this.option.sp = 0
         this.option.valueData = this.searchText
+        // รอมาแก้
 
-        this.member.loadMember(this.option,this.role).then((result) => {
+        this.member.loadMember(this.option,this.role,"1").then((result) => {
             this.total_items = result.total_items
             this.items = result.items
 

@@ -14,7 +14,7 @@ export class AuthenService {
         localStorage.setItem("firstname",current_user.firstname)
         localStorage.setItem("lastname",current_user.lastname)
         localStorage.setItem("role",current_user.role)
-        localStorage.setItem("classroom",current_user.class)
+        localStorage.setItem("classroom",current_user.classroom)
         localStorage.setItem("guild",current_user.guild)
     }
 

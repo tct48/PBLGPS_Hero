@@ -10,7 +10,7 @@
           class="fa fa-sort-desc fa-lg"></i></a>
       <ul class="dropdown-menu settings-menu dropdown-menu-right">
         <li>
-          <a class="dropdown-item" *ngIf="UserLogin.role=='student'" style="cursor: pointer;"  [routerLink]="['/auth/guild']">
+          <a class="dropdown-item" *ngIf="UserLogin.role=='2'" style="cursor: pointer;"  [routerLink]="['/auth/guild']">
             <i class="fa fa-users"></i> กิล์ดของฉัน</a>
         </li>
         <li>
@@ -31,8 +31,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <!-- กรณี role เป็น student -->
-      <div class="navbar-nav text-center" *ngIf="UserLogin.role == 'student'">
+      <!-- กรณี role เป็น student = 2 -->
+      <div class="navbar-nav text-center" *ngIf="UserLogin.role == '2'">
         <a class="nav-item border-right nav-link px-4 " routerLinkActive="active" [routerLink]="['/auth/home']">หน้าแรก
           <br /><i class="fa fa-home fa-lg"></i></a>
           <a class="nav-item border-right nav-link px-4" *ngIf="UserLogin.menu==true" [routerLink]="['/auth/stage']" routerLinkActive="active">กิจกรรมประจำด่าน<br />(STAGE)
@@ -52,7 +52,7 @@
         </a>
       </div>
       <!-- กรณี role เป็น admin -->
-      <div class="navbar-nav text-center" *ngIf="UserLogin.role == 'admin'">
+      <div class="navbar-nav text-center" *ngIf="UserLogin.role == '1'">
         <a class="nav-item border-right nav-link px-4" routerLinkActive="active animate__animated animate__pulse" [routerLink]="['/auth/home']">หน้าแรก
           <br /><i class="fa fa-home fa-lg"></i></a>
         <a class="nav-item border-right nav-link px-4" routerLinkActive="active"

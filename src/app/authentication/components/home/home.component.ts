@@ -26,8 +26,8 @@ export class HomeComponent implements OnInit {
         private router: Router,
         private grade: GradeService
     ) {
-        this.UserLogin = this.authen.setUserLogin();
-        console.log(this.UserLogin)
+        // this.UserLogin = this.authen.setUserLogin();
+        // console.log(this.UserLogin)
     }
 
     UserLogin: any

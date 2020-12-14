@@ -45,8 +45,12 @@ export class LeaderboardComponent implements OnInit {
     loadTopPlayerFromMyClassroom() {
         if (this.status == "B")
             return;
+        console.log("Come in");
 
-        this.Leaderboard = this.member.getTopPlayer(localStorage.getItem("classroom"));
+        // this.Leaderboard = this.member.getTopPlayer(localStorage.getItem("classroom"));
+        this.member.getTopPlayer(localStorage.getItem("classroom")).then(result=>{
+            console.log(result);
+        })
         this.status = "B"
     }
 
@@ -59,8 +63,10 @@ export class LeaderboardComponent implements OnInit {
     loadTopPlayer() {
         if (this.status == "A")
             return;
-
-        this.Leaderboard = this.member.getTopPlayer();
+        this.member.getTopPlayer().then(result=>{
+            console.log(result);
+            this.Leaderboard = result[0].items;
+        })
         this.status = "A";
     }
 

@@ -63,10 +63,10 @@ export class AccountService {
 
     // ล๊อกอิน
     onLogin(model: ILogin) {
-        return this.fireservice.collection('User', ref => ref.where('username','==',model.username).where('password','==',model.password)).snapshotChanges()
-        // return this.http
-        //     .requestPost('user/login', model)
-        //     .toPromise() as Promise<{ accessToken: string,current_user:any }>
+        // return this.fireservice.collection('User', ref => ref.where('username','==',model.username).where('password','==',model.password)).snapshotChanges()
+        return this.http
+            .requestPost('member/_POST/signin.php', model)
+            .toPromise() as Promise<any>
     }
 
     // ล๊อกเอาท์
@@ -77,10 +77,10 @@ export class AccountService {
     // สมัครสมาชิก
     onRegister(model: any) {
         console.log(model)
-        return this.fireservice.collection('User').add(model)
-        // return this.http
-        //     .requestPost('user/signup', model)
-        //     .toPromise() as Promise<IRegister>
+        // return this.fireservice.collection('User').add(model)
+        return this.http
+            .requestPost('member/_post.php', model)
+            .toPromise() as Promise<IRegister>
     }
 
     // อัพโหลดรูปภาพ

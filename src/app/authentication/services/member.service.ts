@@ -32,11 +32,23 @@ export class MemberService {
         if(isNull(option.valueData)==true){
             option.valueData="";
         }
-        var url = `user/search?sp=${option.sp}&lp=${option.lp}&search=${option.valueData}&role=${role}`;
-        if(classroom){
-            url += `&classroom=${classroom}`
+        // var url = `user/search?sp=${option.sp}&lp=${option.lp}&search=${option.valueData}&role=${role}`;
+        // if(classroom){
+        //     url += `&classroom=${classroom}`
+        // }
+
+        var url = "member/_get.php?sp=0&lp=5";
+        if(option.valueData){
+            var dumb;
+            if(role=='student'){
+                dumb = 2;
+            }else{
+                dumb = 1;
+            }
+            url += "&search=" + option.valueData + "&role=" + dumb + "&classroom=" + classroom;
         }
-        return this.http.requestGet(url,this.authen.getAuthenticated()).toPromise() as Promise<IMember>
+        console.log(url);
+        return this.http.requestGet(url,this.authen.getAuthenticated()).toPromise() as Promise<any>
     }
 
     // เพิ่มการเข้าเรียน
