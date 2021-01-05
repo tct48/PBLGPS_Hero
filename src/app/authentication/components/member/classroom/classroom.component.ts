@@ -89,13 +89,8 @@ export class ClassroomComponent implements OnInit {
   }
 
   loadDataClassroom(){
-    this.member.loadClassroom().subscribe(result=>{
-      this.Classroom_item = result.map(e => {
-          return {
-              _id: e.payload.doc.id,
-              name: e.payload.doc.data()['name']
-          }
-      })
+    this.member.loadClassroom().then(result=>{
+      this.Classroom_item = result.items;
       this.total_classroom = this.Classroom_item.length;
   });
     this.classroom_name=null;

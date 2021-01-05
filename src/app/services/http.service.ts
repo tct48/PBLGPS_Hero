@@ -16,7 +16,7 @@ export class HttpService {
 
     // private address: string = 'https://backend-pblgps.herokuapp.com/'
     private address : string = 'http://localhost/backend-pblgps/api/';
-    // private address : string = "http://localhost:3000/"
+    // private address : string = "http://www.pblgps.com/api/";
 
     //Request GET method
     requestGet(url: string, accessToken?: string) {

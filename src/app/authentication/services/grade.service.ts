@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core'
 import { HttpService } from 'src/app/services/http.service';
 import { AccountService } from 'src/app/share/services/account.service';
 import { AuthenService } from 'src/app/services/authen.service';
-import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable()
 export class GradeService {
@@ -10,7 +9,6 @@ export class GradeService {
         private http : HttpService,
         private account: AccountService,
         private authen: AuthenService,
-        private fireservice:AngularFirestore,
     ) {
     }
 
@@ -25,9 +23,9 @@ export class GradeService {
     }
 
     getScoreExerciseById(id:string,exercise:string){
-        return this.fireservice.collection('Grade', ref => ref.where('user','==',id).where('name','==',exercise)).snapshotChanges()
-        // return this.http.requestGet(`grade/${id}/${exercise}`)
-        // .toPromise() as Promise<IGrade>
+        // return this.fireservice.collection('Grade', ref => ref.where('user','==',id).where('name','==',exercise)).snapshotChanges()
+        return this.http.requestGet(`grade/${id}/${exercise}`)
+        .toPromise() as Promise<IGrade>
     }
 
     updateScoreExcerciseById(exercise_id:string,model:any){

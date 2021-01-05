@@ -3,7 +3,6 @@ import { AlertService } from './alert.service'
 import { HttpService } from 'src/app/services/http.service'
 import { AuthenService } from 'src/app/services/authen.service'
 import { Observable, BehaviorSubject } from 'rxjs'
-import { AngularFirestore } from '@angular/fire/firestore'
 
 @Injectable({
     providedIn: 'root',
@@ -14,7 +13,6 @@ export class AccountService {
         private http: HttpService,
         private alert: AlertService,
         private authen: AuthenService,
-        private fireservice:AngularFirestore
     ) {
     }
 

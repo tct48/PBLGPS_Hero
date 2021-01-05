@@ -39,13 +39,9 @@ export class SignupComponent implements OnInit {
         private member_service: MemberService
     ) {
         this.createFormData()
-        this.member_service.loadClassroom().subscribe(result=>{
-            this.states = result.map(e => {
-                return {
-                    _id: e.payload.doc.id,
-                    name: e.payload.doc.data()['name']
-                }
-            })
+        this.member_service.loadClassroom().then(result=>{
+            console.log(result);
+            this.states = result.items;
         })
     }
 
@@ -86,9 +82,14 @@ export class SignupComponent implements OnInit {
 
     // ปุ่มแก้ไข
     onSubmit() {
+        if(this.radioModel=='student'){
+            this.radioModel = "2";
+        }else{
+            this.radioModel = "1";
+        }
         this.form.controls['role'].setValue(this.radioModel);
 
-        if (this.radioModel=='student' && this.form.invalid) {
+        if (this.radioModel=='2' && this.form.invalid) {
             return this.alert.notify('กรุณากรอกข้อมูลให้ครบถ้วน!')
         }
         var formdata = new FormData()
@@ -125,7 +126,6 @@ export class SignupComponent implements OnInit {
         obj.role = this.radioModel;
         obj.exp = 0;
         console.log(obj)
-
         this.account.onRegister(obj).then(result=>{
             this.alert.success("สมัคสมาชิกเรียบร้อยแล้ว!")
             this.router.navigate(['/', AppURL.Login])

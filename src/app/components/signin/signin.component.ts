@@ -70,7 +70,8 @@ export class SigninComponent implements OnInit {
             return this.alert.notify('กรุณากรอกข้อมูลให้ถูกต้อง')
         }
         this.account.onLogin(this.form.value).then((result) => {
-            console.log(result)
+            console.log(result);
+            console.log("RESULTTTTTTTTT")
             if (result.total_items == 0) {
                 this.alert.something_wrong(
                     'Username หรือ Password ไม่ถูกต้อง !'

@@ -31,22 +31,17 @@ export class MemberComponent implements OnInit {
         private alert: AlertService,
         private level: LevelService,
         private member: MemberService,
-        private account: AccountService,
         private authen: AuthenService,
     ) {
         this.UserLogin = this.authen.setUserLogin();
         this.states = [5, 15 , 30, 50];
-        this.member.loadClassroom().subscribe(result=>{
-            this.states = result.map(e => {
-                return {
-                    _id: e.payload.doc.id,
-                    name: e.payload.doc.data()['name']
-                }
-            })
+        this.member.loadClassroom().then(result=>{
+            console.log(result);
+            this.states = result.items;
         });
         
         this.searchText=""
-        this.onLoadMember("1",localStorage.getItem("classroom"))
+        this.onLoadMember("2",localStorage.getItem("classroom"))
     }
 
     ngOnInit(): void {}
@@ -102,7 +97,6 @@ export class MemberComponent implements OnInit {
     // เรียกดูสมาชิก onInit
     onLoadMember(role?:string,classroom?:string) {
         if(classroom){
-            console.log("28")
           this.member.loadMember(this.option,role,classroom).then((result) => {
             this.total_items = result.total_items
             this.items = result.items
@@ -113,7 +107,6 @@ export class MemberComponent implements OnInit {
             this.cp = Number(this.option.sp) + 1 
         })
         }else{
-            console.log("30")
         this.member.loadMember(this.option,role,localStorage.getItem('classroom')).then((result) => {
             this.total_items = result.total_items
             this.items = result.items

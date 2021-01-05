@@ -52,14 +52,9 @@ export class HomeComponent implements OnInit {
             return this.alert.show_score('คะแนน "แบบทดสอบก่อนเรียน" ของคุณคือ ' + this.preTest);
         }
 
-        this.grade.getScoreExerciseById(localStorage.getItem("_id"), 'PRE-TEST').subscribe(res => {
+        this.grade.getScoreExerciseById(localStorage.getItem("_id"), 'PRE-TEST').then(res => {
             var result:any;
-            result = res.map(e => {
-                return {
-                    _id: e.payload.doc.id,
-                    // เพิ่มเติม
-                }
-            })
+            result = res.item;
             console.log(result.length)
             if(result.length==0){
                 console.log("BEC")

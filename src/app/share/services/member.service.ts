@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core'
 import { HttpService } from 'src/app/services/http.service'
 import { AuthenService } from 'src/app/services/authen.service'
 import { IMember } from 'src/app/authentication/services/member.service'
-import { AngularFirestore } from '@angular/fire/firestore'
 
 @Injectable({
     providedIn: 'root',
@@ -10,7 +9,7 @@ import { AngularFirestore } from '@angular/fire/firestore'
 export class MemberService {
     member: Number[]
 
-    constructor(private http: HttpService, private authen: AuthenService, private fireservice: AngularFirestore) { }
+    constructor(private http: HttpService, private authen: AuthenService) { }
 
     showMember() {
         return this.member
